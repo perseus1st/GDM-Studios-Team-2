@@ -11,6 +11,7 @@ public class BirdieController : MonoBehaviour
     public Transform opponent; // Reference sister's position
     public GameObject glowEffect; // Glow sprite for when to hit
     public AudioSource hitSound; // Hit birdie sound
+    public GameObject targetIndicator; // Shows where birdie will land
 
     // Birdie movement
     [Header("Movement Settings")]
@@ -21,6 +22,20 @@ public class BirdieController : MonoBehaviour
     public float hitRange = 2f; // How close player has to be to hit birdie in units
     public float hitWindowStart = 0.9f; // What percentage into flight the player can hit birdie
 
+    // Controls for how the shot types work
+    [Header("Shot Type Settings")]
+    public float normalShotMinDistance = 1f; // Minimum distance from player
+    public float normalShotMaxDistanceAtLowScore = 3f; // Easy maximum distance from player 
+    public float normalShotMaxDistanceAtHighScore = 8f; // Hard maximum distance from player
+    public float dropShotNetDistance = 2f;  // Distance from net
+    public float dropShotArcMultiplier = 2f; // How much higher the drop shot arc is
+    public float dropShotExtraTimeAtLowScore = 2f;  // Gives extra time for player to reach drop shot
+    public float dropShotExtraTimeAtHighScore = 0.3f;
+    public float longShotBackDistance = 2f; // Distance from back wall
+    public float longShotArcMultiplier = 0.5f; // How much smaller the long shot arc is
+    public float longShotExtraTimeAtLowScore = 2f; // Gives player extra time to hit long shot
+    public float longShotExtraTimeAtHighScore = 0.3f;   
+    public int scoreForFullDistribution = 30;   // Maximum difficulty at this score
 
 
     // Birdie states
@@ -34,6 +49,8 @@ public class BirdieController : MonoBehaviour
     private Vector3 originalScale; // Original scale of the birdie
     private float landedTime; // Time when flight over 
     private bool isGrounded; // Is flight done but birdie not hit yet
+    private float currentFlightSpeed; // How fast birdie flying for this specific shot
+    private float currentArcHeight; // How high birdie flying for this specific shot
 
 
 
@@ -46,6 +63,10 @@ public class BirdieController : MonoBehaviour
         // Glow starts disabled
         if (glowEffect != null)
             glowEffect.SetActive(false);
+
+        // Hide target indicator
+        if (targetIndicator != null)
+            targetIndicator.SetActive(false);
 
         // Birdie starts on opponent side
         isOnPlayerSide = false;
@@ -60,7 +81,7 @@ public class BirdieController : MonoBehaviour
     void Update()
     {
         // Checks for birdie side (z<0 = player's side)
-        isOnPlayerSide = transform.position.z < 0;
+        isOnPlayerSide = transform.position.z < 0f;
 
         // Reset hit window
         bool inHitWindow = false;
@@ -140,6 +161,10 @@ public class BirdieController : MonoBehaviour
         if (ScoreManager.Instance != null)
             ScoreManager.Instance.AddScore();
 
+        // Remove target indicator
+        if (targetIndicator != null)
+        targetIndicator.SetActive(false);
+
         // Get opponent position
         startPosition = transform.position;
 
@@ -151,6 +176,12 @@ public class BirdieController : MonoBehaviour
 
         // Calcualte distance for flight
         journeyLength = Vector3.Distance(startPosition, targetPosition);
+
+        // Use base values for the player shot with base speed as backup
+        currentFlightSpeed = ScoreManager.Instance != null 
+            ? ScoreManager.Instance.GetCurrentFlightSpeed() 
+            : 8f;
+        currentArcHeight = arcHeight;
 
         // Reset flight and start new flight
         journeyProgress = 0f;
@@ -172,9 +203,30 @@ public class BirdieController : MonoBehaviour
         if (hitSound != null)
             hitSound.Play();
         
-        // Fly to middle of player's side for testing
+        // Set flight start
         startPosition = transform.position;
-        targetPosition = new Vector3(0f, 0.5f, -5f);
+        
+        // Calculate probabilities of each shot type based on score
+        int currentScore = ScoreManager.Instance != null ? ScoreManager.Instance.GetScore() : 0;
+        float normalChance = GetNormalShotChance(currentScore);
+        float dropChance = GetDropShotChance(currentScore);
+        
+        // Select shot type randomly
+        float roll = Random.Range(0f, 1f);
+        
+        if (roll < normalChance)
+        {
+            ServeNormalShot(currentScore);
+        }
+        else if (roll < normalChance + dropChance)
+        {
+            ServeDropShot(currentScore);
+        }
+        else
+        {
+            ServeLongShot(currentScore);
+        }
+
 
         // Calculate flight distance
         journeyLength = Vector3.Distance(startPosition, targetPosition);
@@ -184,26 +236,146 @@ public class BirdieController : MonoBehaviour
         isFlying = true;
         isOnPlayerSide = false;
         isGrounded = false;
+
+        // Show where the birdie will land
+        if (targetIndicator != null)
+        {
+            targetIndicator.transform.position = targetPosition;
+            targetIndicator.SetActive(true);
+        }
+    }
+
+    // Normal shot goes to a random location near player
+    void ServeNormalShot(int score)
+    {
+        // Calculate distance away from player based on score
+        float t = Mathf.Clamp01((float)score / scoreForFullDistribution);
+        float maxDistance = Mathf.Lerp(normalShotMaxDistanceAtLowScore, normalShotMaxDistanceAtHighScore, t);
+        
+        // Pick random location
+        float randomDistance = Random.Range(normalShotMinDistance, maxDistance);
+        float randomAngle = Random.Range(0f, 360f);
+        
+        // Calculate offset that will be applied to player position
+        Vector3 offset = new Vector3(
+            Mathf.Cos(randomAngle * Mathf.Deg2Rad) * randomDistance,
+            0f,
+            Mathf.Sin(randomAngle * Mathf.Deg2Rad) * randomDistance
+        );
+        
+        // Apply offset and clamp to be inside play area
+        // Will need to adjust manually if court size changes
+        Vector3 targetPos = player.position + offset;
+        targetPos.x = Mathf.Clamp(targetPos.x, -9f, 9f);
+        targetPos.z = Mathf.Clamp(targetPos.z, -9f, -1f);
+        targetPos.y = 0.5f;
+        
+        // Set speed and height
+        targetPosition = targetPos;
+        currentFlightSpeed = ScoreManager.Instance != null 
+            ? ScoreManager.Instance.GetCurrentFlightSpeed() 
+            : 8f;
+        currentArcHeight = arcHeight;
+    }
+
+    // Drop shot goes near net with a bit of extra time
+    void ServeDropShot(int score)
+    {
+        // Pick location near net
+        // Will need to adjust manually if court size changes
+        float randomX = Random.Range(-8f, 8f);
+        float netZ = -0.8f - Random.Range(0f, dropShotNetDistance);
+        netZ = Mathf.Clamp(netZ, -9f, -1f);
+        
+        targetPosition = new Vector3(randomX, 0.5f, netZ);
+        
+        // Calculate extra time
+        float t = Mathf.Clamp01((float)score / scoreForFullDistribution);
+        float extraTime = Mathf.Lerp(dropShotExtraTimeAtLowScore, dropShotExtraTimeAtHighScore, t);
+        
+        // Calculate time, distance, speed
+        float distance = Vector3.Distance(player.position, targetPosition);
+        float playerMaxSpeed = playerController != null ? playerController.maxSpeed : 8f;
+        float timeNeeded = distance / playerMaxSpeed;
+        float totalTime = timeNeeded + extraTime;
+        
+        // Set distance, speed, arc height
+        float shotDistance = Vector3.Distance(startPosition, targetPosition);
+        currentFlightSpeed = shotDistance / totalTime;
+        currentArcHeight = arcHeight * dropShotArcMultiplier;
+    }
+
+    // Long shot goes to back of court with extra time
+    void ServeLongShot(int score)
+    {
+        // Pick location near back
+        // Will need to adjust manually if court size changes
+        float randomX = Random.Range(-8f, 8f);
+        float backZ = -9f + Random.Range(0f, longShotBackDistance);
+        
+        targetPosition = new Vector3(randomX, 0.5f, backZ);
+        
+        // Calculate extra time
+        float t = Mathf.Clamp01((float)score / scoreForFullDistribution);
+        float extraTime = Mathf.Lerp(longShotExtraTimeAtLowScore, longShotExtraTimeAtHighScore, t);
+        
+        // Calculate time, distance, speed
+        float distance = Vector3.Distance(player.position, targetPosition);
+        float playerMaxSpeed = playerController != null ? playerController.maxSpeed : 8f;
+        float timeNeeded = distance / playerMaxSpeed;
+        float totalTime = timeNeeded + extraTime;
+        
+        // Set distance, speed, arc height
+        float shotDistance = Vector3.Distance(startPosition, targetPosition);
+        currentFlightSpeed = shotDistance / totalTime;
+        currentArcHeight = arcHeight * longShotArcMultiplier;
+    }
+
+    // Calculate normal shot probability. Starts at 100% and drops to 20%
+    float GetNormalShotChance(int score)
+    {
+        float t = Mathf.Clamp01((float)score / scoreForFullDistribution);
+        return Mathf.Lerp(1f, 0.2f, t);
+    }
+
+    // Calculate drop shot probability. Maxes out at 40%
+    float GetDropShotChance(int score)
+    {
+        float t = Mathf.Clamp01((float)score / scoreForFullDistribution);
+        return Mathf.Lerp(0f, 0.4f, t);
     }
 
     // Birdie position during flight
     void UpdateFlight()
     {
-        // Get dynamic flight speed from ScoreManager with fallback
-        float currentSpeed = ScoreManager.Instance != null ? ScoreManager.Instance.GetCurrentFlightSpeed() : 8f;
+        // Avoid small mismatch with final position
+        if (journeyLength <= 0.001f)
+        {
+            transform.position = targetPosition;
+            isFlying = false;
+            journeyProgress = 1f;
+            transform.localScale = originalScale;
+            
+            if (transform.position.z < 0)
+            {
+                isGrounded = true;
+                landedTime = Time.time;
+            }
+            return;
+        }
 
         // Increase progress
-        journeyProgress += (currentSpeed / journeyLength) * Time.deltaTime;
+        journeyProgress += (currentFlightSpeed / journeyLength) * Time.deltaTime;
 
         // Calculate position
         Vector3 currentPos = Vector3.Lerp(startPosition, targetPosition, journeyProgress);
 
         // Calculate arc height
         float arcProgress = 4f * journeyProgress * (1f - journeyProgress);
-        float currentArcHeight = arcProgress * arcHeight;
+        float currentArcHeightValue = arcProgress * currentArcHeight;
 
         // Scale sprite to simulate arc
-        float scaleMultiplier = 1f + (currentArcHeight);
+        float scaleMultiplier = 1f + (currentArcHeightValue);
         transform.localScale = originalScale * scaleMultiplier;
 
         // Apply position
@@ -216,8 +388,13 @@ public class BirdieController : MonoBehaviour
             isFlying = false;
             journeyProgress = 0f;
 
-            // Reset scale
+            // Reset scale and position
             transform.localScale = originalScale;
+            transform.position = targetPosition;
+
+            // Hide target indicator
+            if (targetIndicator != null)
+                targetIndicator.SetActive(false);
 
             // check which side landed on (-ve z = player side)
             if (transform.position.z < 0)
