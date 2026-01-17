@@ -5,12 +5,39 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 5e55dffd1ddf787498f6249c02d4885f
+  - enabled: 0
+    path: Assets/Scenes/TitleScreen.unity
+    guid: e51707a21b6557b48a8728cc728feca1
+  - enabled: 1
+    path: Assets/Scenes/Cutscene1.unity
+    guid: 6a482aaf098179a46ae55bf921a5827a
+  - enabled: 1
+    path: Assets/Scenes/MC_Room.unity
+    guid: 3918094a0d7d8a541a5b85ac3665745d
+  - enabled: 1
+    path: Assets/Scenes/Sister_Room.unity
+    guid: 1e66f9e107f0b3141bc0e4231ef1c41b
+  - enabled: 1
+    path: Assets/Scenes/Badminton_Minigame.unity
+    guid: 7fcf42700798ddb469463e32cb7861f4
+  - enabled: 1
+    path: Assets/Scenes/DDR_Minigame.unity
+    guid: a24c9a5db1a0fc341ba9fa2899fb16e6
+  - enabled: 1
+    path: Assets/Scenes/Dodgeball_Minigame.unity
+    guid: 7f44386f98347d74d8fb883b8fe67f07
+  - enabled: 1
+    path: Assets/Scenes/Kite_Minigame.unity
+    guid: 747449ebb6d0aa842b5086996e750932
+  - enabled: 1
+    path: Assets/Scenes/Cutscene2.unity
+    guid: 976d6ab2d364d3546b84c969e34f7222
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
