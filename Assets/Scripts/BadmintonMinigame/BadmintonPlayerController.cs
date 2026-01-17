@@ -49,7 +49,7 @@ public class BadmintonPlayerController : MonoBehaviour
     }
 
     // Input system calls this when a Hit is performed
-    void OnHit(InputValue value)
+    void OnInteract(InputValue value)
     {
         if (value.isPressed)
             // Record press time
