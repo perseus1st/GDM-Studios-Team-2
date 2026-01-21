@@ -24,9 +24,12 @@ public class BirdieController : MonoBehaviour
 
     // Controls for how the shot types work
     [Header("Shot Type Settings")]
-    public float normalShotMinDistance = 1f; // Minimum distance from player
+    public float normalShotMinDistanceAtLowScore = 1f; // Easy minimum distance from player
+    public float normalShotMinDistanceAtHighScore = 4f; // Hard minimum distance from player
     public float normalShotMaxDistanceAtLowScore = 3f; // Easy maximum distance from player 
     public float normalShotMaxDistanceAtHighScore = 8f; // Hard maximum distance from player
+    public float normalShotExtraTimeAtLowScore = 2f;  // Extra time for players to reach the normal shot
+    public float normalShotExtraTimeAtHighScore = 0.3f;
     public float dropShotNetDistance = 2f;  // Distance from net
     public float dropShotArcMultiplier = 2f; // How much higher the drop shot arc is
     public float dropShotExtraTimeAtLowScore = 2f;  // Gives extra time for player to reach drop shot
@@ -51,6 +54,7 @@ public class BirdieController : MonoBehaviour
     private bool isGrounded; // Is flight done but birdie not hit yet
     private float currentFlightSpeed; // How fast birdie flying for this specific shot
     private float currentArcHeight; // How high birdie flying for this specific shot
+    private int consecutiveHits = 0; // For tracking how much extra time to give the player after they miss
 
 
 
@@ -106,6 +110,7 @@ public class BirdieController : MonoBehaviour
             {
                 if (ScoreManager.Instance != null)
                     ScoreManager.Instance.LoseLife();
+                consecutiveHits = 0; // Reset consecutive hits tracker
                 ResetAndServe();
             }
         }
@@ -160,6 +165,9 @@ public class BirdieController : MonoBehaviour
         // Increment score
         if (ScoreManager.Instance != null)
             ScoreManager.Instance.AddScore();
+
+        // Increment consecutive hits tracker
+        consecutiveHits++;
 
         // Remove target indicator
         if (targetIndicator != null)
@@ -251,9 +259,10 @@ public class BirdieController : MonoBehaviour
         // Calculate distance away from player based on score
         float t = Mathf.Clamp01((float)score / scoreForFullDistribution);
         float maxDistance = Mathf.Lerp(normalShotMaxDistanceAtLowScore, normalShotMaxDistanceAtHighScore, t);
+        float minDistance = Mathf.Lerp(normalShotMinDistanceAtLowScore, normalShotMinDistanceAtHighScore, t);
         
         // Pick random location
-        float randomDistance = Random.Range(normalShotMinDistance, maxDistance);
+        float randomDistance = Random.Range(minDistance, maxDistance);
         float randomAngle = Random.Range(0f, 360f);
         
         // Calculate offset that will be applied to player position
@@ -270,11 +279,18 @@ public class BirdieController : MonoBehaviour
         targetPos.z = Mathf.Clamp(targetPos.z, -9f, -1f);
         targetPos.y = 0.5f;
         
-        // Set speed and height
+        // Calculate speed and height based on extra time
         targetPosition = targetPos;
-        currentFlightSpeed = ScoreManager.Instance != null 
-            ? ScoreManager.Instance.GetCurrentFlightSpeed() 
-            : 8f;
+        float extraTime = Mathf.Lerp(dropShotExtraTimeAtLowScore, dropShotExtraTimeAtHighScore, t);
+        extraTime += GetMissRecoveryBonus();
+        float distance = Vector3.Distance(player.position, targetPosition);
+        float playerMaxSpeed = playerController != null ? playerController.maxSpeed : 8f;
+        float timeNeeded = distance / playerMaxSpeed;
+        float totalTime = timeNeeded + extraTime;
+
+        // Set speed, distance, and height
+        float shotDistance = Vector3.Distance(startPosition, targetPosition);
+        currentFlightSpeed = shotDistance / totalTime;
         currentArcHeight = arcHeight;
     }
 
@@ -292,6 +308,7 @@ public class BirdieController : MonoBehaviour
         // Calculate extra time
         float t = Mathf.Clamp01((float)score / scoreForFullDistribution);
         float extraTime = Mathf.Lerp(dropShotExtraTimeAtLowScore, dropShotExtraTimeAtHighScore, t);
+        extraTime += GetMissRecoveryBonus();
         
         // Calculate time, distance, speed
         float distance = Vector3.Distance(player.position, targetPosition);
@@ -318,6 +335,7 @@ public class BirdieController : MonoBehaviour
         // Calculate extra time
         float t = Mathf.Clamp01((float)score / scoreForFullDistribution);
         float extraTime = Mathf.Lerp(longShotExtraTimeAtLowScore, longShotExtraTimeAtHighScore, t);
+        extraTime += GetMissRecoveryBonus();
         
         // Calculate time, distance, speed
         float distance = Vector3.Distance(player.position, targetPosition);
@@ -430,6 +448,17 @@ public class BirdieController : MonoBehaviour
     
     // Serve to player after a pause
     Invoke("ServeToPlayer", 2f);
+    }
+
+    // Add extra time for the first two shots after a miss
+    float GetMissRecoveryBonus()
+    {
+        if (consecutiveHits == 0)
+            return 0.2f;
+        else if (consecutiveHits == 1)
+            return 0.1f;
+        else
+            return 0f;
     }
 
 

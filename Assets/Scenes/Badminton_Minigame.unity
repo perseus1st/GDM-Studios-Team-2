@@ -932,18 +932,21 @@ MonoBehaviour:
   arcHeight: 2
   hitRange: 2
   hitWindowStart: 0.9
-  normalShotMinDistance: 1
+  normalShotMinDistanceAtLowScore: 1
+  normalShotMinDistanceAtHighScore: 6
   normalShotMaxDistanceAtLowScore: 3
   normalShotMaxDistanceAtHighScore: 8
+  normalShotExtraTimeAtLowScore: 1.3
+  normalShotExtraTimeAtHighScore: 0.7
   dropShotNetDistance: 2
   dropShotArcMultiplier: 2
-  dropShotExtraTimeAtLowScore: 2
-  dropShotExtraTimeAtHighScore: 0.3
+  dropShotExtraTimeAtLowScore: 1.3
+  dropShotExtraTimeAtHighScore: 0.5
   longShotBackDistance: 2
   longShotArcMultiplier: 0.5
-  longShotExtraTimeAtLowScore: 2
-  longShotExtraTimeAtHighScore: 0.3
-  scoreForFullDistribution: 30
+  longShotExtraTimeAtLowScore: 1.3
+  longShotExtraTimeAtHighScore: 0.5
+  scoreForFullDistribution: 40
 --- !u!64 &815874945
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1212,7 +1215,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 069b0dc3f76ce944d8b4f57f04d5956f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BadmintonPlayerController
-  maxSpeed: 8
+  maxSpeed: 10
   acceleration: 40
   deceleration: 50
   inputDeadzone: 0.1
@@ -1973,7 +1976,7 @@ MonoBehaviour:
   maxLives: 3
   baseFlightSpeed: 8
   speedIncreasePerHit: 0.2
-  maxFlightSpeed: 30
+  maxFlightSpeed: 18
   baseGroundedWindow: 0.3
   windowDecreasePerHit: 0.06
   minGroundedWindow: 0.1
