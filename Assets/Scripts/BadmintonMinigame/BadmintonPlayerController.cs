@@ -18,6 +18,13 @@ public class BadmintonPlayerController : MonoBehaviour
     public float acceleration = 40f; // units/second squared
     public float deceleration = 50f; // units/second squared
     public float inputDeadzone = 0.1f; // in case we add controller support
+
+    // Court boundaries 
+    [Header("Court Boundaries")]
+    public float minX = -9f; // Left boundary
+    public float maxX = 9f; // Right boundary
+    public float minZ = -9f; // Front boundary
+    public float maxZ = -1f; // Back boundary (net/center line)
     
     // For hit input buffer
     [Header("Hit Input Settings")]
@@ -117,5 +124,11 @@ public class BadmintonPlayerController : MonoBehaviour
 
         // Apply velocity
         rb.linearVelocity = currentVel;
+        
+        // Clamp position to court boundaries
+        Vector3 clampedPos = rb.position;
+        clampedPos.x = Mathf.Clamp(clampedPos.x, minX, maxX);
+        clampedPos.z = Mathf.Clamp(clampedPos.z, minZ, maxZ);
+        rb.position = clampedPos;
     }
 }
