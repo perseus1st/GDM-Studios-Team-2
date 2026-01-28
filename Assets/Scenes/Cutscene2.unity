@@ -451,7 +451,7 @@ PrefabInstance:
       objectReference: {fileID: 1343066671}
     - target: {fileID: 6641262670800780571, guid: 4e90bd39c3108424a9eddfc2abea6e62, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadScene
+      value: StartAnimation
       objectReference: {fileID: 0}
     - target: {fileID: 6641262670800780571, guid: 4e90bd39c3108424a9eddfc2abea6e62, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
