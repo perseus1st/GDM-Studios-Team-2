@@ -22,10 +22,11 @@ public class Conductor : MonoBehaviour
     public int index; 
     public Chart chart; 
 
-    private float[] laneX = new float[] {-100f, -50f, 50f, 100f}; 
-    private float laneY = 125f; 
+    private float[] laneX = new float[] {-6f, -2f, 2f, 6f}; 
+    private float laneY = 6f; 
 
     public GameObject notePrefab; 
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -54,11 +55,11 @@ public class Conductor : MonoBehaviour
 
        Note next = chart.notes[index];
 
-      if (songPositionInBeats == next.beat)
-      {
-          SpawnNote(next);
-          index++;
-      }
+        if (songPositionInBeats == next.beat)
+        {
+            SpawnNote(next);
+            index++;
+        }
     }
 
     void SpawnNote(Note note)
@@ -69,7 +70,7 @@ public class Conductor : MonoBehaviour
         var sr = obj.GetComponent<SpriteRenderer>();
         if (sr != null)
             sr.sprite = note.sprite;
-        }
+    }
 
   void OnApplicationQuit()
   {
