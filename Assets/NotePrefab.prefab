@@ -101,8 +101,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 6408861440257732460}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 333979f2ca4a85a498b630cb14c9a119, type: 3}
+  m_Script: {fileID: 11500000, guid: 1000bed61c83dff4c93002d090bb3b7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NoteMover
   speed: 5
   targetY: -6
+  active: 0
+  lane: 0
+  beat: 0
+  conductor: {fileID: 0}
