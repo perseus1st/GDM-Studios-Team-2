@@ -67,5 +67,5 @@
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "GDM-Studios-Team-2-main.slnx"
+    "dotnet.defaultSolution": "GDM-Studios-Team-2.slnx"
 }
