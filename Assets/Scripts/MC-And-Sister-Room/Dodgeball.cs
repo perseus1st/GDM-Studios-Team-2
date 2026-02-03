@@ -1,5 +1,5 @@
 
-using System.Runtime.CompilerServices;
+using System.Numerics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,11 +12,20 @@ public class Dodgeball : MonoBehaviour, IInteractable
         interactIcon = transform.Find("InteractIcon");
         interactIcon.LookAt(Camera.main.transform.position);
         interactIcon.gameObject.SetActive(false);
+        if (GameManager.Instance.IsMinigameCompleted("dodgeball"))
+        {
+            transform.position = new UnityEngine.Vector3(-2.9f,0.26f,3.6f);
+            transform.Find("ItemModel").gameObject.SetActive(false);
+            transform.Find("BoxModel").gameObject.SetActive(true);
+        }
     }
 
     public void Interact()
     {
         SceneManager.LoadScene("Dodgeball_Minigame");
+
+        //After minigames are done, this line should be removed from this script and included in the minigame scripts
+        GameManager.Instance.MarkMinigameCompleted("dodgeball");
     }
 
     private void OnTriggerEnter(Collider other)

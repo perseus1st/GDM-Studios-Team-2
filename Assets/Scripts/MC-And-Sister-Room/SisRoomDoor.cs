@@ -1,27 +1,27 @@
-
-using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Door : MonoBehaviour, IInteractable
+public class SisRoomDoor : MonoBehaviour, IInteractable
 {
     private Transform interactIcon;
+    private int miniGamesCompleted;
 
     void Start()
     {
         interactIcon = transform.Find("InteractIcon");
         interactIcon.LookAt(Camera.main.transform.position);
         interactIcon.gameObject.SetActive(false);
+        miniGamesCompleted = GameManager.Instance.getNumMinigameCompleted();
     }
 
     public void Interact()
     {
-        SceneManager.LoadScene("Sister_Room");
+        SceneManager.LoadScene("Cutscene2");
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent(out PlayerController player))
+        if (miniGamesCompleted == 4 && other.TryGetComponent(out PlayerController player))
         {
             player.SetInteractable(this);
             interactIcon.gameObject.SetActive(true);
@@ -30,7 +30,7 @@ public class Door : MonoBehaviour, IInteractable
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.TryGetComponent(out PlayerController player))
+        if (miniGamesCompleted == 4 && other.TryGetComponent(out PlayerController player))
         {
             player.SetInteractable(null);
             interactIcon.gameObject.SetActive(false);
