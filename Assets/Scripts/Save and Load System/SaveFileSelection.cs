@@ -10,6 +10,7 @@ public class SaveFileSelection : MonoBehaviour
     [SerializeField] TMP_Text file1Text;
     [SerializeField] TMP_Text file2Text;
     [SerializeField] TMP_Text file3Text;
+    [SerializeField] GameObject FileWithDataPanel;
 
     private void OnEnable(){
         if (SaveSystem.SaveExists(1))
@@ -42,8 +43,9 @@ public class SaveFileSelection : MonoBehaviour
     {
         if (SaveSystem.SaveExists(slot))
         {
-            SaveSystem.Load(slot);
-            SceneManager.LoadScene("MC_Room");
+           this.gameObject.SetActive(false);
+           FileWithDataPanel.SetActive(true);
+           FileWithDataPanel.GetComponent<SelectedSaveFile>().setFileNumber(slot);
         }
         else
         {

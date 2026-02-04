@@ -54,4 +54,15 @@ public class SaveSystem
     {
         return File.Exists(GetPath(slot));
     }
+
+    public static void Delete(int slot)
+    {
+        string path = GetPath(slot);
+
+        if (File.Exists(path))
+        {
+            File.Delete(path);
+            Debug.Log($"Deleted save slot {slot}");
+        }
+    }
 }

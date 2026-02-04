@@ -24,8 +24,6 @@ public class Rackets : MonoBehaviour, IInteractable
     public void Interact()
     {
         SceneManager.LoadScene("Badminton_Minigame");
-        UnityEngine.Debug.Log(GameManager.Instance.highScores.ContainsKey("badminton"));
-        UnityEngine.Debug.Log(GameManager.Instance.highScores["badminton"]);
     }
 
     private void OnTriggerEnter(Collider other)
