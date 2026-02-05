@@ -12,6 +12,10 @@ public class BadmintonPlayerController : MonoBehaviour
     private float movementX; // left/right
     private float movementY; // forward/back
 
+    // Animator values
+    private Animator animator;
+    private SpriteRenderer spriteRenderer;
+
     // Movement control sliders
     [Header("Movement Settings")]
     public float maxSpeed = 8f; // units per second
@@ -41,6 +45,10 @@ public class BadmintonPlayerController : MonoBehaviour
         // Player doesn't need to rotate
         rb.freezeRotation = true;
 
+        // Get animator
+        animator = GetComponentInChildren<Animator>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+
     }
 
     // Default unity input function
@@ -61,6 +69,26 @@ public class BadmintonPlayerController : MonoBehaviour
         if (value.isPressed)
             // Record press time
             lastHitPressTime = Time.time; 
+    }
+
+    // Updates every frame
+    void Update()
+    {
+        // Tells animator what to do
+        if (animator != null)
+        {
+            // Updates animator parameters
+            bool isMoving = Mathf.Abs(movementX) > inputDeadzone || Mathf.Abs(movementY) > inputDeadzone;
+            animator.SetBool("IsMoving", isMoving);
+            animator.SetFloat("MoveX", Mathf.Abs(movementX));
+            animator.SetFloat("MoveY", movementY);
+            
+            // Flips sprite when moving right
+            if (spriteRenderer != null && Mathf.Abs(movementX) > inputDeadzone)
+           {
+                spriteRenderer.flipX = movementX > 0;
+            }
+        }
     }
 
     // Lets birdie check if theres a hit. Makes sure the hit only triggers once per click
