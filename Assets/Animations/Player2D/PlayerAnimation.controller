@@ -25,6 +25,7 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
+<<<<<<< Dodgeball-Minigame-Basic-Implementation
 --- !u!1101 &-7405597462573246100
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -50,6 +51,8 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 0
+=======
+>>>>>>> main
 --- !u!1101 &-7349642639026816164
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -186,12 +189,15 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
+<<<<<<< Dodgeball-Minigame-Basic-Implementation
   - m_Name: IsThrowing
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
+=======
+>>>>>>> main
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -205,6 +211,7 @@ AnimatorController:
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
+<<<<<<< Dodgeball-Minigame-Basic-Implementation
 --- !u!1101 &1871349003199378712
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -230,6 +237,8 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
+=======
+>>>>>>> main
 --- !u!1107 &2287504372251833575
 AnimatorStateMachine:
   serializedVersion: 6
@@ -251,12 +260,17 @@ AnimatorStateMachine:
   - serializedVersion: 1
     m_State: {fileID: 6790272726918149167}
     m_Position: {x: 360, y: 110, z: 0}
+<<<<<<< Dodgeball-Minigame-Basic-Implementation
   - serializedVersion: 1
     m_State: {fileID: 5381230260789647946}
     m_Position: {x: 360, y: 10, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions:
   - {fileID: -7405597462573246100}
+=======
+  m_ChildStateMachines: []
+  m_AnyStateTransitions: []
+>>>>>>> main
   m_EntryTransitions: []
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
@@ -293,6 +307,7 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
+<<<<<<< Dodgeball-Minigame-Basic-Implementation
 --- !u!1102 &5381230260789647946
 AnimatorState:
   serializedVersion: 6
@@ -320,6 +335,8 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
+=======
+>>>>>>> main
 --- !u!1102 &6790272726918149167
 AnimatorState:
   serializedVersion: 6
