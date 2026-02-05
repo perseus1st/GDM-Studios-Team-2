@@ -343,7 +343,7 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 526103143}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1001 &643290647
+--- !u!1001 &643291647
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -358,7 +358,7 @@ PrefabInstance:
     - target: {fileID: 1237553461759087663, guid: 4e90bd39c3108424a9eddfc2abea6e62, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 643290648}
+      objectReference: {fileID: 643291648}
     - target: {fileID: 1237553461759087663, guid: 4e90bd39c3108424a9eddfc2abea6e62, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: LoadScene
@@ -481,10 +481,10 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e90bd39c3108424a9eddfc2abea6e62, type: 3}
---- !u!114 &643290648 stripped
+--- !u!114 &643291648 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2054217425224638988, guid: 4e90bd39c3108424a9eddfc2abea6e62, type: 3}
-  m_PrefabInstance: {fileID: 643290647}
+  m_PrefabInstance: {fileID: 643291647}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -2492,3 +2492,4 @@ SceneRoots:
   - {fileID: 1855337648}
   - {fileID: 785515408}
   - {fileID: 643290647}
+  - {fileID: 643291647}
