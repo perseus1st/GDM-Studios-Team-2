@@ -16,6 +16,7 @@ public class DodgeballEnemyManager : MonoBehaviour
     [Header("Throw Settings")]
     public float baseThrowInterval = 3f; // Base time between throws
     private float nextThrowTime; // When next throw will happen
+    public float throwIntervalVariation = 0.3f; // Adds random variation to throw time
     
     // Ball settings
     [Header("Ball Settings")]
@@ -26,7 +27,7 @@ public class DodgeballEnemyManager : MonoBehaviour
     [Header("Difficulty Scaling")]
     public int scoreForMaxDifficulty = 30; // Score at which difficulty is maximized
     public int scoreForMultipleThrowers = 10; // Score threshold to enable multiple throwers
-    public float maxPredictionDistance = 3f; // Maximum distance to predict ahead of player
+    public float maxPredictionDistance = 2f; // Maximum distance to predict ahead of player
     
     // Tracking state
     private bool hasHadMultipleThrowers = false; // Has multiple throwers been triggered yet
@@ -62,8 +63,13 @@ public class DodgeballEnemyManager : MonoBehaviour
             float currentInterval = DodgeballScoreManager.Instance != null 
                 ? DodgeballScoreManager.Instance.GetCurrentThrowFrequency() 
                 : baseThrowInterval;
+
+            // Add random variation 
+            float minVariation = currentInterval - throwIntervalVariation;
+            float maxVariation = currentInterval + throwIntervalVariation;
+            float randomizedInterval = Random.Range(minVariation, maxVariation);
             
-            nextThrowTime = Time.time + currentInterval;
+            nextThrowTime = Time.time + randomizedInterval;
         }
     }
     

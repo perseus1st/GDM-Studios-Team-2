@@ -219,7 +219,7 @@ public class DodgeballFriendlyBall : MonoBehaviour
             bool inRange = distance <= collectRange;
             
             // Show/hide glow based on range (only if not flashing)
-            if (timeSinceLanded <= (groundedWindow - flashDuration))
+            if (timeSinceLanded <= (groundedWindow))
             {
                 if (glowEffect != null)
                     glowEffect.SetActive(inRange);
@@ -234,13 +234,13 @@ public class DodgeballFriendlyBall : MonoBehaviour
         }
         
         // Start flashing before disappearing
-        if (timeSinceLanded > (groundedWindow - flashDuration))
+        if (timeSinceLanded > groundedWindow)
         {
             UpdateFlash();
         }
         
         // Destroy if on ground too long
-        if (timeSinceLanded > groundedWindow)
+        if (timeSinceLanded > (groundedWindow + flashDuration))
         {
             Destroy(gameObject);
         }
@@ -309,7 +309,6 @@ void UpdateFlash()
         if (playerController != null)
             playerController.isThrowing = true;
         
-        // TODO: Add visual throw animation
     }
     
     // Update throw sequence - wait for delay then throw

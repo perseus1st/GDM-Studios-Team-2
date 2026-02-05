@@ -12,6 +12,10 @@ public class DodgeballPlayerController : MonoBehaviour
     private float movementX; // left/right
     private float movementY; // forward/back
 
+    // Animator values
+    private Animator animator;
+    private SpriteRenderer spriteRenderer;
+
     // Movement control settings
     [Header("Movement Settings")]
     public float maxSpeed = 8f; // units per second
@@ -68,6 +72,10 @@ public class DodgeballPlayerController : MonoBehaviour
         {
             playerModel = gameObject;
         }
+
+        // Get animator
+        animator = GetComponentInChildren<Animator>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
     // Default unity input function for movement
@@ -179,6 +187,23 @@ public class DodgeballPlayerController : MonoBehaviour
             if (Time.time - invincibilityStartTime >= invincibilityDuration)
             {
                 EndInvincibility();
+            }
+        }
+
+        // Tells animator what to do
+        if (animator != null)
+        {
+            // Updates animator parameters
+            bool isMoving = Mathf.Abs(movementX) > inputDeadzone || Mathf.Abs(movementY) > inputDeadzone;
+            animator.SetBool("IsMoving", isMoving);
+            animator.SetFloat("MoveX", Mathf.Abs(movementX));
+            animator.SetFloat("MoveY", movementY);
+            animator.SetBool("IsThrowing", isThrowing);
+            
+            // Flips sprite when moving right
+            if (spriteRenderer != null && Mathf.Abs(movementX) > inputDeadzone)
+           {
+                spriteRenderer.flipX = movementX > 0;
             }
         }
     }
