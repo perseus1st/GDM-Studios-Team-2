@@ -1,4 +1,5 @@
 
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -23,8 +24,6 @@ public class Rackets : MonoBehaviour, IInteractable
     public void Interact()
     {
         SceneManager.LoadScene("Badminton_Minigame");
-        //After minigames are done, this line should be removed from this script and included in the minigame scripts
-        GameManager.Instance.MarkMinigameCompleted("badminton");
     }
 
     private void OnTriggerEnter(Collider other)
