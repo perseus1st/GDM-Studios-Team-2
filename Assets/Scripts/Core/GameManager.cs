@@ -9,14 +9,9 @@ public class GameManager : MonoBehaviour
     public GameState State; 
     public static event Action<GameState> OnGameStateChanged;
 
-    public HashSet<string> completedMinigames = new HashSet<string>(); 
-    public Dictionary<string, int> highScores = new();
+    private HashSet<string> completedMinigames = new HashSet<string>(); 
 
-    public int currentSaveSlot = -1;
-
-
-
-    void Awake()
+  void Awake()
     {
         if (Instance != null && Instance != this)
         {
