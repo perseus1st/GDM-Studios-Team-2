@@ -7,20 +7,25 @@ public class DanceMat : MonoBehaviour, IInteractable
 {
     private Transform interactIcon;
     private BoxCollider boxCollider;
+    private GameObject itemModel;
+    private GameObject boxModel;
+
 
     void Start()
     {
+        itemModel = transform.Find("ItemModel").gameObject;
+        boxModel = transform.Find("BoxModel").gameObject;
         interactIcon = transform.Find("InteractIcon");
         interactIcon.LookAt(Camera.main.transform.position);
         interactIcon.gameObject.SetActive(false);
         if (GameManager.Instance.IsMinigameCompleted("ddr"))
         {
-            transform.Find("ItemModel").gameObject.SetActive(false);
-            transform.Find("BoxModel").gameObject.SetActive(true);
+            itemModel.SetActive(false);
+            boxModel.SetActive(true);
             interactIcon.transform.localPosition = new UnityEngine.Vector3(-0.385f,-0.034f,1.13f);
             boxCollider = GetComponent<BoxCollider>();
             boxCollider.center = new UnityEngine.Vector3(-0.328f, -0.25f, 1.165f);
-            boxCollider.size = new UnityEngine.Vector3(0.718f, 1.5f, 0.809f);
+            boxCollider.size = new UnityEngine.Vector3(0.69f, 1.5f, 0.809f);
         }
     }
 
@@ -37,6 +42,8 @@ public class DanceMat : MonoBehaviour, IInteractable
         {
             player.SetInteractable(this);
             interactIcon.gameObject.SetActive(true);
+            itemModel.layer = 6;
+            boxModel.layer = 6;
         }
     }
 
@@ -46,6 +53,8 @@ public class DanceMat : MonoBehaviour, IInteractable
         {
             player.SetInteractable(null);
             interactIcon.gameObject.SetActive(false);
+            itemModel.layer = 0;
+            boxModel.layer = 0;
         }
     }
 }

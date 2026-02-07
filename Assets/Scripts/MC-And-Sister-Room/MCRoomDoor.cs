@@ -6,10 +6,12 @@ using UnityEngine.SceneManagement;
 public class MCRoomDoor : MonoBehaviour, IInteractable
 {
     private Transform interactIcon;
+    private Transform doorModel;
 
     void Start()
     {
         interactIcon = transform.Find("InteractIcon");
+        doorModel = transform.Find("Model");
         interactIcon.LookAt(Camera.main.transform.position);
         interactIcon.gameObject.SetActive(false);
     }
@@ -25,6 +27,7 @@ public class MCRoomDoor : MonoBehaviour, IInteractable
         {
             player.SetInteractable(this);
             interactIcon.gameObject.SetActive(true);
+            doorModel.gameObject.layer = 6;
         }
     }
 
@@ -34,6 +37,7 @@ public class MCRoomDoor : MonoBehaviour, IInteractable
         {
             player.SetInteractable(null);
             interactIcon.gameObject.SetActive(false);
+            doorModel.gameObject.layer = 0;
         }
     }
 }

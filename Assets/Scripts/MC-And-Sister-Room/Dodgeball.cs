@@ -7,16 +7,20 @@ public class Dodgeball : MonoBehaviour, IInteractable
 {
     private Transform interactIcon;
     private BoxCollider boxCollider;
+    private GameObject itemModel;
+    private GameObject boxModel;
 
     void Start()
     {
+        itemModel = transform.Find("ItemModel").gameObject;
+        boxModel = transform.Find("BoxModel").gameObject;
         interactIcon = transform.Find("InteractIcon");
         interactIcon.LookAt(Camera.main.transform.position);
         interactIcon.gameObject.SetActive(false);
         if (GameManager.Instance.IsMinigameCompleted("dodgeball"))
         {
-            transform.Find("ItemModel").gameObject.SetActive(false);
-            transform.Find("BoxModel").gameObject.SetActive(true);
+            itemModel.SetActive(false);
+            boxModel.SetActive(true);
             interactIcon.transform.localPosition = new UnityEngine.Vector3(-0.38f,-0.106f,0.083f);
             boxCollider = GetComponent<BoxCollider>();
             boxCollider.center = new UnityEngine.Vector3(-0.38f, -0.286f, -0.031f);
@@ -35,6 +39,8 @@ public class Dodgeball : MonoBehaviour, IInteractable
         {
             player.SetInteractable(this);
             interactIcon.gameObject.SetActive(true);
+            itemModel.layer = 6;
+            boxModel.layer = 6;
         }
     }
 
@@ -44,6 +50,8 @@ public class Dodgeball : MonoBehaviour, IInteractable
         {
             player.SetInteractable(null);
             interactIcon.gameObject.SetActive(false);
+            itemModel.layer = 0;
+            boxModel.layer = 0;
         }
     }
 }
