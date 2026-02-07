@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class Kite : MonoBehaviour, IInteractable
 {
     private Transform interactIcon;
+    private BoxCollider boxCollider;
 
     void Start()
     {
@@ -14,9 +15,12 @@ public class Kite : MonoBehaviour, IInteractable
         interactIcon.gameObject.SetActive(false);
         if (GameManager.Instance.IsMinigameCompleted("kite"))
         {
-            transform.position = new Vector3(-2.61f,0.26f,0.9f);
             transform.Find("ItemModel").gameObject.SetActive(false);
             transform.Find("BoxModel").gameObject.SetActive(true);
+            interactIcon.transform.localPosition = new UnityEngine.Vector3(0.507f,-0.126f,1.003f);
+            boxCollider = GetComponent<BoxCollider>();
+            boxCollider.center = new UnityEngine.Vector3(0.48f, -0.241f, 1.035f);
+            boxCollider.size = new UnityEngine.Vector3(0.634f, 1.48f, 0.784f);
         }
     }
 

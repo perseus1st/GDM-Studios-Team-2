@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class Rackets : MonoBehaviour, IInteractable
 {
     private Transform interactIcon;
+    private BoxCollider boxCollider;
 
     void Start()
     {
@@ -14,17 +15,18 @@ public class Rackets : MonoBehaviour, IInteractable
         interactIcon.gameObject.SetActive(false);
         if (GameManager.Instance.IsMinigameCompleted("badminton"))
         {
-            transform.position = new Vector3(-1.97f,0.26f,1.04f);
             transform.Find("ItemModel").gameObject.SetActive(false);
             transform.Find("BoxModel").gameObject.SetActive(true);
+            interactIcon.transform.localPosition = new UnityEngine.Vector3(0.57f,-0.232f,0.09f);
+            boxCollider = GetComponent<BoxCollider>();
+            boxCollider.center = new UnityEngine.Vector3(0.552f, -0.273f, -0.0417f);
+            boxCollider.size = new UnityEngine.Vector3(0.545f, 1.546f, 0.73f);
         }
     }
 
     public void Interact()
     {
         SceneManager.LoadScene("Badminton_Minigame");
-        //After minigames are done, this line should be removed from this script and included in the minigame scripts
-        GameManager.Instance.MarkMinigameCompleted("badminton");
     }
 
     private void OnTriggerEnter(Collider other)

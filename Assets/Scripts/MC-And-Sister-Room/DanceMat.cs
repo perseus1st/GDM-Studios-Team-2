@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class DanceMat : MonoBehaviour, IInteractable
 {
     private Transform interactIcon;
+    private BoxCollider boxCollider;
 
     void Start()
     {
@@ -14,9 +15,12 @@ public class DanceMat : MonoBehaviour, IInteractable
         interactIcon.gameObject.SetActive(false);
         if (GameManager.Instance.IsMinigameCompleted("ddr"))
         {
-            transform.position = new Vector3(0.54f,0.26f,2.89f);
             transform.Find("ItemModel").gameObject.SetActive(false);
             transform.Find("BoxModel").gameObject.SetActive(true);
+            interactIcon.transform.localPosition = new UnityEngine.Vector3(-0.385f,-0.034f,1.13f);
+            boxCollider = GetComponent<BoxCollider>();
+            boxCollider.center = new UnityEngine.Vector3(-0.328f, -0.25f, 1.165f);
+            boxCollider.size = new UnityEngine.Vector3(0.718f, 1.5f, 0.809f);
         }
     }
 
