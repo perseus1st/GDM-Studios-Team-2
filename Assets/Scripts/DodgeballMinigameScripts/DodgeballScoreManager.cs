@@ -87,6 +87,21 @@ public class DodgeballScoreManager : MonoBehaviour
     // Reset score and lives
     void ResetGame()
     {
+        // Save highscore if score is above 5
+        if (currentScore > 5)
+        {
+            var gm = GameManager.Instance;
+
+            gm.completedMinigames.Add("dodgeball");
+
+            if (!gm.highScores.ContainsKey("dodgeball") || currentScore > gm.highScores["dodgeball"])
+            {
+                gm.highScores["dodgeball"] = currentScore;
+            }
+
+            SaveSystem.Save(gm.currentSaveSlot);
+        }
+
         currentScore = 0;
         currentLives = maxLives;
         UpdateScoreDisplay();

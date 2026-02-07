@@ -23,9 +23,6 @@ public class Dodgeball : MonoBehaviour, IInteractable
     public void Interact()
     {
         SceneManager.LoadScene("Dodgeball_Minigame");
-
-        //After minigames are done, this line should be removed from this script and included in the minigame scripts
-        GameManager.Instance.MarkMinigameCompleted("dodgeball");
     }
 
     private void OnTriggerEnter(Collider other)
