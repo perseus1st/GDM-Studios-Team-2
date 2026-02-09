@@ -5,7 +5,7 @@ public class CardinalObject : MonoBehaviour
     public float verticalSpeed = 1.0f;
     public float horizontalSpeedCap = 3.0f;
     public float horizontalSpeed = 0f;
-    public float destroyZ = CameraBounds.MinZ - 1f;
+    public float destroyZ;
     public float amplitude;
     private float startX;
     public float horizontalRangePercentage = 30f;
@@ -19,6 +19,8 @@ public class CardinalObject : MonoBehaviour
         amplitude = camHalfWidth * horizontalRangePercentage * 0.01f;
         startX = transform.position.x;
         phase = Random.Range(0f, Mathf.PI * 2f);
+        
+        destroyZ = CameraBounds.MinZ - 1f;
     }
 
     void Update() {

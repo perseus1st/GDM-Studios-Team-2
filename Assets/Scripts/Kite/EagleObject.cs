@@ -3,12 +3,13 @@ using UnityEngine;
 public class EagleObject : MonoBehaviour
 {
     public float speed = 1.0f;
-    public float destroyZ = CameraBounds.MinZ - 1f;
+    public float destroyZ;
 
     KiteMinigameManager kiteMinigame;
 
     void Start() {
         kiteMinigame = FindAnyObjectByType<KiteMinigameManager>();
+        destroyZ = CameraBounds.MinZ - 1f;
     }
 
     void Update() {
