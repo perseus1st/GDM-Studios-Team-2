@@ -1,9 +1,6 @@
 using UnityEngine;
 
-// NOTE: Because Telephone Pole and Branch have the exact same qualities,
-// I am using the BranchObject class for Telephone Poles as well.
-
-public class BranchObject : MonoBehaviour
+public class EagleObject : MonoBehaviour
 {
     public float speed = 1.0f;
     public float destroyZ = CameraBounds.MinZ - 1f;
@@ -31,7 +28,7 @@ public class BranchObject : MonoBehaviour
 
         if (other.CompareTag("PlayerKite"))
         {
-            Debug.Log("PlayerKite hit a branch!");
+            Debug.Log("PlayerKite hit an eagle!");
             kiteMinigame.GameOver();
         }
     }

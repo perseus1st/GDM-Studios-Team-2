@@ -7,6 +7,7 @@ public class ObstacleSpawner : MonoBehaviour
 
     public float camWidth;
     public float branchSize; 
+    public float eagleSize;
 
     float timer;
     KiteMinigameManager kiteMinigame;
@@ -19,7 +20,7 @@ public class ObstacleSpawner : MonoBehaviour
         camWidth = 2.0f * camHalfWidth;
 
         branchSize = 0.40f * camWidth; // Branch covers 40% of screen width
-        kiteMinigame = FindObjectOfType<KiteMinigameManager>();
+        kiteMinigame = FindAnyObjectByType<KiteMinigameManager>();
     }
 
     void Update() {
@@ -45,11 +46,17 @@ public class ObstacleSpawner : MonoBehaviour
 
         Vector3 pos = new Vector3(x, 0, z);
 
-        if (side == 0) { // if in the middle
-            Instantiate(obstaclePrefabs[1], pos, Quaternion.Euler(90f, 0f, 0f)); // spawn telephone pole
-        } 
-        else { // if on either side
-            Instantiate(obstaclePrefabs[0], pos, Quaternion.Euler(90f, 0f, 0f)); // spawn branch
-        }
+        Instantiate(obstaclePrefabs[3], pos, Quaternion.Euler(90f, 0f, 0f));
+
+        // if (side == 0) { // if in the middle
+        //     Instantiate(obstaclePrefabs[1], pos, Quaternion.Euler(90f, 0f, 0f)); // spawn telephone pole
+        //     side = (Random.Range(0,2) * 2) - 1;
+        //     x = (CameraBounds.MaxX*0.75f - 0.5f * eagleSize) * side;
+        //     pos = new Vector3(x, 0, z);
+        //     Instantiate(obstaclePrefabs[2], pos, Quaternion.Euler(90f, 0f, 0f)); // spawn eagle
+        // } 
+        // else { // if on either side
+        //     Instantiate(obstaclePrefabs[0], pos, Quaternion.Euler(90f, 0f, 0f)); // spawn branch
+        // }
     }
 }
