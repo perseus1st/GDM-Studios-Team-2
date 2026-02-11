@@ -9,6 +9,19 @@ public class Rackets : MonoBehaviour, IInteractable
     private GameObject itemModel;
     private BoxCollider boxCollider;
     private GameObject boxModel;
+    public SceneController sceneController;
+
+    void Awake()
+    {
+        // If sceneController not set in Inspector, find it automatically
+        if (sceneController == null)
+        {
+            sceneController = FindObjectOfType<SceneController>();
+        }
+
+        if (sceneController == null)
+            Debug.LogError("SceneController is missing in the scene!");
+    }
 
 
     void Start()
@@ -31,7 +44,8 @@ public class Rackets : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        SceneManager.LoadScene("Badminton_Minigame");
+        sceneController.StartAnimation("Badminton_Minigame");
+        // SceneManager.LoadScene("Badminton_Minigame");
     }
 
     private void OnTriggerEnter(Collider other)
