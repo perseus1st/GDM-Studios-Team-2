@@ -203,7 +203,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 695737359}
         m_TargetAssemblyTypeName: SceneController, Assembly-CSharp
-        m_MethodName: LoadScene
+        m_MethodName: StartAnimation
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -691,7 +691,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 695737359}
         m_TargetAssemblyTypeName: SceneController, Assembly-CSharp
-        m_MethodName: LoadScene
+        m_MethodName: StartAnimation
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1451,7 +1451,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 695737359}
         m_TargetAssemblyTypeName: SceneController, Assembly-CSharp
-        m_MethodName: LoadScene
+        m_MethodName: StartAnimation
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2138,7 +2138,7 @@ PrefabInstance:
       objectReference: {fileID: 695737359}
     - target: {fileID: 1237553461759087663, guid: 4e90bd39c3108424a9eddfc2abea6e62, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadScene
+      value: StartAnimation
       objectReference: {fileID: 0}
     - target: {fileID: 1237553461759087663, guid: 4e90bd39c3108424a9eddfc2abea6e62, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -2274,7 +2274,7 @@ PrefabInstance:
       objectReference: {fileID: 695737359}
     - target: {fileID: 6641262670800780571, guid: 4e90bd39c3108424a9eddfc2abea6e62, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadScene
+      value: StartAnimation
       objectReference: {fileID: 0}
     - target: {fileID: 6641262670800780571, guid: 4e90bd39c3108424a9eddfc2abea6e62, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -2316,6 +2316,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -94
       objectReference: {fileID: 0}
+    - target: {fileID: 8888872811789955899, guid: 4e90bd39c3108424a9eddfc2abea6e62, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadScene
+      objectReference: {fileID: 0}
     - target: {fileID: 9207414973706588596, guid: 4e90bd39c3108424a9eddfc2abea6e62, type: 3}
       propertyPath: m_text
       value: Sister's room
@@ -2323,6 +2327,9 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 2631786016092222574, guid: 4e90bd39c3108424a9eddfc2abea6e62, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 879977009}
     - targetCorrespondingSourceObject: {fileID: 6331693082322805617, guid: 4e90bd39c3108424a9eddfc2abea6e62, type: 3}
       insertIndex: 1
       addedObject: {fileID: 14167592}
@@ -5624,7 +5631,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 695737359}
         m_TargetAssemblyTypeName: SceneController, Assembly-CSharp
-        m_MethodName: LoadScene
+        m_MethodName: StartAnimation
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
