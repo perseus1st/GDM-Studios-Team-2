@@ -6,6 +6,11 @@ public class HoverOverButtons : MonoBehaviour , IPointerEnterHandler, IPointerEx
     public GameObject LeftArrow;
     public GameObject RightArrow;
 
+    private void OnEnable() {
+        LeftArrow.SetActive(false);
+        RightArrow.SetActive(false);
+    }
+
 
     public void OnPointerEnter(PointerEventData eventData)
     {

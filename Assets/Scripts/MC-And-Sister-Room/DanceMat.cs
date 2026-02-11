@@ -1,0 +1,60 @@
+
+using System.Runtime.CompilerServices;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class DanceMat : MonoBehaviour, IInteractable
+{
+    private Transform interactIcon;
+    private BoxCollider boxCollider;
+    private GameObject itemModel;
+    private GameObject boxModel;
+
+
+    void Start()
+    {
+        itemModel = transform.Find("ItemModel").gameObject;
+        boxModel = transform.Find("BoxModel").gameObject;
+        interactIcon = transform.Find("InteractIcon");
+        interactIcon.LookAt(Camera.main.transform.position);
+        interactIcon.gameObject.SetActive(false);
+        if (GameManager.Instance.IsMinigameCompleted("ddr"))
+        {
+            itemModel.SetActive(false);
+            boxModel.SetActive(true);
+            interactIcon.transform.localPosition = new UnityEngine.Vector3(-0.385f,-0.034f,1.13f);
+            boxCollider = GetComponent<BoxCollider>();
+            boxCollider.center = new UnityEngine.Vector3(-0.328f, -0.25f, 1.165f);
+            boxCollider.size = new UnityEngine.Vector3(0.69f, 1.5f, 0.809f);
+        }
+    }
+
+    public void Interact()
+    {
+        SceneManager.LoadScene("DDR_Minigame");
+        //After minigames are done, this line should be removed from this script and included in the minigame scripts
+        GameManager.Instance.MarkMinigameCompleted("ddr");
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.TryGetComponent(out PlayerController player))
+        {
+            player.SetInteractable(this);
+            interactIcon.gameObject.SetActive(true);
+            itemModel.layer = 6;
+            boxModel.layer = 6;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.TryGetComponent(out PlayerController player))
+        {
+            player.SetInteractable(null);
+            interactIcon.gameObject.SetActive(false);
+            itemModel.layer = 0;
+            boxModel.layer = 0;
+        }
+    }
+}
