@@ -1,12 +1,18 @@
 using System;
 using Unity.VisualScripting;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;  //allows to reference game manager from anywhere 
     public GameState State; 
-    public static event Action<GameState> OnGameStateChanged; 
+    public static event Action<GameState> OnGameStateChanged;
+
+    public HashSet<string> completedMinigames = new HashSet<string>(); 
+    public Dictionary<string, int> highScores = new();
+
+    public int currentSaveSlot = -1;
 
   void Awake()
     {
@@ -55,6 +61,22 @@ public class GameManager : MonoBehaviour
         }
 
         OnGameStateChanged?.Invoke(newState); 
+    }
+
+    public void MarkMinigameCompleted(string minigameId)
+    {
+        completedMinigames.Add(minigameId);
+    }
+
+
+    public bool IsMinigameCompleted(string minigameId)
+    {
+        return completedMinigames.Contains(minigameId);
+    }
+
+    public int getNumMinigameCompleted()
+    {
+        return completedMinigames.Count;
     }
 }
 
