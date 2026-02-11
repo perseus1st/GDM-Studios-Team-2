@@ -377,6 +377,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eecfe004bc4c7154b88f11061e72a55b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneController
+  canvasAnimator: {fileID: 0}
+  delayBeforeAnimation: 1
+  animationLength: 3
+  triggerName: NextLevel
+  skipFadeInScene: Cutscene1
 --- !u!4 &138762123
 Transform:
   m_ObjectHideFlags: 0
