@@ -9,7 +9,20 @@ public class Kite : MonoBehaviour, IInteractable
     private BoxCollider boxCollider;
     private GameObject itemModel;
     private GameObject boxModel;
+    public SceneController sceneController;
+    public static GameManager INSTANCE;
 
+    void Awake()
+    {
+        // If sceneController not set in Inspector, find it automatically
+        if (sceneController == null)
+        {
+            sceneController = FindObjectOfType<SceneController>();
+        }
+
+        if (sceneController == null)
+            Debug.LogError("SceneController is missing in the scene!");
+    }
 
     void Start()
     {
@@ -31,7 +44,13 @@ public class Kite : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        SceneManager.LoadScene("Kite_Minigame");
+        Debug.Log("Interact called!");
+
+        if (sceneController == null)
+            Debug.LogError("sceneController is null!");
+
+        sceneController.StartAnimation("Kite_Minigame");
+        // SceneManager.LoadScene("Kite_Minigame");
         //After minigames are done, this line should be removed from this script and included in the minigame scripts
         GameManager.Instance.MarkMinigameCompleted("kite");
     }

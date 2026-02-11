@@ -15,6 +15,19 @@ public class SceneController : MonoBehaviour
     public string triggerName = "NextLevel";
     public string skipFadeInScene = "Cutscene1";
 
+    void Awake()
+    {
+        // If canvasAnimator not set in Inspector, find it automatically
+        if (canvasAnimator == null)
+        {
+            canvasAnimator = FindObjectOfType<Animator>();
+        }
+
+        if (canvasAnimator == null)
+            Debug.LogError("CanvasAnimator is missing in the scene!");
+
+    }
+
     void Start()
     {
         string currentScene = SceneManager.GetActiveScene().name;

@@ -9,6 +9,19 @@ public class DanceMat : MonoBehaviour, IInteractable
     private BoxCollider boxCollider;
     private GameObject itemModel;
     private GameObject boxModel;
+    public SceneController sceneController;
+
+    void Awake()
+    {
+        // If sceneController not set in Inspector, find it automatically
+        if (sceneController == null)
+        {
+            sceneController = FindObjectOfType<SceneController>();
+        }
+
+        if (sceneController == null)
+            Debug.LogError("SceneController is missing in the scene!");
+    }
 
 
     void Start()
@@ -31,7 +44,8 @@ public class DanceMat : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        SceneManager.LoadScene("DDR_Minigame");
+        // SceneManager.LoadScene("DDR_Minigame");
+        sceneController.StartAnimation("DDR_Minigame");
         //After minigames are done, this line should be removed from this script and included in the minigame scripts
         GameManager.Instance.MarkMinigameCompleted("ddr");
     }

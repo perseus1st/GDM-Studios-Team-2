@@ -7,6 +7,7 @@ public class MCRoomDoor : MonoBehaviour, IInteractable
 {
     private Transform interactIcon;
     private Transform doorModel;
+    public SceneController sceneController;
 
     void Start()
     {
@@ -18,7 +19,8 @@ public class MCRoomDoor : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        SceneManager.LoadScene("Sister_Room");
+        sceneController.StartAnimation("Sister_Room");
+        // SceneManager.LoadScene("Sister_Room");
     }
 
     private void OnTriggerEnter(Collider other)

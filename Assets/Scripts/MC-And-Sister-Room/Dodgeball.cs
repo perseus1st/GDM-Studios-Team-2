@@ -9,6 +9,20 @@ public class Dodgeball : MonoBehaviour, IInteractable
     private BoxCollider boxCollider;
     private GameObject itemModel;
     private GameObject boxModel;
+    public SceneController sceneController;
+
+    void Awake()
+    {
+        // If sceneController not set in Inspector, find it automatically
+        if (sceneController == null)
+        {
+            sceneController = FindObjectOfType<SceneController>();
+        }
+
+        if (sceneController == null)
+            Debug.LogError("SceneController is missing in the scene!");
+
+    }
 
     void Start()
     {
@@ -30,7 +44,8 @@ public class Dodgeball : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        SceneManager.LoadScene("Dodgeball_Minigame");
+        // SceneManager.LoadScene("Dodgeball_Minigame");
+        sceneController.StartAnimation("Dodgeball_Minigame");
     }
 
     private void OnTriggerEnter(Collider other)
