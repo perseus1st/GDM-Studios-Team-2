@@ -20,7 +20,7 @@ public class SceneController : MonoBehaviour
         // If canvasAnimator not set in Inspector, find it automatically
         if (canvasAnimator == null)
         {
-            canvasAnimator = FindObjectOfType<Animator>();
+            canvasAnimator = FindAnyObjectByType<Animator>();
         }
 
         if (canvasAnimator == null)
