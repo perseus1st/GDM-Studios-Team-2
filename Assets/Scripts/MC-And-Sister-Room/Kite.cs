@@ -17,7 +17,7 @@ public class Kite : MonoBehaviour, IInteractable
         // If sceneController not set in Inspector, find it automatically
         if (sceneController == null)
         {
-            sceneController = FindObjectOfType<SceneController>();
+            sceneController = FindAnyObjectByType<SceneController>();
         }
 
         if (sceneController == null)
