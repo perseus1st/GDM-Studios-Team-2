@@ -33,12 +33,23 @@ public class ObstacleSpawner : MonoBehaviour
 
     IEnumerator SpawnLoop()
     {
+        int lastchoice = -1;
         while (true)
         {
             if (kiteMinigame.IsRunning)
             {
 
-                switch(Random.Range(1,7))
+                int choice;
+
+                do
+                {
+                    choice = Random.Range(1,7);
+                }
+                while (choice == lastchoice); // to prevent choice from being made twice in a row
+
+                lastchoice = choice;
+
+                switch(choice)
                 {
                     case 1:
                         yield return StartCoroutine(PatternOne());
