@@ -1,105 +1,131 @@
 using UnityEngine;
+using System.Collections;
 
 public class ObstacleSpawner : MonoBehaviour
 {
     public GameObject[] obstaclePrefabs;
-    public float spawnInterval = 1.2f;
 
-    public float camWidth;
-    public float branchSize; 
-    public float eagleSize;
+    public float camHalfWidth;
+    private const float LEFT = -1;
+    private const float MIDDLE = 0;
+    private const float RIGHT = 1;
 
-    float timer;
+    private float branchSize;
+    private float eagleSize;
+    private float cardinalRange;
+
     KiteMinigameManager kiteMinigame;
 
     void Start() {
         // calculations to find screen width
         float screenAspect = (float) Screen.width / (float) Screen.height;
         float camHalfHeight = Camera.main.orthographicSize;
-        float camHalfWidth = screenAspect * camHalfHeight;
-        camWidth = 2.0f * camHalfWidth;
-
-        branchSize = 0.40f * camWidth; // Branch covers 40% of screen width
+        camHalfWidth = screenAspect * camHalfHeight;
+        // camWidth = 2.0f * camHalfWidth;
         kiteMinigame = FindAnyObjectByType<KiteMinigameManager>();
+
+        branchSize = 0.4f * camHalfWidth; // 40% of width of camera
+        eagleSize = 0.1f * camHalfWidth; // 10% of width of camera
+        cardinalRange = 0.3f * camHalfWidth;
+
+        StartCoroutine(SpawnLoop());
     }
 
-    void Update() {
-        if (!kiteMinigame.IsRunning) return;
-
-        timer += Time.deltaTime;
-
-        if (timer >= spawnInterval)
+    IEnumerator SpawnLoop()
+    {
+        while (true)
         {
-            Spawn();
-            timer = 0f;
+            if (kiteMinigame.IsRunning)
+            {
+                yield return StartCoroutine(PatternOne());
+                yield return StartCoroutine(PatternFour());
+                yield return StartCoroutine(PatternThree());
+                yield return StartCoroutine(PatternOne());
+                yield return StartCoroutine(PatternTwo());
+            }
+            else
+            {
+                yield return null;
+            }
         }
     }
 
-    void Spawn() {
-        SpawnBranch(0f);
-        SpawnCardinal(0f);
-        SpawnEagle(0f);
-        SpawnPole(0f);
-        // // float x = Random.Range(CameraBounds.MinX, CameraBounds.MaxX);
-
-        // int side = Random.Range(-1, 2); // side = -1 (left) or 0 (middle) or +1 (right)
-        // float x = (CameraBounds.MaxX - 0.5f * branchSize) * side;
-
-        // // Spawn slightly above the camera's view
-        // float z = CameraBounds.MaxZ + 1.0f;
-
-        // Vector3 pos = new Vector3(x, 0, z);
-
-        // Instantiate(obstaclePrefabs[3], pos, Quaternion.Euler(90f, 0f, 0f));
-
-        // if (side == 0) { // if in the middle
-        //     Instantiate(obstaclePrefabs[1], pos, Quaternion.Euler(90f, 0f, 0f)); // spawn telephone pole
-        //     side = (Random.Range(0,2) * 2) - 1;
-        //     x = (CameraBounds.MaxX*0.75f - 0.5f * eagleSize) * side;
-        //     pos = new Vector3(x, 0, z);
-        //     Instantiate(obstaclePrefabs[2], pos, Quaternion.Euler(90f, 0f, 0f)); // spawn eagle
-        // } 
-        // else { // if on either side
-        //     Instantiate(obstaclePrefabs[0], pos, Quaternion.Euler(90f, 0f, 0f)); // spawn branch
-        // }
+    IEnumerator PatternOne()
+    {
+        Debug.Log("Beginning Pattern #1");
+        SpawnBranch(RIGHT);
+        SpawnCardinal(LEFT);
+        SpawnEagle(MIDDLE);
+        yield return new WaitForSeconds(1f);
+        SpawnPole();
+        yield return new WaitForSeconds(1f);
+        SpawnEagle(RIGHT);
+        SpawnCardinal(LEFT);
+        SpawnPole();
     }
 
-    void SpawnBranch(float x)
+    IEnumerator PatternTwo()
     {
+        Debug.Log("Beginning Pattern #2");
+        SpawnBranch(RIGHT);
+        SpawnBranch(LEFT);
+
+        yield return new WaitForSeconds(1.5f);
+
+        SpawnEagle(LEFT);
+
+        yield return new WaitForSeconds(1f);
+
+        SpawnCardinal(LEFT);
+        SpawnCardinal(RIGHT);
+    }
+
+    IEnumerator PatternThree()
+    {
+        Debug.Log("Beginning Pattern #3");
+        SpawnBranch(RIGHT);
+        yield return new WaitForSeconds(1f);
+        SpawnBranch(LEFT);
+    }
+
+    IEnumerator PatternFour()
+    {
+        Debug.Log("Beginning Pattern #4");
+        SpawnEagle(RIGHT);
+        yield return new WaitForSeconds(1f);
+    }
+
+    void SpawnBranch(float side)
+    {
+        float x = (camHalfWidth - branchSize) * side;
         float z = CameraBounds.MaxZ + 1.0f;
         Vector3 pos = new Vector3(x, 0, z);
         Instantiate(obstaclePrefabs[0], pos, Quaternion.Euler(90f, 0f, 0f));
     }
-    void SpawnPole(float x)
+    void SpawnPole()
     {
         float z = CameraBounds.MaxZ + 1.0f;
-        Vector3 pos = new Vector3(x, 0, z);
+        Vector3 pos = new Vector3(0, 0, z);
         Instantiate(obstaclePrefabs[1], pos, Quaternion.Euler(90f, 0f, 0f));
     }
 
-    void SpawnEagle(float x)
+    void SpawnEagle(float side)
     {
-        int side = (Random.Range(0,2) * 2) - 1;
-        // float x = (CameraBounds.MaxX*0.75f - 0.5f * eagleSize) * side;
+        Debug.Log("Side: " + side);
+        float range = Random.Range(-1f/3f * camHalfWidth + eagleSize, 1f/3f * camHalfWidth - eagleSize);
+        float x = range + side*camHalfWidth * (2f/3f);
+        Debug.Log("Range: " + range);
+        Debug.Log("X: " + x);
         float z = CameraBounds.MaxZ + 1.0f;
         Vector3 pos = new Vector3(x, 0, z);
         Instantiate(obstaclePrefabs[2], pos, Quaternion.Euler(90f, 0f, 0f));
     }
 
-    void SpawnCardinal(float x)
+    void SpawnCardinal(float side)
     {
-        // int side = Random.Range(-1, 2); // side = -1 (left) or 0 (middle) or +1 (right)
-        // float x = (CameraBounds.MaxX - 0.5f * branchSize) * side;
-
+        float x = (camHalfWidth - cardinalRange) * side;
         float z = CameraBounds.MaxZ + 1.0f;
-
         Vector3 pos = new Vector3(x, 0, z);
-
-        Instantiate(obstaclePrefabs[3], pos, Quaternion.Euler(90f, 0f, 0f));
-    }
-
-    void PatternOne()
-    {
-        
+        Instantiate(obstaclePrefabs[3], pos, Quaternion.Euler(90f, 0f, 0f));   
     }
 }
