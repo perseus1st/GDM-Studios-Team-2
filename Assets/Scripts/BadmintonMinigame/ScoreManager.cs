@@ -74,6 +74,19 @@ public class ScoreManager : MonoBehaviour
     // Reset score and lives
     void ResetGame()
     {
+        if (currentScore > 10)
+        {
+            var gm = GameManager.Instance;
+
+            gm.completedMinigames.Add("badminton");
+
+            if (!gm.highScores.ContainsKey("badminton") || currentScore > gm.highScores["badminton"])
+            {
+                gm.highScores["badminton"] = currentScore;
+            }
+
+            SaveSystem.Save(gm.currentSaveSlot);
+        }
         currentScore = 0;
         currentLives = maxLives;
         UpdateScoreDisplay();

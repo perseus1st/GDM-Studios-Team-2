@@ -6,26 +6,46 @@ using UnityEngine.SceneManagement;
 public class Dodgeball : MonoBehaviour, IInteractable
 {
     private Transform interactIcon;
+    private BoxCollider boxCollider;
+    private GameObject itemModel;
+    private GameObject boxModel;
+    public SceneController sceneController;
+
+    void Awake()
+    {
+        // If sceneController not set in Inspector, find it automatically
+        if (sceneController == null)
+        {
+            sceneController = FindAnyObjectByType<SceneController>();
+        }
+
+        if (sceneController == null)
+            Debug.LogError("SceneController is missing in the scene!");
+
+    }
 
     void Start()
     {
+        itemModel = transform.Find("ItemModel").gameObject;
+        boxModel = transform.Find("BoxModel").gameObject;
         interactIcon = transform.Find("InteractIcon");
         interactIcon.LookAt(Camera.main.transform.position);
         interactIcon.gameObject.SetActive(false);
         if (GameManager.Instance.IsMinigameCompleted("dodgeball"))
         {
-            transform.position = new UnityEngine.Vector3(-2.9f,0.26f,3.6f);
-            transform.Find("ItemModel").gameObject.SetActive(false);
-            transform.Find("BoxModel").gameObject.SetActive(true);
+            itemModel.SetActive(false);
+            boxModel.SetActive(true);
+            interactIcon.transform.localPosition = new UnityEngine.Vector3(-0.38f,-0.106f,0.083f);
+            boxCollider = GetComponent<BoxCollider>();
+            boxCollider.center = new UnityEngine.Vector3(-0.38f, -0.286f, -0.031f);
+            boxCollider.size = new UnityEngine.Vector3(0.686f, 1.573f, 0.87f);
         }
     }
 
     public void Interact()
     {
-        SceneManager.LoadScene("Dodgeball_Minigame");
-
-        //After minigames are done, this line should be removed from this script and included in the minigame scripts
-        GameManager.Instance.MarkMinigameCompleted("dodgeball");
+        // SceneManager.LoadScene("Dodgeball_Minigame");
+        sceneController.StartAnimation("Dodgeball_Minigame");
     }
 
     private void OnTriggerEnter(Collider other)
@@ -34,6 +54,8 @@ public class Dodgeball : MonoBehaviour, IInteractable
         {
             player.SetInteractable(this);
             interactIcon.gameObject.SetActive(true);
+            itemModel.layer = 6;
+            boxModel.layer = 6;
         }
     }
 
@@ -43,6 +65,8 @@ public class Dodgeball : MonoBehaviour, IInteractable
         {
             player.SetInteractable(null);
             interactIcon.gameObject.SetActive(false);
+            itemModel.layer = 0;
+            boxModel.layer = 0;
         }
     }
 }

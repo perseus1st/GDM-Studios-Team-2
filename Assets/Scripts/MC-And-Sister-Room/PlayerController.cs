@@ -1,6 +1,7 @@
 
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System;
 
 public class PlayerController : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class PlayerController : MonoBehaviour
     private CharacterController controller;
     private UnityEngine.Vector2 moveInput;
     private UnityEngine.Vector3 velocity;
+
+    private const float sqrt2 = 1.189207f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -21,6 +24,8 @@ public class PlayerController : MonoBehaviour
     public void onMove(InputAction.CallbackContext context)
     {
         moveInput = context.ReadValue<UnityEngine.Vector2>();
+        // moveInput.x = moveInput.x/(sqrt2) + moveInput.y/(sqrt2);
+        // moveInput.y = moveInput.x/(sqrt2) + moveInput.y/(sqrt2);
 
     }
 
@@ -41,6 +46,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         Vector3 move = new Vector3(moveInput.x, 0, moveInput.y);
-        controller.Move(move * speed * Time.deltaTime);
+        Vector3 diagonalMove = Quaternion.Euler(0, 35, 0) * move;
+        controller.Move(diagonalMove * speed * Time.deltaTime);
     }
 }
