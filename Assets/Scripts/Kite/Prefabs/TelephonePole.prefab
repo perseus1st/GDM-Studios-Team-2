@@ -148,5 +148,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0709b8089c6c8be14b13600a67c07226, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BranchObject
-  speed: 6
+  speed: 4
   destroyZ: -12

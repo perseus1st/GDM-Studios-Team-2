@@ -37,11 +37,28 @@ public class ObstacleSpawner : MonoBehaviour
         {
             if (kiteMinigame.IsRunning)
             {
-                yield return StartCoroutine(PatternOne());
-                yield return StartCoroutine(PatternFour());
-                yield return StartCoroutine(PatternThree());
-                yield return StartCoroutine(PatternOne());
-                yield return StartCoroutine(PatternTwo());
+
+                switch(Random.Range(1,7))
+                {
+                    case 1:
+                        yield return StartCoroutine(PatternOne());
+                        break;
+                    case 2:
+                        yield return StartCoroutine(PatternTwo());
+                        break;
+                    case 3:
+                        yield return StartCoroutine(PatternThree());
+                        break;
+                    case 4:
+                        yield return StartCoroutine(PatternFour());
+                        break;
+                    case 5:
+                        yield return StartCoroutine(PatternFive());
+                        break;
+                    case 6:
+                        yield return StartCoroutine(PatternSix());
+                        break;
+                }
             }
             else
             {
@@ -52,47 +69,138 @@ public class ObstacleSpawner : MonoBehaviour
 
     IEnumerator PatternOne()
     {
-        Debug.Log("Beginning Pattern #1");
+        Debug.Log("==============Beginning Pattern #1==============");
+
         SpawnBranch(RIGHT);
         SpawnCardinal(LEFT);
         SpawnEagle(MIDDLE);
+
         yield return new WaitForSeconds(1f);
+
         SpawnPole();
+
         yield return new WaitForSeconds(1f);
+
         SpawnEagle(RIGHT);
         SpawnCardinal(LEFT);
         SpawnPole();
+
+        yield return new WaitForSeconds(0.5f);
     }
 
     IEnumerator PatternTwo()
     {
-        Debug.Log("Beginning Pattern #2");
+        Debug.Log("==============Beginning Pattern #2==============");
+
         SpawnBranch(RIGHT);
         SpawnBranch(LEFT);
 
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(2f);
 
-        SpawnEagle(LEFT);
+        SpawnEagle(MIDDLE);
 
         yield return new WaitForSeconds(1f);
 
         SpawnCardinal(LEFT);
+        SpawnCardinal(MIDDLE);
         SpawnCardinal(RIGHT);
+
+        yield return new WaitForSeconds(0.5f);
     }
 
     IEnumerator PatternThree()
     {
-        Debug.Log("Beginning Pattern #3");
-        SpawnBranch(RIGHT);
+        Debug.Log("==============Beginning Pattern #3==============");
+
+        SpawnCardinal(LEFT);
+        SpawnCardinal(MIDDLE);
+        SpawnEagle(RIGHT);
+
         yield return new WaitForSeconds(1f);
-        SpawnBranch(LEFT);
+        
+        SpawnBranch(RIGHT);
+    
+        yield return new WaitForSeconds(0.5f);
     }
 
     IEnumerator PatternFour()
     {
-        Debug.Log("Beginning Pattern #4");
+        Debug.Log("==============Beginning Pattern #4==============");
+
         SpawnEagle(RIGHT);
+        SpawnPole();
+        SpawnEagle(LEFT);
+
         yield return new WaitForSeconds(1f);
+
+        SpawnCardinal(RIGHT);
+        SpawnCardinal(LEFT);
+
+        yield return new WaitForSeconds(1f);
+
+        SpawnEagle(MIDDLE);
+        SpawnEagle(MIDDLE);
+        SpawnEagle(LEFT);
+        SpawnEagle(LEFT);
+        SpawnEagle(RIGHT);
+        SpawnEagle(RIGHT);
+
+        yield return new WaitForSeconds(0.5f);
+    }
+
+    IEnumerator PatternFive()
+    {
+        Debug.Log("==============Beginning Pattern #5==============");
+
+        SpawnPole();
+
+        yield return new WaitForSeconds(1f);
+
+        SpawnBranch(LEFT);
+        SpawnBranch(RIGHT);
+
+        yield return new WaitForSeconds(1f);
+
+        SpawnPole();
+
+        yield return new WaitForSeconds(1f);
+
+        SpawnBranch(LEFT);
+        SpawnBranch(RIGHT);
+
+        yield return new WaitForSeconds(1f);
+
+        SpawnPole();
+
+        yield return new WaitForSeconds(1f);
+
+        SpawnBranch(LEFT);
+        SpawnBranch(RIGHT);
+
+        yield return new WaitForSeconds(1f);
+
+        SpawnCardinal(LEFT);
+        SpawnCardinal(MIDDLE);
+        SpawnCardinal(RIGHT);
+
+        yield return new WaitForSeconds(0.5f);
+    }
+
+    IEnumerator PatternSix()
+    {
+        Debug.Log("==============Beginning Pattern #6==============");
+        
+        int reps = 5;
+
+        while (reps > 0)
+        {
+            SpawnEagle(Random.Range(-1,2));
+            yield return new WaitForSeconds(0.5f);
+            reps--;
+        }
+
+        yield return new WaitForSeconds(0.5f);
+
     }
 
     void SpawnBranch(float side)
