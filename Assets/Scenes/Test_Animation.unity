@@ -403,6 +403,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerAnimation
       objectReference: {fileID: 0}
+    - target: {fileID: 5265095565455548004, guid: d0280960c5fce924cb6c820af6292c90, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9216354176558464418, guid: d0280960c5fce924cb6c820af6292c90, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.17
