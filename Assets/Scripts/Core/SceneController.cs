@@ -4,9 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
 {
-    // Animation references
-    public Animator canvasAnimator;
-    
+
     // Settings
 
     public float delayBeforeAnimation = 1f;
@@ -14,13 +12,15 @@ public class SceneController : MonoBehaviour
 
     public string triggerName = "NextLevel";
     public string skipFadeInScene = "Cutscene1";
+    [SerializeField] private Animator canvasAnimator;
+
 
     void Awake()
     {
         // If canvasAnimator not set in Inspector, find it automatically
         if (canvasAnimator == null)
         {
-            canvasAnimator = FindObjectOfType<Animator>();
+            canvasAnimator = FindAnyObjectByType<Animator>();
         }
 
         if (canvasAnimator == null)
