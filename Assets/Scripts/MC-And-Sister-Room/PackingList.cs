@@ -30,7 +30,7 @@ public class PackingList : MonoBehaviour
             racketsText.text = "<s>• Rackets </s>";
             racketsText.color = green;
         }
-        if (gameManager.IsMinigameCompleted("ddr"))
+        if (gameManager.IsMinigameCompleted("DDR"))
         {
             danceMatText.text = "<s>• Dance Mat </s>";
             danceMatText.color = green;
