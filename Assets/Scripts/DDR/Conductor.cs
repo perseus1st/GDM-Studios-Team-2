@@ -38,7 +38,8 @@ public class Conductor : MonoBehaviour
     public Queue<GameObject> SactiveNotes; 
     public Queue<GameObject> DactiveNotes; 
 
-
+    [Header("Pause Manager")]
+    [SerializeField] PauseManager pauseManager;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -166,6 +167,16 @@ public class Conductor : MonoBehaviour
             scoreManager.LoseLife(); 
         }
     }
+
+    void OnPause(InputValue value)
+    {
+        if (value.isPressed)
+        {
+            Debug.Log("pause");
+            pauseManager.Pause();
+        }  
+    }
+
     void SpawnNote(Note note, float currTime)
     {
         int laneIndex = note.row; 
