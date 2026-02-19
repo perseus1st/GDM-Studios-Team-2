@@ -31,7 +31,7 @@ public class DanceMat : MonoBehaviour, IInteractable
         interactIcon = transform.Find("InteractIcon");
         interactIcon.LookAt(Camera.main.transform.position);
         interactIcon.gameObject.SetActive(false);
-        if (GameManager.Instance.IsMinigameCompleted("ddr"))
+        if (GameManager.Instance.IsMinigameCompleted("DDR"))
         {
             itemModel.SetActive(false);
             boxModel.SetActive(true);
@@ -46,8 +46,6 @@ public class DanceMat : MonoBehaviour, IInteractable
     {
         // SceneManager.LoadScene("DDR_Minigame");
         sceneController.StartAnimation("DDR_Minigame");
-        //After minigames are done, this line should be removed from this script and included in the minigame scripts
-        GameManager.Instance.MarkMinigameCompleted("ddr");
     }
 
     private void OnTriggerEnter(Collider other)

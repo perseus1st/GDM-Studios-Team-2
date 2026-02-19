@@ -18,7 +18,6 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         controller = GetComponent<CharacterController>();
-        
     }
 
     public void onMove(InputAction.CallbackContext context)
