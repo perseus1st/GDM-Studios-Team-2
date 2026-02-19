@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,7 @@ using UnityEngine.InputSystem;
 public class Conductor : MonoBehaviour
 {
     PlayerInput playerInput; 
+    public DDR_ScoreManager scoreManager; 
     public float songBpm; //SET THIS 
 
     //The offset to the first beat of the song in seconds
@@ -43,6 +45,7 @@ public class Conductor : MonoBehaviour
     {
         Debug.Log("Start!"); 
         playerInput = GetComponent<PlayerInput>(); 
+
         songBpm = 140f; 
         secPerBeat = 60f / songBpm; 
         index = 0; 
@@ -74,8 +77,28 @@ public class Conductor : MonoBehaviour
 
         if (songPositionInBeats == next.beat)
         {
-            SpawnNote(next);
+            SpawnNote(next, songPosition);
             index++;
+        }
+    }
+
+    private void calculatePts(float targetTime)
+    {
+        float diff = Math.Abs(songPosition - targetTime); 
+        if (diff <= 0.1)
+        {
+            scoreManager.AddScore("Perfect!");
+        }
+        else if (diff <= 0.15)
+        {
+            scoreManager.AddScore("Great!");
+        } 
+        else if (diff <= 0.25)
+        {
+            scoreManager.AddScore("Okay");
+        } else
+        {
+            scoreManager.LoseLife(); 
         }
     }
 
@@ -90,8 +113,13 @@ public class Conductor : MonoBehaviour
         if (WactiveNotes.Count != 0)
             {
                 GameObject pressedNote = WactiveNotes.Dequeue();
+                calculatePts(pressedNote.GetComponent<NoteMover>().targetTime); 
                 Destroy(pressedNote);
             }
+        else
+        {
+            scoreManager.LoseLife(); 
+        }
     }
 
     void OnRight(InputValue value)
@@ -100,8 +128,13 @@ public class Conductor : MonoBehaviour
          if (DactiveNotes.Count != 0)
             {
                 GameObject pressedNote = DactiveNotes.Dequeue();
+                calculatePts(pressedNote.GetComponent<NoteMover>().targetTime); 
                 Destroy(pressedNote);
             }
+        else
+        {
+            scoreManager.LoseLife(); 
+        }
     }
 
     void OnDown(InputValue value)
@@ -110,8 +143,13 @@ public class Conductor : MonoBehaviour
          if (SactiveNotes.Count != 0)
             {
                 GameObject pressedNote = SactiveNotes.Dequeue();
+                calculatePts(pressedNote.GetComponent<NoteMover>().targetTime); 
                 Destroy(pressedNote);
             }
+        else
+        {
+            scoreManager.LoseLife(); 
+        }
     }
 
     void OnLeft(InputValue value)
@@ -120,10 +158,15 @@ public class Conductor : MonoBehaviour
          if (AactiveNotes.Count != 0)
             {
                 GameObject pressedNote = AactiveNotes.Dequeue();
+                calculatePts(pressedNote.GetComponent<NoteMover>().targetTime); 
                 Destroy(pressedNote);
             }
+        else
+        {
+            scoreManager.LoseLife(); 
+        }
     }
-    void SpawnNote(Note note)
+    void SpawnNote(Note note, float currTime)
     {
         int laneIndex = note.row; 
         Vector3 spawnPos = new Vector3(laneX[laneIndex], laneY, 0f);
@@ -131,6 +174,7 @@ public class Conductor : MonoBehaviour
         NoteMover inst = obj.GetComponent<NoteMover>(); 
         inst.GetComponent<NoteMover>().conductor = this;
 
+        inst.targetTime = currTime + 12f / inst.getSpeed(); 
         inst.lane = laneIndex; 
         inst.beat = note.beat; 
 

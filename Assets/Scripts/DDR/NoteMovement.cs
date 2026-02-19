@@ -7,6 +7,7 @@ public class NoteMover : MonoBehaviour
     //1.79 sec to travel 12 units s = d/t
     public static float targetY = -6f; // Y position of the hitzone
     
+    public float targetTime; 
 
     public int lane; 
     public int beat; 
@@ -40,5 +41,10 @@ public class NoteMover : MonoBehaviour
 
             Destroy(gameObject);
         } 
+    }
+
+    public float getSpeed()
+    {
+        return speed; 
     }
 }
