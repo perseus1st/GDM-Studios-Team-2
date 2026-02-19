@@ -7,7 +7,6 @@ public class NoteMover : MonoBehaviour
     //1.79 sec to travel 12 units s = d/t
     public static float targetY = -6f; // Y position of the hitzone
     
-    public bool active; 
 
     public int lane; 
     public int beat; 

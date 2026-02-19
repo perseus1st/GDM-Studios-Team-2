@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem; 
 
 public class Conductor : MonoBehaviour
 {
+    PlayerInput playerInput; 
     public float songBpm; //SET THIS 
 
     //The offset to the first beat of the song in seconds
@@ -29,27 +31,30 @@ public class Conductor : MonoBehaviour
 
     public GameObject notePrefab; 
 
-    public Queue<NoteMover> AactiveNotes; 
-    public Queue<NoteMover> WactiveNotes; 
-    public Queue<NoteMover> SactiveNotes; 
-    public Queue<NoteMover> DactiveNotes; 
+    public Queue<GameObject> AactiveNotes; 
+    public Queue<GameObject> WactiveNotes; 
+    public Queue<GameObject> SactiveNotes; 
+    public Queue<GameObject> DactiveNotes; 
 
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        songBpm = 134f; 
+        Debug.Log("Start!"); 
+        playerInput = GetComponent<PlayerInput>(); 
+        songBpm = 140f; 
         secPerBeat = 60f / songBpm; 
         index = 0; 
-        AactiveNotes = new Queue<NoteMover>(); 
-        WactiveNotes = new Queue<NoteMover>(); 
-        SactiveNotes = new Queue<NoteMover>(); 
-        DactiveNotes = new Queue<NoteMover>(); 
+        AactiveNotes = new Queue<GameObject>(); 
+        WactiveNotes = new Queue<GameObject>(); 
+        SactiveNotes = new Queue<GameObject>(); 
+        DactiveNotes = new Queue<GameObject>(); 
     }
 
     public void OnButtonClicked()
     {
+        playerInput.SwitchCurrentActionMap("DDR_Minigame"); 
         dspSongTime = (float)AudioSettings.dspTime; 
         GetComponent<AudioSource>().Play(); 
     }
@@ -72,44 +77,52 @@ public class Conductor : MonoBehaviour
             SpawnNote(next);
             index++;
         }
-
-        // if (Input.GetKeyDown(KeyCode.A))
-        // {
-        //     if (AactiveNotes.Count != 0)
-        //     {
-        //         NoteMover pressedNote = AactiveNotes.Dequeue();
-        //         Destroy(pressedNote);
-        //     }
-        // }
-
-        // if (Input.GetKeyDown(KeyCode.W))
-        // {
-        //     if (WactiveNotes.Count != 0)
-        //     {
-        //         NoteMover pressedNote = WactiveNotes.Dequeue();
-        //         Destroy(pressedNote);
-        //     }
-        // }
-
-        // if (Input.GetKeyDown(KeyCode.S))
-        // {
-        //     if (SactiveNotes.Count != 0)
-        //     {
-        //         NoteMover pressedNote = SactiveNotes.Dequeue();
-        //         Destroy(pressedNote);
-        //     }
-        // }
-
-        // if (Input.GetKeyDown(KeyCode.D))
-        // {
-        //     if (DactiveNotes.Count != 0)
-        //     {
-        //         NoteMover pressedNote = DactiveNotes.Dequeue();
-        //         Destroy(pressedNote);
-        //     }
-        // }
     }
 
+    void OnInteract(InputValue value)
+    {
+        Debug.Log("Click pressed!"); 
+    }
+
+    void OnUp(InputValue value)
+    {
+        Debug.Log("up!"); 
+        if (WactiveNotes.Count != 0)
+            {
+                GameObject pressedNote = WactiveNotes.Dequeue();
+                Destroy(pressedNote);
+            }
+    }
+
+    void OnRight(InputValue value)
+    {
+        Debug.Log("right!"); 
+         if (DactiveNotes.Count != 0)
+            {
+                GameObject pressedNote = DactiveNotes.Dequeue();
+                Destroy(pressedNote);
+            }
+    }
+
+    void OnDown(InputValue value)
+    {
+        Debug.Log("down!"); 
+         if (SactiveNotes.Count != 0)
+            {
+                GameObject pressedNote = SactiveNotes.Dequeue();
+                Destroy(pressedNote);
+            }
+    }
+
+    void OnLeft(InputValue value)
+    {
+        Debug.Log("left!"); 
+         if (AactiveNotes.Count != 0)
+            {
+                GameObject pressedNote = AactiveNotes.Dequeue();
+                Destroy(pressedNote);
+            }
+    }
     void SpawnNote(Note note)
     {
         int laneIndex = note.row; 
@@ -118,7 +131,6 @@ public class Conductor : MonoBehaviour
         NoteMover inst = obj.GetComponent<NoteMover>(); 
         inst.GetComponent<NoteMover>().conductor = this;
 
-        inst.active = true; 
         inst.lane = laneIndex; 
         inst.beat = note.beat; 
 
@@ -130,16 +142,16 @@ public class Conductor : MonoBehaviour
         switch (inst.lane)
         {
             case 0 :
-                AactiveNotes.Enqueue(inst);
+                AactiveNotes.Enqueue(obj);
                 break;
             case 1 : 
-                WactiveNotes.Enqueue(inst);
+                WactiveNotes.Enqueue(obj);
                 break; 
             case 2 : 
-                SactiveNotes.Enqueue(inst);
+                SactiveNotes.Enqueue(obj);
                 break;
             case 3 : 
-                DactiveNotes.Enqueue(inst);
+                DactiveNotes.Enqueue(obj);
                 break;
             default:
                 break; 

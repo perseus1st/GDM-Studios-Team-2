@@ -720,8 +720,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2631786016092222574, guid: 4e90bd39c3108424a9eddfc2abea6e62, type: 3}
       insertIndex: -1
       addedObject: {fileID: 714948668}
-      insertIndex: -1
-      addedObject: {fileID: 2116999786}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e90bd39c3108424a9eddfc2abea6e62, type: 3}
 --- !u!114 &601944574 stripped
@@ -735,11 +733,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eecfe004bc4c7154b88f11061e72a55b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneController
---- !u!224 &601944575 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 2631786016092222574, guid: 4e90bd39c3108424a9eddfc2abea6e62, type: 3}
-  m_PrefabInstance: {fileID: 601944573}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &608459113
 GameObject:
   m_ObjectHideFlags: 0
@@ -1065,6 +1058,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 714948667}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &714948670
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1114,6 +1119,7 @@ GameObject:
   - component: {fileID: 1070191939}
   - component: {fileID: 1070191938}
   - component: {fileID: 1070191937}
+  - component: {fileID: 1070191940}
   m_Layer: 0
   m_Name: SongManager
   m_TagString: Untagged
@@ -1152,7 +1158,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: aa37e34973c1b644199b76230ea192b9, type: 3}
+  m_Resource: {fileID: 8300000, guid: badc25ba7aa38bb46b408355d4a03c4e, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -1253,6 +1259,72 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1070191940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1070191936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
+  m_Actions: {fileID: -944628639613478452, guid: 610e29b8f7e4ffc40aa4dffa6fb0da7d, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d13462c1-679e-4eb3-a64b-2cba2c8032cd
+    m_ActionName: 'Gameplay/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11500000, guid: b6c19c455e6fdc14890ea721bb605067, type: 3}
+        m_TargetAssemblyTypeName: UnityEditor.MonoScript, UnityEditor.CoreModule
+        m_MethodName: set_name
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: OnInteract
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 2d77ca1f-511c-4673-9e6d-e54365b16371
+    m_ActionName: 'Gameplay/Interact[/Mouse/leftButton]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f1054f74-75f2-41df-a431-463ac87c976d
+    m_ActionName: 'DDR_Minigame/Up[/Keyboard/upArrow,/Keyboard/w]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2ad6f8bc-5fb0-408b-bb98-7767cb8a1acb
+    m_ActionName: 'DDR_Minigame/Right[/Keyboard/rightArrow,/Keyboard/d]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9735fa8d-763e-45b8-9063-05fa46d89039
+    m_ActionName: 'DDR_Minigame/Left[/Keyboard/leftArrow,/Keyboard/a]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 278417ea-81e3-4acd-ba26-3e1c68b0dbb9
+    m_ActionName: 'DDR_Minigame/Down[/Keyboard/downArrow,/Keyboard/s]'
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: c17f97ca-314b-4f0b-8dff-0b4debf62e17
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &1408562956
 GameObject:
   m_ObjectHideFlags: 0
@@ -1790,7 +1862,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 601944575}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4817924336737886270, guid: 2c597986c4d99d842ae9ec0a4f58db04, type: 3}
       propertyPath: m_Pivot.x
@@ -1881,11 +1953,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c597986c4d99d842ae9ec0a4f58db04, type: 3}
---- !u!224 &2116999786 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 4817924336737886270, guid: 2c597986c4d99d842ae9ec0a4f58db04, type: 3}
-  m_PrefabInstance: {fileID: 2116999785}
-  m_PrefabAsset: {fileID: 0}
 --- !u!95 &2116999787 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 6931646279036232816, guid: 2c597986c4d99d842ae9ec0a4f58db04, type: 3}
@@ -1903,3 +1970,4 @@ SceneRoots:
   - {fileID: 124384338}
   - {fileID: 1070191939}
   - {fileID: 206843036}
+  - {fileID: 2116999785}
