@@ -74,7 +74,7 @@ public class AudioManager : MonoBehaviour
 
     public void UnpauseMusic()
     {
-        if ( musicSource.clip != null)
+        if (musicSource.clip != null)
         {
             musicSource.UnPause();
         }

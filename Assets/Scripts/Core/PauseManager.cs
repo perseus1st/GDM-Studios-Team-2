@@ -9,8 +9,6 @@ public class PauseManager : MonoBehaviour
     private bool isPaused = false;
     private AudioManager audioManager = AudioManager.INSTANCE;
 
-    [SerializeField] string actionMapName = "Gameplay";
-
     private void Awake()
     {
         // inputActions = new PlayerInputActions();
@@ -36,7 +34,7 @@ public class PauseManager : MonoBehaviour
             Pause();
     }
 
-    public void Pause()
+    private void Pause()
     {
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
@@ -54,7 +52,7 @@ public class PauseManager : MonoBehaviour
 
         audioManager.UnpauseMusic();
         playerInput.ActivateInput();
-        playerInput.SwitchCurrentActionMap(actionMapName);
+        playerInput.SwitchCurrentActionMap("Gameplay");
 
         isPaused = false;
     }
