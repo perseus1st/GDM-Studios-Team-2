@@ -243,6 +243,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 7946852510568898752, guid: 72a61daa0e3437f4ea0492b453cd215f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -872
+      objectReference: {fileID: 0}
+    - target: {fileID: 7946852510568898752, guid: 72a61daa0e3437f4ea0492b453cd215f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 518
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1423,11 +1431,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eecfe004bc4c7154b88f11061e72a55b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneController
-  canvasAnimator: {fileID: 64476046}
   delayBeforeAnimation: 1
   animationLength: 3
   triggerName: NextLevel
   skipFadeInScene: Cutscene1
+  canvasAnimator: {fileID: 64476046}
 --- !u!4 &1499559285
 Transform:
   m_ObjectHideFlags: 0
