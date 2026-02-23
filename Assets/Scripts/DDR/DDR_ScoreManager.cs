@@ -9,8 +9,13 @@ public class DDR_ScoreManager : MonoBehaviour
     // Singleton for easy access from anywhere
     public static DDR_ScoreManager Instance { get; private set; }
 
+    public Conductor gameConductor; 
+
+    public GameObject hitZone; 
+
     [Header("UI References")]
     public TextMeshProUGUI scoreText;
+    public GameObject restartPanel;
     public TextMeshProUGUI scoreMsg;
     public TextMeshProUGUI[] lifeTexts;
 
@@ -121,6 +126,12 @@ public class DDR_ScoreManager : MonoBehaviour
         UpdateScoreDisplay();
         UpdateLivesDisplay();
         OnScoreChanged();
+
+        gameConductor.ResetGame(); 
+
+        hitZone.SetActive(false); 
+
+        restartPanel.SetActive(true); 
     }
 
     // Reset score

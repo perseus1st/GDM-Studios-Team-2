@@ -50,18 +50,43 @@ public class Conductor : MonoBehaviour
 
         songBpm = 140f; 
         secPerBeat = 60f / songBpm; 
-        index = 0; 
+
+        index = 0;
+        
         AactiveNotes = new Queue<GameObject>(); 
         WactiveNotes = new Queue<GameObject>(); 
         SactiveNotes = new Queue<GameObject>(); 
         DactiveNotes = new Queue<GameObject>(); 
+
+        this.enabled = false; 
     }
 
+    public void ResetGame()
+    {
+        GetComponent<AudioSource>().Stop();
+        GameObject[] activeNotes = GameObject.FindGameObjectsWithTag("Note");
+
+        foreach (GameObject note in activeNotes)
+        {
+            Destroy(note);
+        } 
+
+        AactiveNotes.Clear(); 
+        WactiveNotes.Clear(); 
+        SactiveNotes.Clear(); 
+        DactiveNotes.Clear(); 
+
+        this.enabled = false;  
+    }
     public void OnButtonClicked()
     {
+        this.enabled = true; 
+        
         playerInput.SwitchCurrentActionMap("DDR_Minigame"); 
         dspSongTime = (float)AudioSettings.dspTime; 
+         
         GetComponent<AudioSource>().Play(); 
+
     }
 
     // Update is called once per frame
@@ -212,6 +237,7 @@ public class Conductor : MonoBehaviour
                 break; 
         }
     }
+
 
   void OnApplicationQuit()
   {
