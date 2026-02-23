@@ -22,6 +22,19 @@ public class BirdieController : MonoBehaviour
     public float hitRange = 2f; // How close player has to be to hit birdie in units
     public float hitWindowStart = 0.9f; // What percentage into flight the player can hit birdie
 
+    [Header("Tutorial Settings")]
+    public bool isTutorial = true; // Need tutorial to happen
+    public GameObject tutorialMoveIcon; // WASD image
+    public Sprite tutorialMoveFrame1; // WASD image no glow
+    public Sprite tutorialMoveFrame2; // WASD image with glow
+    public GameObject tutorialClickIcon; // Interact image
+    public float tutorialIconFlashSpeed = 0.5f; // How fast flashes in seconds
+    public Vector3 tutorialTargetOffset = new Vector3(2f, 0.5f, -5f); // Where placed relative to player
+
+    private bool tutorialCompleted = false; // Is tutorial over
+    private float tutorialFlashTimer = 0f; // Tracks how long ago icons flashed in tutorial
+    private bool tutorialShowingFrame1 = true;
+
     // Controls for how the shot types work
     [Header("Shot Type Settings")]
     public float normalShotMinDistanceAtLowScore = 1f; // Easy minimum distance from player
@@ -72,6 +85,12 @@ public class BirdieController : MonoBehaviour
         if (targetIndicator != null)
             targetIndicator.SetActive(false);
 
+        // Hide tutorial icons
+        if (tutorialMoveIcon != null)
+            tutorialMoveIcon.SetActive(false);
+        if (tutorialClickIcon != null)
+            tutorialClickIcon.SetActive(false);
+
         // Birdie starts on opponent side
         isOnPlayerSide = false;
         canBeHit = false;
@@ -90,30 +109,40 @@ public class BirdieController : MonoBehaviour
         // Reset hit window
         bool inHitWindow = false;
         
-        if (isFlying && isOnPlayerSide)
-        {
-            // Can hit during last part of flight
-            inHitWindow = journeyProgress >= hitWindowStart;
-        }
-        else if (isGrounded && isOnPlayerSide)
-        {
-
-            // Get grounded window from ScoreManager with fallback
-            float currentGroundedWindow = ScoreManager.Instance != null ? ScoreManager.Instance.GetCurrentGroundedWindow() : 0.5f; 
-
-            // can hit for short time after landing
-            float timeSinceLanded = Time.time - landedTime;
-            inHitWindow = timeSinceLanded <= currentGroundedWindow;
-            
-            // lose life and re-serve if on ground for too long
-            if (timeSinceLanded > currentGroundedWindow)
+            // Regular landing behaviour
+            if (isFlying && isOnPlayerSide)
             {
-                if (ScoreManager.Instance != null)
-                    ScoreManager.Instance.LoseLife();
-                consecutiveHits = 0; // Reset consecutive hits tracker
-                ResetAndServe();
+                // Can hit during last part of flight
+                inHitWindow = journeyProgress >= hitWindowStart;
             }
-        }
+            else if (isGrounded && isOnPlayerSide)
+            {
+                // Gives infinite time to hit birdie during tutorial
+                if (isTutorial && !tutorialCompleted)
+                {
+                    inHitWindow = true;  // Always allow hitting during tutorial
+                    UpdateTutorialIcons();  // Show/update tutorial icons
+                }
+                else
+                {
+    
+                    // Get grounded window from ScoreManager with fallback
+                    float currentGroundedWindow = ScoreManager.Instance != null ? ScoreManager.Instance.GetCurrentGroundedWindow() : 0.5f; 
+    
+                    // can hit for short time after landing
+                    float timeSinceLanded = Time.time - landedTime;
+                    inHitWindow = timeSinceLanded <= currentGroundedWindow;
+                
+                    // lose life and re-serve if on ground for too long
+                    if (timeSinceLanded > currentGroundedWindow)
+                    {
+                        if (ScoreManager.Instance != null)
+                            ScoreManager.Instance.LoseLife();
+                            consecutiveHits = 0; // Reset consecutive hits tracker
+                            ResetAndServe();
+                    }
+                }
+             }
 
         // Check if player close enough to hit and within hit window
         if (inHitWindow && player != null)
@@ -161,6 +190,16 @@ public class BirdieController : MonoBehaviour
         // play hit sound
         if (hitSound != null)
             hitSound.Play();
+
+        // Finish tutorial
+        if (isTutorial && !tutorialCompleted)
+        {
+            tutorialCompleted = true;
+            if (tutorialMoveIcon != null)
+                tutorialMoveIcon.SetActive(false);
+            if (tutorialClickIcon != null)
+                tutorialClickIcon.SetActive(false);
+        }
 
         // Increment score
         if (ScoreManager.Instance != null)
@@ -213,28 +252,35 @@ public class BirdieController : MonoBehaviour
         
         // Set flight start
         startPosition = transform.position;
-        
-        // Calculate probabilities of each shot type based on score
-        int currentScore = ScoreManager.Instance != null ? ScoreManager.Instance.GetScore() : 0;
-        float normalChance = GetNormalShotChance(currentScore);
-        float dropChance = GetDropShotChance(currentScore);
-        
-        // Select shot type randomly
-        float roll = Random.Range(0f, 1f);
-        
-        if (roll < normalChance)
-        {
-            ServeNormalShot(currentScore);
-        }
-        else if (roll < normalChance + dropChance)
-        {
-            ServeDropShot(currentScore);
-        }
-        else
-        {
-            ServeLongShot(currentScore);
-        }
 
+        // Do the tutorial
+        if (isTutorial && !tutorialCompleted)
+        {
+            ServeTutorialShot();
+        }
+            else
+        {
+            // Calculate probabilities of each shot type based on score
+            int currentScore = ScoreManager.Instance != null ? ScoreManager.Instance.GetScore() : 0;
+            float normalChance = GetNormalShotChance(currentScore);
+            float dropChance = GetDropShotChance(currentScore);
+        
+            // Select shot type randomly
+            float roll = Random.Range(0f, 1f);
+        
+            if (roll < normalChance)
+            {
+                ServeNormalShot(currentScore);
+            }
+            else if (roll < normalChance + dropChance)
+            {
+                ServeDropShot(currentScore);
+            }
+            else
+            {
+                ServeLongShot(currentScore);
+            }
+        }
 
         // Calculate flight distance
         journeyLength = Vector3.Distance(startPosition, targetPosition);
@@ -291,6 +337,20 @@ public class BirdieController : MonoBehaviour
         // Set speed, distance, and height
         float shotDistance = Vector3.Distance(startPosition, targetPosition);
         currentFlightSpeed = shotDistance / totalTime;
+        currentArcHeight = arcHeight;
+    }
+
+    // Tutorial shot type
+    void ServeTutorialShot()
+    {
+        // Hit birdie to the right of the player
+        if (player != null)
+            targetPosition = player.position + tutorialTargetOffset;
+        else
+            targetPosition = new Vector3(2f, 0.5f, -5f); // Backup offset
+    
+        // Set speed and height
+        currentFlightSpeed = 6f;
         currentArcHeight = arcHeight;
     }
 
@@ -419,6 +479,21 @@ public class BirdieController : MonoBehaviour
             {
                 isGrounded = true;
                 landedTime = Time.time;
+
+                // Shows icons during tutorial
+                if (isTutorial && !tutorialCompleted)
+                {  
+                    if (tutorialMoveIcon != null)
+                    {
+                        tutorialMoveIcon.transform.position = transform.position + Vector3.up * 1.5f;
+                        tutorialMoveIcon.SetActive(true);
+                    }
+                    if (tutorialClickIcon != null)
+                    {
+                        tutorialClickIcon.transform.position = transform.position + Vector3.up * 1.5f;
+                        tutorialClickIcon.SetActive(false);
+                    }
+                }
             }
             else
             {
@@ -427,6 +502,56 @@ public class BirdieController : MonoBehaviour
             }
         }
 
+    }
+
+    // Make tutorial icons appear and flash as necessary
+    void UpdateTutorialIcons()
+    {
+        if (player == null) return;
+
+        // Is player close to the birdie
+        float distance = Vector3.Distance(player.position, transform.position);
+        bool playerClose = distance <= hitRange;
+
+        // Update icon position every frame to be above birdie
+        Vector3 iconPosition = transform.position + new Vector3(0, 0.5f, 2.5f);
+        if (tutorialMoveIcon != null)
+        {
+            tutorialMoveIcon.transform.position = iconPosition;
+        }
+    
+        // If player is close, then tell the player to click on the birdie
+        if (playerClose)
+        {
+            if (tutorialMoveIcon != null)
+                tutorialMoveIcon.SetActive(false);
+            if (tutorialClickIcon != null)
+                tutorialClickIcon.SetActive(true);
+        }
+        // If player is far, tell the player to move to the birdie
+        else
+        {
+           if (tutorialClickIcon != null)
+                tutorialClickIcon.SetActive(false); // Turn off interact image
+           if (tutorialMoveIcon != null)
+           {
+                tutorialMoveIcon.SetActive(true);
+                
+                tutorialFlashTimer += Time.deltaTime;
+                // Make the move icon alternate between glowing and not glowing WASD
+                if (tutorialFlashTimer >= tutorialIconFlashSpeed)
+                {
+                    tutorialFlashTimer = 0f;
+                    tutorialShowingFrame1 = !tutorialShowingFrame1;
+                    
+                    SpriteRenderer iconSprite = tutorialMoveIcon.GetComponent<SpriteRenderer>();
+                    if (iconSprite != null)
+                    {
+                        iconSprite.sprite = tutorialShowingFrame1 ? tutorialMoveFrame1 : tutorialMoveFrame2;
+                    }
+                }
+            }
+        }
     }
 
     // Reset birdie to opponent's position and serve to player when player fails to hit the birdie back
