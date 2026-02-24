@@ -6,14 +6,15 @@ using UnityEngine.InputSystem;
 
 public class Conductor : MonoBehaviour
 {
+    AudioSource music; 
     PlayerInput playerInput; 
     public DDR_ScoreManager scoreManager; 
-    public float songBpm; //SET THIS 
+    public static float songBpm = 140f; 
 
     //The offset to the first beat of the song in seconds
-    public float firstBeatOffset; //SET THIS 
+    public static float firstBeatOffset; //SET THIS 
     //The number of seconds for each song beat
-    public float secPerBeat;
+    public static float secPerBeat =  60f / songBpm;
 
     //Current song position, in seconds
     public float songPosition;
@@ -24,12 +25,17 @@ public class Conductor : MonoBehaviour
     //How many seconds have passed since the song started
     public float dspSongTime;
 
-    //an AudioSource attached to this GameObject that will play the music.
+    // index of the next note to be spawned, according to chart 
     private int index; 
     public Chart chart; 
 
+    // x positions of the lanes AWSD 
     private float[] laneX = new float[] {-6f, -2f, 2f, 6f}; 
     private float laneY = 6f; 
+    public float PerfectTiming = 0.1f; 
+    public float GreatTiming = 0.15f; 
+    public float OkayTiming = 0.25f; 
+    
 
     public GameObject notePrefab; 
 
@@ -48,11 +54,6 @@ public class Conductor : MonoBehaviour
         Debug.Log("Start!"); 
         playerInput = GetComponent<PlayerInput>(); 
 
-        songBpm = 140f; 
-        secPerBeat = 60f / songBpm; 
-
-        index = 0;
-        
         AactiveNotes = new Queue<GameObject>(); 
         WactiveNotes = new Queue<GameObject>(); 
         SactiveNotes = new Queue<GameObject>(); 
@@ -61,7 +62,8 @@ public class Conductor : MonoBehaviour
         this.enabled = false; 
     }
 
-    public void ResetGame()
+    // called by scoreManager when three lives are spent 
+    public void StopGame()
     {
         GetComponent<AudioSource>().Stop();
         GameObject[] activeNotes = GameObject.FindGameObjectsWithTag("Note");
@@ -78,14 +80,25 @@ public class Conductor : MonoBehaviour
 
         this.enabled = false;  
     }
+
+    // Called when minigame starts 
     public void OnButtonClicked()
     {
+        music = GetComponent<AudioSource>(); 
+        // reset list of notes to be spawned from beginning 
+        index = 0;
+
+        // reset all song position markers 
+        songPosition = 0f;
+        songPositionInBeats = 0;
+        music.time = 0f; 
+
         this.enabled = true; 
         
         playerInput.SwitchCurrentActionMap("DDR_Minigame"); 
+
         dspSongTime = (float)AudioSettings.dspTime; 
-         
-        GetComponent<AudioSource>().Play(); 
+        music.Play(); 
 
     }
 
@@ -95,32 +108,32 @@ public class Conductor : MonoBehaviour
         songPosition = (float)(AudioSettings.dspTime - dspSongTime); 
         songPositionInBeats = (int)(songPosition / secPerBeat); 
 
-        if (index >= chart.notes.Count)
+        // Note spawning logic, according to song position in beats 
+        if (index < chart.notes.Count)
         {
-            return;
-        }
+            Note next = chart.notes[index];
 
-       Note next = chart.notes[index];
-
-        if (songPositionInBeats == next.beat)
-        {
-            SpawnNote(next, songPosition);
-            index++;
+            if (songPositionInBeats == next.beat)
+            {
+                SpawnNote(next, songPosition);
+                index++;
+            }
         }
     }
 
+    // Called when the player pressed a key 
     private void calculatePts(float targetTime)
     {
         float diff = Math.Abs(songPosition - targetTime); 
-        if (diff <= 0.1)
+        if (diff <= PerfectTiming)
         {
             scoreManager.AddScore("Perfect!");
         }
-        else if (diff <= 0.15)
+        else if (diff <= GreatTiming)
         {
             scoreManager.AddScore("Great!");
         } 
-        else if (diff <= 0.25)
+        else if (diff <= OkayTiming)
         {
             scoreManager.AddScore("Okay");
         } else
@@ -210,7 +223,7 @@ public class Conductor : MonoBehaviour
         NoteMover inst = obj.GetComponent<NoteMover>(); 
         inst.GetComponent<NoteMover>().conductor = this;
 
-        inst.targetTime = currTime + 12f / inst.getSpeed(); 
+        inst.targetTime = currTime + 12f / NoteMover.getSpeed(); 
         inst.lane = laneIndex; 
         inst.beat = note.beat; 
 
@@ -241,8 +254,6 @@ public class Conductor : MonoBehaviour
 
   void OnApplicationQuit()
   {
-    songPosition = 0f;
-    songPositionInBeats = 0;
-    dspSongTime = 0f;
+   
   }
 }

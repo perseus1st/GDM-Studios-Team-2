@@ -127,7 +127,7 @@ public class DDR_ScoreManager : MonoBehaviour
         UpdateLivesDisplay();
         OnScoreChanged();
 
-        gameConductor.ResetGame(); 
+        gameConductor.StopGame(); 
 
         hitZone.SetActive(false); 
 
