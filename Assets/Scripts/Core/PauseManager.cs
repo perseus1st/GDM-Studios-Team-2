@@ -9,7 +9,7 @@ public class PauseManager : MonoBehaviour
     private bool isPaused = false;
     private AudioManager audioManager = AudioManager.INSTANCE;
 
-    [SerializeField] string actionMapName = "Gameplay";
+    public string inputMapName = "Gameplay";
 
     private void Awake()
     {
@@ -40,8 +40,9 @@ public class PauseManager : MonoBehaviour
     {
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
+        AudioListener.pause = true;
 
-        audioManager.PauseMusic();
+        // audioManager.PauseMusic();
         playerInput.SwitchCurrentActionMap("Pause");
 
         isPaused = true;
@@ -51,10 +52,11 @@ public class PauseManager : MonoBehaviour
     {
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
+        AudioListener.pause = false;
 
-        audioManager.UnpauseMusic();
-        playerInput.ActivateInput();
-        playerInput.SwitchCurrentActionMap(actionMapName);
+        // audioManager.UnpauseMusic();
+        // playerInput.ActivateInput();
+        playerInput.SwitchCurrentActionMap(inputMapName);
 
         isPaused = false;
     }

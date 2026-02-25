@@ -63,20 +63,4 @@ public class AudioManager : MonoBehaviour
             musicSource.PlayOneShot(s.clip);
         }
     }
-
-    public void PauseMusic()
-    {
-        if (musicSource.clip != null)
-        {
-            musicSource.Pause();
-        }
-    }
-
-    public void UnpauseMusic()
-    {
-        if ( musicSource.clip != null)
-        {
-            musicSource.UnPause();
-        }
-    }
 }
