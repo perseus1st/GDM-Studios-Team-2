@@ -42,6 +42,7 @@ public class NoteMover : MonoBehaviour
                     break; 
             }
 
+            conductor.PastHitzone(); 
             Destroy(gameObject);
         } 
     }

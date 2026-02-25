@@ -122,9 +122,9 @@ public class Conductor : MonoBehaviour
     }
 
     // Called when the player pressed a key 
-    private void calculatePts(float targetTime)
+    private void calculatePts(float targetTime, float pressedTime)
     {
-        float diff = Math.Abs(songPosition - targetTime); 
+        float diff = Math.Abs(pressedTime - targetTime); 
         if (diff <= PerfectTiming)
         {
             scoreManager.AddScore("Perfect!");
@@ -142,18 +142,24 @@ public class Conductor : MonoBehaviour
         }
     }
 
-    void OnInteract(InputValue value)
+    // void OnInteract(InputValue value)
+    // {
+    //     Debug.Log("Click pressed!"); 
+    // }
+
+    public void PastHitzone()
     {
-        Debug.Log("Click pressed!"); 
+        scoreManager.LoseLife(); 
     }
 
     void OnUp(InputValue value)
     {
         Debug.Log("up!"); 
+        float pressedTime = songPosition; 
         if (WactiveNotes.Count != 0)
             {
                 GameObject pressedNote = WactiveNotes.Dequeue();
-                calculatePts(pressedNote.GetComponent<NoteMover>().targetTime); 
+                calculatePts(pressedNote.GetComponent<NoteMover>().targetTime, pressedTime); 
                 Destroy(pressedNote);
             }
         else
@@ -165,10 +171,11 @@ public class Conductor : MonoBehaviour
     void OnRight(InputValue value)
     {
         Debug.Log("right!"); 
+        float pressedTime = songPosition;
          if (DactiveNotes.Count != 0)
             {
                 GameObject pressedNote = DactiveNotes.Dequeue();
-                calculatePts(pressedNote.GetComponent<NoteMover>().targetTime); 
+                calculatePts(pressedNote.GetComponent<NoteMover>().targetTime, pressedTime); 
                 Destroy(pressedNote);
             }
         else
@@ -180,10 +187,11 @@ public class Conductor : MonoBehaviour
     void OnDown(InputValue value)
     {
         Debug.Log("down!"); 
+        float pressedTime = songPosition;
          if (SactiveNotes.Count != 0)
             {
                 GameObject pressedNote = SactiveNotes.Dequeue();
-                calculatePts(pressedNote.GetComponent<NoteMover>().targetTime); 
+                calculatePts(pressedNote.GetComponent<NoteMover>().targetTime, pressedTime); 
                 Destroy(pressedNote);
             }
         else
@@ -195,10 +203,11 @@ public class Conductor : MonoBehaviour
     void OnLeft(InputValue value)
     {
         Debug.Log("left!"); 
+        float pressedTime = songPosition;
          if (AactiveNotes.Count != 0)
             {
                 GameObject pressedNote = AactiveNotes.Dequeue();
-                calculatePts(pressedNote.GetComponent<NoteMover>().targetTime); 
+                calculatePts(pressedNote.GetComponent<NoteMover>().targetTime, pressedTime); 
                 Destroy(pressedNote);
             }
         else
@@ -250,10 +259,4 @@ public class Conductor : MonoBehaviour
                 break; 
         }
     }
-
-
-  void OnApplicationQuit()
-  {
-   
-  }
 }
