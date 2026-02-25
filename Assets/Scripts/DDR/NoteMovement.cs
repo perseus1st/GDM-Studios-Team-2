@@ -6,7 +6,7 @@ using UnityEngine;
 public class NoteMover : MonoBehaviour
 {
     public static float MaxGap = 3.5f;
-    public static float Speed = 6.7f; // Units per second
+    public static float Speed = 7f; // Units per second
     //1.79 sec to travel 12 units s = d/t
     public static float TargetY = -6f; // Y position of the hitzone
     
