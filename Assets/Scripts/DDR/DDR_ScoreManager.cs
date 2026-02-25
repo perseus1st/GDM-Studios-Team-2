@@ -108,19 +108,19 @@ public class DDR_ScoreManager : MonoBehaviour
     // Reset score and lives
     void ResetGame()
     {
-        if (currentScore > 10)
-        {
-            var gm = GameManager.Instance;
+        // if (currentScore > 10)
+        // {
+        //     var gm = GameManager.Instance;
 
-            gm.MarkMinigameCompleted("DDR");
+        //     gm.MarkMinigameCompleted("DDR");
 
-            if (!gm.highScores.ContainsKey("DDR") || currentScore > gm.highScores["DDR"])
-            {
-                gm.highScores["DDR"] = currentScore;
-            }
+        //     if (!gm.highScores.ContainsKey("DDR") || currentScore > gm.highScores["DDR"])
+        //     {
+        //         gm.highScores["DDR"] = currentScore;
+        //     }
 
-            SaveSystem.Save(gm.currentSaveSlot);
-        }
+        //     SaveSystem.Save(gm.currentSaveSlot);
+        // }
         currentScore = 0;
         currentLives = maxLives;
         UpdateScoreDisplay();
