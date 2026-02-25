@@ -7,5 +7,7 @@ public class Note
     public int beat; 
     public int row; 
     public Sprite sprite; 
+    public bool isLongNote; 
+    public int lengthInBeats; 
     
 }

@@ -89,6 +89,7 @@ public class DDR_ScoreManager : MonoBehaviour
         OnScoreChanged();
     }
 
+
     // Call this on miss
     public void LoseLife()
     {

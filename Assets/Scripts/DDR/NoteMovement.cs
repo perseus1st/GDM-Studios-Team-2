@@ -14,7 +14,11 @@ public class NoteMover : MonoBehaviour
 
     public int lane; 
     public int beat; 
+    public bool isLongNote; 
+    public int lenghtInBeats; 
+    public bool isHolding = false; 
     public Conductor conductor; 
+    public DDR_ScoreManager scoreManager; 
 
     void Update()
     {
@@ -41,6 +45,9 @@ public class NoteMover : MonoBehaviour
                 default:
                     break; 
             }
+            
+            // tell scoreManager to lose life 
+            conductor.PastHitzone(); 
 
             Destroy(gameObject);
         } 

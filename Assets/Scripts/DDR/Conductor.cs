@@ -35,6 +35,10 @@ public class Conductor : MonoBehaviour
     public float PerfectTiming = 0.1f; 
     public float GreatTiming = 0.15f; 
     public float OkayTiming = 0.25f; 
+
+    private float lnTargetTime; 
+    private float lnStartTime; 
+    private NoteMover currln; 
     
 
     public GameObject notePrefab; 
@@ -122,9 +126,9 @@ public class Conductor : MonoBehaviour
     }
 
     // Called when the player pressed a key 
-    private void calculatePts(float targetTime)
+    private void calculatePts(float targetTime, float timePressed)
     {
-        float diff = Math.Abs(songPosition - targetTime); 
+        float diff = Math.Abs(timePressed - targetTime); 
         if (diff <= PerfectTiming)
         {
             scoreManager.AddScore("Perfect!");
@@ -136,39 +140,178 @@ public class Conductor : MonoBehaviour
         else if (diff <= OkayTiming)
         {
             scoreManager.AddScore("Okay");
+        } else 
+        {
+            scoreManager.LoseLife(); 
+        }
+    }
+
+    public void PastHitzone()
+    {
+        scoreManager.LoseLife(); 
+    }
+
+    // void OnInteract(InputValue value)
+    // {
+    //     if (value.isPressed)
+    //     {
+    //         Debug.Log("pressed"); 
+    //     }
+    //     else
+    //     {
+    //         Debug.Log("released"); 
+    //     }
+    // }
+
+    private void OnHold(float targetTime, float startTime)
+    {
+        //store info on time pressed for later score calculation 
+        lnStartTime = startTime; 
+        lnTargetTime = targetTime; 
+    }
+
+    private void OnRelease(int targetBeat, int endBeat)
+    {
+        if (targetBeat == endBeat)
+        {
+            Debug.Log("released correctly"); 
+            calculatePts(lnTargetTime, lnStartTime); 
         } else
         {
+            Debug.Log("Released wrong time"); 
             scoreManager.LoseLife(); 
         }
     }
 
-    void OnInteract(InputValue value)
-    {
-        Debug.Log("Click pressed!"); 
-    }
+    // void OnUp(InputValue value)
+    // {
+    //     float timePressed = songPosition; 
+    //     int beatPressed = songPositionInBeats; 
+ 
+    //     if (WactiveNotes.Count != 0)
+    //         {
+    //             GameObject pressedNote = WactiveNotes.Dequeue();
+    //             NoteMover note = pressedNote.GetComponent<NoteMover>(); 
 
-    void OnUp(InputValue value)
+    //             if (note.isLongNote)
+    //             {
+    //                 currln = note; 
+
+    //                 if (value.isPressed)
+    //                 {
+    //                     Debug.Log("long note start"); 
+    //                     OnHold(note.targetTime, timePressed); 
+    //                 } else
+    //                 {
+    //                     Debug.Log("long note end"); 
+    //                     OnRelease(note.beat + note.lenghtInBeats, beatPressed); 
+    //                     Destroy(pressedNote);
+    //                 }
+    //             } else
+    //             {
+    //                 calculatePts(note.targetTime, timePressed); 
+    //                 Destroy(pressedNote);
+    //             }
+                
+    //         }
+    //     else
+    //     {
+    //         scoreManager.LoseLife(); 
+    //     }
+    // }
+
+    public void OnInteract(InputAction.CallbackContext context)
     {
-        Debug.Log("up!"); 
-        if (WactiveNotes.Count != 0)
-            {
-                GameObject pressedNote = WactiveNotes.Dequeue();
-                calculatePts(pressedNote.GetComponent<NoteMover>().targetTime); 
-                Destroy(pressedNote);
-            }
-        else
+        if (context.started)
         {
-            scoreManager.LoseLife(); 
+            Debug.Log("pressed"); 
         }
+        else if (context.canceled)
+        {
+            Debug.Log("released"); 
+        }
+    }
+
+    public void OnUp(InputAction.CallbackContext context)
+    {
+        float timePressed = songPosition; 
+        int beatPressed = songPositionInBeats; 
+        
+        if (context.started)
+        {
+            if (WactiveNotes.Count != 0)
+            {
+                GameObject nextInQueue = WactiveNotes.Peek();
+                NoteMover pressedNote = nextInQueue.GetComponent<NoteMover>(); 
+
+                // a regular note is pressed 
+                if (!pressedNote.isLongNote)
+                {
+                    calculatePts(pressedNote.targetTime, timePressed); 
+                    WactiveNotes.Dequeue(); 
+                    Destroy(nextInQueue); 
+                } else   // a long note is pressed 
+                {
+                    float diff = Math.Abs(timePressed - pressedNote.targetTime); 
+                    if (diff > OkayTiming)
+                    {
+                        scoreManager.LoseLife(); 
+                        WactiveNotes.Dequeue(); 
+                        Destroy(nextInQueue);
+                    } else
+                    {
+                        pressedNote.isHolding = true; 
+                        OnHold(pressedNote.targetTime, timePressed); 
+                    }
+                }
+            } else  //no corresponding note in game 
+            {
+                scoreManager.LoseLife(); 
+            }
+        
+        }
+        else if (context.performed)
+        {
+            
+        }
+        else if (context.canceled)
+        {
+            if (WactiveNotes.Count != 0)
+            {
+                GameObject nextInQueue = WactiveNotes.Peek();
+                NoteMover pressedNote = nextInQueue.GetComponent<NoteMover>();
+
+                if (pressedNote.isLongNote && pressedNote.isHolding)
+                {
+                    OnRelease(pressedNote.beat + pressedNote.lenghtInBeats, beatPressed); 
+                    WactiveNotes.Dequeue(); 
+                    Destroy(nextInQueue);
+                }
+            }
+        }
+        
+    }
+
+    public void OnRight(InputAction.CallbackContext context)
+    {
+    }
+    public void OnLeft(InputAction.CallbackContext context)
+    {
+        
+    }
+    public void OnDown(InputAction.CallbackContext context)
+    {
+        
     }
 
     void OnRight(InputValue value)
     {
-        Debug.Log("right!"); 
+        float timePressed = songPosition; 
+        //Debug.Log("right!"); 
          if (DactiveNotes.Count != 0)
             {
                 GameObject pressedNote = DactiveNotes.Dequeue();
-                calculatePts(pressedNote.GetComponent<NoteMover>().targetTime); 
+                calculatePts(pressedNote.GetComponent<NoteMover>().targetTime, timePressed); 
                 Destroy(pressedNote);
             }
         else
@@ -179,11 +322,12 @@ public class Conductor : MonoBehaviour
 
     void OnDown(InputValue value)
     {
+        float timePressed = songPosition;
         Debug.Log("down!"); 
          if (SactiveNotes.Count != 0)
             {
                 GameObject pressedNote = SactiveNotes.Dequeue();
-                calculatePts(pressedNote.GetComponent<NoteMover>().targetTime); 
+                calculatePts(pressedNote.GetComponent<NoteMover>().targetTime, timePressed); 
                 Destroy(pressedNote);
             }
         else
@@ -194,11 +338,12 @@ public class Conductor : MonoBehaviour
 
     void OnLeft(InputValue value)
     {
+        float timePressed = songPosition;
         Debug.Log("left!"); 
          if (AactiveNotes.Count != 0)
             {
                 GameObject pressedNote = AactiveNotes.Dequeue();
-                calculatePts(pressedNote.GetComponent<NoteMover>().targetTime); 
+                calculatePts(pressedNote.GetComponent<NoteMover>().targetTime, timePressed); 
                 Destroy(pressedNote);
             }
         else
@@ -226,6 +371,9 @@ public class Conductor : MonoBehaviour
         inst.targetTime = currTime + 12f / NoteMover.getSpeed(); 
         inst.lane = laneIndex; 
         inst.beat = note.beat; 
+        inst.isLongNote = note.isLongNote; 
+        inst.lenghtInBeats = note.lengthInBeats; 
+
 
         var sr = obj.GetComponent<SpriteRenderer>();
         if (sr != null)
