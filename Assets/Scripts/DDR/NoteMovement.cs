@@ -1,11 +1,14 @@
 using UnityEngine;
 
+/// <summary>
+///  Attached to every note instance, controls note movement and deletion if missed 
+/// </summary>
 public class NoteMover : MonoBehaviour
 {
-    public float MAXGAP = 3.5f;
-    public static float speed = 6.7f; // Units per second
+    public static float MaxGap = 3.5f;
+    public static float Speed = 7f; // Units per second
     //1.79 sec to travel 12 units s = d/t
-    public static float targetY = -6f; // Y position of the hitzone
+    public static float TargetY = -6f; // Y position of the hitzone
     
     public float targetTime; 
 
@@ -16,10 +19,10 @@ public class NoteMover : MonoBehaviour
     void Update()
     {
         // Move downward
-        transform.position += Vector3.down * speed * Time.deltaTime;
+        transform.position += Vector3.down * Speed * Time.deltaTime;
 
         // Destroy note if it goes past the hitzone
-        if (transform.position.y < targetY - MAXGAP)
+        if (transform.position.y < TargetY - MaxGap)
         {
             switch (lane)
             {
@@ -39,12 +42,13 @@ public class NoteMover : MonoBehaviour
                     break; 
             }
 
+            conductor.PastHitzone(); 
             Destroy(gameObject);
         } 
     }
 
-    public float getSpeed()
+    public static float getSpeed()
     {
-        return speed; 
+        return Speed; 
     }
 }
