@@ -118,6 +118,10 @@ public class Conductor : MonoBehaviour
                 SpawnNote(next, songPosition);
                 index++;
             }
+        } else if (songPositionInBeats >= 127)
+        {
+            scoreManager.Win(); 
+            StopGame(); 
         }
     }
 

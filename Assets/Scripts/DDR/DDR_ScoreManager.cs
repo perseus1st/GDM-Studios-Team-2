@@ -16,6 +16,7 @@ public class DDR_ScoreManager : MonoBehaviour
     [Header("UI References")]
     public TextMeshProUGUI scoreText;
     public GameObject restartPanel;
+    public GameObject winPanel; 
     public TextMeshProUGUI scoreMsg;
     public TextMeshProUGUI[] lifeTexts;
 
@@ -63,6 +64,12 @@ public class DDR_ScoreManager : MonoBehaviour
                 scoreMsg.gameObject.SetActive(false); 
             }
         }
+    }
+
+    public void Win()
+    {
+        winPanel.gameObject.SetActive(true); 
+        hitZone.gameObject.SetActive(false); 
     }
 
     // Call this on successfully hit
