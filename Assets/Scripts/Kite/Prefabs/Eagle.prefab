@@ -148,5 +148,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8eb481d0c236d80eebcdbe0fa426e44d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EagleObject
-  speed: 6
+  speed: 5
   destroyZ: -10
