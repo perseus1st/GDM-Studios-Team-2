@@ -10,6 +10,9 @@ public class ObstacleSpawner : MonoBehaviour
     private const float MIDDLE = 0;
     private const float RIGHT = 1;
 
+    private const float SPAWN_PATTERN_CUSHION = 2f;
+    public float speedScale = 0.5f;
+
     private float branchSize;
     private float eagleSize;
     private float cardinalRange;
@@ -96,7 +99,7 @@ public class ObstacleSpawner : MonoBehaviour
         SpawnCardinal(LEFT);
         SpawnPole();
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(SPAWN_PATTERN_CUSHION);
     }
 
     IEnumerator PatternTwo()
@@ -116,7 +119,7 @@ public class ObstacleSpawner : MonoBehaviour
         SpawnCardinal(MIDDLE);
         SpawnCardinal(RIGHT);
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(SPAWN_PATTERN_CUSHION);
     }
 
     IEnumerator PatternThree()
@@ -131,7 +134,7 @@ public class ObstacleSpawner : MonoBehaviour
         
         SpawnBranch(RIGHT);
     
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(SPAWN_PATTERN_CUSHION);
     }
 
     IEnumerator PatternFour()
@@ -152,11 +155,9 @@ public class ObstacleSpawner : MonoBehaviour
         SpawnEagle(MIDDLE);
         SpawnEagle(MIDDLE);
         SpawnEagle(LEFT);
-        SpawnEagle(LEFT);
-        SpawnEagle(RIGHT);
         SpawnEagle(RIGHT);
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(SPAWN_PATTERN_CUSHION);
     }
 
     IEnumerator PatternFive()
@@ -194,7 +195,7 @@ public class ObstacleSpawner : MonoBehaviour
         SpawnCardinal(MIDDLE);
         SpawnCardinal(RIGHT);
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(SPAWN_PATTERN_CUSHION);
     }
 
     IEnumerator PatternSix()
@@ -246,5 +247,10 @@ public class ObstacleSpawner : MonoBehaviour
         float z = CameraBounds.MaxZ + 1.0f;
         Vector3 pos = new Vector3(x, 0, z);
         Instantiate(obstaclePrefabs[3], pos, Quaternion.Euler(90f, 0f, 0f));   
+    }
+
+    public void SetSpeedScale(float speedScale)
+    {
+        this.speedScale=speedScale;
     }
 }

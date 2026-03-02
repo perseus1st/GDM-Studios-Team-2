@@ -195,7 +195,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
   m_Actions: {fileID: -944628639613478452, guid: 610e29b8f7e4ffc40aa4dffa6fb0da7d, type: 3}
-  m_NotificationBehavior: 2
+  m_NotificationBehavior: 0
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -209,7 +209,7 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 766564670}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: onMove
         m_Mode: 0
@@ -227,11 +227,43 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 2d77ca1f-511c-4673-9e6d-e54365b16371
     m_ActionName: 'Gameplay/Interact[/Mouse/leftButton]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 157f1036-2c5f-4fff-a000-23c974db3421
+    m_ActionName: 'Gameplay/Pause[/Keyboard/escape]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0bbc3629-c510-4397-8706-b6137e6de5cf
+    m_ActionName: 'DDR_Minigame/Interact[/Mouse/leftButton]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f1054f74-75f2-41df-a431-463ac87c976d
+    m_ActionName: 'DDR_Minigame/Up[/Keyboard/upArrow,/Keyboard/w]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2ad6f8bc-5fb0-408b-bb98-7767cb8a1acb
+    m_ActionName: 'DDR_Minigame/Right[/Keyboard/rightArrow,/Keyboard/d]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9735fa8d-763e-45b8-9063-05fa46d89039
+    m_ActionName: 'DDR_Minigame/Left[/Keyboard/leftArrow,/Keyboard/a]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 278417ea-81e3-4acd-ba26-3e1c68b0dbb9
+    m_ActionName: 'DDR_Minigame/Down[/Keyboard/downArrow,/Keyboard/s]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6659d0f5-dc0b-4f91-808b-798725bd54b6
+    m_ActionName: 'DDR_Minigame/Pause[/Keyboard/escape]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d0cf144b-22b2-4966-9d34-3180cf8a00fc
+    m_ActionName: Pause/New action
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
   m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 1981870269}
 --- !u!65 &766564667
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -286,9 +318,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 766564662}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd75f901af526904298266a3f102c865, type: 3}
+  m_Script: {fileID: 11500000, guid: 54bb65cb104a590a787d7fc3d3b99fc5, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  m_EditorClassIdentifier: Assembly-CSharp::KitePlayerController
   speed: 5
 --- !u!1001 &803934577
 PrefabInstance:
