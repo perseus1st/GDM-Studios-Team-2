@@ -9,8 +9,14 @@ public class DDR_ScoreManager : MonoBehaviour
     // Singleton for easy access from anywhere
     public static DDR_ScoreManager Instance { get; private set; }
 
+    public Conductor gameConductor; 
+
+    public GameObject hitZone; 
+
     [Header("UI References")]
     public TextMeshProUGUI scoreText;
+    public GameObject restartPanel;
+    public GameObject winPanel; 
     public TextMeshProUGUI scoreMsg;
     public TextMeshProUGUI[] lifeTexts;
 
@@ -60,6 +66,12 @@ public class DDR_ScoreManager : MonoBehaviour
         }
     }
 
+    public void Win()
+    {
+        winPanel.gameObject.SetActive(true); 
+        hitZone.gameObject.SetActive(false); 
+    }
+
     // Call this on successfully hit
     public void AddScore(string category)
     {
@@ -103,24 +115,30 @@ public class DDR_ScoreManager : MonoBehaviour
     // Reset score and lives
     void ResetGame()
     {
-        if (currentScore > 10)
-        {
-            var gm = GameManager.Instance;
+        // if (currentScore > 10)
+        // {
+        //     var gm = GameManager.Instance;
 
-            gm.MarkMinigameCompleted("DDR");
+        //     gm.MarkMinigameCompleted("DDR");
 
-            if (!gm.highScores.ContainsKey("DDR") || currentScore > gm.highScores["DDR"])
-            {
-                gm.highScores["DDR"] = currentScore;
-            }
+        //     if (!gm.highScores.ContainsKey("DDR") || currentScore > gm.highScores["DDR"])
+        //     {
+        //         gm.highScores["DDR"] = currentScore;
+        //     }
 
-            SaveSystem.Save(gm.currentSaveSlot);
-        }
+        //     SaveSystem.Save(gm.currentSaveSlot);
+        // }
         currentScore = 0;
         currentLives = maxLives;
         UpdateScoreDisplay();
         UpdateLivesDisplay();
         OnScoreChanged();
+
+        gameConductor.StopGame(); 
+
+        hitZone.SetActive(false); 
+
+        restartPanel.SetActive(true); 
     }
 
     // Reset score
