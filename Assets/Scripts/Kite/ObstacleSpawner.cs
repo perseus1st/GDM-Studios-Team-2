@@ -11,7 +11,9 @@ public class ObstacleSpawner : MonoBehaviour
     private const float RIGHT = 1; // A constant to spawn object on right side of screen
 
     private const float SPAWN_PATTERN_CUSHION = 2f; // Time between spawn patterns
+    [Header("Speed Settings")]
     public float speedScale = 0.5f; // Speed at which the game progresses
+    public float defaultSpeedScale = 0.5f;
 
     private float branchSize; 
     private float eagleSize;
@@ -258,5 +260,10 @@ public class ObstacleSpawner : MonoBehaviour
     public void SetSpeedScale(float speedScale)
     {
         this.speedScale=speedScale;
+    }
+
+    public void Reset()
+    {
+        SetSpeedScale(defaultSpeedScale);
     }
 }

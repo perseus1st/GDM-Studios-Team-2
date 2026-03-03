@@ -46,7 +46,7 @@ public class CardinalObject : MonoBehaviour
         if (other.CompareTag("PlayerKite"))
         {
             Debug.Log("PlayerKite hit a cardinal!");
-            kiteMinigame.GameOver();
+            kiteMinigame.LoseLife();
         }
     }
 }

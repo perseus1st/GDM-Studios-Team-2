@@ -30,7 +30,7 @@ public class EagleObject : MonoBehaviour
         if (other.CompareTag("PlayerKite"))
         {
             Debug.Log("PlayerKite hit an eagle!");
-            kiteMinigame.GameOver();
+            kiteMinigame.LoseLife();
         }
     }
 }

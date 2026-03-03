@@ -33,7 +33,7 @@ public class BranchObject : MonoBehaviour
         if (other.CompareTag("PlayerKite"))
         {
             Debug.Log("PlayerKite hit a branch!");
-            kiteMinigame.GameOver();
+            kiteMinigame.LoseLife();
         }
     }
 }

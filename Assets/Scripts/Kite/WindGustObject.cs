@@ -26,7 +26,7 @@ public class WindGustObject : MonoBehaviour
         Debug.Log("Triggered by: " + other.name);
         Debug.Log("Wind Gust Collected!!!!!");
 
-        kiteMinigame.WindGustCollected();
+        kiteMinigame.AddScore();
         Destroy(gameObject);
     }
 }
