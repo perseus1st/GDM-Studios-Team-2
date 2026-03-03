@@ -10,7 +10,6 @@ public class KitePlayerController : MonoBehaviour
     private UnityEngine.Vector2 moveInput;
     private UnityEngine.Vector3 velocity;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -22,7 +21,6 @@ public class KitePlayerController : MonoBehaviour
         Debug.Log($"Move Input: {moveInput}");
     }
 
-    // Update is called once per frame
     void Update()
     {
         Vector3 move = new Vector3(moveInput.x, 0, moveInput.y);

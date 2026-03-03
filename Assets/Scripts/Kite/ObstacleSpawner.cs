@@ -6,16 +6,16 @@ public class ObstacleSpawner : MonoBehaviour
     public GameObject[] obstaclePrefabs;
 
     public float camHalfWidth;
-    private const float LEFT = -1;
-    private const float MIDDLE = 0;
-    private const float RIGHT = 1;
+    private const float LEFT = -1; // A constant to spawn object on left side of screen
+    private const float MIDDLE = 0; // A constant to spawn object in middle of screen
+    private const float RIGHT = 1; // A constant to spawn object on right side of screen
 
-    private const float SPAWN_PATTERN_CUSHION = 2f;
-    public float speedScale = 0.5f;
+    private const float SPAWN_PATTERN_CUSHION = 2f; // Time between spawn patterns
+    public float speedScale = 0.5f; // Speed at which the game progresses
 
-    private float branchSize;
+    private float branchSize; 
     private float eagleSize;
-    private float cardinalRange;
+    private float cardinalRange; // Amplitude of cardinal sine wave
 
     KiteMinigameManager kiteMinigame;
 
@@ -29,7 +29,7 @@ public class ObstacleSpawner : MonoBehaviour
 
         branchSize = 0.4f * camHalfWidth; // 40% of width of camera
         eagleSize = 0.1f * camHalfWidth; // 10% of width of camera
-        cardinalRange = 0.3f * camHalfWidth;
+        cardinalRange = 0.3f * camHalfWidth; // 30% of width of camera
 
         StartCoroutine(SpawnLoop());
     }
@@ -37,46 +37,38 @@ public class ObstacleSpawner : MonoBehaviour
     IEnumerator SpawnLoop()
     {
         int lastchoice = -1;
-        while (true)
+        while (kiteMinigame.IsRunning)
         {
-            if (kiteMinigame.IsRunning)
+            int choice;
+
+            do
             {
-
-                int choice;
-
-                do
-                {
-                    choice = Random.Range(1,7);
-                }
-                while (choice == lastchoice); // to prevent choice from being made twice in a row
-
-                lastchoice = choice;
-
-                switch(choice)
-                {
-                    case 1:
-                        yield return StartCoroutine(PatternOne());
-                        break;
-                    case 2:
-                        yield return StartCoroutine(PatternTwo());
-                        break;
-                    case 3:
-                        yield return StartCoroutine(PatternThree());
-                        break;
-                    case 4:
-                        yield return StartCoroutine(PatternFour());
-                        break;
-                    case 5:
-                        yield return StartCoroutine(PatternFive());
-                        break;
-                    case 6:
-                        yield return StartCoroutine(PatternSix());
-                        break;
-                }
+                choice = Random.Range(1,7);
             }
-            else
+            while (choice == lastchoice); // to prevent choice from being made twice in a row
+
+            lastchoice = choice;
+
+            switch(choice)
             {
-                yield return null;
+                case 1:
+                    yield return StartCoroutine(PatternOne());
+                    break;
+                case 2:
+                    yield return StartCoroutine(PatternTwo());
+                    break;
+                case 3:
+                    yield return StartCoroutine(PatternThree());
+                    break;
+                case 4:
+                    yield return StartCoroutine(PatternFour());
+                    break;
+                case 5:
+                    yield return StartCoroutine(PatternFive());
+                    break;
+                case 6:
+                    yield return StartCoroutine(PatternSix());
+                    break;
             }
         }
     }
@@ -92,6 +84,7 @@ public class ObstacleSpawner : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         SpawnPole();
+        SpawnWindGust(LEFT);
 
         yield return new WaitForSeconds(1f);
 
@@ -118,6 +111,7 @@ public class ObstacleSpawner : MonoBehaviour
         SpawnCardinal(LEFT);
         SpawnCardinal(MIDDLE);
         SpawnCardinal(RIGHT);
+        SpawnWindGust(RIGHT);
 
         yield return new WaitForSeconds(SPAWN_PATTERN_CUSHION);
     }
@@ -133,6 +127,7 @@ public class ObstacleSpawner : MonoBehaviour
         yield return new WaitForSeconds(1f);
         
         SpawnBranch(RIGHT);
+        SpawnWindGust(LEFT);
     
         yield return new WaitForSeconds(SPAWN_PATTERN_CUSHION);
     }
@@ -156,6 +151,7 @@ public class ObstacleSpawner : MonoBehaviour
         SpawnEagle(MIDDLE);
         SpawnEagle(LEFT);
         SpawnEagle(RIGHT);
+        SpawnWindGust(LEFT);
 
         yield return new WaitForSeconds(SPAWN_PATTERN_CUSHION);
     }
@@ -194,6 +190,7 @@ public class ObstacleSpawner : MonoBehaviour
         SpawnCardinal(LEFT);
         SpawnCardinal(MIDDLE);
         SpawnCardinal(RIGHT);
+        SpawnWindGust(MIDDLE);
 
         yield return new WaitForSeconds(SPAWN_PATTERN_CUSHION);
     }
@@ -206,10 +203,11 @@ public class ObstacleSpawner : MonoBehaviour
 
         while (reps > 0)
         {
-            SpawnEagle(Random.Range(-1,2));
+            SpawnEagle(Random.Range(-1,2)); // LEFT, RIGHT OR MIDDLE RANDOMLY
             yield return new WaitForSeconds(0.5f);
             reps--;
         }
+        SpawnWindGust(RIGHT);
 
         yield return new WaitForSeconds(0.5f);
 
@@ -247,6 +245,14 @@ public class ObstacleSpawner : MonoBehaviour
         float z = CameraBounds.MaxZ + 1.0f;
         Vector3 pos = new Vector3(x, 0, z);
         Instantiate(obstaclePrefabs[3], pos, Quaternion.Euler(90f, 0f, 0f));   
+    }
+
+    void SpawnWindGust(float side)
+    {
+        float x = (camHalfWidth - cardinalRange) * side;
+        float z = CameraBounds.MaxZ + 1.0f;
+        Vector3 pos = new Vector3(x, 0, z);
+        Instantiate(obstaclePrefabs[4], pos, Quaternion.Euler(90f, 0f, 0f));   
     }
 
     public void SetSpeedScale(float speedScale)
