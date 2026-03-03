@@ -77,20 +77,20 @@ public class KiteMinigameManager : MonoBehaviour
     // Reset score and lives
     void ResetGame()
     {
-        // Save highscore if score is above 5
-        if (currentScore > 5)
-        {
-            var gm = GameManager.Instance;
+        // // Save highscore if score is above 5
+        // if (currentScore > 5)
+        // {
+        //     var gm = GameManager.Instance;
 
-            gm.completedMinigames.Add("Kite");
+        //     gm.completedMinigames.Add("Kite");
 
-            if (!gm.highScores.ContainsKey("Kite") || currentScore > gm.highScores["Kite"])
-            {
-                gm.highScores["Kite"] = currentScore;
-            }
+        //     if (!gm.highScores.ContainsKey("Kite") || currentScore > gm.highScores["Kite"])
+        //     {
+        //         gm.highScores["Kite"] = currentScore;
+        //     }
 
-            SaveSystem.Save(gm.currentSaveSlot);
-        }
+        //     SaveSystem.Save(gm.currentSaveSlot);
+        // }
 
         currentScore = 0;
         currentLives = maxLives;
