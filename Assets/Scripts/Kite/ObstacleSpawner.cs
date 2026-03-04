@@ -231,11 +231,11 @@ public class ObstacleSpawner : MonoBehaviour
 
     void SpawnEagle(float side)
     {
-        Debug.Log("Side: " + side);
+        // Debug.Log("Side: " + side);
         float range = Random.Range(-1f/3f * camHalfWidth + eagleSize, 1f/3f * camHalfWidth - eagleSize);
         float x = range + side*camHalfWidth * (2f/3f);
-        Debug.Log("Range: " + range);
-        Debug.Log("X: " + x);
+        // Debug.Log("Range: " + range);
+        // Debug.Log("X: " + x);
         float z = CameraBounds.MaxZ + 1.0f;
         Vector3 pos = new Vector3(x, 0, z);
         Instantiate(obstaclePrefabs[2], pos, Quaternion.Euler(90f, 0f, 0f));

@@ -40,11 +40,11 @@ public class KiteMinigameManager : MonoBehaviour
     
     void Start()
     {
-        // // Try to find minigame manager if not set
-        // if (enemyManager == null)
-        // {
-        //     enemyManager = FindFirstObjectByType<ObstacleSpawner>();
-        // }
+        // Try to find minigame manager if not set
+        if (enemyManager == null)
+        {
+            enemyManager = FindFirstObjectByType<ObstacleSpawner>();
+        }   
         
         currentLives = maxLives;
         UpdateScoreDisplay();

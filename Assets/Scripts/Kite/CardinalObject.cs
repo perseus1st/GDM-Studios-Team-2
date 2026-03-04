@@ -43,10 +43,11 @@ public class CardinalObject : MonoBehaviour
 
         if (!kiteMinigame.IsRunning) return;
 
-        if (other.CompareTag("PlayerKite"))
+        if (other.CompareTag("PlayerKite") && !other.GetComponent<KitePlayerController>().invincible)
         {
             Debug.Log("PlayerKite hit a cardinal!");
             kiteMinigame.LoseLife();
+            other.GetComponent<KitePlayerController>().isHit();
         }
     }
 }
