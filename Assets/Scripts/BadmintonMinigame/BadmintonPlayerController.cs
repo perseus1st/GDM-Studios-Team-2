@@ -24,6 +24,7 @@ public class BadmintonPlayerController : MonoBehaviour
     public float deceleration = 50f; // units/second squared
     public float inputDeadzone = 0.1f; // in case we add controller support
     public bool disableFlip = false;
+    public bool racket = false;
 
     // Court boundaries 
     [Header("Court Boundaries")]
@@ -98,6 +99,7 @@ public class BadmintonPlayerController : MonoBehaviour
             animator.SetFloat("MoveX", Mathf.Abs(movementX));
             animator.SetFloat("MoveY", movementY);
             racketAnimator.SetBool("IsMoving", isMoving);
+            animator.SetBool("Racket", racket);
             
             // Flips sprite when moving right
             if (spriteRenderer != null && Mathf.Abs(movementX) > inputDeadzone && !disableFlip)
