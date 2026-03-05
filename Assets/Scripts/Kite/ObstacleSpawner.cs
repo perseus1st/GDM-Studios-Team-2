@@ -12,8 +12,10 @@ public class ObstacleSpawner : MonoBehaviour
 
     private const float SPAWN_PATTERN_CUSHION = 2f; // Time between spawn patterns
     [Header("Speed Settings")]
-    public float speedScale = 0.5f; // Speed at which the game progresses
-    public float defaultSpeedScale = 0.5f;
+    public float speedScale; // Speed at which the game progresses
+    private float processSpeedChange; // To make sure the speed doesn't change mid-pattern.
+    public float defaultSpeedScale;
+    private bool levelChange = false;
 
     private float branchSize; 
     private float eagleSize;
@@ -22,6 +24,7 @@ public class ObstacleSpawner : MonoBehaviour
     KiteMinigameManager kiteMinigame;
 
     void Start() {
+        Debug.Log("OBSTACLE SPAWNER STARTING");
         // calculations to find screen width
         float screenAspect = (float) Screen.width / (float) Screen.height;
         float camHalfHeight = Camera.main.orthographicSize;
@@ -33,6 +36,10 @@ public class ObstacleSpawner : MonoBehaviour
         eagleSize = 0.1f * camHalfWidth; // 10% of width of camera
         cardinalRange = 0.3f * camHalfWidth; // 30% of width of camera
 
+        this.speedScale = 1/kiteMinigame.speedScale;
+        processSpeedChange = speedScale;
+        this.defaultSpeedScale = kiteMinigame.levelOneSpeed;
+
         StartCoroutine(SpawnLoop());
     }
 
@@ -41,15 +48,23 @@ public class ObstacleSpawner : MonoBehaviour
         int lastchoice = -1;
         while (kiteMinigame.IsRunning)
         {
+            Debug.Log("Speed Scale:" + 1/speedScale);
+            Debug.Log("BUFFER:" + 1/processSpeedChange);
             int choice;
 
-            do
+            if (levelChange)
             {
-                choice = Random.Range(1,7);
-            }
-            while (choice == lastchoice); // to prevent choice from being made twice in a row
+                choice = 7; // delay next spawn pattern to prevent different speed obstacles from overlapping during level changes
+            } else
+                {
+                do
+                {
+                    choice = Random.Range(1,7);
+                }
+                while (choice == lastchoice); // to prevent choice from being made twice in a row
 
-            lastchoice = choice;
+                lastchoice = choice;
+            }
 
             switch(choice)
             {
@@ -71,6 +86,13 @@ public class ObstacleSpawner : MonoBehaviour
                 case 6:
                     yield return StartCoroutine(PatternSix());
                     break;
+                case 7:
+                    // when speed changes, to avoid overlapping spawns
+                    Debug.Log("==============CHANGING LEVELS==============");
+                    speedScale=processSpeedChange;
+                    yield return new WaitForSeconds(SPAWN_PATTERN_CUSHION);
+                    levelChange = false;
+                    break;
             }
         }
     }
@@ -83,17 +105,17 @@ public class ObstacleSpawner : MonoBehaviour
         SpawnCardinal(LEFT);
         SpawnEagle(MIDDLE);
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1f * speedScale);
 
         SpawnPole();
         SpawnWindGust(LEFT);
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1f * speedScale);
 
         SpawnEagle(RIGHT);
         SpawnCardinal(LEFT);
         SpawnPole();
-
+        // speedScale=processSpeedChange;
         yield return new WaitForSeconds(SPAWN_PATTERN_CUSHION);
     }
 
@@ -104,17 +126,17 @@ public class ObstacleSpawner : MonoBehaviour
         SpawnBranch(RIGHT);
         SpawnBranch(LEFT);
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(2f * speedScale);
 
         SpawnEagle(MIDDLE);
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1f * speedScale);
 
         SpawnCardinal(LEFT);
         SpawnCardinal(MIDDLE);
         SpawnCardinal(RIGHT);
         SpawnWindGust(RIGHT);
-
+        // speedScale=processSpeedChange;
         yield return new WaitForSeconds(SPAWN_PATTERN_CUSHION);
     }
 
@@ -126,11 +148,11 @@ public class ObstacleSpawner : MonoBehaviour
         SpawnCardinal(MIDDLE);
         SpawnEagle(RIGHT);
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1f * speedScale);
         
         SpawnBranch(RIGHT);
         SpawnWindGust(LEFT);
-    
+        // speedScale=processSpeedChange;
         yield return new WaitForSeconds(SPAWN_PATTERN_CUSHION);
     }
 
@@ -142,19 +164,19 @@ public class ObstacleSpawner : MonoBehaviour
         SpawnPole();
         SpawnEagle(LEFT);
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1f * speedScale);
 
         SpawnCardinal(RIGHT);
         SpawnCardinal(LEFT);
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1f * speedScale);
 
         SpawnEagle(MIDDLE);
         SpawnEagle(MIDDLE);
         SpawnEagle(LEFT);
         SpawnEagle(RIGHT);
         SpawnWindGust(LEFT);
-
+        // speedScale=processSpeedChange;
         yield return new WaitForSeconds(SPAWN_PATTERN_CUSHION);
     }
 
@@ -164,36 +186,36 @@ public class ObstacleSpawner : MonoBehaviour
 
         SpawnPole();
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f * speedScale);
 
         SpawnBranch(LEFT);
         SpawnBranch(RIGHT);
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f * speedScale);
 
         SpawnPole();
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f * speedScale);
 
         SpawnBranch(LEFT);
         SpawnBranch(RIGHT);
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1f * speedScale);
 
-        SpawnPole();
+        // SpawnPole();
 
-        yield return new WaitForSeconds(1f);
+        // yield return new WaitForSeconds(1f * speedScale);
 
-        SpawnBranch(LEFT);
-        SpawnBranch(RIGHT);
+        // SpawnBranch(LEFT);
+        // SpawnBranch(RIGHT);
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1f * speedScale);
 
         SpawnCardinal(LEFT);
         SpawnCardinal(MIDDLE);
         SpawnCardinal(RIGHT);
         SpawnWindGust(MIDDLE);
-
+        // speedScale=processSpeedChange;
         yield return new WaitForSeconds(SPAWN_PATTERN_CUSHION);
     }
 
@@ -206,12 +228,12 @@ public class ObstacleSpawner : MonoBehaviour
         while (reps > 0)
         {
             SpawnEagle(Random.Range(-1,2)); // LEFT, RIGHT OR MIDDLE RANDOMLY
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.5f * speedScale);
             reps--;
         }
         SpawnWindGust(RIGHT);
-
-        yield return new WaitForSeconds(0.5f);
+        // speedScale=processSpeedChange;
+        yield return new WaitForSeconds(SPAWN_PATTERN_CUSHION);
 
     }
 
@@ -259,11 +281,17 @@ public class ObstacleSpawner : MonoBehaviour
 
     public void SetSpeedScale(float speedScale)
     {
-        this.speedScale=speedScale;
+        levelChange = true;
+        processSpeedChange=1/speedScale;
     }
 
     public void Reset()
     {
         SetSpeedScale(defaultSpeedScale);
+    }
+
+    public float GetSpeedScale()
+    {
+        return 1/speedScale;
     }
 }

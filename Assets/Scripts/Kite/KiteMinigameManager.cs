@@ -21,8 +21,12 @@ public class KiteMinigameManager : MonoBehaviour
     
     // These parameters control how much harder the game gets with increasing score
     [Header("Difficulty Scaling")]
-    public float speedScale = 0.5f; // Starting speed
-    public bool IsRunning { get; private set; } = true;    
+    public float speedScale = 0.75f; // Starting speed
+    public float levelOneSpeed = 0.75f;
+    public float levelTwoSpeed = 0.875f;
+    public float levelThreeSpeed = 1f;
+    public float levelFourSpeed = 1.25f;
+    public bool IsRunning { get; private set; } = true;
 
     void Awake()
     {
@@ -40,6 +44,7 @@ public class KiteMinigameManager : MonoBehaviour
     
     void Start()
     {
+        Debug.Log("MINIGAME MANAGER STARTING");
         // Try to find minigame manager if not set
         if (enemyManager == null)
         {
@@ -49,6 +54,8 @@ public class KiteMinigameManager : MonoBehaviour
         currentLives = maxLives;
         UpdateScoreDisplay();
         UpdateLivesDisplay();
+
+        // show tutorial?
     }
     
     // Call this on successfully collecting wind charge
@@ -157,6 +164,37 @@ public class KiteMinigameManager : MonoBehaviour
     // Called whenever score changes - add more functionality here later
     void OnScoreChanged()
     {
+        if (currentScore == 0)
+        {
+            Debug.Log("SCORE RESET");
+            Debug.Log("----------SPEED LEVEL 1----------");
+            speedScale = levelOneSpeed;
+            enemyManager.Reset();
+            return;
+        }
+        else if (currentScore == 5)
+        {
+            Debug.Log("----------SPEED LEVEL 2----------");
+            speedScale = levelTwoSpeed;
+            enemyManager.SetSpeedScale(speedScale);
+        }
+        else if (currentScore == 10)
+        {
+            Debug.Log("----------SPEED LEVEL 3----------");
+            speedScale = levelThreeSpeed;
+            enemyManager.SetSpeedScale(speedScale);
+        }
+        else if (currentScore == 15)
+        {
+            Debug.Log("----------SPEED LEVEL 4----------");
+            speedScale = levelFourSpeed;
+            enemyManager.SetSpeedScale(speedScale);
+        } 
+        else if (currentScore == 25)
+        {
+            Debug.Log("YOU WIN");
+            //win?
+        }
         // TODO: Add other effects based on score
     }
     

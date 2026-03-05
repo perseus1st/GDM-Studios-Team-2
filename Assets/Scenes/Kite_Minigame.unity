@@ -119,71 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &153127904
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 7305602778913643023, guid: 43d7aa50a97fd29479c939ba08262f86, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7305602778913643023, guid: 43d7aa50a97fd29479c939ba08262f86, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7305602778913643023, guid: 43d7aa50a97fd29479c939ba08262f86, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.50768465
-      objectReference: {fileID: 0}
-    - target: {fileID: 7305602778913643023, guid: 43d7aa50a97fd29479c939ba08262f86, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.000000052363475
-      objectReference: {fileID: 0}
-    - target: {fileID: 7305602778913643023, guid: 43d7aa50a97fd29479c939ba08262f86, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 2.5356605
-      objectReference: {fileID: 0}
-    - target: {fileID: 7305602778913643023, guid: 43d7aa50a97fd29479c939ba08262f86, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 7305602778913643023, guid: 43d7aa50a97fd29479c939ba08262f86, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 7305602778913643023, guid: 43d7aa50a97fd29479c939ba08262f86, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7305602778913643023, guid: 43d7aa50a97fd29479c939ba08262f86, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7305602778913643023, guid: 43d7aa50a97fd29479c939ba08262f86, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 7305602778913643023, guid: 43d7aa50a97fd29479c939ba08262f86, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7305602778913643023, guid: 43d7aa50a97fd29479c939ba08262f86, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7509722803807134379, guid: 43d7aa50a97fd29479c939ba08262f86, type: 3}
-      propertyPath: m_Name
-      value: WindGust
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 43d7aa50a97fd29479c939ba08262f86, type: 3}
 --- !u!114 &375465425 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1741754911221069811, guid: 72a61daa0e3437f4ea0492b453cd215f, type: 3}
@@ -398,6 +333,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::KitePlayerController
   speed: 5
+  invincible: 0
+  invincibilityTimer: 3
 --- !u!1001 &803934577
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -846,6 +783,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 70
       objectReference: {fileID: 0}
+    - target: {fileID: 5675120353571128945, guid: 4e90bd39c3108424a9eddfc2abea6e62, type: 3}
+      propertyPath: m_Color.a
+      value: 0.49803922
+      objectReference: {fileID: 0}
     - target: {fileID: 6331693082322805617, guid: 4e90bd39c3108424a9eddfc2abea6e62, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 193
@@ -970,6 +911,10 @@ MonoBehaviour:
   currentScore: 0
   maxLives: 3
   speedScale: 0.5
+  levelOneSpeed: 0.75
+  levelTwoSpeed: 0.875
+  levelThreeSpeed: 1
+  levelFourSpeed: 1.25
 --- !u!4 &1920254035
 Transform:
   m_ObjectHideFlags: 0
@@ -1346,9 +1291,8 @@ SceneRoots:
   - {fileID: 1981870270}
   - {fileID: 2018998493}
   - {fileID: 766564665}
-  - {fileID: 1920254035}
   - {fileID: 1632255263}
+  - {fileID: 1920254035}
   - {fileID: 1628452949}
   - {fileID: 2137888789}
-  - {fileID: 153127904}
   - {fileID: 914828946}
