@@ -14,6 +14,7 @@ public class BadmintonPlayerController : MonoBehaviour
 
     // Animator values
     private Animator animator;
+    [SerializeField] private Animator racketAnimator;
     private SpriteRenderer spriteRenderer;
 
     // Movement control sliders
@@ -22,6 +23,8 @@ public class BadmintonPlayerController : MonoBehaviour
     public float acceleration = 40f; // units/second squared
     public float deceleration = 50f; // units/second squared
     public float inputDeadzone = 0.1f; // in case we add controller support
+    public bool disableFlip = false; // added 3/2/2026 by Léon
+    public bool racket = false; // added 3/5/2026 by Léon
 
     // Court boundaries 
     [Header("Court Boundaries")]
@@ -95,9 +98,11 @@ public class BadmintonPlayerController : MonoBehaviour
             animator.SetBool("IsMoving", isMoving);
             animator.SetFloat("MoveX", Mathf.Abs(movementX));
             animator.SetFloat("MoveY", movementY);
+            racketAnimator.SetBool("IsMoving", isMoving); // added 3/2/2026 by Léon
+            animator.SetBool("Racket", racket); // added 3/5/2026 by Léon
             
             // Flips sprite when moving right
-            if (spriteRenderer != null && Mathf.Abs(movementX) > inputDeadzone)
+            if (spriteRenderer != null && Mathf.Abs(movementX) > inputDeadzone && !disableFlip) // modified 3/2/2026 by Léon
            {
                 spriteRenderer.flipX = movementX > 0;
             }
