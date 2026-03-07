@@ -29,13 +29,13 @@ public class BranchObject : MonoBehaviour
     }
 
     void OnTriggerEnter(Collider other){
-        Debug.Log("Triggered by: " + other.name);
+        // Debug.Log("Triggered by: " + other.name);
 
         if (!kiteMinigame.IsRunning) return;
 
         if (other.CompareTag("PlayerKite") && !other.GetComponent<KitePlayerController>().invincible)
         {
-            Debug.Log("PlayerKite hit a branch!");
+            // Debug.Log("PlayerKite hit a branch!");
             kiteMinigame.LoseLife();
             other.GetComponent<KitePlayerController>().isHit();
         }

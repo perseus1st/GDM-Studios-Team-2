@@ -126,4 +126,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WindGustObject
   speed: 3.5
-  destroyZ: 0
+  destroyZ: -12

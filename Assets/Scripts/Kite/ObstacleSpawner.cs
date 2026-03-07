@@ -21,6 +21,8 @@ public class ObstacleSpawner : MonoBehaviour
     private float eagleSize;
     private float cardinalRange; // Amplitude of cardinal sine wave
 
+    private int attempt = 0;
+
     KiteMinigameManager kiteMinigame;
 
     void Start() {
@@ -52,10 +54,15 @@ public class ObstacleSpawner : MonoBehaviour
             Debug.Log("BUFFER:" + 1/processSpeedChange);
             int choice;
 
-            if (levelChange)
+            if (attempt == 0)
             {
-                choice = 7; // delay next spawn pattern to prevent different speed obstacles from overlapping during level changes
-            } else
+                choice = 7;
+            } 
+            else if (levelChange)
+            {
+                choice = 8; // delay next spawn pattern to prevent different speed obstacles from overlapping during level changes
+            } 
+            else
                 {
                 do
                 {
@@ -87,6 +94,16 @@ public class ObstacleSpawner : MonoBehaviour
                     yield return StartCoroutine(PatternSix());
                     break;
                 case 7:
+                    // on first run, to have small delay before beginning of game
+                    Debug.Log("==============BEGINNING RUN==============");
+                    // yield return new WaitForSeconds(SPAWN_PATTERN_CUSHION);
+                    SpawnBranch(LEFT);
+                    SpawnBranch(RIGHT);
+                    SpawnWindGust(MIDDLE);
+                    yield return new WaitForSeconds(SPAWN_PATTERN_CUSHION);
+                    attempt++;
+                    break;
+                case 8:
                     // when speed changes, to avoid overlapping spawns
                     Debug.Log("==============CHANGING LEVELS==============");
                     speedScale=processSpeedChange;
@@ -288,6 +305,7 @@ public class ObstacleSpawner : MonoBehaviour
     public void Reset()
     {
         SetSpeedScale(defaultSpeedScale);
+        attempt++;
     }
 
     public float GetSpeedScale()

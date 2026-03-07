@@ -9,10 +9,10 @@ public class WindGustObject : MonoBehaviour
     KiteMinigameManager kiteMinigame;
 
     void Start() {
-        Debug.Log("WIND GUST STARTING");
         kiteMinigame = FindAnyObjectByType<KiteMinigameManager>();
         destroyZ = CameraBounds.MinZ - 1f;
         this.speedScale = kiteMinigame.enemyManager.GetSpeedScale();
+        // Debug.Log(speedScale);
     }
 
     void Update() {

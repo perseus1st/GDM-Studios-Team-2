@@ -125,9 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 581f37089d6ab8042aeb98d138f7ce3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CardinalObject
-  verticalSpeed: 2.5
+  verticalSpeed: 3
   horizontalSpeedCap: 3
-  horizontalSpeed: 0
   destroyZ: -12
-  amplitude: 0
   horizontalRangePercentage: 30
