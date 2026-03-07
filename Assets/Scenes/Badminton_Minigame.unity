@@ -1193,6 +1193,8 @@ MonoBehaviour:
   tutorialClickIcon: {fileID: 389921066}
   tutorialIconFlashSpeed: 0.25
   tutorialTargetOffset: {x: 4, y: 0, z: 0}
+  tutorialMoveIconOffset: {x: 3.5, y: 0.5, z: 1.2}
+  tutorialClickIconOffset: {x: 1.7, y: 0.5, z: 0.5}
   normalShotMinDistanceAtLowScore: 1
   normalShotMinDistanceAtHighScore: 6
   normalShotMaxDistanceAtLowScore: 3
