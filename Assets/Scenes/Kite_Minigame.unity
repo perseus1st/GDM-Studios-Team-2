@@ -335,6 +335,8 @@ MonoBehaviour:
   speed: 5
   invincible: 0
   invincibilityTimer: 3
+  flashInterval: 0.1
+  sprite: {fileID: 1182719777}
 --- !u!1001 &803934577
 PrefabInstance:
   m_ObjectHideFlags: 0

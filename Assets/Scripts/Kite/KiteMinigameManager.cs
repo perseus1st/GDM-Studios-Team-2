@@ -26,6 +26,7 @@ public class KiteMinigameManager : MonoBehaviour
     public float levelTwoSpeed = 0.875f;
     public float levelThreeSpeed = 1f;
     public float levelFourSpeed = 1.25f;
+    public float levelFiveSpeed = 1.375f;
     public bool IsRunning { get; private set; } = true;
 
     void Awake()
@@ -188,6 +189,12 @@ public class KiteMinigameManager : MonoBehaviour
         {
             Debug.Log("----------SPEED LEVEL 4----------");
             speedScale = levelFourSpeed;
+            enemyManager.SetSpeedScale(speedScale);
+        } 
+        else if (currentScore == 22)
+        {
+            Debug.Log("----------SPEED LEVEL 5----------");
+            speedScale = levelFiveSpeed;
             enemyManager.SetSpeedScale(speedScale);
         } 
         else if (currentScore == 25)
