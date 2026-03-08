@@ -14,6 +14,7 @@ public class BadmintonPlayerController : MonoBehaviour
 
     // Animator values
     private Animator animator;
+    [SerializeField] private Animator racketAnimator;
     private SpriteRenderer spriteRenderer;
 
     // Movement control sliders
@@ -22,6 +23,8 @@ public class BadmintonPlayerController : MonoBehaviour
     public float acceleration = 40f; // units/second squared
     public float deceleration = 50f; // units/second squared
     public float inputDeadzone = 0.1f; // in case we add controller support
+    public bool disableFlip = false; // added 3/2/2026 by Léon
+    public bool racket = false; // added 3/5/2026 by Léon
 
     // Court boundaries 
     [Header("Court Boundaries")]
@@ -33,8 +36,12 @@ public class BadmintonPlayerController : MonoBehaviour
     // For hit input buffer
     [Header("Hit Input Settings")]
     public float hitBufferTime = 0.2f;  // How long click stays active in seconds
+    public float hitAnimationDelay = 0.15f; // Delay between animation start and birdie hit
+    public float hitAnimationLength = 0.4f; // Length of hit animation for freezing player
     
     private float lastHitPressTime = -999f;  // When click was last pressed
+    private bool isPlayingHitAnimation = false; // Is hit animation currently playing
+    private bool hitAnimationTriggered = false; // Has the actual hit been processed yet
 
     // Reference to PauseManager
     [Header("Pause Manager Reference")]
@@ -70,9 +77,14 @@ public class BadmintonPlayerController : MonoBehaviour
     // Input system calls this when a Hit is performed
     void OnInteract(InputValue value)
     {
-        if (value.isPressed)
+        if (value.isPressed && !isPlayingHitAnimation)
+        {
             // Record press time
-            lastHitPressTime = Time.time; 
+            lastHitPressTime = Time.time;
+            
+            // Start hit animation
+            PlayHitAnimation();
+        }
     }
 
     // Input system calls this when the player presses ESC
@@ -90,40 +102,92 @@ public class BadmintonPlayerController : MonoBehaviour
         // Tells animator what to do
         if (animator != null)
         {
-            // Updates animator parameters
-            bool isMoving = Mathf.Abs(movementX) > inputDeadzone || Mathf.Abs(movementY) > inputDeadzone;
-            animator.SetBool("IsMoving", isMoving);
-            animator.SetFloat("MoveX", Mathf.Abs(movementX));
-            animator.SetFloat("MoveY", movementY);
-            
-            // Flips sprite when moving right
-            if (spriteRenderer != null && Mathf.Abs(movementX) > inputDeadzone)
-           {
-                spriteRenderer.flipX = movementX > 0;
+            // Only update movement animations if not playing hit animation
+            if (!isPlayingHitAnimation)
+            {
+                // Updates animator parameters
+                bool isMoving = Mathf.Abs(movementX) > inputDeadzone || Mathf.Abs(movementY) > inputDeadzone;
+                animator.SetBool("IsMoving", isMoving);
+                animator.SetFloat("MoveX", Mathf.Abs(movementX));
+                animator.SetFloat("MoveY", movementY);
+                racketAnimator.SetBool("IsMoving", isMoving); // added 3/2/2026 by Léon
+                animator.SetBool("Racket", racket); // added 3/5/2026 by Léon
+                
+                // Flips sprite when moving right
+                if (spriteRenderer != null && Mathf.Abs(movementX) > inputDeadzone && !disableFlip) // modified 3/2/2026 by Léon
+                {
+                    spriteRenderer.flipX = movementX > 0;
+                }
             }
         }
+    }
+
+    // Trigger the hit animation
+    public void PlayHitAnimation()
+    {
+        if (animator != null && !isPlayingHitAnimation)
+        {
+            isPlayingHitAnimation = true;
+            hitAnimationTriggered = false;
+            animator.SetTrigger("Hit");
+            racketAnimator.SetTrigger("Hit");
+        
+            // Schedule the actual hit to happen after delay
+            Invoke("TriggerDelayedHit", hitAnimationDelay);
+        
+            // Schedule animation end (adjust 0.4f to match animation length)
+            Invoke("OnHitAnimationComplete", hitAnimationLength);
+        }
+    }
+
+    // Called after the animation delay to mark that hit should be processed
+    private void TriggerDelayedHit()
+    {
+        hitAnimationTriggered = true;
+    }
+
+    // Called by animation event at the end of hit animation
+    public void OnHitAnimationComplete()
+    {
+        isPlayingHitAnimation = false;
+        hitAnimationTriggered = false;
     }
 
     // Lets birdie check if theres a hit. Makes sure the hit only triggers once per click
     public bool GetHitPressed()
     {
-        // Clauclate how much time has passed since previous press
+        // Calculate how much time has passed since previous press
         float timeSincePress = Time.time - lastHitPressTime;
 
-        // return true if within buffer
-        return timeSincePress <= hitBufferTime;
+        // Return true if within buffer AND animation has reached the hit point
+        return timeSincePress <= hitBufferTime && hitAnimationTriggered;
+    }
+
+    // Check if player is currently in hit animation (for birdie to pause timer)
+    public bool IsInHitAnimation()
+    {
+        return isPlayingHitAnimation;
     }
 
     // Consume the hit
     public void ConsumeHit()
     {
         lastHitPressTime = -999f;
+        hitAnimationTriggered = false;
     }
 
     // FixedUpdate called at fixed time intervals for consistent physics
     private void FixedUpdate()
     {
         // The goal is to have snappy and responsive movement with fast acceleration and desceleration
+
+        // Don't move if playing hit animation
+        if (isPlayingHitAnimation)
+        {
+            // Stop all movement during hit animation
+            rb.linearVelocity = new Vector3(0, rb.linearVelocity.y, 0);
+            return;
+        }
 
         // Turn 2D input vector into 3D movement vector
         Vector3 input = new Vector3(movementX, 0f, movementY);
