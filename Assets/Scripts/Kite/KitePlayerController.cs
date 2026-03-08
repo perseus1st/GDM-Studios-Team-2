@@ -4,28 +4,30 @@ using UnityEngine.InputSystem;
 
 public class KitePlayerController : MonoBehaviour
 {
-    [SerializeField] private float speed = 5f;
+    [Header("Kite Settings")]
+    [SerializeField] public float speed = 5f; // Speed of player
+    public GameObject sprite;
 
     private CharacterController controller;
     private UnityEngine.Vector2 moveInput;
     private UnityEngine.Vector3 velocity;
-    public bool invincible = false;
-    public float invincibilityTimer = 3f;
-    public float flashInterval = 0.1f;
-    private float lastFlashTime;
-    private bool isVisible = true;
-    public GameObject sprite;
-    float timer = 0f;
+
+    [Header("Invincibility")]
+    public bool isInvincible = false; // Boolean to track invincibility of player
+    public float invincibilityTimerLimit = 3f; // How long the player is invincible for
+    float timer = 0f; // Timer for invincibility
+    public float flashInterval; // How often the player flashes when invincible, decreases linearly
+    private float lastFlashTime; // Tracks time of last flash
+    private bool isVisible = true; // Tracks player's visibility
 
     void Start()
     {
         controller = GetComponent<CharacterController>();
-        
     }
+
     public void OnMove(InputValue value)
     {
         moveInput = value.Get<Vector2>();
-        // Debug.Log($"Move Input: {moveInput}");
     }
 
     void Update()
@@ -33,13 +35,13 @@ public class KitePlayerController : MonoBehaviour
         Vector3 move = new Vector3(moveInput.x, 0, moveInput.y);
         controller.Move(move * speed * Time.deltaTime);
 
-        if (invincible) {
-
+        if (isInvincible)
+        {
             UpdateInvincibilityFlash();
 
-            Debug.Log($"Invincibility for {3-timer} seconds");
-            timer += Time.deltaTime;
-            if (timer >= invincibilityTimer)
+            timer += Time.deltaTime; // Increment timer until it reaches invincibilityTimerLimit
+            Debug.Log($"Invincibility for {3 - timer} seconds");
+            if (timer >= invincibilityTimerLimit)
             {
                 EndInvincibility();
             }
@@ -54,21 +56,20 @@ public class KitePlayerController : MonoBehaviour
         {
             isVisible = !isVisible;
             lastFlashTime = Time.time;
-            
+
             // Toggle player model visibility
-            // gameObject.transform.find("KiteModel").GetComponent<Renderer>().enabled = isVisible;
             sprite.GetComponent<Renderer>().enabled = isVisible;
 
 
-            float a = 0.05f; // arbitrary scaling factor for flash speed
-            flashInterval = a*(-timer+invincibilityTimer+a); // to flash faster as invincibility ends
+            float a = 0.05f; // Arbitrary scaling factor for flash speed
+            flashInterval = a * (-timer + invincibilityTimerLimit + a); // Linear function to flash faster as invincibility ends
         }
     }
 
-        // End invincibility and restore visibility
+    // End invincibility and restore visibility
     void EndInvincibility()
     {
-        invincible = false;
+        isInvincible = false;
         isVisible = true;
         timer = 0f;
         Debug.Log("No longer invincible");
@@ -77,6 +78,6 @@ public class KitePlayerController : MonoBehaviour
 
     public void isHit()
     {
-        this.invincible = true;
+        this.isInvincible = true;
     }
 }
