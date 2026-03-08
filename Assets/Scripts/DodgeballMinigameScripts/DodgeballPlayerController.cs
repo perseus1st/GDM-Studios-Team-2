@@ -8,6 +8,9 @@ public class DodgeballPlayerController : MonoBehaviour
     // Reference player's rigidbody for movement
     private Rigidbody rb;
 
+    // Public accessor for tutorial manager
+    public Rigidbody Rigidbody => rb;
+
     // Store movement input
     private float movementX; // left/right
     private float movementY; // forward/back
