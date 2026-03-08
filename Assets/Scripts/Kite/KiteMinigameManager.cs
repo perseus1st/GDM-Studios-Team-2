@@ -22,11 +22,14 @@ public class KiteMinigameManager : MonoBehaviour
     // These parameters control how much harder the game gets with increasing score
     [Header("Difficulty Scaling")]
     public float speedScale = 0.75f; // Starting speed
-    public float levelOneSpeed = 0.75f;
-    public float levelTwoSpeed = 0.875f;
-    public float levelThreeSpeed = 1f;
-    public float levelFourSpeed = 1.25f;
-    public float levelFiveSpeed = 1.375f;
+    // public float levelOneSpeed = 0.75f;
+    // public float levelTwoSpeed = 0.875f;
+    // public float levelThreeSpeed = 1f;
+    public float levelOneSpeed   = 0.875f;
+    public float levelTwoSpeed   = 1.000f;
+    public float levelThreeSpeed = 1.125f;
+    public float levelFourSpeed  = 1.250f;
+    public float levelFiveSpeed  = 1.375f;
     public bool IsRunning { get; private set; } = true;
 
     void Awake()
@@ -173,33 +176,34 @@ public class KiteMinigameManager : MonoBehaviour
             enemyManager.Reset();
             return;
         }
-        else if (currentScore == 5)
+        else if (currentScore == 4)
         {
             Debug.Log("----------SPEED LEVEL 2----------");
             speedScale = levelTwoSpeed;
             enemyManager.SetSpeedScale(speedScale);
         }
-        else if (currentScore == 10)
+        else if (currentScore == 8)
         {
             Debug.Log("----------SPEED LEVEL 3----------");
             speedScale = levelThreeSpeed;
             enemyManager.SetSpeedScale(speedScale);
         }
-        else if (currentScore == 15)
+        else if (currentScore == 12)
         {
             Debug.Log("----------SPEED LEVEL 4----------");
             speedScale = levelFourSpeed;
             enemyManager.SetSpeedScale(speedScale);
         } 
-        else if (currentScore == 22)
+        else if (currentScore == 16)
         {
             Debug.Log("----------SPEED LEVEL 5----------");
             speedScale = levelFiveSpeed;
             enemyManager.SetSpeedScale(speedScale);
         } 
-        else if (currentScore == 25)
+        else if (currentScore == 20)
         {
             Debug.Log("YOU WIN");
+            enemyManager.SetSpeedScale(0); // REMOVE, this still spawns obstacles, just doesn't move them into play area
             //win?
         }
         // TODO: Add other effects based on score

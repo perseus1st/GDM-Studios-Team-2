@@ -122,16 +122,32 @@ public class ObstacleSpawner : MonoBehaviour
         SpawnCardinal(LEFT);
         SpawnEagle(MIDDLE);
 
-        yield return new WaitForSeconds(1f * speedScale);
+        yield return new WaitForSeconds(1.5f * speedScale);
 
         SpawnPole();
         SpawnWindGust(LEFT);
+        SpawnWindGust(RIGHT);
+
+        yield return new WaitForSeconds(1.5f * speedScale);
+
+        SpawnEagle(LEFT);
+        SpawnEagle(RIGHT);
+        SpawnCardinal(MIDDLE);
 
         yield return new WaitForSeconds(1f * speedScale);
+
+        SpawnBranch(LEFT);
+        SpawnBranch(RIGHT);
+
+        yield return new WaitForSeconds(1.5f * speedScale);
 
         SpawnEagle(RIGHT);
         SpawnCardinal(LEFT);
         SpawnPole();
+
+        yield return new WaitForSeconds(1f * speedScale);
+
+        SpawnWindGust(MIDDLE);
         // speedScale=processSpeedChange;
         yield return new WaitForSeconds(SPAWN_PATTERN_CUSHION);
     }
@@ -146,8 +162,11 @@ public class ObstacleSpawner : MonoBehaviour
         yield return new WaitForSeconds(2f * speedScale);
 
         SpawnEagle(MIDDLE);
+        SpawnCardinal(LEFT);
+        SpawnCardinal(MIDDLE);
+        SpawnCardinal(RIGHT);
 
-        yield return new WaitForSeconds(1f * speedScale);
+        yield return new WaitForSeconds(1.5f * speedScale);
 
         SpawnCardinal(LEFT);
         SpawnCardinal(MIDDLE);
@@ -165,10 +184,21 @@ public class ObstacleSpawner : MonoBehaviour
         SpawnCardinal(MIDDLE);
         SpawnEagle(RIGHT);
 
-        yield return new WaitForSeconds(1f * speedScale);
-        
+        yield return new WaitForSeconds(0.5f * speedScale);
+
+        SpawnWindGust(RIGHT);
+
+        yield return new WaitForSeconds(0.5f * speedScale);
+
         SpawnBranch(RIGHT);
-        SpawnWindGust(LEFT);
+
+        yield return new WaitForSeconds(1.5f * speedScale);
+
+        SpawnEagle(LEFT);
+        SpawnCardinal(LEFT);
+        SpawnPole();
+        SpawnWindGust(RIGHT);
+
         // speedScale=processSpeedChange;
         yield return new WaitForSeconds(SPAWN_PATTERN_CUSHION);
     }
@@ -203,21 +233,27 @@ public class ObstacleSpawner : MonoBehaviour
 
         SpawnPole();
 
-        yield return new WaitForSeconds(1.5f * speedScale);
+        yield return new WaitForSeconds(1.3f * speedScale);
 
         SpawnBranch(LEFT);
         SpawnBranch(RIGHT);
 
-        yield return new WaitForSeconds(1.5f * speedScale);
+        yield return new WaitForSeconds(1.3f * speedScale);
 
         SpawnPole();
 
-        yield return new WaitForSeconds(1.5f * speedScale);
+
+        yield return new WaitForSeconds(0.6f * speedScale);
+
+        SpawnWindGust(LEFT);
+        SpawnWindGust(RIGHT);
+
+        yield return new WaitForSeconds(0.6f * speedScale);
 
         SpawnBranch(LEFT);
         SpawnBranch(RIGHT);
 
-        yield return new WaitForSeconds(1f * speedScale);
+        yield return new WaitForSeconds(1.2f * speedScale);
 
         // SpawnPole();
 
@@ -226,7 +262,7 @@ public class ObstacleSpawner : MonoBehaviour
         // SpawnBranch(LEFT);
         // SpawnBranch(RIGHT);
 
-        yield return new WaitForSeconds(1f * speedScale);
+        // yield return new WaitForSeconds(1f * speedScale);
 
         SpawnCardinal(LEFT);
         SpawnCardinal(MIDDLE);
@@ -240,12 +276,15 @@ public class ObstacleSpawner : MonoBehaviour
     {
         Debug.Log("==============Beginning Pattern #6==============");
         
-        int reps = 5;
+        int reps = 10;
+
+        SpawnWindGust(LEFT);
 
         while (reps > 0)
         {
             SpawnEagle(Random.Range(-1,2)); // LEFT, RIGHT OR MIDDLE RANDOMLY
-            yield return new WaitForSeconds(0.5f * speedScale);
+            SpawnEagle(Random.Range(-1,2)); // LEFT, RIGHT OR MIDDLE RANDOMLY
+            yield return new WaitForSeconds(0.7f * speedScale);
             reps--;
         }
         SpawnWindGust(RIGHT);
