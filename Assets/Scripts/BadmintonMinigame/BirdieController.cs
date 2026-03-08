@@ -133,6 +133,16 @@ public class BirdieController : MonoBehaviour
     
                     // can hit for short time after landing
                     float timeSinceLanded = Time.time - landedTime;
+
+		    // Pause timer if player is in hit animation
+                    bool playerInHitAnimation = playerController != null && playerController.IsInHitAnimation();
+                    if (playerInHitAnimation)
+                    {
+                        // Freeze the timer by updating landedTime
+                        landedTime = Time.time;
+                        timeSinceLanded = 0f;
+                    }
+
                     inHitWindow = timeSinceLanded <= currentGroundedWindow;
                 
                     // lose life and re-serve if on ground for too long
@@ -256,7 +266,17 @@ public class BirdieController : MonoBehaviour
         // play hit sound
         if (hitSound != null)
             hitSound.Play();
-    
+
+	// Move opponent to random position
+        if (opponent != null)
+        {
+            OpponentController opponentController = opponent.GetComponent<OpponentController>();
+            if (opponentController != null)
+            {
+                opponentController.MoveToRandomPosition();
+            }
+        }
+      
         // Set flight start
         startPosition = transform.position;
 

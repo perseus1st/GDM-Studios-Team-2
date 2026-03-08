@@ -1406,9 +1406,11 @@ MonoBehaviour:
   racket: 1
   minX: -9
   maxX: 9
-  minZ: -9
+  minZ: -8.5
   maxZ: -1
   hitBufferTime: 0.2
+  hitAnimationDelay: 0.15
+  hitAnimationLength: 0.4
   pauseManager: {fileID: 844065150}
 --- !u!114 &946882149
 MonoBehaviour:
@@ -3060,6 +3062,7 @@ GameObject:
   - component: {fileID: 2066652540}
   - component: {fileID: 2066652539}
   - component: {fileID: 2066652538}
+  - component: {fileID: 2066652542}
   m_Layer: 0
   m_Name: Opponent
   m_TagString: Untagged
@@ -3160,6 +3163,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2066652542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2066652537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09d644dd9499f2945a171b88e27fc8e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  minMoveDistance: 0.5
+  maxMoveDistance: 3
+  maxSpeed: 7
+  acceleration: 30
+  deceleration: 30
+  minX: -6
+  maxX: 6
+  minZ: 4
+  maxZ: 6
 --- !u!1 &2092144579
 GameObject:
   m_ObjectHideFlags: 0
