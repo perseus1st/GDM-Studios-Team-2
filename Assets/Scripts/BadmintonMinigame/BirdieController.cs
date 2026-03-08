@@ -230,6 +230,9 @@ public class BirdieController : MonoBehaviour
         if (targetIndicator != null)
         targetIndicator.SetActive(false);
 
+	// Reset rotation before flight
+        transform.rotation = Quaternion.identity;
+
         // Get opponent position
         startPosition = transform.position;
 
@@ -279,6 +282,9 @@ public class BirdieController : MonoBehaviour
       
         // Set flight start
         startPosition = transform.position;
+
+	// Reset rotation before flight
+        transform.rotation = Quaternion.identity;
 
         // Do the tutorial
         if (isTutorial && !tutorialCompleted)
@@ -497,6 +503,17 @@ public class BirdieController : MonoBehaviour
         // Scale sprite to simulate arc
         float scaleMultiplier = 1f + (currentArcHeightValue);
         transform.localScale = originalScale * scaleMultiplier;
+
+	// Rotate birdie to face flight direction
+        Vector3 flightDirection = targetPosition - startPosition;
+        if (flightDirection.magnitude > 0.01f)
+        {
+            // Calculate angle in degrees (looking down from above, XZ plane)
+            float angle = Mathf.Atan2(flightDirection.x, flightDirection.z) * Mathf.Rad2Deg;
+        
+            // Apply rotation (rotate around Y axis to face direction)
+            transform.rotation = Quaternion.Euler(90f, angle, 0f);
+        }
 
         // Apply position
         transform.position = currentPos;
