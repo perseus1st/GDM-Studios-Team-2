@@ -32,7 +32,7 @@ public class Conductor : MonoBehaviour
     // x positions of the lanes AWSD 
     private float[] laneX = new float[] {-6f, -2f, 2f, 6f}; 
     private float laneY = 6f; 
-    public float PerfectTiming = 0.1f; 
+    public float PerfectTiming = 0.075f; 
     public float GreatTiming = 0.15f; 
     public float OkayTiming = 0.25f; 
     
@@ -166,10 +166,10 @@ public class Conductor : MonoBehaviour
                 calculatePts(pressedNote.GetComponent<NoteMover>().targetTime, pressedTime); 
                 Destroy(pressedNote);
             }
-        else
-        {
-            scoreManager.LoseLife(); 
-        }
+        // else
+        // {
+        //     scoreManager.LoseLife(); 
+        // }
     }
 
     void OnRight(InputValue value)
@@ -182,10 +182,10 @@ public class Conductor : MonoBehaviour
                 calculatePts(pressedNote.GetComponent<NoteMover>().targetTime, pressedTime); 
                 Destroy(pressedNote);
             }
-        else
-        {
-            scoreManager.LoseLife(); 
-        }
+        // else
+        // {
+        //     scoreManager.LoseLife(); 
+        // }
     }
 
     void OnDown(InputValue value)
@@ -198,10 +198,10 @@ public class Conductor : MonoBehaviour
                 calculatePts(pressedNote.GetComponent<NoteMover>().targetTime, pressedTime); 
                 Destroy(pressedNote);
             }
-        else
-        {
-            scoreManager.LoseLife(); 
-        }
+        // else
+        // {
+        //     scoreManager.LoseLife(); 
+        // }
     }
 
     void OnLeft(InputValue value)
@@ -214,10 +214,10 @@ public class Conductor : MonoBehaviour
                 calculatePts(pressedNote.GetComponent<NoteMover>().targetTime, pressedTime); 
                 Destroy(pressedNote);
             }
-        else
-        {
-            scoreManager.LoseLife(); 
-        }
+        // else
+        // {
+        //     scoreManager.LoseLife(); 
+        // }
     }
 
     void OnPause(InputValue value)

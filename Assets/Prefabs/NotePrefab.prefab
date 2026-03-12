@@ -104,7 +104,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1000bed61c83dff4c93002d090bb3b7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NoteMover
-  MAXGAP: 3.5
   targetTime: 0
   lane: 0
   beat: 0
