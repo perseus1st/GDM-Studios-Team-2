@@ -14,7 +14,7 @@ public class SaveFileSelection : MonoBehaviour
     private void OnEnable(){
         if (SaveSystem.SaveExists(1))
         {
-            file1Text.text = "<sprite name=floppydiskicon> File 1";
+            file1Text.text = "<sprite name=floppy-disk-white> File 1";
         } else
         {
             file1Text.text = "File 1";
@@ -22,7 +22,7 @@ public class SaveFileSelection : MonoBehaviour
 
         if (SaveSystem.SaveExists(2))
         {
-            file2Text.text = "<sprite name=floppydiskicon> File 2";
+            file2Text.text = "<sprite name=floppy-disk-white> File 2";
         } else
         {
             file2Text.text = "File 2";
@@ -30,7 +30,7 @@ public class SaveFileSelection : MonoBehaviour
 
         if (SaveSystem.SaveExists(3))
         {
-            file3Text.text = "<sprite name=floppydiskicon> File 3";
+            file3Text.text = "<sprite name=floppy-disk-white> File 3";
         } else
         {
             file3Text.text = "File 3";

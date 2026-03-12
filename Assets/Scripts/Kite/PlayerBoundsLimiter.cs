@@ -1,13 +1,20 @@
 using UnityEngine;
 
+// This code is used to ensure the player cannot move outside the camera's visible area
+// It clamps the player's position to the edges of the screen
+
 public class PlayerBoundsLimiter : MonoBehaviour
 {
     float halfWidth;
     float halfDepth;
+
+    // Flag to track whether we've calculated the player's size
+    // To prevent uninitialized values
     bool sizeCached;
 
     void Start()
     {
+        // When object starts, calculate and store player size
         CacheSize();
     }
 
@@ -15,6 +22,7 @@ public class PlayerBoundsLimiter : MonoBehaviour
     {
         Renderer r = GetComponentInChildren<Renderer>();
 
+        // World size of player
         Vector3 size = r.bounds.size;
 
         halfWidth = size.x * 0.5f;

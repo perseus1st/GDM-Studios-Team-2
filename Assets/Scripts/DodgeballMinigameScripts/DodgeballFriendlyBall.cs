@@ -57,6 +57,7 @@ public class DodgeballFriendlyBall : MonoBehaviour
     private Vector3 enemyTarget; // Which enemy we're targeting
     private Vector3 flyDirection; // Direction ball is flying
     private float currentSpeed; // Current flight speed
+    private bool isTutorialBall = false; // For tutorial
     
     void Start()
     {
@@ -208,43 +209,85 @@ public class DodgeballFriendlyBall : MonoBehaviour
     }
     
     // Update grounded state - check for collection or timeout
-    void UpdateGroundedState()
+    // Update grounded state - check for collection or timeout
+void UpdateGroundedState()
+{
+    float timeSinceLanded = Time.time - landedTime;
+    
+    // Tutorial ball never times out
+    if (isTutorialBall)
     {
-        float timeSinceLanded = Time.time - landedTime;
-        
         // Check if player is close enough to collect
         if (canBeCollected && player != null)
         {
             float distance = Vector3.Distance(player.position, transform.position);
             bool inRange = distance <= collectRange;
             
-            // Show/hide glow based on range (only if not flashing)
-            if (timeSinceLanded <= (groundedWindow))
+            // Show/hide glow based on range
+            if (glowEffect != null)
+                glowEffect.SetActive(inRange);
+            
+            // Show click symbol if in range and tutorial is active
+            if (inRange && DodgeballTutorialManager.Instance != null)
             {
-                if (glowEffect != null)
-                    glowEffect.SetActive(inRange);
+                DodgeballTutorialManager.Instance.ShowClickSymbol(transform.position);
+            }
+            else if (DodgeballTutorialManager.Instance != null)
+            {
+                DodgeballTutorialManager.Instance.HideClickSymbol();
             }
             
             // Check if player pressed interact
             if (inRange && playerController != null && playerController.GetInteractPressed())
             {
+
+                // Hide click symbol immediately when player clicks
+                if (DodgeballTutorialManager.Instance != null)
+                {
+                    DodgeballTutorialManager.Instance.HideClickSymbol();
+                }
+
                 CollectBall();
                 playerController.ConsumeInteract();
             }
         }
+        return; // Don't run normal timeout logic
+    }
+    
+    // Normal (non-tutorial) ball behavior
+    // Check if player is close enough to collect
+    if (canBeCollected && player != null)
+    {
+        float distance = Vector3.Distance(player.position, transform.position);
+        bool inRange = distance <= collectRange;
         
-        // Start flashing before disappearing
-        if (timeSinceLanded > groundedWindow)
+        // Show/hide glow based on range (only if not flashing)
+        if (timeSinceLanded <= groundedWindow)
         {
-            UpdateFlash();
+            if (glowEffect != null)
+                glowEffect.SetActive(inRange);
         }
         
-        // Destroy if on ground too long
-        if (timeSinceLanded > (groundedWindow + flashDuration))
+        // Check if player pressed interact
+        if (inRange && playerController != null && playerController.GetInteractPressed())
         {
-            Destroy(gameObject);
+            CollectBall();
+            playerController.ConsumeInteract();
         }
     }
+    
+    // Start flashing after grounded window
+    if (timeSinceLanded > groundedWindow)
+    {
+        UpdateFlash();
+    }
+    
+    // Destroy after flash duration ends
+    if (timeSinceLanded > (groundedWindow + flashDuration))
+    {
+        Destroy(gameObject);
+    }
+}
     
     // Flash ball before it disappears
 void UpdateFlash()
@@ -337,36 +380,42 @@ void UpdateFlash()
     
     // Throw ball at nearest enemy
     void ThrowAtEnemy()
+{
+    // Play throw sound
+    if (throwSound != null)
+        throwSound.Play();
+    
+    // Unlock player movement
+    if (playerController != null)
+        playerController.isThrowing = false;
+    
+    // Notify tutorial if this is tutorial ball
+    if (isTutorialBall && DodgeballTutorialManager.Instance != null)
     {
-        // Play throw sound
-        if (throwSound != null)
-            throwSound.Play();
-        
-        // Unlock player movement
-        if (playerController != null)
-            playerController.isThrowing = false;
-        
-        // Find nearest enemy
-        Transform nearestEnemy = FindNearestEnemy();
-        
-        if (nearestEnemy == null)
-        {
-            // No enemies found, just destroy ball
-            Destroy(gameObject);
-            return;
-        }
-        
-        // Set up flight to enemy
-        enemyTarget = nearestEnemy.position;
-        flyDirection = (enemyTarget - transform.position).normalized;
-        flyDirection.y = 0f; // Keep horizontal
-        flyDirection.Normalize();
-        
-        // Start flying to enemy
-        isFlyingToEnemy = true;
-        isBeingThrown = false;
-        currentSpeed = thrownBallSpeed;
+        DodgeballTutorialManager.Instance.OnTutorialBallThrown();
     }
+    
+    // Find nearest enemy
+    Transform nearestEnemy = FindNearestEnemy();
+    
+    if (nearestEnemy == null)
+    {
+        // No enemies found, just destroy ball
+        Destroy(gameObject);
+        return;
+    }
+    
+    // Set up flight to enemy
+    enemyTarget = nearestEnemy.position;
+    flyDirection = (enemyTarget - transform.position).normalized;
+    flyDirection.y = 0f; // Keep horizontal
+    flyDirection.Normalize();
+    
+    // Start flying to enemy
+    isFlyingToEnemy = true;
+    isBeingThrown = false;
+    currentSpeed = thrownBallSpeed;
+}
     
     // Find the nearest enemy to throw at
     Transform FindNearestEnemy()
@@ -450,6 +499,13 @@ void UpdateFlash()
             Destroy(gameObject);
         }
     }
+
+    // Tutorial throw
+    // Make this ball a tutorial ball (doesn't time out, shows click symbol)
+    public void MakeTutorialBall()
+    {
+         isTutorialBall = true;
+    } 
     
     // Visual debug in editor
     void OnDrawGizmosSelected()

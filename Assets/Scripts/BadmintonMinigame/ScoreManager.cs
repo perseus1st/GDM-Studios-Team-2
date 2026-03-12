@@ -27,6 +27,12 @@ public class ScoreManager : MonoBehaviour
     public float windowDecreasePerHit = 0.02f; // How much decreases per hit
     public float minGroundedWindow = 0.1f; // Never shorter than this
 
+    [Header("Scene Completion")]
+    public int scoreToComplete = 15; // Score needed to complete minigame
+    public string minigameID = "badminton"; // Unique ID for this minigame
+    public string sceneToLoad = "Sister_Room"; // Scene to load on completion
+    private bool minigameCompleted = false; // Has minigame been completed this session
+
     void Awake()
     {
         // Removes other score managers
@@ -155,6 +161,40 @@ public class ScoreManager : MonoBehaviour
     void OnScoreChanged()
     {
         // TODO: Add other effects based on score
+        if (!minigameCompleted && currentScore >= scoreToComplete)
+        {
+            CompleteMinigame();
+        }
+    }
+	
+    // Called when player reaches completion score
+    void CompleteMinigame()
+    {
+        minigameCompleted = true;
+    
+        Debug.Log($"Minigame completed at score {currentScore}!");
+    
+        // Mark minigame as completed in GameManager
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.MarkMinigameCompleted(minigameID);
+        }
+        else
+        {
+            Debug.LogWarning("GameManager not found! Cannot mark minigame as completed.");
+        }
+    
+        // Load the next scene using SceneController
+        SceneController sceneController = FindAnyObjectByType<SceneController>();
+        if (sceneController != null)
+        {
+            sceneController.StartAnimation(sceneToLoad);
+        }
+        else
+        {
+            Debug.LogWarning("SceneController not found! Loading scene directly without animation.");
+            UnityEngine.SceneManagement.SceneManager.LoadScene(sceneToLoad);
+        }
     }
 
     // Public getters

@@ -1,5 +1,8 @@
 using UnityEngine;
 
+// This code is used to get the boundaries of the camera
+// Useful to ensure gameObjects spawn/despawn right outside of camera range
+
 public class CameraBounds : MonoBehaviour
 {
     public static bool Initialized;

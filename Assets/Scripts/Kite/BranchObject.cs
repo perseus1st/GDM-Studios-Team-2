@@ -5,39 +5,39 @@ using UnityEngine;
 
 public class BranchObject : MonoBehaviour
 {
-    public float speed = 1.0f;
-    public float destroyZ;
-    private float speedScale;
+    [Header("Branch Settings")]
+    public float speed = 1.0f; // Vertical speed of Branch obstacle
+    public float destroyZ; // Z-coordinate at which the Branch gets destroyed
+    private float speedScale; // Scale for speed impacted by score of minigame
 
     KiteMinigameManager kiteMinigame;
 
-    void Start() {
+    void Start()
+    {
         kiteMinigame = FindAnyObjectByType<KiteMinigameManager>();
-        destroyZ = CameraBounds.MinZ - 1f;
+        destroyZ = CameraBounds.MinZ - 1f; // Destroys Branch just below camera boundaries
 
-        this.speedScale = kiteMinigame.enemyManager.GetSpeedScale();
+        this.speedScale = kiteMinigame.enemyManager.GetSpeedScale(); // Speed scale is determined by score
     }
 
-    void Update() {
-        if (!kiteMinigame.IsRunning) return;
+    void Update()
+    {
+        transform.Translate(Vector3.back * speed * speedScale * Time.deltaTime, Space.World); // Movement
 
-        transform.Translate(Vector3.back * speed * speedScale * Time.deltaTime, Space.World);
-
-        if (transform.position.z < destroyZ) {
+        if (transform.position.z < destroyZ) // Check to destroy if Branch is below play area
+        {
             Destroy(gameObject);
         }
     }
 
-    void OnTriggerEnter(Collider other){
-        // Debug.Log("Triggered by: " + other.name);
+    void OnTriggerEnter(Collider other)
+    {
+        if (!kiteMinigame.isRunning) return;
 
-        if (!kiteMinigame.IsRunning) return;
-
-        if (other.CompareTag("PlayerKite") && !other.GetComponent<KitePlayerController>().invincible)
+        if (other.CompareTag("PlayerKite") && !other.GetComponent<KitePlayerController>().isInvincible) // Check invincibility of Kite
         {
-            // Debug.Log("PlayerKite hit a branch!");
-            kiteMinigame.LoseLife();
-            other.GetComponent<KitePlayerController>().isHit();
+            kiteMinigame.LoseLife(); // Signal to display lost life
+            other.GetComponent<KitePlayerController>().isHit(); // Hit player and begin invincibility period
         }
     }
 }
