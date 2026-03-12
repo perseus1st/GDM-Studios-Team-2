@@ -166,10 +166,6 @@ public class Conductor : MonoBehaviour
                 calculatePts(pressedNote.GetComponent<NoteMover>().targetTime, pressedTime); 
                 Destroy(pressedNote);
             }
-        // else
-        // {
-        //     scoreManager.LoseLife(); 
-        // }
     }
 
     void OnRight(InputValue value)
@@ -182,10 +178,6 @@ public class Conductor : MonoBehaviour
                 calculatePts(pressedNote.GetComponent<NoteMover>().targetTime, pressedTime); 
                 Destroy(pressedNote);
             }
-        // else
-        // {
-        //     scoreManager.LoseLife(); 
-        // }
     }
 
     void OnDown(InputValue value)
@@ -198,10 +190,6 @@ public class Conductor : MonoBehaviour
                 calculatePts(pressedNote.GetComponent<NoteMover>().targetTime, pressedTime); 
                 Destroy(pressedNote);
             }
-        // else
-        // {
-        //     scoreManager.LoseLife(); 
-        // }
     }
 
     void OnLeft(InputValue value)
@@ -214,10 +202,6 @@ public class Conductor : MonoBehaviour
                 calculatePts(pressedNote.GetComponent<NoteMover>().targetTime, pressedTime); 
                 Destroy(pressedNote);
             }
-        // else
-        // {
-        //     scoreManager.LoseLife(); 
-        // }
     }
 
     void OnPause(InputValue value)
