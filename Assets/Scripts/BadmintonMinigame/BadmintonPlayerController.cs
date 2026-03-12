@@ -36,6 +36,10 @@ public class BadmintonPlayerController : MonoBehaviour
     
     private float lastHitPressTime = -999f;  // When click was last pressed
 
+    // Reference to PauseManager
+    [Header("Pause Manager Reference")]
+    [SerializeField] PauseManager pauseManager;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -69,6 +73,15 @@ public class BadmintonPlayerController : MonoBehaviour
         if (value.isPressed)
             // Record press time
             lastHitPressTime = Time.time; 
+    }
+
+    // Input system calls this when the player presses ESC
+    void OnPause(InputValue value)
+    {
+        if (value.isPressed)
+        {
+            pauseManager.Pause();
+        }
     }
 
     // Updates every frame
