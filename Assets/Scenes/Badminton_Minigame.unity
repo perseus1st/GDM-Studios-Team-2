@@ -646,6 +646,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Temp_UI
       objectReference: {fileID: 0}
+    - target: {fileID: 2054217425224638988, guid: 4e90bd39c3108424a9eddfc2abea6e62, type: 3}
+      propertyPath: canvasAnimator
+      value: 
+      objectReference: {fileID: 1896834102}
     - target: {fileID: 2631786016092222574, guid: 4e90bd39c3108424a9eddfc2abea6e62, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -2133,7 +2137,7 @@ MonoBehaviour:
   delayBeforeAnimation: 1
   animationLength: 3
   triggerName: NextLevel
-  skipFadeInScene: Cutscene1
+  skipFadeInScene: MainMenu
   canvasAnimator: {fileID: 1896834102}
 --- !u!4 &1497256158
 Transform:

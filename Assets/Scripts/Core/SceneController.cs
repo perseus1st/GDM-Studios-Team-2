@@ -11,34 +11,31 @@ public class SceneController : MonoBehaviour
     public float animationLength = 3f;
 
     public string triggerName = "NextLevel";
-    public string skipFadeInScene = "Cutscene1";
+    public string skipFadeInScene;
     [SerializeField] private Animator canvasAnimator;
 
 
     void Awake()
+{
+    if (canvasAnimator == null)
+        canvasAnimator = FindAnyObjectByType<Animator>();
+
+    if (canvasAnimator == null)
     {
-        // If canvasAnimator not set in Inspector, find it automatically
-        if (canvasAnimator == null)
-        {
-            canvasAnimator = FindAnyObjectByType<Animator>();
-        }
-
-        if (canvasAnimator == null)
-            Debug.LogError("CanvasAnimator is missing in the scene!");
-
+        Debug.LogError("CanvasAnimator is missing in the scene!");
+        return;
     }
 
-    void Start()
-    {
-        string currentScene = SceneManager.GetActiveScene().name;
-            
-        if (currentScene == skipFadeInScene)
-        {
-            canvasAnimator.Play("Idle_Animation", 0, 0f);
-        }    
-    }
+    string currentScene = SceneManager.GetActiveScene().name;
 
-    
+    if (currentScene == "MainMenu")
+    {
+        // Skip fade-in by forcing the animation to its final frame
+        canvasAnimator.Play("Scene_Fade_In", 0, 1f);
+        canvasAnimator.Update(0f);
+    }
+}
+
     public void LoadScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);

@@ -11,6 +11,15 @@ public class SaveFileSelection : MonoBehaviour
     [SerializeField] TMP_Text file3Text;
     [SerializeField] GameObject FileWithDataPanel;
 
+    private SceneController sceneController;
+
+    void Awake()
+    {
+    sceneController = FindFirstObjectByType<SceneController>();
+    if (sceneController == null)
+        Debug.LogError("No SceneController found in the scene!");
+    }
+
     private void OnEnable(){
         if (SaveSystem.SaveExists(1))
         {
@@ -51,7 +60,7 @@ public class SaveFileSelection : MonoBehaviour
             GameManager.Instance.completedMinigames.Clear();
             GameManager.Instance.highScores.Clear();
             GameManager.Instance.currentSaveSlot = slot;
-            SceneManager.LoadScene("Cutscene1");
+            sceneController.StartAnimation("Cutscene1");
         }
     }
 }

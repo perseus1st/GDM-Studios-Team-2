@@ -1429,7 +1429,7 @@ MonoBehaviour:
   delayBeforeAnimation: 1
   animationLength: 3
   triggerName: NextLevel
-  skipFadeInScene: Cutscene1
+  skipFadeInScene: MainMenu
   canvasAnimator: {fileID: 209386111}
 --- !u!4 &285627715
 Transform:

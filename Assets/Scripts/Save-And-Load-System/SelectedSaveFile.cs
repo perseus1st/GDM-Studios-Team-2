@@ -4,8 +4,15 @@ using UnityEngine.SceneManagement;
 public class SelectedSaveFile : MonoBehaviour
 {
     private int fileNumber;
+    private SceneController sceneController;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Awake()
+    {
+    sceneController = FindFirstObjectByType<SceneController>();
+    if (sceneController == null)
+        Debug.LogError("No SceneController found in the scene!");
+    }
     void Start()
     {
         Debug.Log("Selected file " + fileNumber);
@@ -26,7 +33,7 @@ public class SelectedSaveFile : MonoBehaviour
     {
         SaveSystem.Load(fileNumber);
         Debug.Log("Loading save slot " + fileNumber);
-        SceneManager.LoadScene("MC_Room");
+        sceneController.StartAnimation("MC_Room");
     }
 
     public void onDelete()

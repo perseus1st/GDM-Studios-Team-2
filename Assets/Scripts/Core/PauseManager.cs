@@ -42,10 +42,11 @@ public class PauseManager : MonoBehaviour
         Time.timeScale = 0f;
         AudioListener.pause = true;
 
-        // audioManager.PauseMusic();
         playerInput.SwitchCurrentActionMap("Pause");
-
         isPaused = true;
+
+        if (AudioManager.INSTANCE != null)
+            AudioManager.INSTANCE.PauseMusic();
     }
 
     public void Resume()
@@ -54,10 +55,10 @@ public class PauseManager : MonoBehaviour
         Time.timeScale = 1f;
         AudioListener.pause = false;
 
-        // audioManager.UnpauseMusic();
-        // playerInput.ActivateInput();
         playerInput.SwitchCurrentActionMap(inputMapName);
-
         isPaused = false;
+
+        if (AudioManager.INSTANCE != null)
+            AudioManager.INSTANCE.ResumeMusic();
     }
 }
