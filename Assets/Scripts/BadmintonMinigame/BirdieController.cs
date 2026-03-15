@@ -99,7 +99,7 @@ public class BirdieController : MonoBehaviour
         isFlying = false;
 
         // Start first serve after a delay just for testing
-        Invoke("ServeToPlayer", 1f);
+        Invoke("ServeToPlayer", 0.25f);
     }
 
     // Update is called once per frame
