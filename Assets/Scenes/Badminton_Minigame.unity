@@ -2516,7 +2516,7 @@ MonoBehaviour:
   baseGroundedWindow: 0.3
   windowDecreasePerHit: 0.06
   minGroundedWindow: 0.1
-  scoreToComplete: 30
+  scoreToComplete: 20
   minigameID: badminton
   sceneToLoad: Sister_Room
 --- !u!4 &1855337648
@@ -3410,7 +3410,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ae550563d0c8294a8af3b0d62888863, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CourtColourController
-  colorGradingMaterial: {fileID: 2100000, guid: c8ac9e97437ef614a8b65f45f6edb889, type: 2}
+  BadmintonColorGradingMaterial: {fileID: 2100000, guid: c8ac9e97437ef614a8b65f45f6edb889, type: 2}
   darkColor: {r: 0.09411765, g: 0, b: 0.16862746, a: 255}
   darkenAmount: 0.05
   desaturateAmount: 1

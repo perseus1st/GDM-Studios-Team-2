@@ -96,31 +96,31 @@ Material:
     - _ClearCoatSmoothness: 0
     - _CourtCenterX: 0.5
     - _CourtCenterY: 0.5
-    - _CourtMaxX: 0.8
-    - _CourtMaxY: 0.9
-    - _CourtMinX: 0.2
-    - _CourtMinY: 0.1
+    - _CourtMaxX: 1
+    - _CourtMaxY: 1
+    - _CourtMinX: 0
+    - _CourtMinY: 0
     - _Cull: 2
     - _Cutoff: 0.5
-    - _DarkenAmount: 0.7
-    - _DesaturateAmount: 0.8
+    - _DarkenAmount: 0.05
+    - _DesaturateAmount: 1
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
-    - _FadeSmoothness: 1.5
+    - _FadeSmoothness: 1.9
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _InnerRadius: 0.1
-    - _InnerRadiusX: 0.3
-    - _InnerRadiusY: 0.3
+    - _InnerRadiusX: 0.143
+    - _InnerRadiusY: 0.24
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _OuterRadius: 0.3
-    - _OuterRadiusX: 0.6
-    - _OuterRadiusY: 0.6
+    - _OuterRadiusX: 0.1435
+    - _OuterRadiusY: 0.25
     - _Parallax: 0.005
     - _ProgressAmount: 0
     - _QueueControl: 0
