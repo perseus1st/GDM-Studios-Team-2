@@ -1209,7 +1209,7 @@ MonoBehaviour:
   longShotArcMultiplier: 0.5
   longShotExtraTimeAtLowScore: 1.3
   longShotExtraTimeAtHighScore: 0.5
-  scoreForFullDistribution: 30
+  scoreForFullDistribution: 25
 --- !u!64 &815874945
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2516,7 +2516,7 @@ MonoBehaviour:
   baseGroundedWindow: 0.3
   windowDecreasePerHit: 0.06
   minGroundedWindow: 0.1
-  scoreToComplete: 35
+  scoreToComplete: 30
   minigameID: badminton
   sceneToLoad: Sister_Room
 --- !u!4 &1855337648
@@ -2684,7 +2684,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
+  - {fileID: 2100000, guid: c8ac9e97437ef614a8b65f45f6edb889, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2858,6 +2858,7 @@ GameObject:
   - component: {fileID: 1971680468}
   - component: {fileID: 1971680467}
   - component: {fileID: 1971680470}
+  - component: {fileID: 1971680471}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2983,6 +2984,19 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!114 &1971680471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1971680466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4828099129da894280d40b0a0f2d233, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CourtColorPostProcess
+  effectMaterial: {fileID: 2100000, guid: c8ac9e97437ef614a8b65f45f6edb889, type: 2}
 --- !u!1 &2053228853
 GameObject:
   m_ObjectHideFlags: 0
@@ -3367,6 +3381,69 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+--- !u!1 &2110760360
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2110760362}
+  - component: {fileID: 2110760361}
+  m_Layer: 0
+  m_Name: CourtColourController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2110760361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2110760360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ae550563d0c8294a8af3b0d62888863, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CourtColourController
+  colorGradingMaterial: {fileID: 2100000, guid: c8ac9e97437ef614a8b65f45f6edb889, type: 2}
+  darkColor: {r: 0.09411765, g: 0, b: 0.16862746, a: 255}
+  darkenAmount: 0.05
+  desaturateAmount: 1
+  darknessHold1: 0.33
+  darknessHold2: 0.66
+  transitionSpeedIncrease: 0.1
+  transitionSpeedDecrease: 2
+  courtCenterX: 0.5
+  courtCenterY: 0.5
+  innerRadiusX: 0.143
+  outerRadiusX: 0.1435
+  innerRadiusY: 0.24
+  outerRadiusY: 0.25
+  fadeSmoothness: 1.9
+  courtMinX: 0
+  courtMaxX: 1
+  courtMinY: 0
+  courtMaxY: 1
+--- !u!4 &2110760362
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2110760360}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.25, y: 0.175, z: 0.25}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &6527743843307108183
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3495,3 +3572,4 @@ SceneRoots:
   - {fileID: 1263642150}
   - {fileID: 1950267920}
   - {fileID: 1594213963}
+  - {fileID: 2110760362}

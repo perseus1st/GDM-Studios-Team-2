@@ -1,2 +1,13 @@
 fileFormatVersion: 2
 guid: eecfe004bc4c7154b88f11061e72a55b
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - canvasAnimator: {instanceID: 0}
+  - courtColorMaterial: {fileID: 2100000, guid: c8ac9e97437ef614a8b65f45f6edb889, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
