@@ -217,6 +217,12 @@ void ShowRenderers(GameObject obj)
     
     wasdSymbolActive = true;
     
+    // Position FIRST, before enabling renderers
+    Vector3 targetPosition = player.position + wasdSymbolOffset;
+    wasdSymbol.transform.position = targetPosition;
+    wasdSymbolAlt.transform.position = targetPosition;
+    
+    // NOW enable renderers
     ShowRenderers(wasdSymbol);
     HideRenderers(wasdSymbolAlt);
     

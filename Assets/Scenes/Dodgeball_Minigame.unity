@@ -2331,7 +2331,7 @@ MonoBehaviour:
   baseGroundedWindow: 3
   minGroundedWindow: 1
   windowDecreasePerHit: 0.05
-  scoreToComplete: 25
+  scoreToComplete: 20
   minigameID: dodgeball
   sceneToLoad: Sister_Room
 --- !u!4 &1638469674
