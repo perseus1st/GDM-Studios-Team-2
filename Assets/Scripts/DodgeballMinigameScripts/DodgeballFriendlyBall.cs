@@ -347,6 +347,9 @@ void UpdateFlash()
         // Start throw sequence
         isBeingThrown = true;
         throwStartTime = Time.time;
+
+        if (playerController.GetComponentInChildren<Animator>() != null)
+            playerController.GetComponentInChildren<Animator>().SetTrigger("Throw");
         
         // Lock player movement
         if (playerController != null)
@@ -419,28 +422,29 @@ void UpdateFlash()
     
     // Find the nearest enemy to throw at
     Transform FindNearestEnemy()
+{
+    if (enemyManager == null || enemyManager.enemyPositions == null)
+        return null;
+
+    Transform nearest = null;
+    float nearestDistance = Mathf.Infinity;
+
+    for (int i = 0; i < enemyManager.enemyPositions.Length; i++)
     {
-        if (enemyManager == null || enemyManager.enemyPositions == null)
-            return null;
-        
-        Transform nearest = null;
-        float nearestDistance = Mathf.Infinity;
-        
-        foreach (Transform enemy in enemyManager.enemyPositions)
+        Transform enemy = enemyManager.enemyPositions[i];
+        if (enemy != null && !enemyManager.IsEnemyStunned(i))
         {
-            if (enemy != null)
+            float distance = Vector3.Distance(transform.position, enemy.position);
+            if (distance < nearestDistance)
             {
-                float distance = Vector3.Distance(transform.position, enemy.position);
-                if (distance < nearestDistance)
-                {
-                    nearestDistance = distance;
-                    nearest = enemy;
-                }
+                nearestDistance = distance;
+                nearest = enemy;
             }
         }
-        
-        return nearest;
     }
+
+    return nearest;
+}
     
     // Update ball flying toward enemy
     void UpdateEnemyFlight()
@@ -466,26 +470,26 @@ void UpdateFlash()
         }
     }
     
-    // Check if ball hit an enemy
     bool CheckEnemyHit()
+{
+    if (enemyManager == null || enemyManager.enemyPositions == null)
+        return false;
+
+    foreach (Transform enemy in enemyManager.enemyPositions)
     {
-        if (enemyManager == null || enemyManager.enemyPositions == null)
-            return false;
-        
-        foreach (Transform enemy in enemyManager.enemyPositions)
+        if (enemy != null)
         {
-            if (enemy != null)
+            float distance = Vector3.Distance(transform.position, enemy.position);
+            if (distance <= enemyHitRadius)
             {
-                float distance = Vector3.Distance(transform.position, enemy.position);
-                if (distance <= enemyHitRadius)
-                {
-                    return true;
-                }
+                enemyManager.StunEnemy(enemy, 0.7f);
+                return true;
             }
         }
-        
-        return false;
     }
+
+    return false;
+}
     
     // Called when player is hit - cancel throw if in progress
     public void CancelThrow()

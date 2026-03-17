@@ -3,6 +3,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System.Collections;
 
 public class DodgeballScoreManager : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class DodgeballScoreManager : MonoBehaviour
     
     [Header("References")]
     public DodgeballEnemyManager enemyManager; // Reference to enemy manager for resets
+    public AudioSource whistleSound; // Sound when minigame is completed
+    public float completionDelay = 2f; // Pause before scene transition
     
     [Header("Score Settings")]
     public int currentScore = 0; // Current score
@@ -217,33 +220,54 @@ public class DodgeballScoreManager : MonoBehaviour
 
     // Called when player reaches completion score
     void CompleteMinigame()
+{
+    minigameCompleted = true;
+    Debug.Log($"Minigame completed at score {currentScore}!");
+
+    if (GameManager.Instance != null)
+        GameManager.Instance.MarkMinigameCompleted(minigameID);
+    else
+        Debug.LogWarning("GameManager not found! Cannot mark minigame as completed.");
+
+    StartCoroutine(CompletionSequence());
+}
+
+IEnumerator CompletionSequence()
+{
+    // Stop enemies
+    if (enemyManager != null)
+        enemyManager.enabled = false;
+
+// Stop Friendly balls from spawning
+DodgeballFriendlyBallSpawner friendlyBallSpawner = FindFirstObjectByType<DodgeballFriendlyBallSpawner>();
+if (friendlyBallSpawner != null)
+    friendlyBallSpawner.enabled = false;
+
+    // Stop player
+    DodgeballPlayerController playerController = FindFirstObjectByType<DodgeballPlayerController>();
+    if (playerController != null)
     {
-        minigameCompleted = true;
-    
-        Debug.Log($"Minigame completed at score {currentScore}!");
-    
-        // Mark minigame as completed in GameManager
-        if (GameManager.Instance != null)
-        {
-            GameManager.Instance.MarkMinigameCompleted(minigameID);
-        }
-        else
-        {
-            Debug.LogWarning("GameManager not found! Cannot mark minigame as completed.");
-        }
-    
-        // Load the next scene using SceneController
-        SceneController sceneController = FindAnyObjectByType<SceneController>();
-        if (sceneController != null)
-        {
-            sceneController.StartAnimation(sceneToLoad);
-        }
-        else
-        {
-            Debug.LogWarning("SceneController not found! Loading scene directly without animation.");
-            UnityEngine.SceneManagement.SceneManager.LoadScene(sceneToLoad);
-        }
+        playerController.enabled = false;
+        playerController.Rigidbody.linearVelocity = Vector3.zero;
     }
+
+    // Play whistle
+    if (whistleSound != null)
+        whistleSound.Play();
+
+    // Wait
+    yield return new WaitForSeconds(completionDelay);
+
+    // Transition
+    SceneController sceneController = FindAnyObjectByType<SceneController>();
+    if (sceneController != null)
+        sceneController.StartAnimation(sceneToLoad);
+    else
+    {
+        Debug.LogWarning("SceneController not found! Loading scene directly without animation.");
+        UnityEngine.SceneManagement.SceneManager.LoadScene(sceneToLoad);
+    }
+}
 
     
     public int GetLives()

@@ -201,7 +201,6 @@ public class DodgeballPlayerController : MonoBehaviour
             animator.SetBool("IsMoving", isMoving);
             animator.SetFloat("MoveX", Mathf.Abs(movementX));
             animator.SetFloat("MoveY", movementY);
-            animator.SetBool("IsThrowing", isThrowing);
             
             // Flips sprite when moving right
             if (spriteRenderer != null && Mathf.Abs(movementX) > inputDeadzone)
@@ -226,10 +225,7 @@ public class DodgeballPlayerController : MonoBehaviour
         StartInvincibility();
         
         // Cancel any ongoing throw
-        if (isThrowing)
-        {
-            isThrowing = false;
-        }
+        animator.ResetTrigger("Throw");
     }
     
     // Begin invincibility period with flashing

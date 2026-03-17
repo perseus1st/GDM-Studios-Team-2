@@ -3,6 +3,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System.Collections;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -34,6 +35,8 @@ public class ScoreManager : MonoBehaviour
     public int scoreToComplete = 15; // Score needed to complete minigame
     public string minigameID = "badminton"; // Unique ID for this minigame
     public string sceneToLoad = "Sister_Room"; // Scene to load on completion
+    public AudioSource whistleSound; // Sound when minigame is completed
+    public float completionDelay = 2f; // Pause before scene transition
     private bool minigameCompleted = false; // Has minigame been completed this session
 
     void Awake()
@@ -177,33 +180,54 @@ public class ScoreManager : MonoBehaviour
 	
     // Called when player reaches completion score
     void CompleteMinigame()
+{
+    minigameCompleted = true;
+    Debug.Log($"Minigame completed at score {currentScore}!");
+
+    if (GameManager.Instance != null)
+        GameManager.Instance.MarkMinigameCompleted(minigameID);
+    else
+        Debug.LogWarning("GameManager not found! Cannot mark minigame as completed.");
+
+    StartCoroutine(CompletionSequence());
+}
+
+IEnumerator CompletionSequence()
+{
+    // Stop player 
+    BadmintonPlayerController playerController = FindFirstObjectByType<BadmintonPlayerController>();
+    if (playerController != null)
     {
-        minigameCompleted = true;
-    
-        Debug.Log($"Minigame completed at score {currentScore}!");
-    
-        // Mark minigame as completed in GameManager
-        if (GameManager.Instance != null)
-        {
-            GameManager.Instance.MarkMinigameCompleted(minigameID);
-        }
-        else
-        {
-            Debug.LogWarning("GameManager not found! Cannot mark minigame as completed.");
-        }
-    
-        // Load the next scene using SceneController
-        SceneController sceneController = FindAnyObjectByType<SceneController>();
-        if (sceneController != null)
-        {
-            sceneController.StartAnimation(sceneToLoad);
-        }
-        else
-        {
-            Debug.LogWarning("SceneController not found! Loading scene directly without animation.");
-            UnityEngine.SceneManagement.SceneManager.LoadScene(sceneToLoad);
-        }
+        playerController.enabled = false;
+        playerController.Rigidbody.linearVelocity = Vector3.zero;
     }
+
+    // Stop Birdie
+    BirdieController birdie = FindFirstObjectByType<BirdieController>();
+if (birdie != null)
+    birdie.enabled = false;
+    Renderer birdieRenderer = birdie.GetComponentInChildren<Renderer>();
+if (birdieRenderer != null)
+    birdieRenderer.enabled = false;
+
+    // Play whistle
+    if (whistleSound != null)
+        whistleSound.Play();
+
+    // Wait
+    yield return new WaitForSeconds(completionDelay);
+
+    // Transition
+    SceneController sceneController = FindAnyObjectByType<SceneController>();
+    if (sceneController != null)
+        sceneController.StartAnimation(sceneToLoad);
+    else
+    {
+        Debug.LogWarning("SceneController not found! Loading scene directly without animation.");
+        UnityEngine.SceneManagement.SceneManager.LoadScene(sceneToLoad);
+    }
+}
+
 
     // Public getters
     public int GetScore()
