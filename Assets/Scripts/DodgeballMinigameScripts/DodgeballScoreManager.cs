@@ -2,6 +2,7 @@
 
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class DodgeballScoreManager : MonoBehaviour
 {
@@ -9,8 +10,10 @@ public class DodgeballScoreManager : MonoBehaviour
     public static DodgeballScoreManager Instance { get; private set; }
     
     [Header("UI References")]
-    public TextMeshProUGUI scoreText;
     public TextMeshProUGUI[] lifeTexts;
+    [SerializeField] private Image scoreFillImage;
+    [SerializeField] private TextMeshProUGUI scoreTextWhite;  // The white base text
+    [SerializeField] private TextMeshProUGUI scoreTextPink;   // The pink filled text
     
     [Header("References")]
     public DodgeballEnemyManager enemyManager; // Reference to enemy manager for resets
@@ -33,6 +36,12 @@ public class DodgeballScoreManager : MonoBehaviour
     public float baseGroundedWindow = 3f; // Starting time ball stays on ground (seconds)
     public float minGroundedWindow = 1f; // Minimum time at max difficulty
     public float windowDecreasePerHit = 0.05f; // How much decreases per hit
+
+    [Header("Scene Completion")]
+    public int scoreToComplete = 15; // Score needed to complete minigame
+    public string minigameID = "dodgeball"; // Unique ID for this minigame
+    public string sceneToLoad = "Sister_Room"; // Scene to load on completion
+    private bool minigameCompleted = false; // Has minigame been completed this session
     
     void Awake()
     {
@@ -132,9 +141,14 @@ public class DodgeballScoreManager : MonoBehaviour
     // Update the UI text
     void UpdateScoreDisplay()
     {
-        if (scoreText != null)
+        scoreTextWhite.text = currentScore.ToString();
+        scoreTextPink.text = currentScore.ToString();
+
+        // Update the fill amount
+        if (scoreFillImage != null)
         {
-            scoreText.text = currentScore.ToString();
+            float progress = (float)currentScore / scoreToComplete;
+            scoreFillImage.fillAmount = progress;
         }
     }
     
@@ -152,13 +166,13 @@ public class DodgeballScoreManager : MonoBehaviour
                 // If have life, show white circle. If lost life, show red x
                 if (i < currentLives)
                 {
-                    lifeTexts[i].text = "O";
-                    lifeTexts[i].color = Color.white; 
+                    lifeTexts[i].text = "\u2665";
+                    lifeTexts[i].color = new Color(196f/255f, 22f/255f, 26f/255f); 
                 }
                 else
                 {
                     lifeTexts[i].text = "X"; 
-                    lifeTexts[i].color = Color.red; 
+                    lifeTexts[i].color = Color.white; 
                 }
             }
         }
@@ -189,6 +203,10 @@ public class DodgeballScoreManager : MonoBehaviour
     void OnScoreChanged()
     {
         // TODO: Add other effects based on score
+        if (!minigameCompleted && currentScore >= scoreToComplete)
+        {
+            CompleteMinigame();
+        }
     }
     
     // Public getters
@@ -196,6 +214,37 @@ public class DodgeballScoreManager : MonoBehaviour
     {
         return currentScore;
     }
+
+    // Called when player reaches completion score
+    void CompleteMinigame()
+    {
+        minigameCompleted = true;
+    
+        Debug.Log($"Minigame completed at score {currentScore}!");
+    
+        // Mark minigame as completed in GameManager
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.MarkMinigameCompleted(minigameID);
+        }
+        else
+        {
+            Debug.LogWarning("GameManager not found! Cannot mark minigame as completed.");
+        }
+    
+        // Load the next scene using SceneController
+        SceneController sceneController = FindAnyObjectByType<SceneController>();
+        if (sceneController != null)
+        {
+            sceneController.StartAnimation(sceneToLoad);
+        }
+        else
+        {
+            Debug.LogWarning("SceneController not found! Loading scene directly without animation.");
+            UnityEngine.SceneManagement.SceneManager.LoadScene(sceneToLoad);
+        }
+    }
+
     
     public int GetLives()
     {

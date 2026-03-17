@@ -1,6 +1,7 @@
 // Created by Daniil Makarenko
 
 using UnityEngine;
+using System.Collections;
 
 public class DodgeballEnemyManager : MonoBehaviour
 {
@@ -29,8 +30,20 @@ public class DodgeballEnemyManager : MonoBehaviour
     public int scoreForMultipleThrowers = 10; // Score threshold to enable multiple throwers
     public float maxPredictionDistance = 2f; // Maximum distance to predict ahead of player
     
+    // Alternating pattern settings
+    [Header("Alternating Pattern Settings")]
+    public float alternatingPatternBaseDelay = 0.5f; // Base time between alternating throws
+    public float alternatingPatternMinDelay = 0.1f; // Minimum time between alternating throws at high score
+    
+    // Crossing pattern settings
+    [Header("Crossing Pattern Settings")]
+    public float crossingAngleDegrees = 15f; // Angle in degrees toward center (adjustable in inspector)
+    public float crossingPatternBaseDelay = 0.5f; // Base time between crossing throws
+    public float crossingPatternMinDelay = 0.1f; // Minimum time between crossing throws at high score
+    
     // Tracking state
     private bool hasHadMultipleThrowers = false; // Has multiple throwers been triggered yet
+    private bool isExecutingPattern = false; // Is currently executing a multi-throw pattern
     
     void Start()
     {
@@ -54,23 +67,269 @@ public class DodgeballEnemyManager : MonoBehaviour
     
     void Update()
     {
+        // Don't schedule new throws while executing a pattern
+        if (isExecutingPattern)
+            return;
+    
         // Check if it's time to throw
         if (Time.time >= nextThrowTime)
         {
-            ThrowBalls();
+            // Get current score
+            int currentScore = DodgeballScoreManager.Instance != null 
+                ? DodgeballScoreManager.Instance.GetScore() 
+                : 0;
+        
+            // Calculate difficulty factor (0 at score 0, 1 at max score)
+            float t = Mathf.Clamp01((float)currentScore / scoreForMaxDifficulty);
+        
+            // Define probabilities based on score
+            float singleShotChance = Mathf.Lerp(0.2f, 0.2f, t);
+            float alternatingChance = Mathf.Lerp(0.8f, 0.4f, t); // Stays constant
+            float crossingChance = Mathf.Lerp(0.0f, 0.4f, t);
+        
+            // Roll for shot type
+            float roll = Random.Range(0f, 1f);
+        
+            if (roll < singleShotChance)
+            {
+                // Single shot (tracking throw)
+                ThrowBalls();
             
-            // Schedule next throw using score-based frequency
-            float currentInterval = DodgeballScoreManager.Instance != null 
-                ? DodgeballScoreManager.Instance.GetCurrentThrowFrequency() 
-                : baseThrowInterval;
-
-            // Add random variation 
-            float minVariation = currentInterval - throwIntervalVariation;
-            float maxVariation = currentInterval + throwIntervalVariation;
-            float randomizedInterval = Random.Range(minVariation, maxVariation);
-            
-            nextThrowTime = Time.time + randomizedInterval;
+                // Schedule next throw
+                ScheduleNextThrow();
+            }
+            else if (roll < singleShotChance + alternatingChance)
+            {
+                // Alternating pattern
+                StartCoroutine(ExecuteAlternatingPattern(currentScore));
+            }
+            else
+            {
+                // Crossing pattern
+                StartCoroutine(ExecuteCrossingPattern(currentScore));
+            }
         }
+    }
+
+    // Helper method to schedule next throw
+    void ScheduleNextThrow()
+    {
+        float currentInterval = DodgeballScoreManager.Instance != null 
+            ? DodgeballScoreManager.Instance.GetCurrentThrowFrequency() 
+            : baseThrowInterval;
+
+        // Add random variation 
+        float minVariation = currentInterval - throwIntervalVariation;
+        float maxVariation = currentInterval + throwIntervalVariation;
+        float randomizedInterval = Random.Range(minVariation, maxVariation);
+    
+        nextThrowTime = Time.time + randomizedInterval;
+    }
+    
+    // Execute crossing pattern based on score
+    IEnumerator ExecuteCrossingPattern(int currentScore)
+    {
+        isExecutingPattern = true;
+        
+        // Determine number of volleys based on score
+        int volleyCount;
+        if (currentScore < 10)
+        {
+            volleyCount = 1; // Single volley
+        }
+        else if (currentScore < 20)
+        {
+            volleyCount = 2; // Two volleys
+        }
+        else
+        {
+            volleyCount = 3; // Three volleys
+        }
+        
+        // Calculate delay between volleys based on score
+        float t = Mathf.Clamp01((float)currentScore / scoreForMaxDifficulty);
+        float volleyDelay = Mathf.Lerp(crossingPatternBaseDelay, crossingPatternMinDelay, t);
+        
+        // Execute volleys (always odd-numbered enemies only)
+        for (int i = 0; i < volleyCount; i++)
+        {
+            ThrowCrossingVolley();
+            
+            // Wait before next volley (unless it's the last one)
+            if (i < volleyCount - 1)
+            {
+                yield return new WaitForSeconds(volleyDelay);
+            }
+        }
+        
+        // Pattern complete - schedule next throw
+        float currentInterval = DodgeballScoreManager.Instance != null 
+            ? DodgeballScoreManager.Instance.GetCurrentThrowFrequency() 
+            : baseThrowInterval;
+
+        // Add random variation 
+        float minVariation = currentInterval - throwIntervalVariation;
+        float maxVariation = currentInterval + throwIntervalVariation;
+        float randomizedInterval = Random.Range(minVariation, maxVariation);
+        
+        nextThrowTime = Time.time + randomizedInterval;
+        
+        isExecutingPattern = false;
+    }
+    
+    // Execute alternating pattern based on score
+    IEnumerator ExecuteAlternatingPattern(int currentScore)
+    {
+        isExecutingPattern = true;
+        
+        // Determine number of volleys based on score
+        int volleyCount;
+        if (currentScore < 10)
+        {
+            volleyCount = 1; // Single volley
+        }
+        else if (currentScore < 20)
+        {
+            volleyCount = 2; // Two volleys
+        }
+        else
+        {
+            volleyCount = 3; // Three volleys
+        }
+        
+        // Calculate delay between volleys based on score
+        float t = Mathf.Clamp01((float)currentScore / scoreForMaxDifficulty);
+        float volleyDelay = Mathf.Lerp(alternatingPatternBaseDelay, alternatingPatternMinDelay, t);
+        
+        // Randomly choose to start with even or odd
+        bool throwEven = Random.Range(0, 2) == 0;
+        
+        // Execute volleys
+        for (int i = 0; i < volleyCount; i++)
+        {
+            ThrowAlternatingVolley(throwEven);
+            
+            // Alternate between even and odd
+            throwEven = !throwEven;
+            
+            // Wait before next volley (unless it's the last one)
+            if (i < volleyCount - 1)
+            {
+                yield return new WaitForSeconds(volleyDelay);
+            }
+        }
+        
+        // Pattern complete - schedule next throw
+        float currentInterval = DodgeballScoreManager.Instance != null 
+            ? DodgeballScoreManager.Instance.GetCurrentThrowFrequency() 
+            : baseThrowInterval;
+
+        // Add random variation 
+        float minVariation = currentInterval - throwIntervalVariation;
+        float maxVariation = currentInterval + throwIntervalVariation;
+        float randomizedInterval = Random.Range(minVariation, maxVariation);
+        
+        nextThrowTime = Time.time + randomizedInterval;
+        
+        isExecutingPattern = false;
+    }
+    
+    // Throw from even-numbered enemies at crossing angles (indices 0, 2, 4, 6)
+    void ThrowCrossingVolley()
+    {
+        if (enemyPositions == null || enemyPositions.Length == 0 || enemyBallPrefab == null)
+            return;
+    
+        // Throw from even-numbered enemies: indices 0, 2, 4, 6
+        for (int i = 0; i < enemyPositions.Length; i++)
+        {
+            // Even indices: 0, 2, 4, 6 (for 7 enemies at indices 0-6)
+            bool isEven = (i % 2 == 0);
+        
+            if (isEven && enemyPositions[i] != null)
+            {
+                ThrowAtAngleTowardCenter(enemyPositions[i]);
+            }
+        }
+    }
+    
+    // Throw from either even or odd numbered enemies straight down
+    void ThrowAlternatingVolley(bool throwEven)
+    {
+        if (enemyPositions == null || enemyPositions.Length == 0 || enemyBallPrefab == null)
+            return;
+        
+        // Throw from every other enemy
+        for (int i = 0; i < enemyPositions.Length; i++)
+        {
+            // Check if this index matches our even/odd requirement
+            bool isEven = (i % 2 == 0);
+            
+            if (isEven == throwEven && enemyPositions[i] != null)
+            {
+                ThrowStraightDown(enemyPositions[i]);
+            }
+        }
+    }
+    
+    // Throw ball at angle toward center of court
+    void ThrowAtAngleTowardCenter(Transform throwingEnemy)
+    {
+        // Play throw sound
+        if (throwSound != null)
+            throwSound.Play();
+        
+        // Create ball at enemy position
+        GameObject ball = Instantiate(enemyBallPrefab, throwingEnemy.position, enemyBallPrefab.transform.rotation);
+        
+        // Get current ball speed from score manager
+        float ballSpeed = DodgeballScoreManager.Instance != null 
+            ? DodgeballScoreManager.Instance.GetCurrentBallSpeed() 
+            : 8f;
+        
+        // Determine if enemy is on left or right side of court
+        float enemyX = throwingEnemy.position.x;
+        float angleDirection = enemyX < 0 ? 1f : -1f; // Left side angles right, right side angles left
+        
+        // Convert angle to radians and calculate offset
+        float angleRad = crossingAngleDegrees * Mathf.Deg2Rad;
+        float xOffset = Mathf.Tan(angleRad) * 20f * angleDirection; // 20 is the distance down court
+        
+        // Target position is angled toward center
+        Vector3 targetPosition = throwingEnemy.position + new Vector3(xOffset, 0f, -20f);
+        
+        // Add ball behavior component
+        EnemyBallBehavior ballBehavior = ball.AddComponent<EnemyBallBehavior>();
+        ballBehavior.Initialize(throwingEnemy.position, targetPosition, ballSpeed, hitRadius, playerController);
+        
+        // Destroy ball after lifetime to prevent buildup
+        Destroy(ball, ballLifetime);
+    }
+    
+    // Throw ball straight down (negative Z direction)
+    void ThrowStraightDown(Transform throwingEnemy)
+    {
+        // Play throw sound
+        if (throwSound != null)
+            throwSound.Play();
+        
+        // Create ball at enemy position
+        GameObject ball = Instantiate(enemyBallPrefab, throwingEnemy.position, enemyBallPrefab.transform.rotation);
+        
+        // Get current ball speed from score manager
+        float ballSpeed = DodgeballScoreManager.Instance != null 
+            ? DodgeballScoreManager.Instance.GetCurrentBallSpeed() 
+            : 8f;
+        
+        // Target position is straight down from enemy
+        Vector3 targetPosition = throwingEnemy.position + new Vector3(0f, 0f, -20f); // Far down the court
+        
+        // Add ball behavior component
+        EnemyBallBehavior ballBehavior = ball.AddComponent<EnemyBallBehavior>();
+        ballBehavior.Initialize(throwingEnemy.position, targetPosition, ballSpeed, hitRadius, playerController);
+        
+        // Destroy ball after lifetime to prevent buildup
+        Destroy(ball, ballLifetime);
     }
     
     // Determine how many enemies throw and execute throws
@@ -98,7 +357,7 @@ public class DodgeballEnemyManager : MonoBehaviour
             
             // At low scores past threshold: mostly 1, sometimes 2, rarely 3
             // At max difficulty: mostly 2-3, rarely 1
-            if (roll < Mathf.Lerp(0.7f, 0.1f, t)) // Chance for 1 thrower decreases
+            if (roll < Mathf.Lerp(1f, 0.99f, t)) // Chance for 1 thrower decreases
             {
                 numberOfThrowers = 1;
             }
