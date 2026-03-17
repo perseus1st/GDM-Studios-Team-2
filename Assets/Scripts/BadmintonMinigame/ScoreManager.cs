@@ -2,6 +2,7 @@
 
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -9,8 +10,10 @@ public class ScoreManager : MonoBehaviour
     public static ScoreManager Instance { get; private set; }
 
     [Header("UI References")]
-    public TextMeshProUGUI scoreText;
     public TextMeshProUGUI[] lifeTexts;
+    [SerializeField] private Image scoreFillImage;
+    [SerializeField] private TextMeshProUGUI scoreTextWhite;  // The white base text
+    [SerializeField] private TextMeshProUGUI scoreTextPink;   // The pink filled text
 
     [Header("Score Settings")]
     public int currentScore = 0; // Current score
@@ -111,9 +114,14 @@ public class ScoreManager : MonoBehaviour
     // Update the UI text
     void UpdateScoreDisplay()
     {
-        if (scoreText != null)
+        scoreTextWhite.text = currentScore.ToString();
+        scoreTextPink.text = currentScore.ToString();
+
+        // Update the fill amount
+        if (scoreFillImage != null)
         {
-            scoreText.text = currentScore.ToString();
+            float progress = (float)currentScore / scoreToComplete;
+            scoreFillImage.fillAmount = progress;
         }
     }
 
@@ -131,13 +139,13 @@ public class ScoreManager : MonoBehaviour
                 // If have life, show white circle. If lost life, show red x
                 if (i < currentLives)
                 {
-                    lifeTexts[i].text = "O";
-                    lifeTexts[i].color = Color.white; 
+                    lifeTexts[i].text = "\u2665";
+                    lifeTexts[i].color = new Color(196f/255f, 22f/255f, 26f/255f); 
                 }
                 else
                 {
                     lifeTexts[i].text = "X"; 
-                    lifeTexts[i].color = Color.red; 
+                    lifeTexts[i].color = Color.white; 
                 }
             }
         }

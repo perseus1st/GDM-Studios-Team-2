@@ -99,7 +99,7 @@ public class BirdieController : MonoBehaviour
         isFlying = false;
 
         // Start first serve after a delay just for testing
-        Invoke("ServeToPlayer", 1f);
+        Invoke("ServeToPlayer", 0.25f);
     }
 
     // Update is called once per frame
@@ -369,8 +369,8 @@ public class BirdieController : MonoBehaviour
         // Apply offset and clamp to be inside play area
         // Will need to adjust manually if court size changes
         Vector3 targetPos = player.position + offset;
-        targetPos.x = Mathf.Clamp(targetPos.x, -9f, 9f);
-        targetPos.z = Mathf.Clamp(targetPos.z, -9f, -1f);
+        targetPos.x = Mathf.Clamp(targetPos.x, -8f, 8f);
+        targetPos.z = Mathf.Clamp(targetPos.z, -7.5f, -2f);
         targetPos.y = 0.5f;
         
         // Calculate speed and height based on extra time
@@ -410,6 +410,10 @@ public class BirdieController : MonoBehaviour
         float randomX = Random.Range(-8f, 8f);
         float netZ = -0.8f - Random.Range(0f, dropShotNetDistance);
         netZ = Mathf.Clamp(netZ, -9f, -1f);
+
+	// Force the shot to be a legal position
+	randomX = Mathf.Clamp(randomX, -8f, 8f);
+        netZ = Mathf.Clamp(netZ, -7.5f, -2f);
         
         targetPosition = new Vector3(randomX, 0.5f, netZ);
         
@@ -438,6 +442,10 @@ public class BirdieController : MonoBehaviour
         float randomX = Random.Range(-8f, 8f);
         float backZ = -9f + Random.Range(0f, longShotBackDistance);
         
+        // Force the shot to be a legal position
+	randomX = Mathf.Clamp(randomX, -8f, 8f);
+        backZ = Mathf.Clamp(backZ, -7.5f, -2f);
+
         targetPosition = new Vector3(randomX, 0.5f, backZ);
         
         // Calculate extra time
