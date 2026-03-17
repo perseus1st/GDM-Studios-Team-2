@@ -16,11 +16,22 @@ public class OpponentController : MonoBehaviour
     public float maxX = 8f;    // Right boundary
     public float minZ = 1f;    // Front boundary (opponent side)
     public float maxZ = 8f;    // Back boundary
+
+    // Animator values
+    private Animator animator;
+    [SerializeField] private Animator racketAnimator;
+    private SpriteRenderer spriteRenderer;
     
     private Vector3 targetPosition;   // Where opponent is moving to
     private Vector3 currentVelocity;  // Current movement velocity
     private bool isMoving = false;    // Is opponent currently moving
     private Rigidbody rb;             // Rigidbody for physics movement
+    private bool isPlayingHitAnimation = false; // Is hit animation currently playing
+    private bool hitAnimationTriggered = false; // Has the actual hit been processed yet
+    public bool racket = true; 
+    public float hitAnimationDelay = 0.3f; // Delay between animation start and birdie hit
+    public float hitAnimationLength = 0.4f; // Length of hit animation for freezing player
+
     
     void Start()
     {
@@ -30,6 +41,10 @@ public class OpponentController : MonoBehaviour
         {
             rb = gameObject.AddComponent<Rigidbody>();
         }
+
+        // Get animator
+        animator = GetComponentInChildren<Animator>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         
         // Configure Rigidbody
         rb.freezeRotation = true;
@@ -44,6 +59,10 @@ public class OpponentController : MonoBehaviour
     {
         if (isMoving)
         {
+            animator.SetBool("IsMoving", isMoving);
+            racketAnimator.SetBool("IsMoving", isMoving);
+            animator.SetBool("Racket", racket); 
+            
             // Calculate direction to target (only XZ plane)
             Vector3 currentPos = transform.position;
             Vector3 directionToTarget = new Vector3(
@@ -59,6 +78,8 @@ public class OpponentController : MonoBehaviour
             {
                 // Reached target, start decelerating
                 isMoving = false;
+                animator.SetBool("IsMoving", isMoving);
+                racketAnimator.SetBool("IsMoving", isMoving);
             }
             
             if (isMoving)
@@ -135,5 +156,36 @@ public class OpponentController : MonoBehaviour
         // Set as target and start moving
         targetPosition = newTarget;
         isMoving = true;
+    }
+
+    // Trigger the hit animation
+    public void PlayHitAnimation()
+    {
+        if (animator != null && !isPlayingHitAnimation)
+        {
+            isPlayingHitAnimation = true;
+            hitAnimationTriggered = false;
+            animator.SetTrigger("Hit");
+            racketAnimator.SetTrigger("Hit");
+        
+            // Schedule the actual hit to happen after delay
+            Invoke("TriggerDelayedHit", hitAnimationDelay);
+        
+            // Schedule animation end (adjust 0.4f to match animation length)
+            Invoke("OnHitAnimationComplete", hitAnimationLength);
+        }
+    }
+
+    // Called after the animation delay to mark that hit should be processed
+    private void TriggerDelayedHit()
+    {
+        hitAnimationTriggered = true;
+    }
+
+    // Called by animation event at the end of hit animation
+    public void OnHitAnimationComplete()
+    {
+        isPlayingHitAnimation = false;
+        hitAnimationTriggered = false;
     }
 }

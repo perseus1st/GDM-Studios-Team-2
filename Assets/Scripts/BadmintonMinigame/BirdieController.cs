@@ -238,7 +238,7 @@ public class BirdieController : MonoBehaviour
 
         // Aim for opponent with middle of opponent play area as backup
         if (opponent != null)
-            targetPosition = opponent.position;
+            targetPosition = opponent.position + new Vector3(-1.65f, 0f, -0.1f);
         else
             targetPosition = new Vector3(0f, 0.5f, 5f);
 
@@ -276,6 +276,7 @@ public class BirdieController : MonoBehaviour
             OpponentController opponentController = opponent.GetComponent<OpponentController>();
             if (opponentController != null)
             {
+                opponentController.PlayHitAnimation();
                 opponentController.MoveToRandomPosition();
             }
         }
@@ -613,7 +614,7 @@ public class BirdieController : MonoBehaviour
 
     // Move to opponent's position with middle of opponent field as backup
     if (opponent != null)
-        transform.position = opponent.position;
+        transform.position = opponent.position + new Vector3(-1.65f, 0f, -0.1f);
     else
         transform.position = new Vector3(0f, 0.5f, 5f);
     
