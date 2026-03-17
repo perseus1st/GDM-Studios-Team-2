@@ -5,14 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class MCRoomDoor : MonoBehaviour, IInteractable
 {
+    [SerializeField] private GameObject doorObject;
+    [SerializeField] private GameObject interactIconObject;
+
     private Transform interactIcon;
     private Transform doorModel;
     public SceneController sceneController;
 
     void Start()
     {
-        interactIcon = transform.Find("InteractIcon");
-        doorModel = transform.Find("Model");
+        doorModel = doorObject.transform;
+        interactIcon = interactIconObject.transform;
         interactIcon.LookAt(Camera.main.transform.position);
         interactIcon.gameObject.SetActive(false);
     }
