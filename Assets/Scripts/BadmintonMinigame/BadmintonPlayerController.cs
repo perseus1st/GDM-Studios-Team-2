@@ -36,7 +36,7 @@ public class BadmintonPlayerController : MonoBehaviour
     // For hit input buffer
     [Header("Hit Input Settings")]
     public float hitBufferTime = 0.2f;  // How long click stays active in seconds
-    public float hitAnimationDelay = 0.15f; // Delay between animation start and birdie hit
+    public float hitAnimationDelay = 0.3f; // Delay between animation start and birdie hit
     public float hitAnimationLength = 0.4f; // Length of hit animation for freezing player
     
     private float lastHitPressTime = -999f;  // When click was last pressed

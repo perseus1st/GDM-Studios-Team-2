@@ -154,7 +154,7 @@ MonoBehaviour:
   desaturateAmount: 1
   darknessHold1: 0.33
   darknessHold2: 0.66
-  transitionSpeedIncrease: 0.1
+  transitionSpeedIncrease: 0.05
   transitionSpeedDecrease: 2
   courtCenterX: 0.5
   courtCenterY: 0.5
