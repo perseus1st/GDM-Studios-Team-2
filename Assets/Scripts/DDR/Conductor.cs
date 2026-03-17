@@ -31,7 +31,7 @@ public class Conductor : MonoBehaviour
 
     // x positions of the lanes AWSD 
     private float[] laneX = new float[] {-6f, -2f, 2f, 6f}; 
-    private float laneY = 6f; 
+    private float laneY = 9.5f; 
     public float PerfectTiming = 0.075f; 
     public float GreatTiming = 0.15f; 
     public float OkayTiming = 0.25f; 
