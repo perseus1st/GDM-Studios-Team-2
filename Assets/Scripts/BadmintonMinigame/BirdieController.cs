@@ -409,12 +409,12 @@ public class BirdieController : MonoBehaviour
         // Pick location near net
         // Will need to adjust manually if court size changes
         float randomX = Random.Range(-8f, 8f);
-        float netZ = -0.8f - Random.Range(0f, dropShotNetDistance);
+        float netZ = -2f - Random.Range(0f, dropShotNetDistance);
         netZ = Mathf.Clamp(netZ, -9f, -1f);
 
 	// Force the shot to be a legal position
 	randomX = Mathf.Clamp(randomX, -8f, 8f);
-        netZ = Mathf.Clamp(netZ, -7.5f, -2f);
+        netZ = Mathf.Clamp(netZ, -7.5f, -2.1f);
         
         targetPosition = new Vector3(randomX, 0.5f, netZ);
         
