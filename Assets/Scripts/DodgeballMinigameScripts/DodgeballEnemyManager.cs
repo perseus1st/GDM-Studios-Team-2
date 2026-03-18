@@ -91,9 +91,9 @@ public class DodgeballEnemyManager : MonoBehaviour
             float t = Mathf.Clamp01((float)currentScore / scoreForMaxDifficulty);
         
             // Define probabilities based on score
-            float singleShotChance = Mathf.Lerp(0.2f, 0.2f, t);
-            float alternatingChance = Mathf.Lerp(0.8f, 0.4f, t); // Stays constant
-            float crossingChance = Mathf.Lerp(0.0f, 0.4f, t);
+            float singleShotChance = Mathf.Lerp(0.3f, 0.2f, t);
+            float alternatingChance = Mathf.Lerp(0.7f, 0.45f, t); // Stays constant
+            float crossingChance = Mathf.Lerp(0.0f, 0.25f, t);
         
             // Roll for shot type
             float roll = Random.Range(0f, 1f);

@@ -333,11 +333,8 @@ void UpdateFlash()
             glowEffect.SetActive(false);
 
         // Ensure ball is visible (in case it was collected while flashing)
-        Renderer renderer = GetComponent<Renderer>();
-        if (renderer != null)
-        {
-            renderer.enabled = true;
-        }
+        Renderer renderer = GetComponentInChildren<Renderer>();
+        renderer.enabled = true;
         isVisible = true;
         
         // Ball is no longer grounded

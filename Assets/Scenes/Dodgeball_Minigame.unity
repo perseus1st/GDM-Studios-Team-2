@@ -2230,9 +2230,9 @@ MonoBehaviour:
   throwIntervalVariation: 0.5
   ballLifetime: 10
   hitRadius: 0.5
-  scoreForMaxDifficulty: 30
+  scoreForMaxDifficulty: 35
   scoreForMultipleThrowers: 5
-  maxPredictionDistance: 5
+  maxPredictionDistance: 3
   alternatingPatternBaseDelay: 1
   alternatingPatternMinDelay: 0.5
   crossingAngleDegrees: 25
@@ -2944,6 +2944,7 @@ GameObject:
   - component: {fileID: 1638469674}
   - component: {fileID: 1638469673}
   - component: {fileID: 1638469675}
+  - component: {fileID: 1638469676}
   m_Layer: 0
   m_Name: DodgeballScoreManager
   m_TagString: Untagged
@@ -2972,11 +2973,11 @@ MonoBehaviour:
   scoreTextPink: {fileID: 874945095}
   enemyManager: {fileID: 1455063681}
   whistleSound: {fileID: 1638469675}
-  completionDelay: 0.3
+  completionDelay: 0.2
   currentScore: 0
   maxLives: 3
   baseBallSpeed: 8
-  maxBallSpeed: 22
+  maxBallSpeed: 18
   speedIncreasePerHit: 0.2
   baseThrowFrequency: 2
   minThrowFrequency: 0.8
@@ -2987,6 +2988,11 @@ MonoBehaviour:
   scoreToComplete: 20
   minigameID: dodgeball
   sceneToLoad: Sister_Room
+  musicSource: {fileID: 1638469676}
+  track1: {fileID: 8300000, guid: 131674da368092b4a828f2fba8d14222, type: 3}
+  track2: {fileID: 8300000, guid: c9ebbd2a059d24142a169003f8c15c93, type: 3}
+  track3: {fileID: 8300000, guid: c6693c0d6da58744aa2f51831a16c1ae, type: 3}
+  crossfadeDuration: 1
 --- !u!4 &1638469674
 Transform:
   m_ObjectHideFlags: 0
@@ -3014,6 +3020,103 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: d9b2db4c22004e24d80a9024d4fcf453, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!82 &1638469676
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1638469672}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
