@@ -1426,7 +1426,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eecfe004bc4c7154b88f11061e72a55b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneController
-  delayBeforeAnimation: 1
+  delayBeforeAnimation: 0
   animationLength: 3
   triggerName: NextLevel
   skipFadeInScene: Cutscene1
@@ -4447,6 +4447,10 @@ PrefabInstance:
     - target: {fileID: 6526031596444703897, guid: 5ab1283043fdb7547baf502b1c7ed9d7, type: 3}
       propertyPath: m_Name
       value: Pause Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 6526031596444703897, guid: 5ab1283043fdb7547baf502b1c7ed9d7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8429040429411821703, guid: 5ab1283043fdb7547baf502b1c7ed9d7, type: 3}
       propertyPath: m_Pivot.x

@@ -414,7 +414,7 @@ public class BirdieController : MonoBehaviour
 
 	// Force the shot to be a legal position
 	randomX = Mathf.Clamp(randomX, -8f, 8f);
-        netZ = Mathf.Clamp(netZ, -7.5f, -2.1f);
+        netZ = Mathf.Clamp(netZ, -7.5f, -2.2f);
         
         targetPosition = new Vector3(randomX, 0.5f, netZ);
         

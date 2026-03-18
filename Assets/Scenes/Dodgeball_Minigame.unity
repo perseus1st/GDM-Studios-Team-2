@@ -2132,7 +2132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eecfe004bc4c7154b88f11061e72a55b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneController
-  delayBeforeAnimation: 1
+  delayBeforeAnimation: 0
   animationLength: 3
   triggerName: NextLevel
   skipFadeInScene: Cutscene1
@@ -2815,7 +2815,7 @@ MonoBehaviour:
   scoreTextPink: {fileID: 874945095}
   enemyManager: {fileID: 1455063681}
   whistleSound: {fileID: 1638469675}
-  completionDelay: 0.1
+  completionDelay: 0.3
   currentScore: 0
   maxLives: 3
   baseBallSpeed: 8
