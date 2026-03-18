@@ -99,6 +99,15 @@ public class BadmintonPlayerController : MonoBehaviour
         }
     }
 
+    // Input system calls this when the player presses ESC while paused
+    void OnUnpause(InputValue value)
+    {
+        if (value.isPressed)
+        {
+            pauseManager.Resume();
+        }
+    }
+
     // Updates every frame
     void Update()
     {

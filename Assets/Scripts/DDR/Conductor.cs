@@ -228,6 +228,14 @@ public class Conductor : MonoBehaviour
         }
     }
 
+    void OnUnpause(InputValue value)
+    {
+        if (value.isPressed)
+        {
+            pauseManager.Resume();
+        }
+    }
+
     void SpawnNote(Note note, float currTime)
     {
         int laneIndex = note.row; 
