@@ -184,8 +184,17 @@ public class ScoreManager : MonoBehaviour
     minigameCompleted = true;
     Debug.Log($"Minigame completed at score {currentScore}!");
 
-    if (GameManager.Instance != null)
-        GameManager.Instance.MarkMinigameCompleted(minigameID);
+    var gm = GameManager.Instance;
+
+    if (gm != null)
+    {
+        gm.MarkMinigameCompleted(minigameID);
+        if (!gm.highScores.ContainsKey(minigameID) || currentScore > gm.highScores[minigameID])
+        {
+            gm.highScores[minigameID] = currentScore;
+        }
+        SaveSystem.Save(gm.currentSaveSlot);
+    }
     else
         Debug.LogWarning("GameManager not found! Cannot mark minigame as completed.");
 

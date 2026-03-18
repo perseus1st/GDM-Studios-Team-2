@@ -60,6 +60,10 @@ public class DodgeballPlayerController : MonoBehaviour
     private float invincibilityStartTime; // When invincibility started
     private float lastFlashTime; // Last time flash state changed
     private bool isVisible = true; // Current visibility state for flashing
+
+    // Reference to PauseManager
+    [Header("Pause Manager Reference")]
+    [SerializeField] PauseManager pauseManager;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -99,6 +103,15 @@ public class DodgeballPlayerController : MonoBehaviour
         if (value.isPressed)
             // Record press time
             lastInteractPressTime = Time.time; 
+    }
+
+    // Input system calls this when the player presses ESC
+    void OnPause(InputValue value)
+    {
+        if (value.isPressed)
+        {
+            pauseManager.Pause();
+        }
     }
 
     // Lets ball check if there's an interact input. Makes sure input only triggers once per press

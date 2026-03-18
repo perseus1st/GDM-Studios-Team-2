@@ -454,8 +454,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ba1e45c1cb299a4cab07b78d7ab204f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Door
-  doorObject: {fileID: 0}
-  interactIconObject: {fileID: 0}
+  doorObject: {fileID: 2056166071}
+  interactIconObject: {fileID: 1486563926}
   sceneController: {fileID: 1320509220}
 --- !u!65 &189322486
 BoxCollider:

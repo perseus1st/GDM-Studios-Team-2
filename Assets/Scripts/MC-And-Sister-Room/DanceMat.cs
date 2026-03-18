@@ -47,7 +47,7 @@ public class DanceMat : MonoBehaviour, IInteractable
         // SceneManager.LoadScene("DDR_Minigame");
         sceneController.StartAnimation("DDR_Minigame");
         //After minigames are done, this line should be removed from this script and included in the minigame scripts
-        GameManager.Instance.MarkMinigameCompleted("ddr");
+        //GameManager.Instance.MarkMinigameCompleted("ddr");
     }
 
     private void OnTriggerEnter(Collider other)

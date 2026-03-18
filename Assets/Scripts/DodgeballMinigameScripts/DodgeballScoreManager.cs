@@ -100,19 +100,19 @@ public class DodgeballScoreManager : MonoBehaviour
     void ResetGame()
     {
         // Save highscore if score is above 5
-        if (currentScore > 5)
-        {
-            var gm = GameManager.Instance;
+        // if (currentScore > 5)
+        // {
+        //     var gm = GameManager.Instance;
 
-            gm.completedMinigames.Add("dodgeball");
+        //     gm.completedMinigames.Add("dodgeball");
 
-            if (!gm.highScores.ContainsKey("dodgeball") || currentScore > gm.highScores["dodgeball"])
-            {
-                gm.highScores["dodgeball"] = currentScore;
-            }
+        //     if (!gm.highScores.ContainsKey("dodgeball") || currentScore > gm.highScores["dodgeball"])
+        //     {
+        //         gm.highScores["dodgeball"] = currentScore;
+        //     }
 
-            SaveSystem.Save(gm.currentSaveSlot);
-        }
+        //     SaveSystem.Save(gm.currentSaveSlot);
+        // }
 
         currentScore = 0;
         currentLives = maxLives;
@@ -224,8 +224,17 @@ public class DodgeballScoreManager : MonoBehaviour
     minigameCompleted = true;
     Debug.Log($"Minigame completed at score {currentScore}!");
 
-    if (GameManager.Instance != null)
-        GameManager.Instance.MarkMinigameCompleted(minigameID);
+    var gm = GameManager.Instance;
+
+    if (gm != null)
+    {
+        gm.MarkMinigameCompleted(minigameID);
+        if (!gm.highScores.ContainsKey(minigameID) || currentScore > gm.highScores[minigameID])
+        {
+            gm.highScores[minigameID] = currentScore;
+        }
+        SaveSystem.Save(gm.currentSaveSlot);
+    }
     else
         Debug.LogWarning("GameManager not found! Cannot mark minigame as completed.");
 
