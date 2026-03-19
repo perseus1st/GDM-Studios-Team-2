@@ -151,7 +151,7 @@ void ShowRenderers(GameObject obj)
         yield return new WaitForSeconds(1f);
         
         // Step 1: Throw tutorial enemy ball
-        ThrowTutorialEnemyBall();
+        yield return StartCoroutine(ThrowTutorialEnemyBall());
         
         // Wait before showing WASD
         yield return new WaitForSeconds(wasdSymbolDelay);
@@ -178,27 +178,31 @@ void ShowRenderers(GameObject obj)
         CompleteTutorial();
     }
     
-    void ThrowTutorialEnemyBall()
+    IEnumerator ThrowTutorialEnemyBall()
 {
     if (enemyBallPrefab == null || enemyManager == null || enemyManager.enemyPositions == null)
-        return;
-    
-    // Get middle enemy position (index 3 for 7 enemies)
+        yield break;
+
     int middleIndex = enemyManager.enemyPositions.Length / 2;
     Transform middleEnemy = enemyManager.enemyPositions[middleIndex];
-    
+
     if (middleEnemy == null)
-        return;
-    
-    // Create ball at middle enemy position
-    tutorialEnemyBall = Instantiate(enemyBallPrefab, middleEnemy.position, enemyBallPrefab.transform.rotation);
-    
-    // Add tutorial ball behavior
+        yield break;
+
+    // Trigger throw animation
+    if (enemyManager.enemyAnimators != null && middleIndex < enemyManager.enemyAnimators.Length && enemyManager.enemyAnimators[middleIndex] != null)
+        enemyManager.enemyAnimators[middleIndex].SetTrigger("Throw");
+
+    // Wait to match animation delay
+    yield return new WaitForSeconds(enemyManager.throwAnimationDelay);
+
+    tutorialEnemyBall = Instantiate(enemyBallPrefab, middleEnemy.position + new Vector3(-0.7f, 0f, 0f), enemyBallPrefab.transform.rotation);
+
     TutorialEnemyBallBehavior behavior = tutorialEnemyBall.AddComponent<TutorialEnemyBallBehavior>();
     behavior.Initialize(
-        middleEnemy.position,
+        middleEnemy.position + new Vector3(-0.7f, 0f, 0f),
         player.position,
-        8f, // Normal speed
+        8f,
         tutorialBallSlowdownDistance,
         tutorialBallMinSpeed,
         tutorialBallStopDistance,
@@ -206,7 +210,7 @@ void ShowRenderers(GameObject obj)
         reducedStopDistance,
         playerController
     );
-    
+ 
     enemyBallThrown = true;
 }
     

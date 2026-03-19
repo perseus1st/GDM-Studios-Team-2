@@ -497,6 +497,10 @@ PrefabInstance:
       propertyPath: canvasAnimator
       value: 
       objectReference: {fileID: 1230558941}
+    - target: {fileID: 2054217425224638988, guid: 4e90bd39c3108424a9eddfc2abea6e62, type: 3}
+      propertyPath: delayBeforeAnimation
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2631786016092222574, guid: 4e90bd39c3108424a9eddfc2abea6e62, type: 3}
       propertyPath: m_Pivot.x
       value: 0

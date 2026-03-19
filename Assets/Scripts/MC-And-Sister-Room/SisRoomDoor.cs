@@ -24,7 +24,7 @@ public class SisRoomDoor : MonoBehaviour, IInteractable
 
     private void OnTriggerEnter(Collider other)
     {
-        if (miniGamesCompleted == 4 && other.TryGetComponent(out PlayerController player))
+        if (miniGamesCompleted == 3 && other.TryGetComponent(out PlayerController player))
         {
             player.SetInteractable(this);
             interactIcon.gameObject.SetActive(true);
@@ -34,7 +34,7 @@ public class SisRoomDoor : MonoBehaviour, IInteractable
 
     private void OnTriggerExit(Collider other)
     {
-        if (miniGamesCompleted == 4 && other.TryGetComponent(out PlayerController player))
+        if (miniGamesCompleted == 3 && other.TryGetComponent(out PlayerController player))
         {
             player.SetInteractable(null);
             interactIcon.gameObject.SetActive(false);
