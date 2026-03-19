@@ -540,7 +540,7 @@ Camera:
   m_ShutterSpeed: 0.005
   m_Aperture: 16
   m_FocusDistance: 10
-  m_FocalLength: 50
+  m_FocalLength: 40.51132
   m_BladeCount: 5
   m_Curvature: {x: 2, y: 11}
   m_BarrelClipping: 0.25
@@ -554,7 +554,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 100
   field of view: 33
   orthographic: 0
   orthographic size: 2.72
@@ -581,13 +581,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 211619660}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.09584573, y: 0, z: 0, w: 0.9953962}
-  m_LocalPosition: {x: -5.97, y: 4.56, z: -4.6058927}
+  m_LocalRotation: {x: 0.01705763, y: -0, z: -0, w: 0.99985456}
+  m_LocalPosition: {x: -6.005, y: 3.91, z: -5.88}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 1.955, y: 0, z: 0}
 --- !u!114 &211619664
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -657,13 +657,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 367202962}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.057955116, y: -0.9305452, z: 0.053442214, w: 0.35759032}
-  m_LocalPosition: {x: 0.424, y: 2.045, z: -1.057}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.03, y: 2.27, z: -0.92}
   m_LocalScale: {x: 0.16915, y: 0.16915, z: 0.16915}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1662044375}
-  m_LocalEulerAnglesHint: {x: 8.1, y: -138.244, z: -4.034}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &367202964
 SpriteRenderer:
   serializedVersion: 2
@@ -746,7 +746,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &411079179
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -848,7 +848,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5f1213e0becdf42e28844daafcc79c0c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.3
+      value: -0.9
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5f1213e0becdf42e28844daafcc79c0c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2490,8 +2490,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.8, y: 2.8544228, z: 0.78}
-  m_Center: {x: -0.59556377, y: 1.5818478, z: -1.38}
+  m_Size: {x: 1.16, y: 2.8544228, z: 0.78}
+  m_Center: {x: -0.03, y: 1.5818478, z: -1.38}
 --- !u!4 &1662044375
 Transform:
   m_ObjectHideFlags: 0
