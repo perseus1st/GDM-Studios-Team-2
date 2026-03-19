@@ -9,6 +9,7 @@ public class Conductor : MonoBehaviour
     AudioSource music; 
     PlayerInput playerInput; 
     public DDR_ScoreManager scoreManager; 
+    public PlayerAnimator playerAnimator; 
     public static float songBpm = 140f; 
 
     //The offset to the first beat of the song in seconds
@@ -47,9 +48,8 @@ public class Conductor : MonoBehaviour
     [SerializeField] PauseManager pauseManager;
 
 
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+  // Start is called once before the first execution of Update after the MonoBehaviour is created
+  void Start()
     {
         Debug.Log("Start!"); 
         playerInput = GetComponent<PlayerInput>(); 
@@ -166,6 +166,8 @@ public class Conductor : MonoBehaviour
                 calculatePts(pressedNote.GetComponent<NoteMover>().targetTime, pressedTime); 
                 Destroy(pressedNote);
             }
+
+        
     }
 
     void OnRight(InputValue value)

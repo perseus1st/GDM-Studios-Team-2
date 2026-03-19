@@ -19,6 +19,9 @@ public class DDR_ScoreManager : MonoBehaviour
     public GameObject winPanel; 
     public TextMeshProUGUI scoreMsg;
     public TextMeshProUGUI[] lifeTexts;
+    
+
+    
 
     [Header("Score Settings")]
     public int currentScore = 0; // Current score
@@ -33,6 +36,9 @@ public class DDR_ScoreManager : MonoBehaviour
     public int LOWTIER = 1; 
 
     private string minigameID = "ddr";
+    public string sceneToLoad = "Sister_Room";
+    public AudioSource yeahSound; // Sound when minigame is completed
+    public float completionDelay = 2f; // Pause before scene transition
 
 
     void Awake()
@@ -70,6 +76,8 @@ public class DDR_ScoreManager : MonoBehaviour
 
     public void Win()
     {
+        Debug.Log("Win!"); 
+        
         winPanel.gameObject.SetActive(true); 
         hitZone.gameObject.SetActive(false); 
         var gm = GameManager.Instance;
@@ -85,6 +93,23 @@ public class DDR_ScoreManager : MonoBehaviour
         }
         else
             Debug.LogWarning("GameManager not found! Cannot mark minigame as completed.");
+
+        // Play sound 
+        if (yeahSound != null)
+            yeahSound.Play();
+
+        // Wait 
+        // yield return new WaitForSeconds(completionDelay);
+
+        // Load next scene 
+        SceneController sceneController = FindAnyObjectByType<SceneController>();
+        if (sceneController != null)
+            sceneController.StartAnimation(sceneToLoad);
+        else
+        {
+            Debug.LogWarning("SceneController not found! Loading scene directly without animation.");
+            UnityEngine.SceneManagement.SceneManager.LoadScene(sceneToLoad);
+        }
     }
 
     // Call this on successfully hit
