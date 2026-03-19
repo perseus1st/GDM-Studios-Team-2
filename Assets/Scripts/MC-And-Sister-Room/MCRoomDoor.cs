@@ -17,6 +17,7 @@ public class MCRoomDoor : MonoBehaviour, IInteractable
         doorModel = doorObject.transform;
         interactIcon = interactIconObject.transform;
         interactIcon.LookAt(Camera.main.transform.position);
+        interactIcon.Rotate(0, 180, 0);
         interactIcon.gameObject.SetActive(false);
     }
 
@@ -33,6 +34,7 @@ public class MCRoomDoor : MonoBehaviour, IInteractable
             player.SetInteractable(this);
             interactIcon.gameObject.SetActive(true);
             doorModel.gameObject.layer = 6;
+            interactIconObject.layer = 5;
         }
     }
 
