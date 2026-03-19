@@ -351,7 +351,19 @@ MonoBehaviour:
     m_ActionId: 6659d0f5-dc0b-4f91-808b-798725bd54b6
     m_ActionName: 'DDR_Minigame/Pause[/Keyboard/escape]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 585767071}
+        m_TargetAssemblyTypeName: PauseManager, Assembly-CSharp
+        m_MethodName: Resume
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: d0cf144b-22b2-4966-9d34-3180cf8a00fc
     m_ActionName: Pause/New action
   m_NeverAutoSwitchControlSchemes: 0

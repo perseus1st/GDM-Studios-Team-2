@@ -114,6 +114,15 @@ public class DodgeballPlayerController : MonoBehaviour
         }
     }
 
+    // Input system calls this when the player presses ESC while paused
+    void OnUnpause(InputValue value)
+    {
+        if (value.isPressed)
+        {
+            pauseManager.Resume();
+        }
+    }
+
     // Lets ball check if there's an interact input. Makes sure input only triggers once per press
     public bool GetInteractPressed()
     {
