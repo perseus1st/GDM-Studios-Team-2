@@ -2276,7 +2276,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1439895756
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2554,9 +2554,37 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 217001747266810944, guid: 765de37862c9e254ba17b39699338bd5, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 217001747266810944, guid: 765de37862c9e254ba17b39699338bd5, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 217001747266810944, guid: 765de37862c9e254ba17b39699338bd5, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -800
+      objectReference: {fileID: 0}
+    - target: {fileID: 217001747266810944, guid: 765de37862c9e254ba17b39699338bd5, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 419
+      objectReference: {fileID: 0}
     - target: {fileID: 2687663046543623218, guid: 765de37862c9e254ba17b39699338bd5, type: 3}
       propertyPath: m_text
       value: \u2665
+      objectReference: {fileID: 0}
+    - target: {fileID: 4763665671603394261, guid: 765de37862c9e254ba17b39699338bd5, type: 3}
+      propertyPath: m_CullTransparentMesh
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5394967990757167126, guid: 765de37862c9e254ba17b39699338bd5, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -800
+      objectReference: {fileID: 0}
+    - target: {fileID: 5394967990757167126, guid: 765de37862c9e254ba17b39699338bd5, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 450
       objectReference: {fileID: 0}
     - target: {fileID: 5667094279664344466, guid: 765de37862c9e254ba17b39699338bd5, type: 3}
       propertyPath: m_Pivot.x
@@ -2646,9 +2674,21 @@ PrefabInstance:
       propertyPath: m_text
       value: \u2665
       objectReference: {fileID: 0}
+    - target: {fileID: 7799501458453922995, guid: 765de37862c9e254ba17b39699338bd5, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8941617617594931225, guid: 765de37862c9e254ba17b39699338bd5, type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 9122870010002973753, guid: 765de37862c9e254ba17b39699338bd5, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -800
+      objectReference: {fileID: 0}
+    - target: {fileID: 9122870010002973753, guid: 765de37862c9e254ba17b39699338bd5, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 350
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
