@@ -6,7 +6,6 @@ public class PackingList : MonoBehaviour
     [SerializeField] private TMP_Text dodgeballText;
     [SerializeField] private TMP_Text racketsText;
     [SerializeField] private TMP_Text danceMatText;
-    [SerializeField] private TMP_Text kiteText;
 
     private Color32 green = new Color32(0,255,15,255);
     private GameManager gameManager = GameManager.Instance;
@@ -34,11 +33,6 @@ public class PackingList : MonoBehaviour
         {
             danceMatText.text = "<s>• Dance Mat </s>";
             danceMatText.color = green;
-        }
-        if (gameManager.IsMinigameCompleted("kite"))
-        {
-            kiteText.text = "<s>• Kite </s>";
-            kiteText.color = green;
         }
     }
 

@@ -32,6 +32,8 @@ public class DDR_ScoreManager : MonoBehaviour
     public int MIDTIER = 2; 
     public int LOWTIER = 1; 
 
+    private string minigameID = "ddr";
+
 
     void Awake()
     {
@@ -70,6 +72,19 @@ public class DDR_ScoreManager : MonoBehaviour
     {
         winPanel.gameObject.SetActive(true); 
         hitZone.gameObject.SetActive(false); 
+        var gm = GameManager.Instance;
+
+        if (gm != null)
+        {
+            gm.MarkMinigameCompleted(minigameID);
+            if (!gm.highScores.ContainsKey(minigameID) || currentScore > gm.highScores[minigameID])
+            {
+                gm.highScores[minigameID] = currentScore;
+            }
+            SaveSystem.Save(gm.currentSaveSlot);
+        }
+        else
+            Debug.LogWarning("GameManager not found! Cannot mark minigame as completed.");
     }
 
     // Call this on successfully hit

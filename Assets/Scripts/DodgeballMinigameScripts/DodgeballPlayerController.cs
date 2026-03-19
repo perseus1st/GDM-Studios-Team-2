@@ -8,6 +8,9 @@ public class DodgeballPlayerController : MonoBehaviour
     // Reference player's rigidbody for movement
     private Rigidbody rb;
 
+    // Public accessor for tutorial manager
+    public Rigidbody Rigidbody => rb;
+
     // Store movement input
     private float movementX; // left/right
     private float movementY; // forward/back
@@ -57,6 +60,10 @@ public class DodgeballPlayerController : MonoBehaviour
     private float invincibilityStartTime; // When invincibility started
     private float lastFlashTime; // Last time flash state changed
     private bool isVisible = true; // Current visibility state for flashing
+
+    // Reference to PauseManager
+    [Header("Pause Manager Reference")]
+    [SerializeField] PauseManager pauseManager;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -96,6 +103,24 @@ public class DodgeballPlayerController : MonoBehaviour
         if (value.isPressed)
             // Record press time
             lastInteractPressTime = Time.time; 
+    }
+
+    // Input system calls this when the player presses ESC
+    void OnPause(InputValue value)
+    {
+        if (value.isPressed)
+        {
+            pauseManager.Pause();
+        }
+    }
+
+    // Input system calls this when the player presses ESC while paused
+    void OnUnpause(InputValue value)
+    {
+        if (value.isPressed)
+        {
+            pauseManager.Resume();
+        }
     }
 
     // Lets ball check if there's an interact input. Makes sure input only triggers once per press
@@ -198,7 +223,6 @@ public class DodgeballPlayerController : MonoBehaviour
             animator.SetBool("IsMoving", isMoving);
             animator.SetFloat("MoveX", Mathf.Abs(movementX));
             animator.SetFloat("MoveY", movementY);
-            animator.SetBool("IsThrowing", isThrowing);
             
             // Flips sprite when moving right
             if (spriteRenderer != null && Mathf.Abs(movementX) > inputDeadzone)
@@ -223,10 +247,7 @@ public class DodgeballPlayerController : MonoBehaviour
         StartInvincibility();
         
         // Cancel any ongoing throw
-        if (isThrowing)
-        {
-            isThrowing = false;
-        }
+        animator.ResetTrigger("Throw");
     }
     
     // Begin invincibility period with flashing

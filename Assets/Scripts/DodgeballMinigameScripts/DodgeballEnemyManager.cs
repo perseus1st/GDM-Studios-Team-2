@@ -1,6 +1,7 @@
 // Created by Daniil Makarenko
 
 using UnityEngine;
+using System.Collections;
 
 public class DodgeballEnemyManager : MonoBehaviour
 {
@@ -11,6 +12,12 @@ public class DodgeballEnemyManager : MonoBehaviour
     public Transform player; // Reference to player
     public DodgeballPlayerController playerController; // Reference to player controller
     public AudioSource throwSound; // Sound when enemy throws
+    private bool[] enemyStunned; // Tracks which enemies are currently stunned
+
+    // Animation
+    [Header("Animation")]
+    public Animator[] enemyAnimators; // Animator for each enemy (match order with enemyPositions)
+    public float throwAnimationDelay = 0.3f; // Time from animation start to ball spawn
     
     // Throw timing
     [Header("Throw Settings")]
@@ -29,8 +36,20 @@ public class DodgeballEnemyManager : MonoBehaviour
     public int scoreForMultipleThrowers = 10; // Score threshold to enable multiple throwers
     public float maxPredictionDistance = 2f; // Maximum distance to predict ahead of player
     
+    // Alternating pattern settings
+    [Header("Alternating Pattern Settings")]
+    public float alternatingPatternBaseDelay = 0.5f; // Base time between alternating throws
+    public float alternatingPatternMinDelay = 0.1f; // Minimum time between alternating throws at high score
+    
+    // Crossing pattern settings
+    [Header("Crossing Pattern Settings")]
+    public float crossingAngleDegrees = 15f; // Angle in degrees toward center (adjustable in inspector)
+    public float crossingPatternBaseDelay = 0.5f; // Base time between crossing throws
+    public float crossingPatternMinDelay = 0.1f; // Minimum time between crossing throws at high score
+    
     // Tracking state
     private bool hasHadMultipleThrowers = false; // Has multiple throwers been triggered yet
+    private bool isExecutingPattern = false; // Is currently executing a multi-throw pattern
     
     void Start()
     {
@@ -44,6 +63,8 @@ public class DodgeballEnemyManager : MonoBehaviour
         {
             player = playerController.transform;
         }
+       
+        enemyStunned = new bool[enemyPositions.Length]; // Initiate the array
         
         // Schedule first throw
         nextThrowTime = Time.time + baseThrowInterval;
@@ -54,24 +75,276 @@ public class DodgeballEnemyManager : MonoBehaviour
     
     void Update()
     {
+        // Don't schedule new throws while executing a pattern
+        if (isExecutingPattern)
+            return;
+    
         // Check if it's time to throw
         if (Time.time >= nextThrowTime)
         {
-            ThrowBalls();
+            // Get current score
+            int currentScore = DodgeballScoreManager.Instance != null 
+                ? DodgeballScoreManager.Instance.GetScore() 
+                : 0;
+        
+            // Calculate difficulty factor (0 at score 0, 1 at max score)
+            float t = Mathf.Clamp01((float)currentScore / scoreForMaxDifficulty);
+        
+            // Define probabilities based on score
+            float singleShotChance = Mathf.Lerp(0.3f, 0.2f, t);
+            float alternatingChance = Mathf.Lerp(0.7f, 0.45f, t); // Stays constant
+            float crossingChance = Mathf.Lerp(0.0f, 0.25f, t);
+        
+            // Roll for shot type
+            float roll = Random.Range(0f, 1f);
+        
+            if (roll < singleShotChance)
+            {
+                // Single shot (tracking throw)
+                ThrowBalls();
             
-            // Schedule next throw using score-based frequency
-            float currentInterval = DodgeballScoreManager.Instance != null 
-                ? DodgeballScoreManager.Instance.GetCurrentThrowFrequency() 
-                : baseThrowInterval;
-
-            // Add random variation 
-            float minVariation = currentInterval - throwIntervalVariation;
-            float maxVariation = currentInterval + throwIntervalVariation;
-            float randomizedInterval = Random.Range(minVariation, maxVariation);
-            
-            nextThrowTime = Time.time + randomizedInterval;
+                // Schedule next throw
+                ScheduleNextThrow();
+            }
+            else if (roll < singleShotChance + alternatingChance)
+            {
+                // Alternating pattern
+                StartCoroutine(ExecuteAlternatingPattern(currentScore));
+            }
+            else
+            {
+                // Crossing pattern
+                StartCoroutine(ExecuteCrossingPattern(currentScore));
+            }
         }
     }
+
+    // Helper method to schedule next throw
+    void ScheduleNextThrow()
+    {
+        float currentInterval = DodgeballScoreManager.Instance != null 
+            ? DodgeballScoreManager.Instance.GetCurrentThrowFrequency() 
+            : baseThrowInterval;
+
+        // Add random variation 
+        float minVariation = currentInterval - throwIntervalVariation;
+        float maxVariation = currentInterval + throwIntervalVariation;
+        float randomizedInterval = Random.Range(minVariation, maxVariation);
+    
+        nextThrowTime = Time.time + randomizedInterval;
+    }
+    
+    // Execute crossing pattern based on score
+    IEnumerator ExecuteCrossingPattern(int currentScore)
+    {
+        isExecutingPattern = true;
+        
+        // Determine number of volleys based on score
+        int volleyCount;
+        if (currentScore < 10)
+        {
+            volleyCount = 1; // Single volley
+        }
+        else if (currentScore < 20)
+        {
+            volleyCount = 2; // Two volleys
+        }
+        else
+        {
+            volleyCount = 3; // Three volleys
+        }
+        
+        // Calculate delay between volleys based on score
+        float t = Mathf.Clamp01((float)currentScore / scoreForMaxDifficulty);
+        float volleyDelay = Mathf.Lerp(crossingPatternBaseDelay, crossingPatternMinDelay, t);
+        
+        // Execute volleys (always odd-numbered enemies only)
+        for (int i = 0; i < volleyCount; i++)
+        {
+            ThrowCrossingVolley();
+            
+            // Wait before next volley (unless it's the last one)
+            if (i < volleyCount - 1)
+            {
+                yield return new WaitForSeconds(volleyDelay);
+            }
+        }
+        
+        // Pattern complete - schedule next throw
+        float currentInterval = DodgeballScoreManager.Instance != null 
+            ? DodgeballScoreManager.Instance.GetCurrentThrowFrequency() 
+            : baseThrowInterval;
+
+        // Add random variation 
+        float minVariation = currentInterval - throwIntervalVariation;
+        float maxVariation = currentInterval + throwIntervalVariation;
+        float randomizedInterval = Random.Range(minVariation, maxVariation);
+        
+        nextThrowTime = Time.time + randomizedInterval;
+        
+        isExecutingPattern = false;
+    }
+    
+    // Execute alternating pattern based on score
+    IEnumerator ExecuteAlternatingPattern(int currentScore)
+    {
+        isExecutingPattern = true;
+        
+        // Determine number of volleys based on score
+        int volleyCount;
+        if (currentScore < 10)
+        {
+            volleyCount = 1; // Single volley
+        }
+        else if (currentScore < 20)
+        {
+            volleyCount = 2; // Two volleys
+        }
+        else
+        {
+            volleyCount = 3; // Three volleys
+        }
+        
+        // Calculate delay between volleys based on score
+        float t = Mathf.Clamp01((float)currentScore / scoreForMaxDifficulty);
+        float volleyDelay = Mathf.Lerp(alternatingPatternBaseDelay, alternatingPatternMinDelay, t);
+        
+        // Randomly choose to start with even or odd
+        bool throwEven = Random.Range(0, 2) == 0;
+        
+        // Execute volleys
+        for (int i = 0; i < volleyCount; i++)
+        {
+            ThrowAlternatingVolley(throwEven);
+            
+            // Alternate between even and odd
+            throwEven = !throwEven;
+            
+            // Wait before next volley (unless it's the last one)
+            if (i < volleyCount - 1)
+            {
+                yield return new WaitForSeconds(volleyDelay);
+            }
+        }
+        
+        // Pattern complete - schedule next throw
+        float currentInterval = DodgeballScoreManager.Instance != null 
+            ? DodgeballScoreManager.Instance.GetCurrentThrowFrequency() 
+            : baseThrowInterval;
+
+        // Add random variation 
+        float minVariation = currentInterval - throwIntervalVariation;
+        float maxVariation = currentInterval + throwIntervalVariation;
+        float randomizedInterval = Random.Range(minVariation, maxVariation);
+        
+        nextThrowTime = Time.time + randomizedInterval;
+        
+        isExecutingPattern = false;
+    }
+    
+    // Throw from even-numbered enemies at crossing angles (indices 0, 2, 4, 6)
+    void ThrowCrossingVolley()
+    {
+        if (enemyPositions == null || enemyPositions.Length == 0 || enemyBallPrefab == null)
+            return;
+    
+        // Throw from even-numbered enemies: indices 0, 2, 4, 6
+        for (int i = 0; i < enemyPositions.Length; i++)
+        {
+            // Even indices: 0, 2, 4, 6 (for 7 enemies at indices 0-6)
+            bool isEven = (i % 2 == 0);
+        
+            if (isEven && enemyPositions[i] != null)
+            {
+                ThrowAtAngleTowardCenter(enemyPositions[i]);
+            }
+        }
+    }
+    
+    // Throw from either even or odd numbered enemies straight down
+    void ThrowAlternatingVolley(bool throwEven)
+    {
+        if (enemyPositions == null || enemyPositions.Length == 0 || enemyBallPrefab == null)
+            return;
+        
+        // Throw from every other enemy
+        for (int i = 0; i < enemyPositions.Length; i++)
+        {
+            // Check if this index matches our even/odd requirement
+            bool isEven = (i % 2 == 0);
+            
+            if (isEven == throwEven && enemyPositions[i] != null)
+            {
+                ThrowStraightDown(enemyPositions[i]);
+            }
+        }
+    }
+    
+    void ThrowAtAngleTowardCenter(Transform throwingEnemy)
+{
+    int index = System.Array.IndexOf(enemyPositions, throwingEnemy);
+    if (index >= 0 && enemyStunned != null && index < enemyStunned.Length && enemyStunned[index])
+        return;
+
+    StartCoroutine(AnimatedAngleTowardCenter(throwingEnemy, index));
+}
+
+IEnumerator AnimatedAngleTowardCenter(Transform throwingEnemy, int enemyIndex)
+{
+    if (enemyIndex >= 0 && enemyAnimators != null && enemyIndex < enemyAnimators.Length && enemyAnimators[enemyIndex] != null)
+        enemyAnimators[enemyIndex].SetTrigger("Throw");
+
+    yield return new WaitForSeconds(throwAnimationDelay);
+
+    if (throwSound != null)
+        throwSound.Play();
+
+    GameObject ball = Instantiate(enemyBallPrefab, throwingEnemy.position + new Vector3(-0.7f, 0f, 0f), enemyBallPrefab.transform.rotation);
+
+    float ballSpeed = DodgeballScoreManager.Instance != null
+        ? DodgeballScoreManager.Instance.GetCurrentBallSpeed() : 8f;
+
+    float enemyX = throwingEnemy.position.x;
+    float angleDirection = enemyX < 0 ? 1f : -1f;
+    float angleRad = crossingAngleDegrees * Mathf.Deg2Rad;
+    float xOffset = Mathf.Tan(angleRad) * 20f * angleDirection;
+    Vector3 targetPosition = throwingEnemy.position + new Vector3(xOffset, 0f, -20f);
+
+    EnemyBallBehavior ballBehavior = ball.AddComponent<EnemyBallBehavior>();
+    ballBehavior.Initialize(throwingEnemy.position, targetPosition, ballSpeed, hitRadius, playerController);
+    Destroy(ball, ballLifetime);
+}
+    
+    void ThrowStraightDown(Transform throwingEnemy)
+{
+    int index = System.Array.IndexOf(enemyPositions, throwingEnemy);
+    if (index >= 0 && enemyStunned != null && index < enemyStunned.Length && enemyStunned[index])
+        return;
+
+    StartCoroutine(AnimatedStraightDown(throwingEnemy, index));
+}
+
+IEnumerator AnimatedStraightDown(Transform throwingEnemy, int enemyIndex)
+{
+    if (enemyIndex >= 0 && enemyAnimators != null && enemyIndex < enemyAnimators.Length && enemyAnimators[enemyIndex] != null)
+        enemyAnimators[enemyIndex].SetTrigger("Throw");
+
+    yield return new WaitForSeconds(throwAnimationDelay);
+
+    if (throwSound != null)
+        throwSound.Play();
+
+    GameObject ball = Instantiate(enemyBallPrefab, throwingEnemy.position + new Vector3(-0.7f, 0f, 0f), enemyBallPrefab.transform.rotation);
+
+    float ballSpeed = DodgeballScoreManager.Instance != null
+        ? DodgeballScoreManager.Instance.GetCurrentBallSpeed() : 8f;
+
+    Vector3 targetPosition = throwingEnemy.position + new Vector3(0f, 0f, -20f);
+
+    EnemyBallBehavior ballBehavior = ball.AddComponent<EnemyBallBehavior>();
+    ballBehavior.Initialize(throwingEnemy.position, targetPosition, ballSpeed, hitRadius, playerController);
+    Destroy(ball, ballLifetime);
+}
     
     // Determine how many enemies throw and execute throws
     void ThrowBalls()
@@ -98,7 +371,7 @@ public class DodgeballEnemyManager : MonoBehaviour
             
             // At low scores past threshold: mostly 1, sometimes 2, rarely 3
             // At max difficulty: mostly 2-3, rarely 1
-            if (roll < Mathf.Lerp(0.7f, 0.1f, t)) // Chance for 1 thrower decreases
+            if (roll < Mathf.Lerp(1f, 0.99f, t)) // Chance for 1 thrower decreases
             {
                 numberOfThrowers = 1;
             }
@@ -133,59 +406,56 @@ public class DodgeballEnemyManager : MonoBehaviour
         }
     }
     
-    // Single throw with prediction based on score
-    void ThrowSingleShot(Transform throwingEnemy)
-    {
-        // Play throw sound
-        if (throwSound != null)
-            throwSound.Play();
-        
-        // Create ball at enemy position
-        GameObject ball = Instantiate(enemyBallPrefab, throwingEnemy.position, enemyBallPrefab.transform.rotation);
-        
-        // Get current score for difficulty calculations
-        int currentScore = DodgeballScoreManager.Instance != null 
-            ? DodgeballScoreManager.Instance.GetScore() 
-            : 0;
-        
-        // Calculate prediction amount based on score
-        // At score 0: predictionFactor = 0 (no prediction, aim at current position)
-        // At max score: predictionFactor = 1 (full prediction up to max distance)
-        float predictionFactor = Mathf.Clamp01((float)currentScore / scoreForMaxDifficulty);
-        
-        // Get player's current position and velocity
-        Vector3 playerPosition = player != null ? player.position : Vector3.zero;
-        Vector3 playerVelocity = playerController != null ? playerController.GetMovementDirection() : Vector3.zero;
-        
-        // Get current ball speed from score manager
-        float ballSpeed = DodgeballScoreManager.Instance != null 
-            ? DodgeballScoreManager.Instance.GetCurrentBallSpeed() 
-            : 8f;
-        
-        // Calculate time for ball to reach player's current position
-        float distanceToPlayer = Vector3.Distance(throwingEnemy.position, playerPosition);
-        float timeToReach = distanceToPlayer / ballSpeed;
-        
-        // Calculate predicted position based on player velocity and prediction factor
-        Vector3 fullPredictionOffset = playerVelocity * playerController.maxSpeed * timeToReach;
-        
-        // Clamp prediction to maximum distance
-        if (fullPredictionOffset.magnitude > maxPredictionDistance)
-        {
-            fullPredictionOffset = fullPredictionOffset.normalized * maxPredictionDistance;
-        }
-        
-        // Apply prediction factor to get final offset
-        Vector3 predictionOffset = fullPredictionOffset * predictionFactor;
-        Vector3 targetPosition = playerPosition + predictionOffset;
-        
-        // Add ball behavior component
-        EnemyBallBehavior ballBehavior = ball.AddComponent<EnemyBallBehavior>();
-        ballBehavior.Initialize(throwingEnemy.position, targetPosition, ballSpeed, hitRadius, playerController);
-        
-        // Destroy ball after lifetime to prevent buildup
-        Destroy(ball, ballLifetime);
-    }
+    // Starts the throw animation, then spawns ball after delay
+void ThrowSingleShot(Transform throwingEnemy)
+{
+    int index = System.Array.IndexOf(enemyPositions, throwingEnemy);
+    if (index >= 0 && enemyStunned != null && index < enemyStunned.Length && enemyStunned[index])
+        return;
+
+    StartCoroutine(AnimatedSingleShot(throwingEnemy, index));
+}
+
+IEnumerator AnimatedSingleShot(Transform throwingEnemy, int enemyIndex)
+{
+    // Trigger throw animation
+    if (enemyIndex >= 0 && enemyAnimators != null && enemyIndex < enemyAnimators.Length && enemyAnimators[enemyIndex] != null)
+        enemyAnimators[enemyIndex].SetTrigger("Throw");
+
+    // Wait before spawning ball
+    yield return new WaitForSeconds(throwAnimationDelay);
+
+    // Play throw sound
+    if (throwSound != null)
+        throwSound.Play();
+
+    // Create ball at enemy position
+    GameObject ball = Instantiate(enemyBallPrefab, throwingEnemy.position + new Vector3(-0.7f, 0f, 0f), enemyBallPrefab.transform.rotation);
+
+    int currentScore = DodgeballScoreManager.Instance != null
+        ? DodgeballScoreManager.Instance.GetScore() : 0;
+
+    float predictionFactor = Mathf.Clamp01((float)currentScore / scoreForMaxDifficulty);
+    Vector3 playerPosition = player != null ? player.position : Vector3.zero;
+    Vector3 playerVelocity = playerController != null ? playerController.GetMovementDirection() : Vector3.zero;
+
+    float ballSpeed = DodgeballScoreManager.Instance != null
+        ? DodgeballScoreManager.Instance.GetCurrentBallSpeed() : 8f;
+
+    float distanceToPlayer = Vector3.Distance(throwingEnemy.position, playerPosition);
+    float timeToReach = distanceToPlayer / ballSpeed;
+
+    Vector3 fullPredictionOffset = playerVelocity * playerController.maxSpeed * timeToReach;
+    if (fullPredictionOffset.magnitude > maxPredictionDistance)
+        fullPredictionOffset = fullPredictionOffset.normalized * maxPredictionDistance;
+
+    Vector3 predictionOffset = fullPredictionOffset * predictionFactor;
+    Vector3 targetPosition = playerPosition + predictionOffset;
+
+    EnemyBallBehavior ballBehavior = ball.AddComponent<EnemyBallBehavior>();
+    ballBehavior.Initialize(throwingEnemy.position, targetPosition, ballSpeed, hitRadius, playerController);
+    Destroy(ball, ballLifetime);
+}
     
     // Reset multiple throwers state (called by score manager)
     public void ResetMultipleThrowers()
@@ -209,6 +479,47 @@ public class DodgeballEnemyManager : MonoBehaviour
             }
         }
     }
+
+    public void StunEnemy(Transform enemy, float duration)
+{
+    int index = System.Array.IndexOf(enemyPositions, enemy);
+    if (index >= 0 && index < enemyStunned.Length)
+        StartCoroutine(StunCoroutine(index, enemy, duration));
+}
+
+IEnumerator StunCoroutine(int index, Transform enemy, float duration)
+{
+    // Move enemy forward by 0.5 in Z
+    enemy.position += new Vector3(0f, 0f, 0.5f);
+
+    // Stun — block throwing
+    enemyStunned[index] = true;
+
+    // Flash the enemy renderer
+    Renderer rend = enemy.GetComponentInChildren<SpriteRenderer>();
+    float elapsed = 0f;
+    float flashInterval = 0.1f;
+    while (elapsed < duration)
+    {
+        if (rend != null) rend.enabled = !rend.enabled;
+        yield return new WaitForSeconds(flashInterval);
+        elapsed += flashInterval;
+    }
+
+    // Restore visibility and unstun
+    if (rend != null) rend.enabled = true;
+    enemyStunned[index] = false;
+
+    // Move enemy back
+    enemy.position -= new Vector3(0f, 0f, 0.5f);
+}
+
+public bool IsEnemyStunned(int index)
+{
+    if (enemyStunned == null || index < 0 || index >= enemyStunned.Length)
+        return false;
+    return enemyStunned[index];
+}
     
     // Inner class for ball behavior - keeps everything in one script
     private class EnemyBallBehavior : MonoBehaviour

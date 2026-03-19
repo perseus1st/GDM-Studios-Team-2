@@ -30,6 +30,8 @@ public class BirdieController : MonoBehaviour
     public GameObject tutorialClickIcon; // Interact image
     public float tutorialIconFlashSpeed = 0.5f; // How fast flashes in seconds
     public Vector3 tutorialTargetOffset = new Vector3(2f, 0.5f, -5f); // Where placed relative to player
+    public Vector3 tutorialMoveIconOffset = new Vector3(0, 0.5f, 2.5f); // WASD icon position relative to target reticle
+    public Vector3 tutorialClickIconOffset = new Vector3(1f, 0.5f, 2.5f); // Interact icon position relative to target reticle
 
     private bool tutorialCompleted = false; // Is tutorial over
     private float tutorialFlashTimer = 0f; // Tracks how long ago icons flashed in tutorial
@@ -97,7 +99,7 @@ public class BirdieController : MonoBehaviour
         isFlying = false;
 
         // Start first serve after a delay just for testing
-        Invoke("ServeToPlayer", 1f);
+        Invoke("ServeToPlayer", 0.25f);
     }
 
     // Update is called once per frame
@@ -131,6 +133,16 @@ public class BirdieController : MonoBehaviour
     
                     // can hit for short time after landing
                     float timeSinceLanded = Time.time - landedTime;
+
+		    // Pause timer if player is in hit animation
+                    bool playerInHitAnimation = playerController != null && playerController.IsInHitAnimation();
+                    if (playerInHitAnimation)
+                    {
+                        // Freeze the timer by updating landedTime
+                        landedTime = Time.time;
+                        timeSinceLanded = 0f;
+                    }
+
                     inHitWindow = timeSinceLanded <= currentGroundedWindow;
                 
                     // lose life and re-serve if on ground for too long
@@ -143,6 +155,12 @@ public class BirdieController : MonoBehaviour
                     }
                 }
              }
+
+	// Update tutorial icons throughout the entire tutorial
+        if (isTutorial && isFlying && !tutorialCompleted)
+        {
+            UpdateTutorialIcons();
+        }
 
         // Check if player close enough to hit and within hit window
         if (inHitWindow && player != null)
@@ -212,12 +230,15 @@ public class BirdieController : MonoBehaviour
         if (targetIndicator != null)
         targetIndicator.SetActive(false);
 
+	// Reset rotation before flight
+        transform.rotation = Quaternion.identity;
+
         // Get opponent position
         startPosition = transform.position;
 
         // Aim for opponent with middle of opponent play area as backup
         if (opponent != null)
-            targetPosition = opponent.position;
+            targetPosition = opponent.position + new Vector3(-1.65f, 0f, -0.1f);
         else
             targetPosition = new Vector3(0f, 0.5f, 5f);
 
@@ -245,29 +266,42 @@ public class BirdieController : MonoBehaviour
     // Opponent hits birdie
     void ServeToPlayer()
     {
-
         // play hit sound
         if (hitSound != null)
             hitSound.Play();
-        
+
+	// Move opponent to random position
+        if (opponent != null)
+        {
+            OpponentController opponentController = opponent.GetComponent<OpponentController>();
+            if (opponentController != null)
+            {
+                opponentController.PlayHitAnimation();
+                opponentController.MoveToRandomPosition();
+            }
+        }
+      
         // Set flight start
         startPosition = transform.position;
+
+	// Reset rotation before flight
+        transform.rotation = Quaternion.identity;
 
         // Do the tutorial
         if (isTutorial && !tutorialCompleted)
         {
             ServeTutorialShot();
         }
-            else
+        else
         {
             // Calculate probabilities of each shot type based on score
             int currentScore = ScoreManager.Instance != null ? ScoreManager.Instance.GetScore() : 0;
             float normalChance = GetNormalShotChance(currentScore);
             float dropChance = GetDropShotChance(currentScore);
-        
+    
             // Select shot type randomly
             float roll = Random.Range(0f, 1f);
-        
+    
             if (roll < normalChance)
             {
                 ServeNormalShot(currentScore);
@@ -297,6 +331,21 @@ public class BirdieController : MonoBehaviour
             targetIndicator.transform.position = targetPosition;
             targetIndicator.SetActive(true);
         }
+
+        // Show tutorial icons immediately during tutorial
+        if (isTutorial && !tutorialCompleted)
+        {
+            if (tutorialMoveIcon != null)
+            {
+                tutorialMoveIcon.transform.position = targetPosition + tutorialMoveIconOffset;
+                tutorialMoveIcon.SetActive(true);
+            }
+            if (tutorialClickIcon != null)
+            {
+                tutorialClickIcon.transform.position = targetPosition + tutorialClickIconOffset;
+                tutorialClickIcon.SetActive(false);
+            }
+        }
     }
 
     // Normal shot goes to a random location near player
@@ -321,8 +370,8 @@ public class BirdieController : MonoBehaviour
         // Apply offset and clamp to be inside play area
         // Will need to adjust manually if court size changes
         Vector3 targetPos = player.position + offset;
-        targetPos.x = Mathf.Clamp(targetPos.x, -9f, 9f);
-        targetPos.z = Mathf.Clamp(targetPos.z, -9f, -1f);
+        targetPos.x = Mathf.Clamp(targetPos.x, -8f, 8f);
+        targetPos.z = Mathf.Clamp(targetPos.z, -7.5f, -2f);
         targetPos.y = 0.5f;
         
         // Calculate speed and height based on extra time
@@ -360,8 +409,12 @@ public class BirdieController : MonoBehaviour
         // Pick location near net
         // Will need to adjust manually if court size changes
         float randomX = Random.Range(-8f, 8f);
-        float netZ = -0.8f - Random.Range(0f, dropShotNetDistance);
+        float netZ = -2f - Random.Range(0f, dropShotNetDistance);
         netZ = Mathf.Clamp(netZ, -9f, -1f);
+
+	// Force the shot to be a legal position
+	randomX = Mathf.Clamp(randomX, -8f, 8f);
+        netZ = Mathf.Clamp(netZ, -7.5f, -2.2f);
         
         targetPosition = new Vector3(randomX, 0.5f, netZ);
         
@@ -390,6 +443,10 @@ public class BirdieController : MonoBehaviour
         float randomX = Random.Range(-8f, 8f);
         float backZ = -9f + Random.Range(0f, longShotBackDistance);
         
+        // Force the shot to be a legal position
+	randomX = Mathf.Clamp(randomX, -8f, 8f);
+        backZ = Mathf.Clamp(backZ, -7.5f, -2f);
+
         targetPosition = new Vector3(randomX, 0.5f, backZ);
         
         // Calculate extra time
@@ -456,6 +513,17 @@ public class BirdieController : MonoBehaviour
         float scaleMultiplier = 1f + (currentArcHeightValue);
         transform.localScale = originalScale * scaleMultiplier;
 
+	// Rotate birdie to face flight direction
+        Vector3 flightDirection = targetPosition - startPosition;
+        if (flightDirection.magnitude > 0.01f)
+        {
+            // Calculate angle in degrees (looking down from above, XZ plane)
+            float angle = Mathf.Atan2(flightDirection.x, flightDirection.z) * Mathf.Rad2Deg;
+        
+            // Apply rotation (rotate around Y axis to face direction)
+            transform.rotation = Quaternion.Euler(90f, angle, 0f);
+        }
+
         // Apply position
         transform.position = currentPos;
 
@@ -479,21 +547,6 @@ public class BirdieController : MonoBehaviour
             {
                 isGrounded = true;
                 landedTime = Time.time;
-
-                // Shows icons during tutorial
-                if (isTutorial && !tutorialCompleted)
-                {  
-                    if (tutorialMoveIcon != null)
-                    {
-                        tutorialMoveIcon.transform.position = transform.position + Vector3.up * 1.5f;
-                        tutorialMoveIcon.SetActive(true);
-                    }
-                    if (tutorialClickIcon != null)
-                    {
-                        tutorialClickIcon.transform.position = transform.position + Vector3.up * 1.5f;
-                        tutorialClickIcon.SetActive(false);
-                    }
-                }
             }
             else
             {
@@ -513,12 +566,9 @@ public class BirdieController : MonoBehaviour
         float distance = Vector3.Distance(player.position, transform.position);
         bool playerClose = distance <= hitRange;
 
-        // Update icon position every frame to be above birdie
-        Vector3 iconPosition = transform.position + new Vector3(0, 0.5f, 2.5f);
-        if (tutorialMoveIcon != null)
-        {
-            tutorialMoveIcon.transform.position = iconPosition;
-        }
+        // Calculate icon positions with different offsets
+        Vector3 moveIconPosition = targetPosition + tutorialMoveIconOffset;
+        Vector3 clickIconPosition = targetPosition + tutorialClickIconOffset;
     
         // If player is close, then tell the player to click on the birdie
         if (playerClose)
@@ -526,19 +576,23 @@ public class BirdieController : MonoBehaviour
             if (tutorialMoveIcon != null)
                 tutorialMoveIcon.SetActive(false);
             if (tutorialClickIcon != null)
+            {
+                tutorialClickIcon.transform.position = clickIconPosition;
                 tutorialClickIcon.SetActive(true);
+            }
         }
         // If player is far, tell the player to move to the birdie
         else
         {
            if (tutorialClickIcon != null)
-                tutorialClickIcon.SetActive(false); // Turn off interact image
+                tutorialClickIcon.SetActive(false);
            if (tutorialMoveIcon != null)
            {
+                tutorialMoveIcon.transform.position = moveIconPosition;
                 tutorialMoveIcon.SetActive(true);
-                
+            
+                // Flash the WASD icon
                 tutorialFlashTimer += Time.deltaTime;
-                // Make the move icon alternate between glowing and not glowing WASD
                 if (tutorialFlashTimer >= tutorialIconFlashSpeed)
                 {
                     tutorialFlashTimer = 0f;
@@ -560,7 +614,7 @@ public class BirdieController : MonoBehaviour
 
     // Move to opponent's position with middle of opponent field as backup
     if (opponent != null)
-        transform.position = opponent.position;
+        transform.position = opponent.position + new Vector3(-1.65f, 0f, -0.1f);
     else
         transform.position = new Vector3(0f, 0.5f, 5f);
     

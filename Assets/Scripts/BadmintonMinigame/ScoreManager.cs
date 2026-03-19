@@ -2,6 +2,8 @@
 
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
+using System.Collections;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -9,8 +11,10 @@ public class ScoreManager : MonoBehaviour
     public static ScoreManager Instance { get; private set; }
 
     [Header("UI References")]
-    public TextMeshProUGUI scoreText;
     public TextMeshProUGUI[] lifeTexts;
+    [SerializeField] private Image scoreFillImage;
+    [SerializeField] private TextMeshProUGUI scoreTextWhite;  // The white base text
+    [SerializeField] private TextMeshProUGUI scoreTextPink;   // The pink filled text
 
     [Header("Score Settings")]
     public int currentScore = 0; // Current score
@@ -26,6 +30,21 @@ public class ScoreManager : MonoBehaviour
     public float baseGroundedWindow = 0.5f; // Starting grounded hit window (seconds)
     public float windowDecreasePerHit = 0.02f; // How much decreases per hit
     public float minGroundedWindow = 0.1f; // Never shorter than this
+
+    [Header("Scene Completion")]
+    public int scoreToComplete = 15; // Score needed to complete minigame
+    public string minigameID = "badminton"; // Unique ID for this minigame
+    public string sceneToLoad = "Sister_Room"; // Scene to load on completion
+    public AudioSource whistleSound; // Sound when minigame is completed
+    public float completionDelay = 2f; // Pause before scene transition
+    private bool minigameCompleted = false; // Has minigame been completed this session
+
+    [Header("Music")]
+    public AudioSource musicSource; // Single audio source for playback
+    public AudioClip track1;
+    public AudioClip track2;
+    public AudioClip track3;
+    public float crossfadeDuration = 1f; // Duration of crossfade back to track 1 on reset
 
     void Awake()
     {
@@ -46,7 +65,45 @@ public class ScoreManager : MonoBehaviour
         currentLives = maxLives;
         UpdateScoreDisplay();
         UpdateLivesDisplay();
+
+        if (musicSource != null && track1 != null)
+        {
+            musicSource.clip = track1;
+            musicSource.loop = false; // Loop handled by Update
+            musicSource.Play();
+        }
     }
+
+void Update()
+{
+    if (musicSource == null || minigameCompleted) return;
+
+    float threshold1 = scoreToComplete / 3f;
+    float threshold2 = scoreToComplete * 2f / 3f;
+
+    AudioClip targetClip;
+    if (currentScore < threshold1)
+        targetClip = track1;
+    else if (currentScore < threshold2)
+        targetClip = track2;
+    else
+        targetClip = track3;
+
+    // Switch track if needed
+    if (musicSource.clip != targetClip)
+    {
+        musicSource.clip = targetClip;
+        musicSource.loop = targetClip != track1; // Only track 1 is non-looping
+        musicSource.Play();
+        return;
+    }
+
+    // For track 1 only: restart when it finishes
+    if (musicSource.clip == track1 && !musicSource.isPlaying)
+    {
+        musicSource.Play();
+    }
+}
 
     // Call this on successfully hit
     public void AddScore()
@@ -105,9 +162,14 @@ public class ScoreManager : MonoBehaviour
     // Update the UI text
     void UpdateScoreDisplay()
     {
-        if (scoreText != null)
+        scoreTextWhite.text = currentScore.ToString();
+        scoreTextPink.text = currentScore.ToString();
+
+        // Update the fill amount
+        if (scoreFillImage != null)
         {
-            scoreText.text = currentScore.ToString();
+            float progress = (float)currentScore / scoreToComplete;
+            scoreFillImage.fillAmount = progress;
         }
     }
 
@@ -125,13 +187,13 @@ public class ScoreManager : MonoBehaviour
                 // If have life, show white circle. If lost life, show red x
                 if (i < currentLives)
                 {
-                    lifeTexts[i].text = "O";
-                    lifeTexts[i].color = Color.white; 
+                    lifeTexts[i].text = "\u2665";
+                    lifeTexts[i].color = new Color(196f/255f, 22f/255f, 26f/255f); 
                 }
                 else
                 {
                     lifeTexts[i].text = "X"; 
-                    lifeTexts[i].color = Color.red; 
+                    lifeTexts[i].color = Color.white; 
                 }
             }
         }
@@ -151,11 +213,111 @@ public class ScoreManager : MonoBehaviour
         return Mathf.Max(window, minGroundedWindow); // Limit to minimum time
     }
 
+IEnumerator CrossfadeToTrack1()
+{
+    if (musicSource == null || track1 == null) yield break;
+
+    // Fade out
+    float startVolume = musicSource.volume;
+    float elapsed = 0f;
+    while (elapsed < crossfadeDuration / 2f)
+    {
+        musicSource.volume = Mathf.Lerp(startVolume, 0f, elapsed / (crossfadeDuration / 2f));
+        elapsed += Time.deltaTime;
+        yield return null;
+    }
+
+    // Switch to track 1
+    musicSource.volume = 0f;
+    musicSource.clip = track1;
+    musicSource.loop = true;
+    musicSource.Play();
+
+    // Fade in
+    elapsed = 0f;
+    while (elapsed < crossfadeDuration / 2f)
+    {
+        musicSource.volume = Mathf.Lerp(0f, startVolume, elapsed / (crossfadeDuration / 2f));
+        elapsed += Time.deltaTime;
+        yield return null;
+    }
+
+    musicSource.volume = startVolume;
+}
+
     // Called whenever score changes - add more functionality here later
     void OnScoreChanged()
     {
         // TODO: Add other effects based on score
+        if (!minigameCompleted && currentScore >= scoreToComplete)
+        {
+            CompleteMinigame();
+        }
     }
+	
+    // Called when player reaches completion score
+    void CompleteMinigame()
+{
+    minigameCompleted = true;
+    Debug.Log($"Minigame completed at score {currentScore}!");
+
+    var gm = GameManager.Instance;
+
+    if (gm != null)
+    {
+        gm.MarkMinigameCompleted(minigameID);
+        if (!gm.highScores.ContainsKey(minigameID) || currentScore > gm.highScores[minigameID])
+        {
+            gm.highScores[minigameID] = currentScore;
+        }
+        SaveSystem.Save(gm.currentSaveSlot);
+    }
+    else
+        Debug.LogWarning("GameManager not found! Cannot mark minigame as completed.");
+
+    StartCoroutine(CompletionSequence());
+}
+
+IEnumerator CompletionSequence()
+{
+    // Stop player 
+    BadmintonPlayerController playerController = FindFirstObjectByType<BadmintonPlayerController>();
+    if (playerController != null)
+    {
+        playerController.enabled = false;
+        playerController.Rigidbody.linearVelocity = Vector3.zero;
+    }
+
+    // Stop music
+    if (musicSource != null)
+        musicSource.Stop();
+
+    // Stop Birdie
+    BirdieController birdie = FindFirstObjectByType<BirdieController>();
+if (birdie != null)
+    birdie.enabled = false;
+    Renderer birdieRenderer = birdie.GetComponentInChildren<Renderer>();
+if (birdieRenderer != null)
+    birdieRenderer.enabled = false;
+
+    // Play whistle
+    if (whistleSound != null)
+        whistleSound.Play();
+
+    // Wait
+    yield return new WaitForSeconds(completionDelay);
+
+    // Transition
+    SceneController sceneController = FindAnyObjectByType<SceneController>();
+    if (sceneController != null)
+        sceneController.StartAnimation(sceneToLoad);
+    else
+    {
+        Debug.LogWarning("SceneController not found! Loading scene directly without animation.");
+        UnityEngine.SceneManagement.SceneManager.LoadScene(sceneToLoad);
+    }
+}
+
 
     // Public getters
     public int GetScore()
