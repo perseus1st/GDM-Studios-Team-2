@@ -3,6 +3,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System.Collections;
 
 public class DodgeballScoreManager : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class DodgeballScoreManager : MonoBehaviour
     
     [Header("References")]
     public DodgeballEnemyManager enemyManager; // Reference to enemy manager for resets
+    public AudioSource whistleSound; // Sound when minigame is completed
+    public float completionDelay = 2f; // Pause before scene transition
     
     [Header("Score Settings")]
     public int currentScore = 0; // Current score
@@ -42,6 +45,13 @@ public class DodgeballScoreManager : MonoBehaviour
     public string minigameID = "dodgeball"; // Unique ID for this minigame
     public string sceneToLoad = "Sister_Room"; // Scene to load on completion
     private bool minigameCompleted = false; // Has minigame been completed this session
+
+    [Header("Music")]
+    public AudioSource musicSource; // Single audio source for playback
+    public AudioClip track1;
+    public AudioClip track2;
+    public AudioClip track3;
+    public float crossfadeDuration = 1f; // Duration of crossfade back to track 1 on reset
     
     void Awake()
     {
@@ -68,7 +78,45 @@ public class DodgeballScoreManager : MonoBehaviour
         currentLives = maxLives;
         UpdateScoreDisplay();
         UpdateLivesDisplay();
+
+        if (musicSource != null && track1 != null)
+        {
+            musicSource.clip = track1;
+            musicSource.loop = false; // Loop handled by Update
+            musicSource.Play();
+        }
     }
+
+    void Update()
+{
+    if (musicSource == null || minigameCompleted) return;
+
+    float threshold1 = scoreToComplete / 3f;
+    float threshold2 = scoreToComplete * 2f / 3f;
+
+    AudioClip targetClip;
+    if (currentScore < threshold1)
+        targetClip = track1;
+    else if (currentScore < threshold2)
+        targetClip = track2;
+    else
+        targetClip = track3;
+
+    // Switch track if needed
+    if (musicSource.clip != targetClip)
+    {
+        musicSource.clip = targetClip;
+        musicSource.loop = targetClip != track1; // Only track 1 is non-looping
+        musicSource.Play();
+        return;
+    }
+
+    // For track 1 only: restart when it finishes
+    if (musicSource.clip == track1 && !musicSource.isPlaying)
+    {
+        musicSource.Play();
+    }
+}
     
     // Call this on successfully throwing ball back
     public void AddScore()
@@ -97,19 +145,19 @@ public class DodgeballScoreManager : MonoBehaviour
     void ResetGame()
     {
         // Save highscore if score is above 5
-        if (currentScore > 5)
-        {
-            var gm = GameManager.Instance;
+        // if (currentScore > 5)
+        // {
+        //     var gm = GameManager.Instance;
 
-            gm.completedMinigames.Add("dodgeball");
+        //     gm.completedMinigames.Add("dodgeball");
 
-            if (!gm.highScores.ContainsKey("dodgeball") || currentScore > gm.highScores["dodgeball"])
-            {
-                gm.highScores["dodgeball"] = currentScore;
-            }
+        //     if (!gm.highScores.ContainsKey("dodgeball") || currentScore > gm.highScores["dodgeball"])
+        //     {
+        //         gm.highScores["dodgeball"] = currentScore;
+        //     }
 
-            SaveSystem.Save(gm.currentSaveSlot);
-        }
+        //     SaveSystem.Save(gm.currentSaveSlot);
+        // }
 
         currentScore = 0;
         currentLives = maxLives;
@@ -198,6 +246,38 @@ public class DodgeballScoreManager : MonoBehaviour
         float window = baseGroundedWindow - (currentScore * windowDecreasePerHit);
         return Mathf.Max(window, minGroundedWindow); // Limit to minimum time
     }
+
+IEnumerator CrossfadeToTrack1()
+{
+    if (musicSource == null || track1 == null) yield break;
+
+    // Fade out
+    float startVolume = musicSource.volume;
+    float elapsed = 0f;
+    while (elapsed < crossfadeDuration / 2f)
+    {
+        musicSource.volume = Mathf.Lerp(startVolume, 0f, elapsed / (crossfadeDuration / 2f));
+        elapsed += Time.deltaTime;
+        yield return null;
+    }
+
+    // Switch to track 1
+    musicSource.volume = 0f;
+    musicSource.clip = track1;
+    musicSource.loop = true;
+    musicSource.Play();
+
+    // Fade in
+    elapsed = 0f;
+    while (elapsed < crossfadeDuration / 2f)
+    {
+        musicSource.volume = Mathf.Lerp(0f, startVolume, elapsed / (crossfadeDuration / 2f));
+        elapsed += Time.deltaTime;
+        yield return null;
+    }
+
+    musicSource.volume = startVolume;
+}
     
     // Called whenever score changes - add more functionality here later
     void OnScoreChanged()
@@ -217,33 +297,67 @@ public class DodgeballScoreManager : MonoBehaviour
 
     // Called when player reaches completion score
     void CompleteMinigame()
+{
+    minigameCompleted = true;
+    Debug.Log($"Minigame completed at score {currentScore}!");
+
+    var gm = GameManager.Instance;
+
+    if (gm != null)
     {
-        minigameCompleted = true;
-    
-        Debug.Log($"Minigame completed at score {currentScore}!");
-    
-        // Mark minigame as completed in GameManager
-        if (GameManager.Instance != null)
+        gm.MarkMinigameCompleted(minigameID);
+        if (!gm.highScores.ContainsKey(minigameID) || currentScore > gm.highScores[minigameID])
         {
-            GameManager.Instance.MarkMinigameCompleted(minigameID);
+            gm.highScores[minigameID] = currentScore;
         }
-        else
-        {
-            Debug.LogWarning("GameManager not found! Cannot mark minigame as completed.");
-        }
-    
-        // Load the next scene using SceneController
-        SceneController sceneController = FindAnyObjectByType<SceneController>();
-        if (sceneController != null)
-        {
-            sceneController.StartAnimation(sceneToLoad);
-        }
-        else
-        {
-            Debug.LogWarning("SceneController not found! Loading scene directly without animation.");
-            UnityEngine.SceneManagement.SceneManager.LoadScene(sceneToLoad);
-        }
+        SaveSystem.Save(gm.currentSaveSlot);
     }
+    else
+        Debug.LogWarning("GameManager not found! Cannot mark minigame as completed.");
+
+    StartCoroutine(CompletionSequence());
+}
+
+IEnumerator CompletionSequence()
+{
+    // Stop enemies
+    if (enemyManager != null)
+        enemyManager.enabled = false;
+
+    // Stop music
+    if (musicSource != null)
+        musicSource.Stop();
+
+// Stop Friendly balls from spawning
+DodgeballFriendlyBallSpawner friendlyBallSpawner = FindFirstObjectByType<DodgeballFriendlyBallSpawner>();
+if (friendlyBallSpawner != null)
+    friendlyBallSpawner.enabled = false;
+
+    // Stop player
+    DodgeballPlayerController playerController = FindFirstObjectByType<DodgeballPlayerController>();
+    if (playerController != null)
+    {
+        playerController.enabled = false;
+        playerController.Rigidbody.linearVelocity = Vector3.zero;
+    }
+
+    // Play whistle
+    if (whistleSound != null)
+        whistleSound.Play();
+
+    // Wait
+    yield return new WaitForSeconds(completionDelay);
+
+    // Transition
+    SceneController sceneController = FindAnyObjectByType<SceneController>();
+    if (sceneController != null)
+        sceneController.StartAnimation(sceneToLoad);
+    else
+    {
+        Debug.LogWarning("SceneController not found! Loading scene directly without animation.");
+        UnityEngine.SceneManagement.SceneManager.LoadScene(sceneToLoad);
+    }
+}
 
     
     public int GetLives()

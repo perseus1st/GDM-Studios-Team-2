@@ -12,6 +12,12 @@ public class DodgeballEnemyManager : MonoBehaviour
     public Transform player; // Reference to player
     public DodgeballPlayerController playerController; // Reference to player controller
     public AudioSource throwSound; // Sound when enemy throws
+    private bool[] enemyStunned; // Tracks which enemies are currently stunned
+
+    // Animation
+    [Header("Animation")]
+    public Animator[] enemyAnimators; // Animator for each enemy (match order with enemyPositions)
+    public float throwAnimationDelay = 0.3f; // Time from animation start to ball spawn
     
     // Throw timing
     [Header("Throw Settings")]
@@ -57,6 +63,8 @@ public class DodgeballEnemyManager : MonoBehaviour
         {
             player = playerController.transform;
         }
+       
+        enemyStunned = new bool[enemyPositions.Length]; // Initiate the array
         
         // Schedule first throw
         nextThrowTime = Time.time + baseThrowInterval;
@@ -83,9 +91,9 @@ public class DodgeballEnemyManager : MonoBehaviour
             float t = Mathf.Clamp01((float)currentScore / scoreForMaxDifficulty);
         
             // Define probabilities based on score
-            float singleShotChance = Mathf.Lerp(0.2f, 0.2f, t);
-            float alternatingChance = Mathf.Lerp(0.8f, 0.4f, t); // Stays constant
-            float crossingChance = Mathf.Lerp(0.0f, 0.4f, t);
+            float singleShotChance = Mathf.Lerp(0.3f, 0.2f, t);
+            float alternatingChance = Mathf.Lerp(0.7f, 0.45f, t); // Stays constant
+            float crossingChance = Mathf.Lerp(0.0f, 0.25f, t);
         
             // Roll for shot type
             float roll = Random.Range(0f, 1f);
@@ -272,65 +280,71 @@ public class DodgeballEnemyManager : MonoBehaviour
         }
     }
     
-    // Throw ball at angle toward center of court
     void ThrowAtAngleTowardCenter(Transform throwingEnemy)
-    {
-        // Play throw sound
-        if (throwSound != null)
-            throwSound.Play();
-        
-        // Create ball at enemy position
-        GameObject ball = Instantiate(enemyBallPrefab, throwingEnemy.position, enemyBallPrefab.transform.rotation);
-        
-        // Get current ball speed from score manager
-        float ballSpeed = DodgeballScoreManager.Instance != null 
-            ? DodgeballScoreManager.Instance.GetCurrentBallSpeed() 
-            : 8f;
-        
-        // Determine if enemy is on left or right side of court
-        float enemyX = throwingEnemy.position.x;
-        float angleDirection = enemyX < 0 ? 1f : -1f; // Left side angles right, right side angles left
-        
-        // Convert angle to radians and calculate offset
-        float angleRad = crossingAngleDegrees * Mathf.Deg2Rad;
-        float xOffset = Mathf.Tan(angleRad) * 20f * angleDirection; // 20 is the distance down court
-        
-        // Target position is angled toward center
-        Vector3 targetPosition = throwingEnemy.position + new Vector3(xOffset, 0f, -20f);
-        
-        // Add ball behavior component
-        EnemyBallBehavior ballBehavior = ball.AddComponent<EnemyBallBehavior>();
-        ballBehavior.Initialize(throwingEnemy.position, targetPosition, ballSpeed, hitRadius, playerController);
-        
-        // Destroy ball after lifetime to prevent buildup
-        Destroy(ball, ballLifetime);
-    }
+{
+    int index = System.Array.IndexOf(enemyPositions, throwingEnemy);
+    if (index >= 0 && enemyStunned != null && index < enemyStunned.Length && enemyStunned[index])
+        return;
+
+    StartCoroutine(AnimatedAngleTowardCenter(throwingEnemy, index));
+}
+
+IEnumerator AnimatedAngleTowardCenter(Transform throwingEnemy, int enemyIndex)
+{
+    if (enemyIndex >= 0 && enemyAnimators != null && enemyIndex < enemyAnimators.Length && enemyAnimators[enemyIndex] != null)
+        enemyAnimators[enemyIndex].SetTrigger("Throw");
+
+    yield return new WaitForSeconds(throwAnimationDelay);
+
+    if (throwSound != null)
+        throwSound.Play();
+
+    GameObject ball = Instantiate(enemyBallPrefab, throwingEnemy.position + new Vector3(-0.7f, 0f, 0f), enemyBallPrefab.transform.rotation);
+
+    float ballSpeed = DodgeballScoreManager.Instance != null
+        ? DodgeballScoreManager.Instance.GetCurrentBallSpeed() : 8f;
+
+    float enemyX = throwingEnemy.position.x;
+    float angleDirection = enemyX < 0 ? 1f : -1f;
+    float angleRad = crossingAngleDegrees * Mathf.Deg2Rad;
+    float xOffset = Mathf.Tan(angleRad) * 20f * angleDirection;
+    Vector3 targetPosition = throwingEnemy.position + new Vector3(xOffset, 0f, -20f);
+
+    EnemyBallBehavior ballBehavior = ball.AddComponent<EnemyBallBehavior>();
+    ballBehavior.Initialize(throwingEnemy.position, targetPosition, ballSpeed, hitRadius, playerController);
+    Destroy(ball, ballLifetime);
+}
     
-    // Throw ball straight down (negative Z direction)
     void ThrowStraightDown(Transform throwingEnemy)
-    {
-        // Play throw sound
-        if (throwSound != null)
-            throwSound.Play();
-        
-        // Create ball at enemy position
-        GameObject ball = Instantiate(enemyBallPrefab, throwingEnemy.position, enemyBallPrefab.transform.rotation);
-        
-        // Get current ball speed from score manager
-        float ballSpeed = DodgeballScoreManager.Instance != null 
-            ? DodgeballScoreManager.Instance.GetCurrentBallSpeed() 
-            : 8f;
-        
-        // Target position is straight down from enemy
-        Vector3 targetPosition = throwingEnemy.position + new Vector3(0f, 0f, -20f); // Far down the court
-        
-        // Add ball behavior component
-        EnemyBallBehavior ballBehavior = ball.AddComponent<EnemyBallBehavior>();
-        ballBehavior.Initialize(throwingEnemy.position, targetPosition, ballSpeed, hitRadius, playerController);
-        
-        // Destroy ball after lifetime to prevent buildup
-        Destroy(ball, ballLifetime);
-    }
+{
+    int index = System.Array.IndexOf(enemyPositions, throwingEnemy);
+    if (index >= 0 && enemyStunned != null && index < enemyStunned.Length && enemyStunned[index])
+        return;
+
+    StartCoroutine(AnimatedStraightDown(throwingEnemy, index));
+}
+
+IEnumerator AnimatedStraightDown(Transform throwingEnemy, int enemyIndex)
+{
+    if (enemyIndex >= 0 && enemyAnimators != null && enemyIndex < enemyAnimators.Length && enemyAnimators[enemyIndex] != null)
+        enemyAnimators[enemyIndex].SetTrigger("Throw");
+
+    yield return new WaitForSeconds(throwAnimationDelay);
+
+    if (throwSound != null)
+        throwSound.Play();
+
+    GameObject ball = Instantiate(enemyBallPrefab, throwingEnemy.position + new Vector3(-0.7f, 0f, 0f), enemyBallPrefab.transform.rotation);
+
+    float ballSpeed = DodgeballScoreManager.Instance != null
+        ? DodgeballScoreManager.Instance.GetCurrentBallSpeed() : 8f;
+
+    Vector3 targetPosition = throwingEnemy.position + new Vector3(0f, 0f, -20f);
+
+    EnemyBallBehavior ballBehavior = ball.AddComponent<EnemyBallBehavior>();
+    ballBehavior.Initialize(throwingEnemy.position, targetPosition, ballSpeed, hitRadius, playerController);
+    Destroy(ball, ballLifetime);
+}
     
     // Determine how many enemies throw and execute throws
     void ThrowBalls()
@@ -392,59 +406,56 @@ public class DodgeballEnemyManager : MonoBehaviour
         }
     }
     
-    // Single throw with prediction based on score
-    void ThrowSingleShot(Transform throwingEnemy)
-    {
-        // Play throw sound
-        if (throwSound != null)
-            throwSound.Play();
-        
-        // Create ball at enemy position
-        GameObject ball = Instantiate(enemyBallPrefab, throwingEnemy.position, enemyBallPrefab.transform.rotation);
-        
-        // Get current score for difficulty calculations
-        int currentScore = DodgeballScoreManager.Instance != null 
-            ? DodgeballScoreManager.Instance.GetScore() 
-            : 0;
-        
-        // Calculate prediction amount based on score
-        // At score 0: predictionFactor = 0 (no prediction, aim at current position)
-        // At max score: predictionFactor = 1 (full prediction up to max distance)
-        float predictionFactor = Mathf.Clamp01((float)currentScore / scoreForMaxDifficulty);
-        
-        // Get player's current position and velocity
-        Vector3 playerPosition = player != null ? player.position : Vector3.zero;
-        Vector3 playerVelocity = playerController != null ? playerController.GetMovementDirection() : Vector3.zero;
-        
-        // Get current ball speed from score manager
-        float ballSpeed = DodgeballScoreManager.Instance != null 
-            ? DodgeballScoreManager.Instance.GetCurrentBallSpeed() 
-            : 8f;
-        
-        // Calculate time for ball to reach player's current position
-        float distanceToPlayer = Vector3.Distance(throwingEnemy.position, playerPosition);
-        float timeToReach = distanceToPlayer / ballSpeed;
-        
-        // Calculate predicted position based on player velocity and prediction factor
-        Vector3 fullPredictionOffset = playerVelocity * playerController.maxSpeed * timeToReach;
-        
-        // Clamp prediction to maximum distance
-        if (fullPredictionOffset.magnitude > maxPredictionDistance)
-        {
-            fullPredictionOffset = fullPredictionOffset.normalized * maxPredictionDistance;
-        }
-        
-        // Apply prediction factor to get final offset
-        Vector3 predictionOffset = fullPredictionOffset * predictionFactor;
-        Vector3 targetPosition = playerPosition + predictionOffset;
-        
-        // Add ball behavior component
-        EnemyBallBehavior ballBehavior = ball.AddComponent<EnemyBallBehavior>();
-        ballBehavior.Initialize(throwingEnemy.position, targetPosition, ballSpeed, hitRadius, playerController);
-        
-        // Destroy ball after lifetime to prevent buildup
-        Destroy(ball, ballLifetime);
-    }
+    // Starts the throw animation, then spawns ball after delay
+void ThrowSingleShot(Transform throwingEnemy)
+{
+    int index = System.Array.IndexOf(enemyPositions, throwingEnemy);
+    if (index >= 0 && enemyStunned != null && index < enemyStunned.Length && enemyStunned[index])
+        return;
+
+    StartCoroutine(AnimatedSingleShot(throwingEnemy, index));
+}
+
+IEnumerator AnimatedSingleShot(Transform throwingEnemy, int enemyIndex)
+{
+    // Trigger throw animation
+    if (enemyIndex >= 0 && enemyAnimators != null && enemyIndex < enemyAnimators.Length && enemyAnimators[enemyIndex] != null)
+        enemyAnimators[enemyIndex].SetTrigger("Throw");
+
+    // Wait before spawning ball
+    yield return new WaitForSeconds(throwAnimationDelay);
+
+    // Play throw sound
+    if (throwSound != null)
+        throwSound.Play();
+
+    // Create ball at enemy position
+    GameObject ball = Instantiate(enemyBallPrefab, throwingEnemy.position + new Vector3(-0.7f, 0f, 0f), enemyBallPrefab.transform.rotation);
+
+    int currentScore = DodgeballScoreManager.Instance != null
+        ? DodgeballScoreManager.Instance.GetScore() : 0;
+
+    float predictionFactor = Mathf.Clamp01((float)currentScore / scoreForMaxDifficulty);
+    Vector3 playerPosition = player != null ? player.position : Vector3.zero;
+    Vector3 playerVelocity = playerController != null ? playerController.GetMovementDirection() : Vector3.zero;
+
+    float ballSpeed = DodgeballScoreManager.Instance != null
+        ? DodgeballScoreManager.Instance.GetCurrentBallSpeed() : 8f;
+
+    float distanceToPlayer = Vector3.Distance(throwingEnemy.position, playerPosition);
+    float timeToReach = distanceToPlayer / ballSpeed;
+
+    Vector3 fullPredictionOffset = playerVelocity * playerController.maxSpeed * timeToReach;
+    if (fullPredictionOffset.magnitude > maxPredictionDistance)
+        fullPredictionOffset = fullPredictionOffset.normalized * maxPredictionDistance;
+
+    Vector3 predictionOffset = fullPredictionOffset * predictionFactor;
+    Vector3 targetPosition = playerPosition + predictionOffset;
+
+    EnemyBallBehavior ballBehavior = ball.AddComponent<EnemyBallBehavior>();
+    ballBehavior.Initialize(throwingEnemy.position, targetPosition, ballSpeed, hitRadius, playerController);
+    Destroy(ball, ballLifetime);
+}
     
     // Reset multiple throwers state (called by score manager)
     public void ResetMultipleThrowers()
@@ -468,6 +479,47 @@ public class DodgeballEnemyManager : MonoBehaviour
             }
         }
     }
+
+    public void StunEnemy(Transform enemy, float duration)
+{
+    int index = System.Array.IndexOf(enemyPositions, enemy);
+    if (index >= 0 && index < enemyStunned.Length)
+        StartCoroutine(StunCoroutine(index, enemy, duration));
+}
+
+IEnumerator StunCoroutine(int index, Transform enemy, float duration)
+{
+    // Move enemy forward by 0.5 in Z
+    enemy.position += new Vector3(0f, 0f, 0.5f);
+
+    // Stun — block throwing
+    enemyStunned[index] = true;
+
+    // Flash the enemy renderer
+    Renderer rend = enemy.GetComponentInChildren<SpriteRenderer>();
+    float elapsed = 0f;
+    float flashInterval = 0.1f;
+    while (elapsed < duration)
+    {
+        if (rend != null) rend.enabled = !rend.enabled;
+        yield return new WaitForSeconds(flashInterval);
+        elapsed += flashInterval;
+    }
+
+    // Restore visibility and unstun
+    if (rend != null) rend.enabled = true;
+    enemyStunned[index] = false;
+
+    // Move enemy back
+    enemy.position -= new Vector3(0f, 0f, 0.5f);
+}
+
+public bool IsEnemyStunned(int index)
+{
+    if (enemyStunned == null || index < 0 || index >= enemyStunned.Length)
+        return false;
+    return enemyStunned[index];
+}
     
     // Inner class for ball behavior - keeps everything in one script
     private class EnemyBallBehavior : MonoBehaviour

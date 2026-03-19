@@ -8,6 +8,9 @@ public class BadmintonPlayerController : MonoBehaviour
     // Reference player's rigidbody for movement
     private Rigidbody rb;
 
+    // Public accessor for game completion
+    public Rigidbody Rigidbody => rb;
+
     // Store movement input
     private float movementX; // left/right
     private float movementY; // forward/back
@@ -93,6 +96,15 @@ public class BadmintonPlayerController : MonoBehaviour
         if (value.isPressed)
         {
             pauseManager.Pause();
+        }
+    }
+
+    // Input system calls this when the player presses ESC while paused
+    void OnUnpause(InputValue value)
+    {
+        if (value.isPressed)
+        {
+            pauseManager.Resume();
         }
     }
 
