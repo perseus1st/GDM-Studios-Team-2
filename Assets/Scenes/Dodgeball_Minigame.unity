@@ -2235,7 +2235,7 @@ MonoBehaviour:
   maxPredictionDistance: 3
   alternatingPatternBaseDelay: 1
   alternatingPatternMinDelay: 0.5
-  crossingAngleDegrees: 25
+  crossingAngleDegrees: 37
   crossingPatternBaseDelay: 1
   crossingPatternMinDelay: 0.5
 --- !u!4 &1455063682
