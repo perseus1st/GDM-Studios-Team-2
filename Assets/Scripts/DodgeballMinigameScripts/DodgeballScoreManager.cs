@@ -79,6 +79,7 @@ public class DodgeballScoreManager : MonoBehaviour
         UpdateScoreDisplay();
         UpdateLivesDisplay();
 
+
         if (musicSource != null && track1 != null)
         {
             musicSource.clip = track1;
@@ -87,33 +88,28 @@ public class DodgeballScoreManager : MonoBehaviour
         }
     }
 
-    void Update()
+private AudioClip nextClip; // Queued clip to play after current track finishes
+
+void Update()
 {
     if (musicSource == null || minigameCompleted) return;
 
+    // Queue the correct next track based on current score
     float threshold1 = scoreToComplete / 3f;
     float threshold2 = scoreToComplete * 2f / 3f;
 
-    AudioClip targetClip;
     if (currentScore < threshold1)
-        targetClip = track1;
+        nextClip = track1;
     else if (currentScore < threshold2)
-        targetClip = track2;
+        nextClip = track2;
     else
-        targetClip = track3;
+        nextClip = track3;
 
-    // Switch track if needed
-    if (musicSource.clip != targetClip)
+    // Wait for current track to finish before switching
+    if (!musicSource.isPlaying)
     {
-        musicSource.clip = targetClip;
-        musicSource.loop = targetClip != track1; // Only track 1 is non-looping
-        musicSource.Play();
-        return;
-    }
-
-    // For track 1 only: restart when it finishes
-    if (musicSource.clip == track1 && !musicSource.isPlaying)
-    {
+        musicSource.clip = nextClip;
+        musicSource.loop = false; // All tracks are handled manually
         musicSource.Play();
     }
 }
@@ -206,6 +202,7 @@ public class DodgeballScoreManager : MonoBehaviour
         if (lifeTexts == null || lifeTexts.Length != maxLives)
             return;
         
+
         // Update each life indicator
         for (int i = 0; i < lifeTexts.Length; i++)
         {

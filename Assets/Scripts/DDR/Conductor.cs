@@ -9,6 +9,7 @@ public class Conductor : MonoBehaviour
     AudioSource music; 
     PlayerInput playerInput; 
     public DDR_ScoreManager scoreManager; 
+    public PlayerAnimator playerAnimator; 
     public static float songBpm = 140f; 
 
     //The offset to the first beat of the song in seconds
@@ -31,10 +32,10 @@ public class Conductor : MonoBehaviour
 
     // x positions of the lanes AWSD 
     private float[] laneX = new float[] {-6f, -2f, 2f, 6f}; 
-    private float laneY = 6f; 
-    public float PerfectTiming = 0.0371f; 
-    public float GreatTiming = 0.10f; 
-    public float OkayTiming = 0.3028f; 
+    private float laneY = 9.5f; 
+    public float PerfectTiming = 0.075f; 
+    public float GreatTiming = 0.15f; 
+    public float OkayTiming = 0.25f; 
     
 
     public GameObject notePrefab; 
@@ -47,9 +48,8 @@ public class Conductor : MonoBehaviour
     [SerializeField] PauseManager pauseManager;
 
 
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+  // Start is called once before the first execution of Update after the MonoBehaviour is created
+  void Start()
     {
         Debug.Log("Start!"); 
         playerInput = GetComponent<PlayerInput>(); 
@@ -166,10 +166,8 @@ public class Conductor : MonoBehaviour
                 calculatePts(pressedNote.GetComponent<NoteMover>().targetTime, pressedTime); 
                 Destroy(pressedNote);
             }
-        else
-        {
-            scoreManager.LoseLife(); 
-        }
+
+        
     }
 
     void OnRight(InputValue value)
@@ -182,10 +180,6 @@ public class Conductor : MonoBehaviour
                 calculatePts(pressedNote.GetComponent<NoteMover>().targetTime, pressedTime); 
                 Destroy(pressedNote);
             }
-        else
-        {
-            scoreManager.LoseLife(); 
-        }
     }
 
     void OnDown(InputValue value)
@@ -198,10 +192,6 @@ public class Conductor : MonoBehaviour
                 calculatePts(pressedNote.GetComponent<NoteMover>().targetTime, pressedTime); 
                 Destroy(pressedNote);
             }
-        else
-        {
-            scoreManager.LoseLife(); 
-        }
     }
 
     void OnLeft(InputValue value)
@@ -214,10 +204,6 @@ public class Conductor : MonoBehaviour
                 calculatePts(pressedNote.GetComponent<NoteMover>().targetTime, pressedTime); 
                 Destroy(pressedNote);
             }
-        else
-        {
-            scoreManager.LoseLife(); 
-        }
     }
 
     void OnPause(InputValue value)

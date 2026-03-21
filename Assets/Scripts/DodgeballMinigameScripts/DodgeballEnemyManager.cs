@@ -248,13 +248,14 @@ public class DodgeballEnemyManager : MonoBehaviour
         if (enemyPositions == null || enemyPositions.Length == 0 || enemyBallPrefab == null)
             return;
     
-        // Throw from even-numbered enemies: indices 0, 2, 4, 6
+        // Throw from even-numbered enemies: indices 0,6
         for (int i = 0; i < enemyPositions.Length; i++)
         {
-            // Even indices: 0, 2, 4, 6 (for 7 enemies at indices 0-6)
-            bool isEven = (i % 2 == 0);
+            // Even indices: 0, 6 (for 7 enemies at indices 0-6)
+            // bool isEven = (i % 2 == 0);
+            bool isSix = (i % 6 == 0);
         
-            if (isEven && enemyPositions[i] != null)
+            if (isSix && enemyPositions[i] != null)
             {
                 ThrowAtAngleTowardCenter(enemyPositions[i]);
             }

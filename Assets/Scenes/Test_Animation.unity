@@ -1305,6 +1305,7 @@ MonoBehaviour:
   throwSound: {fileID: 0}
   invincibilityDuration: 1.5
   flashInterval: 0.1
+  pauseManager: {fileID: 0}
 --- !u!135 &2106054341
 SphereCollider:
   m_ObjectHideFlags: 0
