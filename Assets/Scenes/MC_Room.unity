@@ -1158,6 +1158,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1320509221}
   - {fileID: 1350179097}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2645,7 +2646,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneController
   delayBeforeAnimation: 0
-  animationLength: 3
+  animationLength: 2
   triggerName: NextLevel
   skipFadeInScene: MainMenu
   canvasAnimator: {fileID: 1350179099}
@@ -2658,11 +2659,11 @@ Transform:
   m_GameObject: {fileID: 1320509219}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 915.41364, y: 359.09497, z: 0}
+  m_LocalPosition: {x: 133.41364, y: -49.15503, z: 0}
   m_LocalScale: {x: 1.9768399, y: 1.9768399, z: 1.9768399}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 411079182}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1349465684
 GameObject:
@@ -3569,7 +3570,6 @@ SceneRoots:
   - {fileID: 189322487}
   - {fileID: 673657516}
   - {fileID: 411079182}
-  - {fileID: 1320509221}
   - {fileID: 585767072}
   - {fileID: 1724443301}
   - {fileID: 1662044375}

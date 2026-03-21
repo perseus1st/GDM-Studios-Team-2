@@ -3188,7 +3188,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -137, y: 284}
+  m_AnchoredPosition: {x: -118, y: 284}
   m_SizeDelta: {x: 980, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &492472144
@@ -3211,7 +3211,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: momento mori
+  m_text: memento mori
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 546b99e09704f694bbc35dbbbb2bae92, type: 2}
   m_sharedMaterial: {fileID: 7387583672485379691, guid: 546b99e09704f694bbc35dbbbb2bae92, type: 2}
@@ -3277,7 +3277,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -399.8807, w: 0}
+  m_margin: {x: 0, y: 0, z: -223.06284, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -8937,8 +8937,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eecfe004bc4c7154b88f11061e72a55b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneController
-  delayBeforeAnimation: 1
-  animationLength: 3
+  delayBeforeAnimation: 0
+  animationLength: 2
   triggerName: NextLevel
   skipFadeInScene: MainMenu
   canvasAnimator: {fileID: 1157418313}

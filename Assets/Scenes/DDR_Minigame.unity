@@ -1392,8 +1392,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eecfe004bc4c7154b88f11061e72a55b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneController
-  delayBeforeAnimation: 1
-  animationLength: 3
+  delayBeforeAnimation: 0
+  animationLength: 2
   triggerName: NextLevel
   skipFadeInScene: MainMenu
   canvasAnimator: {fileID: 2116999787}
@@ -4563,3 +4563,4 @@ SceneRoots:
   - {fileID: 2073202679}
   - {fileID: 129167070}
   - {fileID: 1938511437}
+  - {fileID: 1210519876}

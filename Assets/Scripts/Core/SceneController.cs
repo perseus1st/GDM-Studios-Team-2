@@ -7,8 +7,8 @@ public class SceneController : MonoBehaviour
 
     // Settings
 
-    public float delayBeforeAnimation = 1f;
-    public float animationLength = 3f;
+    public float delayBeforeAnimation = 0f;
+    public float animationLength = 2f;
 
     public string triggerName = "NextLevel";
     public string skipFadeInScene;
