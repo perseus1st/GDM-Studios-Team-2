@@ -40,7 +40,7 @@ public class PauseManager : MonoBehaviour
     {
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
-        AudioListener.pause = true;
+        // AudioListener.pause = true;
 
         playerInput.SwitchCurrentActionMap("Pause");
         isPaused = true;
@@ -53,7 +53,7 @@ public class PauseManager : MonoBehaviour
     {
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
-        AudioListener.pause = false;
+        // AudioListener.pause = false;
 
         playerInput.SwitchCurrentActionMap(inputMapName);
         isPaused = false;

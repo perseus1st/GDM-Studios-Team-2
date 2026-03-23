@@ -44,6 +44,8 @@ public class AudioManager : MonoBehaviour
 
         activeMusicSource = musicSourceA;
         inactiveMusicSource = musicSourceB;
+
+        sfxSource.ignoreListenerPause = true;
     }
 
     // Play music by name

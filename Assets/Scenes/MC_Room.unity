@@ -913,7 +913,10 @@ MonoBehaviour:
     volume: 0.25
   sfxSounds:
   - name: ButtonClick
-    clip: {fileID: 8300000, guid: d4fccf8d2d7379c448a2e9f7d6774ca3, type: 3}
+    clip: {fileID: 8300000, guid: b5de540f77289b370b4aa346d4321c24, type: 3}
+    volume: 1
+  - name: ButtonHover
+    clip: {fileID: 8300000, guid: b71313d9092b422208d8a83973f0a18d, type: 3}
     volume: 1
   musicSourceA: {fileID: 544227314}
   musicSourceB: {fileID: 159675652}
@@ -3130,12 +3133,28 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2273395954787374354, guid: 5ab1283043fdb7547baf502b1c7ed9d7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2273395954787374354, guid: 5ab1283043fdb7547baf502b1c7ed9d7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2273395954787374354, guid: 5ab1283043fdb7547baf502b1c7ed9d7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 585767071}
     - target: {fileID: 2273395954787374354, guid: 5ab1283043fdb7547baf502b1c7ed9d7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2273395954787374354, guid: 5ab1283043fdb7547baf502b1c7ed9d7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Resume
+      objectReference: {fileID: 0}
+    - target: {fileID: 2273395954787374354, guid: 5ab1283043fdb7547baf502b1c7ed9d7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: UIButtonSound, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6526031596444703897, guid: 5ab1283043fdb7547baf502b1c7ed9d7, type: 3}
       propertyPath: m_Name
