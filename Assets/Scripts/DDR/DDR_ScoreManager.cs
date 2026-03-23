@@ -168,6 +168,7 @@ public class DDR_ScoreManager : MonoBehaviour
 
         //     SaveSystem.Save(gm.currentSaveSlot);
         // }
+        AudioManager.INSTANCE.PlaySFX("GameReset");
         currentScore = 0;
         currentLives = maxLives;
         UpdateScoreDisplay();

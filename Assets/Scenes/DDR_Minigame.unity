@@ -4356,6 +4356,12 @@ MonoBehaviour:
   - name: ButtonHover
     clip: {fileID: 8300000, guid: b71313d9092b422208d8a83973f0a18d, type: 3}
     volume: 1
+  - name: GameReset
+    clip: {fileID: 8300000, guid: 2304641b1e10d9a288e01a5ab900609c, type: 3}
+    volume: 0.3
+  - name: CorrectNote
+    clip: {fileID: 8300000, guid: f19cc5fc8644fee6eaa429c363cf896f, type: 3}
+    volume: 0.15
   musicSourceA: {fileID: 185474588}
   musicSourceB: {fileID: 1494863713}
   sfxSource: {fileID: 163676207}
