@@ -9,11 +9,8 @@ public class Conductor : MonoBehaviour
     AudioSource music; 
     PlayerInput playerInput; 
     public DDR_ScoreManager scoreManager; 
-    public PlayerAnimator playerAnimator; 
+    public SisterAnimator sisterAnimator; 
     public static float songBpm = 140f; 
-
-    //The offset to the first beat of the song in seconds
-    public static float firstBeatOffset; //SET THIS 
     //The number of seconds for each song beat
     public static float secPerBeat =  60f / songBpm;
 
@@ -33,7 +30,7 @@ public class Conductor : MonoBehaviour
     // x positions of the lanes AWSD 
     private float[] laneX = new float[] {-6f, -2f, 2f, 6f}; 
     private float laneY = 9.5f; 
-    public float PerfectTiming = 0.075f; 
+    public float PerfectTiming = 0.05f; 
     public float GreatTiming = 0.15f; 
     public float OkayTiming = 0.25f; 
     
@@ -126,23 +123,27 @@ public class Conductor : MonoBehaviour
     }
 
     // Called when the player pressed a key 
-    private void calculatePts(float targetTime, float pressedTime)
+    private bool calculatePts(float targetTime, float pressedTime)
     {
         float diff = Math.Abs(pressedTime - targetTime); 
         if (diff <= PerfectTiming)
         {
             scoreManager.AddScore("Perfect!");
+            return true; 
         }
         else if (diff <= GreatTiming)
         {
             scoreManager.AddScore("Great!");
+            return true; 
         } 
         else if (diff <= OkayTiming)
         {
             scoreManager.AddScore("Okay");
+            return true; 
         } else
         {
             scoreManager.LoseLife(); 
+            return false; 
         }
     }
 
@@ -163,7 +164,10 @@ public class Conductor : MonoBehaviour
         if (WactiveNotes.Count != 0)
             {
                 GameObject pressedNote = WactiveNotes.Dequeue();
-                calculatePts(pressedNote.GetComponent<NoteMover>().targetTime, pressedTime); 
+                if (calculatePts(pressedNote.GetComponent<NoteMover>().targetTime, pressedTime))
+                {
+                    sisterAnimator.triggerUp(); 
+                } 
                 Destroy(pressedNote);
             }
 
@@ -177,7 +181,10 @@ public class Conductor : MonoBehaviour
          if (DactiveNotes.Count != 0)
             {
                 GameObject pressedNote = DactiveNotes.Dequeue();
-                calculatePts(pressedNote.GetComponent<NoteMover>().targetTime, pressedTime); 
+                if(calculatePts(pressedNote.GetComponent<NoteMover>().targetTime, pressedTime))
+                {
+                    sisterAnimator.triggerRight(); 
+                }
                 Destroy(pressedNote);
             }
     }
@@ -189,7 +196,10 @@ public class Conductor : MonoBehaviour
          if (SactiveNotes.Count != 0)
             {
                 GameObject pressedNote = SactiveNotes.Dequeue();
-                calculatePts(pressedNote.GetComponent<NoteMover>().targetTime, pressedTime); 
+                if (calculatePts(pressedNote.GetComponent<NoteMover>().targetTime, pressedTime))
+                {
+                    sisterAnimator.triggerDown();
+                }
                 Destroy(pressedNote);
             }
     }
@@ -201,7 +211,10 @@ public class Conductor : MonoBehaviour
          if (AactiveNotes.Count != 0)
             {
                 GameObject pressedNote = AactiveNotes.Dequeue();
-                calculatePts(pressedNote.GetComponent<NoteMover>().targetTime, pressedTime); 
+                if (calculatePts(pressedNote.GetComponent<NoteMover>().targetTime, pressedTime))
+                {
+                    sisterAnimator.triggerLeft(); 
+                } 
                 Destroy(pressedNote);
             }
     }
@@ -228,7 +241,8 @@ public class Conductor : MonoBehaviour
         Vector3 spawnPos = new Vector3(laneX[laneIndex], laneY, 0f);
         GameObject obj = Instantiate(notePrefab, spawnPos, Quaternion.identity);
         NoteMover inst = obj.GetComponent<NoteMover>(); 
-        inst.GetComponent<NoteMover>().conductor = this;
+        inst.conductor = this;
+        inst.sisterAnimator = sisterAnimator; 
 
         inst.targetTime = currTime + 12f / NoteMover.getSpeed(); 
         inst.lane = laneIndex; 

@@ -1,19 +1,20 @@
 using UnityEngine;
-using UnityEngine.InputSystem; 
 
-public class PlayerAnimator : MonoBehaviour
+public class SisterAnimator : MonoBehaviour
 {
-    private Animator animator; 
+    private Animator animator;
     private float lastInputTime;
     public float inputCooldown = 0.05f; 
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
         animator = GetComponent<Animator>(); 
-        lastInputTime = Time.time; 
+        lastInputTime = Time.time;
     }
-
+    private bool Cooldown(float pressedTime)
+    {
+        return pressedTime - lastInputTime >= inputCooldown;
+    }
 
     // Update is called once per frame
     void Update()
@@ -21,39 +22,34 @@ public class PlayerAnimator : MonoBehaviour
         
     }
 
-    private bool Cooldown(float pressedTime)
-    {
-        return pressedTime - lastInputTime >= inputCooldown;
-    }
-
-    void OnUp(InputValue value)
+    public void triggerUp()
     {
         float pressedTime = Time.time; 
-        if (value.isPressed && Cooldown(pressedTime))
+        if (Cooldown(pressedTime))
             animator.SetTrigger("Up");
             lastInputTime = pressedTime; 
     }
 
-    void OnRight(InputValue value)
+    public void triggerRight()
     {
         float pressedTime = Time.time; 
-        if (value.isPressed && Cooldown(pressedTime))
+        if (Cooldown(pressedTime))
             animator.SetTrigger("Right");
             lastInputTime = pressedTime; 
     }
 
-    void OnDown(InputValue value)
+    public void triggerDown()
     {
         float pressedTime = Time.time; 
-        if (value.isPressed && Cooldown(pressedTime))
+        if (Cooldown(pressedTime))
             animator.SetTrigger("Down");
             lastInputTime = pressedTime;
     }
 
-    void OnLeft(InputValue value)
+    public void triggerLeft()
     {
         float pressedTime = Time.time;
-        if (value.isPressed && Cooldown(pressedTime))
+        if (Cooldown(pressedTime))
             animator.SetTrigger("Left");
             lastInputTime = pressedTime; 
     }
