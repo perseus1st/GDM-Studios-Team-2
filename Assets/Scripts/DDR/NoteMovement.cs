@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 /// <summary>
@@ -15,11 +16,39 @@ public class NoteMover : MonoBehaviour
     public int lane; 
     public int beat; 
     public Conductor conductor; 
+    public SisterAnimator sisterAnimator; 
+    public float detectionRange = 0.05f; 
 
-    void Update()
+  void Update()
     {
         // Move downward
         transform.position += Vector3.down * Speed * Time.deltaTime;
+
+        //Call sister animator 
+        if (Math.Abs(transform.position.y - TargetY) <= detectionRange)
+        {
+            switch (lane)
+            {
+                case 0 :
+                    Debug.Log("animator called left"); 
+                    sisterAnimator.triggerLeft(); 
+                    break;
+                case 1 : 
+                    Debug.Log("animator called up"); 
+                    sisterAnimator.triggerUp(); 
+                    break; 
+                case 2 : 
+                    Debug.Log("animator called dpwn"); 
+                    sisterAnimator.triggerDown(); 
+                    break;
+                case 3 : 
+                    Debug.Log("animator called right"); 
+                    sisterAnimator.triggerRight(); 
+                    break;
+                default:
+                    break; 
+            }
+        }
 
         // Destroy note if it goes past the hitzone
         if (transform.position.y < TargetY - MaxGap)
