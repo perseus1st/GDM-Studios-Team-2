@@ -13940,7 +13940,7 @@ MonoBehaviour:
     volume: 1
   sfxSounds:
   - name: ButtonClick
-    clip: {fileID: 8300000, guid: d4fccf8d2d7379c448a2e9f7d6774ca3, type: 3}
+    clip: {fileID: 8300000, guid: b5de540f77289b370b4aa346d4321c24, type: 3}
     volume: 1
   musicSourceA: {fileID: 610775690}
   musicSourceB: {fileID: 1257996364}
