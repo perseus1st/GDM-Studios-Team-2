@@ -1063,7 +1063,7 @@ GameObject:
   - component: {fileID: 187002716}
   - component: {fileID: 187002717}
   m_Layer: 0
-  m_Name: InteractIcon
+  m_Name: InteractIcon_racket
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1230,7 +1230,7 @@ Transform:
   m_GameObject: {fileID: 208244884}
   serializedVersion: 2
   m_LocalRotation: {x: 0.017059745, y: 0, z: 0, w: 0.9998545}
-  m_LocalPosition: {x: 17.03, y: 3.6, z: -11.92}
+  m_LocalPosition: {x: 17, y: 3.6, z: -11.92}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2270,6 +2270,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c74214ede6736a4e9fe3305e5a548d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Rackets
+  interactIcon: {fileID: 187002716}
+  itemModel: {fileID: 503052796370221947}
+  boxModel: {fileID: 1208953976}
   sceneController: {fileID: 0}
 --- !u!224 &527436619 stripped
 RectTransform:
@@ -2850,6 +2853,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bd59c660909f5746b37e7cb48e9add4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DanceMat
+  interactIcon: {fileID: 0}
+  itemModel: {fileID: 0}
+  boxModel: {fileID: 0}
   sceneController: {fileID: 0}
 --- !u!1001 &695737358
 PrefabInstance:
@@ -3099,7 +3105,7 @@ GameObject:
   - component: {fileID: 772608709}
   - component: {fileID: 772608710}
   m_Layer: 0
-  m_Name: InteractIcon
+  m_Name: InteractIcon_ddr
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3416,7 +3422,7 @@ GameObject:
   - component: {fileID: 831174057}
   - component: {fileID: 831174056}
   m_Layer: 0
-  m_Name: BoxModel
+  m_Name: BoxModel_ball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3431,7 +3437,7 @@ Transform:
   m_GameObject: {fileID: 831174054}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.71277344, z: -0, w: 0.7013943}
-  m_LocalPosition: {x: -0.444, y: -0.865, z: 0.097}
+  m_LocalPosition: {x: -0.451, y: -0.445, z: -0.251}
   m_LocalScale: {x: 0.2558289, y: 0.26640132, z: 0.2627682}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3526,7 +3532,7 @@ GameObject:
   - component: {fileID: 872467648}
   - component: {fileID: 872467649}
   m_Layer: 0
-  m_Name: InteractIcon
+  m_Name: InteractIcon_ball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3675,6 +3681,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cce29680851f2514a9d720b248dbdc7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Dodgeball
+  interactIcon: {fileID: 0}
+  itemModel: {fileID: 0}
+  boxModel: {fileID: 0}
   sceneController: {fileID: 0}
 --- !u!1 &916891888
 GameObject:
@@ -4342,6 +4351,16 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 809f574c263a5493bbcf326baf1da15e, type: 3}
+--- !u!1 &1051420072 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -3262687152244959699, guid: 809f574c263a5493bbcf326baf1da15e, type: 3}
+  m_PrefabInstance: {fileID: 1051420071}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1051420073 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4138242428861222711, guid: 809f574c263a5493bbcf326baf1da15e, type: 3}
+  m_PrefabInstance: {fileID: 1051420071}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1065964066
 GameObject:
   m_ObjectHideFlags: 0
@@ -4763,7 +4782,7 @@ GameObject:
   - component: {fileID: 1208953979}
   - component: {fileID: 1208953978}
   m_Layer: 0
-  m_Name: BoxModel
+  m_Name: BoxModel_racket
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4778,7 +4797,7 @@ Transform:
   m_GameObject: {fileID: 1208953976}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.71277344, z: -0, w: 0.7013943}
-  m_LocalPosition: {x: 0.568, y: -0.865, z: 0.077}
+  m_LocalPosition: {x: 0.723, y: -0.578, z: -0.099}
   m_LocalScale: {x: 0.2558289, y: 0.26640067, z: 0.2627682}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5342,7 +5361,7 @@ MonoBehaviour:
   priority: 0
   blendDistance: 0
   weight: 1
-  sharedProfile: {fileID: 0}
+  sharedProfile: {fileID: 11400000, guid: f549ffc27097c4d3fbec1fc203c62d77, type: 2}
 --- !u!4 &1498040927
 Transform:
   m_ObjectHideFlags: 0
@@ -5598,6 +5617,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cce29680851f2514a9d720b248dbdc7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Dodgeball
+  interactIcon: {fileID: 872467648}
+  itemModel: {fileID: 1051420073}
+  boxModel: {fileID: 831174054}
   sceneController: {fileID: 0}
 --- !u!1 &1623579049
 GameObject:
@@ -6211,7 +6233,7 @@ GameObject:
   - component: {fileID: 1726858171}
   - component: {fileID: 1726858170}
   m_Layer: 0
-  m_Name: BoxModel
+  m_Name: BoxModel_ddr
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6226,7 +6248,7 @@ Transform:
   m_GameObject: {fileID: 1726858168}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.71277344, z: -0, w: 0.7013943}
-  m_LocalPosition: {x: -0.384, y: -0.865, z: 1.117}
+  m_LocalPosition: {x: -0.677, y: -0.315, z: 1.321}
   m_LocalScale: {x: 0.2558289, y: 0.26640067, z: 0.2627682}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7058,6 +7080,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bd59c660909f5746b37e7cb48e9add4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DanceMat
+  interactIcon: {fileID: 772608709}
+  itemModel: {fileID: 1051420072}
+  boxModel: {fileID: 1726858168}
   sceneController: {fileID: 0}
 --- !u!65 &1917196589
 BoxCollider:
@@ -7706,6 +7731,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c74214ede6736a4e9fe3305e5a548d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Rackets
+  interactIcon: {fileID: 0}
+  itemModel: {fileID: 0}
+  boxModel: {fileID: 0}
   sceneController: {fileID: 0}
 --- !u!1 &2100171737
 GameObject:
@@ -8094,7 +8122,7 @@ GameObject:
   - component: {fileID: 1900346737975448747}
   - component: {fileID: 7978297436979584507}
   m_Layer: 0
-  m_Name: ItemModel
+  m_Name: ItemModel_racket
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -5,10 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class Dodgeball : MonoBehaviour, IInteractable
 {
-    private Transform interactIcon;
+    [SerializeField] private Transform interactIcon;
+    [SerializeField] private GameObject itemModel;
+    [SerializeField] private GameObject boxModel;
     private BoxCollider boxCollider;
-    private GameObject itemModel;
-    private GameObject boxModel;
     public SceneController sceneController;
 
     void Awake()
@@ -26,9 +26,9 @@ public class Dodgeball : MonoBehaviour, IInteractable
 
     void Start()
     {
-        itemModel = transform.Find("ItemModel").gameObject;
-        boxModel = transform.Find("BoxModel").gameObject;
-        interactIcon = transform.Find("InteractIcon");
+        //itemModel = transform.Find("ItemModel").gameObject;
+        //boxModel = transform.Find("BoxModel").gameObject;
+        //interactIcon = transform.Find("InteractIcon");
         interactIcon.LookAt(Camera.main.transform.position);
         interactIcon.gameObject.SetActive(false);
         if (GameManager.Instance.IsMinigameCompleted("dodgeball"))
