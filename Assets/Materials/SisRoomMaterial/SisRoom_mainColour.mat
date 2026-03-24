@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: SisRoom_mainColour
-  m_Shader: {fileID: -6465566751694194690, guid: 1b8b63912dcd3487aa25ca6e93f1044e, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 794fd5e9bc58045288e3f34dac0759ba, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
