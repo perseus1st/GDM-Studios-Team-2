@@ -3657,6 +3657,7 @@ MonoBehaviour:
   throwSound: {fileID: 0}
   invincibilityDuration: 1.5
   flashInterval: 0.1
+  isInvincible: 0
   pauseManager: {fileID: 186004645}
 --- !u!54 &1718124681
 Rigidbody:

@@ -340,13 +340,11 @@ if (friendlyBallSpawner != null)
     DodgeballPlayerController playerController = FindFirstObjectByType<DodgeballPlayerController>();
     if (playerController != null)
     {
-        playerController.enabled = false;
-        playerController.Rigidbody.linearVelocity = Vector3.zero;
+        playerController.isInvincible = true; // character cant get damaged by moving balls
+        playerController.GetComponentInChildren<Animator>().SetBool("IsMoving", false); // stop character animation
+        playerController.enabled = false; 
+        playerController.Rigidbody.linearVelocity = Vector3.zero; // stop moving character
     }
-
-    // Play whistle
-    if (whistleSound != null)
-        whistleSound.Play();
 
     // Wait
     yield return new WaitForSeconds(completionDelay);
