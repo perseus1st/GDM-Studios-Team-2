@@ -11,9 +11,12 @@ public class HoverOverButtons : MonoBehaviour , IPointerEnterHandler, IPointerEx
         RightArrow.SetActive(false);
     }
 
-
     public void OnPointerEnter(PointerEventData eventData)
     {
+        if (AudioManager.INSTANCE != null)
+        {
+            AudioManager.INSTANCE.PlaySFX("ButtonHover");
+        }
         LeftArrow.SetActive(true);
         RightArrow.SetActive(true);
     }

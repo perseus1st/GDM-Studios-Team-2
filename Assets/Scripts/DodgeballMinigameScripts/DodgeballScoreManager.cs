@@ -133,7 +133,11 @@ void Update()
         // Check if all lives lost
         if (currentLives <= 0)
         {
+            DodgeballAudioManager.INSTANCE.PlaySFX("Reset");
             ResetGame();
+        } else
+        {
+            DodgeballAudioManager.INSTANCE.PlaySFX("Mistake");
         }
     }
     
@@ -300,6 +304,8 @@ IEnumerator CrossfadeToTrack1()
 
     var gm = GameManager.Instance;
 
+    DodgeballAudioManager.INSTANCE.PlaySFX("Whistle");
+
     if (gm != null)
     {
         gm.MarkMinigameCompleted(minigameID);
@@ -334,13 +340,11 @@ if (friendlyBallSpawner != null)
     DodgeballPlayerController playerController = FindFirstObjectByType<DodgeballPlayerController>();
     if (playerController != null)
     {
-        playerController.enabled = false;
-        playerController.Rigidbody.linearVelocity = Vector3.zero;
+        playerController.isInvincible = true; // character cant get damaged by moving balls
+        playerController.GetComponentInChildren<Animator>().SetBool("IsMoving", false); // stop character animation
+        playerController.enabled = false; 
+        playerController.Rigidbody.linearVelocity = Vector3.zero; // stop moving character
     }
-
-    // Play whistle
-    if (whistleSound != null)
-        whistleSound.Play();
 
     // Wait
     yield return new WaitForSeconds(completionDelay);

@@ -5,10 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class Rackets : MonoBehaviour, IInteractable
 {
-    private Transform interactIcon;
-    private GameObject itemModel;
+    [SerializeField] private Transform interactIcon;
+    [SerializeField] private GameObject itemModel;
+    [SerializeField] private GameObject boxModel;
     private BoxCollider boxCollider;
-    private GameObject boxModel;
     public SceneController sceneController;
 
     void Awake()
@@ -26,9 +26,9 @@ public class Rackets : MonoBehaviour, IInteractable
 
     void Start()
     {
-        itemModel = transform.Find("ItemModel").gameObject;
-        boxModel = transform.Find("BoxModel").gameObject;
-        interactIcon = transform.Find("InteractIcon");
+        //itemModel = transform.Find("ItemModel").gameObject;
+        //boxModel = transform.Find("BoxModel").gameObject;
+        //interactIcon = transform.Find("InteractIcon");
         interactIcon.LookAt(Camera.main.transform.position);
         interactIcon.gameObject.SetActive(false);
         if (GameManager.Instance.IsMinigameCompleted("badminton"))

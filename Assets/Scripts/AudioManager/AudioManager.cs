@@ -44,6 +44,8 @@ public class AudioManager : MonoBehaviour
 
         activeMusicSource = musicSourceA;
         inactiveMusicSource = musicSourceB;
+
+        sfxSource.ignoreListenerPause = true;
     }
 
     // Play music by name
@@ -115,7 +117,7 @@ public class AudioManager : MonoBehaviour
             return;
         }
 
-        sfxSource.PlayOneShot(s.clip);
+        sfxSource.PlayOneShot(s.clip, s.volume);
         Debug.Log("Playing SFX: " + name);
     }
 

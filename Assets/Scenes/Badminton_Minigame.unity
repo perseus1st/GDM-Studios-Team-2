@@ -1035,7 +1035,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: d49cc7b2efc377344a9df2235ac4f0e2, type: 3}
+  m_Resource: {fileID: 8300000, guid: 909415f5cc051b500a238fdd335a93c3, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -1340,6 +1340,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PauseManager
   pauseMenuUI: {fileID: 1263642151}
   playerInput: {fileID: 946882149}
+  sceneController: {fileID: 0}
   inputMapName: Gameplay
 --- !u!4 &844065151
 Transform:
@@ -1990,20 +1991,32 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1447422926378820194, guid: 5ab1283043fdb7547baf502b1c7ed9d7, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2273395954787374354, guid: 5ab1283043fdb7547baf502b1c7ed9d7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 844065150}
-    - target: {fileID: 2273395954787374354, guid: 5ab1283043fdb7547baf502b1c7ed9d7, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Resume
+    - target: {fileID: 2409614588809205851, guid: 5ab1283043fdb7547baf502b1c7ed9d7, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3167262960559457295, guid: 5ab1283043fdb7547baf502b1c7ed9d7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 844065150}
     - target: {fileID: 6526031596444703897, guid: 5ab1283043fdb7547baf502b1c7ed9d7, type: 3}
       propertyPath: m_Name
       value: Pause Canvas
       objectReference: {fileID: 0}
     - target: {fileID: 6526031596444703897, guid: 5ab1283043fdb7547baf502b1c7ed9d7, type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7707065380088577957, guid: 5ab1283043fdb7547baf502b1c7ed9d7, type: 3}
+      propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8429040429411821703, guid: 5ab1283043fdb7547baf502b1c7ed9d7, type: 3}
@@ -2478,7 +2491,16 @@ MonoBehaviour:
     volume: 0.25
   sfxSounds:
   - name: ButtonClick
-    clip: {fileID: 8300000, guid: d4fccf8d2d7379c448a2e9f7d6774ca3, type: 3}
+    clip: {fileID: 8300000, guid: b5de540f77289b370b4aa346d4321c24, type: 3}
+    volume: 1
+  - name: ButtonHover
+    clip: {fileID: 8300000, guid: b71313d9092b422208d8a83973f0a18d, type: 3}
+    volume: 1
+  - name: Reset
+    clip: {fileID: 8300000, guid: 2304641b1e10d9a288e01a5ab900609c, type: 3}
+    volume: 0.7
+  - name: Highfive
+    clip: {fileID: 8300000, guid: 2237500a7809e3ea9abba4d80cca644d, type: 3}
     volume: 1
   musicSourceA: {fileID: 1178331703}
   musicSourceB: {fileID: 1513753987}
@@ -3436,7 +3458,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: d9b2db4c22004e24d80a9024d4fcf453, type: 3}
+  m_Resource: {fileID: 8300000, guid: 3796d816967c0381a81c50cecfcd50e4, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

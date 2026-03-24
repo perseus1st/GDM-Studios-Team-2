@@ -56,7 +56,7 @@ public class DodgeballPlayerController : MonoBehaviour
     [Header("Hit Settings")]
     public float invincibilityDuration = 1.5f; // How long invincibility lasts after hit
     public float flashInterval = 0.1f; // How fast player flashes during invincibility
-    private bool isInvincible = false; // Is player currently invincible
+    public bool isInvincible = false; // Is player currently invincible
     private float invincibilityStartTime; // When invincibility started
     private float lastFlashTime; // Last time flash state changed
     private bool isVisible = true; // Current visibility state for flashing

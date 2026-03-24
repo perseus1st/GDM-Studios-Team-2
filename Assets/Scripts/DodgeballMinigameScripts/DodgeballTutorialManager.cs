@@ -193,6 +193,8 @@ void ShowRenderers(GameObject obj)
     if (enemyManager.enemyAnimators != null && middleIndex < enemyManager.enemyAnimators.Length && enemyManager.enemyAnimators[middleIndex] != null)
         enemyManager.enemyAnimators[middleIndex].SetTrigger("Throw");
 
+    DodgeballAudioManager.INSTANCE.PlaySFX("Throw");
+
     // Wait to match animation delay
     yield return new WaitForSeconds(enemyManager.throwAnimationDelay);
 

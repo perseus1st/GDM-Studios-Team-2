@@ -10,6 +10,7 @@ public class MCRoomDoor : MonoBehaviour, IInteractable
 
     private Transform interactIcon;
     private Transform doorModel;
+    public AudioSource doorOpenSound;
     public SceneController sceneController;
 
     void Start()
@@ -23,6 +24,7 @@ public class MCRoomDoor : MonoBehaviour, IInteractable
 
     public void Interact()
     {
+        doorOpenSound.Play();
         sceneController.StartAnimation("Sister_Room");
         // SceneManager.LoadScene("Sister_Room");
     }

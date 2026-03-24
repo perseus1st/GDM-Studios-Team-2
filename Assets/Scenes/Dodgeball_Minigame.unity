@@ -201,9 +201,57 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2273395954787374354, guid: 5ab1283043fdb7547baf502b1c7ed9d7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2273395954787374354, guid: 5ab1283043fdb7547baf502b1c7ed9d7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2273395954787374354, guid: 5ab1283043fdb7547baf502b1c7ed9d7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
+      objectReference: {fileID: 2017322863}
+    - target: {fileID: 2273395954787374354, guid: 5ab1283043fdb7547baf502b1c7ed9d7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
       objectReference: {fileID: 186004645}
+    - target: {fileID: 2273395954787374354, guid: 5ab1283043fdb7547baf502b1c7ed9d7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2273395954787374354, guid: 5ab1283043fdb7547baf502b1c7ed9d7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlayClickSound
+      objectReference: {fileID: 0}
+    - target: {fileID: 2273395954787374354, guid: 5ab1283043fdb7547baf502b1c7ed9d7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: Resume
+      objectReference: {fileID: 0}
+    - target: {fileID: 2273395954787374354, guid: 5ab1283043fdb7547baf502b1c7ed9d7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UIButtonSound, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2273395954787374354, guid: 5ab1283043fdb7547baf502b1c7ed9d7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: PauseManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2273395954787374354, guid: 5ab1283043fdb7547baf502b1c7ed9d7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2273395954787374354, guid: 5ab1283043fdb7547baf502b1c7ed9d7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3167262960559457295, guid: 5ab1283043fdb7547baf502b1c7ed9d7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 186004645}
+    - target: {fileID: 3167262960559457295, guid: 5ab1283043fdb7547baf502b1c7ed9d7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: quit
+      objectReference: {fileID: 0}
     - target: {fileID: 6526031596444703897, guid: 5ab1283043fdb7547baf502b1c7ed9d7, type: 3}
       propertyPath: m_Name
       value: Pause Canvas
@@ -333,6 +381,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PauseManager
   pauseMenuUI: {fileID: 151258992}
   playerInput: {fileID: 1718124682}
+  sceneController: {fileID: 0}
   inputMapName: Gameplay
 --- !u!4 &186004646
 Transform:
@@ -2216,7 +2265,6 @@ MonoBehaviour:
   enemyBallPrefab: {fileID: 1605853445502304244, guid: 28ffe61dbf2bff646a5ca220dded6094, type: 3}
   player: {fileID: 1718124679}
   playerController: {fileID: 1718124680}
-  throwSound: {fileID: 0}
   enemyAnimators:
   - {fileID: 1768920028}
   - {fileID: 1596422267}
@@ -2988,7 +3036,7 @@ MonoBehaviour:
   scoreToComplete: 20
   minigameID: dodgeball
   sceneToLoad: Sister_Room
-  musicSource: {fileID: 1638469676}
+  musicSource: {fileID: 1638469675}
   track1: {fileID: 8300000, guid: 131674da368092b4a828f2fba8d14222, type: 3}
   track2: {fileID: 8300000, guid: c9ebbd2a059d24142a169003f8c15c93, type: 3}
   track3: {fileID: 8300000, guid: c6693c0d6da58744aa2f51831a16c1ae, type: 3}
@@ -3439,45 +3487,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1690559260}
-  - component: {fileID: 1690559259}
+  - component: {fileID: 1690559261}
   m_Layer: 0
-  m_Name: AudioManager
+  m_Name: DodgeballAudioManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1690559259
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1690559258}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9db752de3352f94e92d57b0f0fd7288, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AudioManager
-  musicSounds:
-  - name: CalmTrack2
-    clip: {fileID: 8300000, guid: 8b9f9531a1dbf194188817d00c2f892e, type: 3}
-    volume: 1
-  - name: SadTrack1
-    clip: {fileID: 8300000, guid: 24a22a182077b9a40b3ab4a694e65857, type: 3}
-    volume: 0.25
-  - name: CalmTrack1
-    clip: {fileID: 8300000, guid: 03f90e94bb7304c41b309dec179dd1c5, type: 3}
-    volume: 0.25
-  sfxSounds:
-  - name: ButtonClick
-    clip: {fileID: 8300000, guid: d4fccf8d2d7379c448a2e9f7d6774ca3, type: 3}
-    volume: 1
-  musicSourceA: {fileID: 2065043640}
-  musicSourceB: {fileID: 2064607332}
-  sfxSource: {fileID: 1783220183}
-  fadeOutTime: 3
-  fadeInTime: 1.5
 --- !u!4 &1690559260
 Transform:
   m_ObjectHideFlags: 0
@@ -3496,6 +3513,55 @@ Transform:
   - {fileID: 1783220184}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1690559261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1690559258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4354d27671ad59cd7ab6c05fc0a26837, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DodgeballAudioManager
+  musicSounds:
+  - name: CalmTrack2
+    clip: {fileID: 8300000, guid: 8b9f9531a1dbf194188817d00c2f892e, type: 3}
+    volume: 0.8
+  - name: SadTrack1
+    clip: {fileID: 8300000, guid: 24a22a182077b9a40b3ab4a694e65857, type: 3}
+    volume: 0.25
+  - name: CalmTrack1
+    clip: {fileID: 8300000, guid: 03f90e94bb7304c41b309dec179dd1c5, type: 3}
+    volume: 0.25
+  sfxSounds:
+  - name: ButtonClick
+    clip: {fileID: 8300000, guid: b5de540f77289b370b4aa346d4321c24, type: 3}
+    volume: 1
+  - name: ButtonHover
+    clip: {fileID: 8300000, guid: b71313d9092b422208d8a83973f0a18d, type: 3}
+    volume: 1
+  - name: Throw
+    clip: {fileID: 8300000, guid: 031856f7d4e06b9c1acc2a2e41202b23, type: 3}
+    volume: 0.7
+  - name: HitFloor
+    clip: {fileID: 8300000, guid: 647edec44754e44ceb4189be33a819c5, type: 3}
+    volume: 3
+  - name: Whistle
+    clip: {fileID: 8300000, guid: 3796d816967c0381a81c50cecfcd50e4, type: 3}
+    volume: 0.7
+  - name: Reset
+    clip: {fileID: 8300000, guid: 2304641b1e10d9a288e01a5ab900609c, type: 3}
+    volume: 0.7
+  - name: Mistake
+    clip: {fileID: 8300000, guid: 8348f429ce77ff06381a9b246b166cf5, type: 3}
+    volume: 2
+  musicSourceA: {fileID: 2065043640}
+  musicSourceB: {fileID: 2064607332}
+  sfxSource: {fileID: 1783220183}
+  fadeOutTime: 3
+  fadeInTime: 1.5
 --- !u!1 &1718124675
 GameObject:
   m_ObjectHideFlags: 0
@@ -3591,6 +3657,7 @@ MonoBehaviour:
   throwSound: {fileID: 0}
   invincibilityDuration: 1.5
   flashInterval: 0.1
+  isInvincible: 0
   pauseManager: {fileID: 186004645}
 --- !u!54 &1718124681
 Rigidbody:
@@ -4096,6 +4163,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+--- !u!114 &2017322863 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3999793569434455887, guid: 5ab1283043fdb7547baf502b1c7ed9d7, type: 3}
+  m_PrefabInstance: {fileID: 151258991}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcdeed27d6dfc9db4a950e11f8ddfc37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButtonSound
 --- !u!1 &2035950104
 GameObject:
   m_ObjectHideFlags: 0

@@ -119,6 +119,7 @@ void Update()
         // Check if all lives lost
         if (currentLives <= 0)
         {
+            AudioManager.INSTANCE.PlaySFX("Reset");
             ResetGame();
         }
     }
@@ -308,6 +309,9 @@ if (birdieRenderer != null)
 
     // Wait
     yield return new WaitForSeconds(completionDelay);
+
+    AudioManager.INSTANCE.PlaySFX("Highfive");
+
 
     // Transition
     SceneController sceneController = FindAnyObjectByType<SceneController>();
