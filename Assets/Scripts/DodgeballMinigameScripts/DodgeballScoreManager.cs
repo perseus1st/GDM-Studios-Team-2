@@ -133,7 +133,11 @@ void Update()
         // Check if all lives lost
         if (currentLives <= 0)
         {
+            DodgeballAudioManager.INSTANCE.PlaySFX("Reset");
             ResetGame();
+        } else
+        {
+            DodgeballAudioManager.INSTANCE.PlaySFX("Mistake");
         }
     }
     
@@ -299,6 +303,8 @@ IEnumerator CrossfadeToTrack1()
     Debug.Log($"Minigame completed at score {currentScore}!");
 
     var gm = GameManager.Instance;
+
+    DodgeballAudioManager.INSTANCE.PlaySFX("Whistle");
 
     if (gm != null)
     {

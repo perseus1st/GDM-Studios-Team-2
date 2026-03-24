@@ -10,9 +10,9 @@ public class DodgeballFriendlyBall : MonoBehaviour
     public Transform player; // Reference to player position
     public DodgeballEnemyManager enemyManager; // Reference to enemy manager for positions
     public GameObject glowEffect; // Glow sprite for when to collect
-    public AudioSource landSound; // Sound when ball lands
-    public AudioSource collectSound; // Sound when collecting ball
-    public AudioSource throwSound; // Sound when throwing ball
+    // public AudioSource landSound; // Sound when ball lands
+    // public AudioSource collectSound; // Sound when collecting ball
+    // public AudioSource throwSound; // Sound when throwing ball
     
     // Ball flight settings
     [Header("Flight Settings")]
@@ -199,8 +199,9 @@ public class DodgeballFriendlyBall : MonoBehaviour
         transform.position = targetPosition;
         
         // Play land sound
-        if (landSound != null)
-            landSound.Play();
+        // if (landSound != null)
+        //     landSound.Play();
+        DodgeballAudioManager.INSTANCE.PlaySFX("HitFloor");
         
         // Ball is now grounded
         isGrounded = true;
@@ -325,8 +326,8 @@ void UpdateFlash()
     void CollectBall()
     {
         // Play collect sound
-        if (collectSound != null)
-            collectSound.Play();
+        // if (collectSound != null)
+        //     collectSound.Play();
         
         // Disable glow
         if (glowEffect != null)
@@ -382,8 +383,9 @@ void UpdateFlash()
     void ThrowAtEnemy()
 {
     // Play throw sound
-    if (throwSound != null)
-        throwSound.Play();
+    // if (throwSound != null)
+    //     throwSound.Play();
+    DodgeballAudioManager.INSTANCE.PlaySFX("Throw");
     
     // Unlock player movement
     if (playerController != null)
