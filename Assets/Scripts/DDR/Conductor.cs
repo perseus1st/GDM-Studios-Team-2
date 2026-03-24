@@ -128,6 +128,7 @@ public class Conductor : MonoBehaviour
         float diff = Math.Abs(pressedTime - targetTime); 
         if (diff <= PerfectTiming)
         {
+            AudioManager.INSTANCE.PlaySFX("CorrectNote");
             scoreManager.AddScore("Perfect!");
             return true; 
         }

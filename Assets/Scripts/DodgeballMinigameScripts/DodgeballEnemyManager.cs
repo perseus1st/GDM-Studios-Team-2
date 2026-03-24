@@ -11,7 +11,7 @@ public class DodgeballEnemyManager : MonoBehaviour
     public GameObject enemyBallPrefab; // Prefab for the ball to throw
     public Transform player; // Reference to player
     public DodgeballPlayerController playerController; // Reference to player controller
-    public AudioSource throwSound; // Sound when enemy throws
+    // public AudioSource throwSound; // Sound when enemy throws
     private bool[] enemyStunned; // Tracks which enemies are currently stunned
 
     // Animation
@@ -297,8 +297,9 @@ IEnumerator AnimatedAngleTowardCenter(Transform throwingEnemy, int enemyIndex)
 
     yield return new WaitForSeconds(throwAnimationDelay);
 
-    if (throwSound != null)
-        throwSound.Play();
+    // if (throwSound != null)
+    //     throwSound.Play();
+    DodgeballAudioManager.INSTANCE.PlaySFX("Throw");
 
     GameObject ball = Instantiate(enemyBallPrefab, throwingEnemy.position + new Vector3(-0.7f, 0f, 0f), enemyBallPrefab.transform.rotation);
 
@@ -332,8 +333,9 @@ IEnumerator AnimatedStraightDown(Transform throwingEnemy, int enemyIndex)
 
     yield return new WaitForSeconds(throwAnimationDelay);
 
-    if (throwSound != null)
-        throwSound.Play();
+    // if (throwSound != null)
+    //     throwSound.Play();
+    DodgeballAudioManager.INSTANCE.PlaySFX("Throw");
 
     GameObject ball = Instantiate(enemyBallPrefab, throwingEnemy.position + new Vector3(-0.7f, 0f, 0f), enemyBallPrefab.transform.rotation);
 
@@ -427,8 +429,9 @@ IEnumerator AnimatedSingleShot(Transform throwingEnemy, int enemyIndex)
     yield return new WaitForSeconds(throwAnimationDelay);
 
     // Play throw sound
-    if (throwSound != null)
-        throwSound.Play();
+    // if (throwSound != null)
+    //     throwSound.Play();
+    DodgeballAudioManager.INSTANCE.PlaySFX("Throw");
 
     // Create ball at enemy position
     GameObject ball = Instantiate(enemyBallPrefab, throwingEnemy.position + new Vector3(-0.7f, 0f, 0f), enemyBallPrefab.transform.rotation);

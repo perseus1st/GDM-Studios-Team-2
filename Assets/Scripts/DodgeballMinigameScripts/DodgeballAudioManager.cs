@@ -2,9 +2,9 @@ using UnityEngine;
 using System;
 using System.Collections;
 
-public class AudioManager : MonoBehaviour
+public class DodgeballAudioManager : MonoBehaviour
 {
-    public static AudioManager INSTANCE;
+    public static DodgeballAudioManager INSTANCE;
 
     [Header("Sounds")]
     public Sound[] musicSounds;
@@ -28,7 +28,7 @@ public class AudioManager : MonoBehaviour
         if (INSTANCE == null)
         {
             INSTANCE = this;
-            DontDestroyOnLoad(gameObject);
+            // DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -39,7 +39,7 @@ public class AudioManager : MonoBehaviour
         // Safety check
         if (musicSourceA == null || musicSourceB == null || sfxSource == null)
         {
-            Debug.LogError("AudioSources are not assigned in AudioManager!");
+            Debug.LogError("AudioSources are not assigned in DodgeballAudioManager!");
         }
 
         activeMusicSource = musicSourceA;
