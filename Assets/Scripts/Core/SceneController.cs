@@ -55,7 +55,7 @@ public class SceneController : MonoBehaviour
         // Debugging
         Debug.Log("Process started");
 
-        yield return new WaitForSeconds(delayBeforeAnimation);
+        yield return new WaitForSecondsRealtime(delayBeforeAnimation);
 
         if (canvasAnimator != null)
         {
@@ -71,7 +71,7 @@ public class SceneController : MonoBehaviour
             Debug.LogWarning("Canvas animator is not assigned");
         }
 
-        yield return new WaitForSeconds(animationLength);
+        yield return new WaitForSecondsRealtime(animationLength);
 
         SceneManager.LoadScene(sceneName);
     }
