@@ -3738,6 +3738,15 @@ MonoBehaviour:
   - name: ButtonHover
     clip: {fileID: 8300000, guid: b71313d9092b422208d8a83973f0a18d, type: 3}
     volume: 1
+  - name: Reset
+    clip: {fileID: 8300000, guid: 2304641b1e10d9a288e01a5ab900609c, type: 3}
+    volume: 0.7
+  - name: Mistake
+    clip: {fileID: 8300000, guid: 8348f429ce77ff06381a9b246b166cf5, type: 3}
+    volume: 1
+  - name: Highfive
+    clip: {fileID: 8300000, guid: 2237500a7809e3ea9abba4d80cca644d, type: 3}
+    volume: 1
   musicSourceA: {fileID: 439111764}
   musicSourceB: {fileID: 574201689}
   sfxSource: {fileID: 1654917429}

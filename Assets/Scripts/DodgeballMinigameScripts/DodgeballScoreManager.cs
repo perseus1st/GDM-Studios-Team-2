@@ -134,6 +134,8 @@ void Update()
         if (currentLives <= 0)
         {
             DodgeballAudioManager.INSTANCE.PlaySFX("Reset");
+            musicSource.Stop();
+            nextClip = track1;
             ResetGame();
         } else
         {
