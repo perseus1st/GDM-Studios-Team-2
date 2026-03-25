@@ -124,6 +124,8 @@ public class DDR_ScoreManager : MonoBehaviour
             Debug.LogWarning("SceneController not found! Loading scene directly without animation.");
             UnityEngine.SceneManagement.SceneManager.LoadScene(sceneToLoad);
         }
+
+        
     }
 
     // Call this on successfully hit

@@ -4344,6 +4344,15 @@ MonoBehaviour:
   - name: Walk
     clip: {fileID: 8300000, guid: 1d19d1e49033851ba951de94dbacb5b6, type: 3}
     volume: 1
+  - name: DoorOpen
+    clip: {fileID: 8300000, guid: 6b27fad7a6142d77bb6fe47ee038996d, type: 3}
+    volume: 1
+  - name: DoorClose
+    clip: {fileID: 8300000, guid: e10e963d22b5ea87e95422283971a51e, type: 3}
+    volume: 1
+  - name: Box
+    clip: {fileID: 8300000, guid: c846880b1fc96a23da91f49a4892c6a1, type: 3}
+    volume: 1
   musicSourceA: {fileID: 439111764}
   musicSourceB: {fileID: 574201689}
   sfxSource: {fileID: 1654917429}
