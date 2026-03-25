@@ -35,7 +35,7 @@ public class Rackets : MonoBehaviour, IInteractable
         {
             itemModel.SetActive(false);
             boxModel.SetActive(true);
-            interactIcon.transform.localPosition = new UnityEngine.Vector3(0.57f,-0.232f,0.09f);
+            interactIcon.transform.localPosition = new UnityEngine.Vector3(0.707f,-0.415f,-0.332f);
             boxCollider = GetComponent<BoxCollider>();
             boxCollider.center = new UnityEngine.Vector3(0.6741f, -0.273f, -0.14185f);
             boxCollider.size = new UnityEngine.Vector3(0.3008f, 1.548f, 0.5297f);

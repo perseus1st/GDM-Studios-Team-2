@@ -35,7 +35,7 @@ public class Dodgeball : MonoBehaviour, IInteractable
         {
             itemModel.SetActive(false);
             boxModel.SetActive(true);
-            interactIcon.transform.localPosition = new UnityEngine.Vector3(-0.38f,-0.106f,0.083f);
+            interactIcon.transform.localPosition = new UnityEngine.Vector3(-0.492f,-0.234f,-0.451f);
             boxCollider = GetComponent<BoxCollider>();
             boxCollider.center = new UnityEngine.Vector3(-0.483445f, -0.286f, -0.256552f);
             boxCollider.size = new UnityEngine.Vector3(0.4788f, 1.573f, 0.4189f);
