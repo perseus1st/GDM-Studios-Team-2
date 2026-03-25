@@ -1068,7 +1068,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &411079179
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1643,7 +1643,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1718633348209796847, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 465.0836
+      value: 520
       objectReference: {fileID: 0}
     - target: {fileID: 1750971388161905837, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
       propertyPath: m_Name
@@ -1682,16 +1682,32 @@ PrefabInstance:
       value: -475
       objectReference: {fileID: 0}
     - target: {fileID: 4453553695309046325, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
-      propertyPath: m_fontSize
-      value: 55
+      propertyPath: m_text
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4453553695309046325, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
-      propertyPath: m_fontSizeBase
-      value: 55
+      propertyPath: m_fontSize
+      value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 4453553695309046325, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: aaf8b9ab341c3c64185eeb1721d0feff, type: 2}
+    - target: {fileID: 4453553695309046325, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4453553695309046325, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -8354203079249323526, guid: aaf8b9ab341c3c64185eeb1721d0feff, type: 2}
     - target: {fileID: 4453553695309046325, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
       propertyPath: m_HorizontalAlignment
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4453553695309046325, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6481295579768315264, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
       propertyPath: m_UiScaleMode
