@@ -3399,7 +3399,7 @@ MonoBehaviour:
     volume: 1
   - name: Throw
     clip: {fileID: 8300000, guid: bebb2b43f1ca3b721a1d8ebf5986bc2e, type: 3}
-    volume: 0.4
+    volume: 0.6
   - name: HitFloor
     clip: {fileID: 8300000, guid: 647edec44754e44ceb4189be33a819c5, type: 3}
     volume: 6

@@ -10801,7 +10801,7 @@ MonoBehaviour:
     volume: 1
   - name: ButtonHover
     clip: {fileID: 8300000, guid: b71313d9092b422208d8a83973f0a18d, type: 3}
-    volume: 1
+    volume: 1.1
   - name: Reset
     clip: {fileID: 8300000, guid: 2304641b1e10d9a288e01a5ab900609c, type: 3}
     volume: 0.7
@@ -10814,6 +10814,9 @@ MonoBehaviour:
   - name: Whistle
     clip: {fileID: 8300000, guid: 3796d816967c0381a81c50cecfcd50e4, type: 3}
     volume: 0.7
+  - name: Throw
+    clip: {fileID: 8300000, guid: bebb2b43f1ca3b721a1d8ebf5986bc2e, type: 3}
+    volume: 0.6
   musicSourceA: {fileID: 610775690}
   musicSourceB: {fileID: 1257996364}
   sfxSource: {fileID: 576298669}
