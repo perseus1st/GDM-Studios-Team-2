@@ -1382,6 +1382,10 @@ PrefabInstance:
       value: Press space to close.
       objectReference: {fileID: 0}
     - target: {fileID: 112227055965448473, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
+      propertyPath: dialogueText
+      value: 
+      objectReference: {fileID: 628521837}
+    - target: {fileID: 112227055965448473, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
       propertyPath: dialogueText1
       value: 
       objectReference: {fileID: 628521837}
@@ -1402,12 +1406,150 @@ PrefabInstance:
       value: 0.025
       objectReference: {fileID: 0}
     - target: {fileID: 112227055965448473, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
+      propertyPath: pages.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 112227055965448473, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
       propertyPath: playerController
       value: 
       objectReference: {fileID: 167505483}
+    - target: {fileID: 112227055965448473, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
+      propertyPath: sentences.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 112227055965448473, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
+      propertyPath: 'sentences.Array.data[0]'
+      value: You roam in and out of about a hundred thousand doors, in some imaginary,
+        I'd like to think. The real world, meanwhile, spins quite quickly.
+      objectReference: {fileID: 0}
+    - target: {fileID: 112227055965448473, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
+      propertyPath: 'sentences.Array.data[1]'
+      value: I am tired these days; scrubbing already-dry batter off the kitchen
+        walls and packing my life into brown boxes bound for California.
+      objectReference: {fileID: 0}
+    - target: {fileID: 112227055965448473, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
+      propertyPath: 'sentences.Array.data[2]'
+      value: "The world spins quite quickly so I can\u2019t entertain these tauntings;
+        I think you\u2019d blow me clean over."
+      objectReference: {fileID: 0}
+    - target: {fileID: 112227055965448473, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
+      propertyPath: 'sentences.Array.data[3]'
+      value: Misery and I both know he kicks hard in the shins and could render me
+        useless for a week or two.
+      objectReference: {fileID: 0}
+    - target: {fileID: 112227055965448473, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
+      propertyPath: 'sentences.Array.data[4]'
+      value: Though, I am still quite sure you taught me everything I know about
+        love.
+      objectReference: {fileID: 0}
+    - target: {fileID: 112227055965448473, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
+      propertyPath: 'sentences.Array.data[5]'
+      value: So you can stay roaming, in hiding and safe-kept while I pack away your
+        memory and attend to this big move.
+      objectReference: {fileID: 0}
+    - target: {fileID: 112227055965448473, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
+      propertyPath: 'sentences.Array.data[6]'
+      value: '7 Sentence  Sentence  Sentence  Sentence  Sentence  Sentence  Sentence 
+        Sentence  Sentence '
+      objectReference: {fileID: 0}
+    - target: {fileID: 112227055965448473, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
+      propertyPath: 'sentences.Array.data[7]'
+      value: '8 Sentence  Sentence  Sentence  Sentence  Sentence  Sentence  Sentence 
+        Sentence  Sentence '
+      objectReference: {fileID: 0}
+    - target: {fileID: 112227055965448473, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
+      propertyPath: 'sentences.Array.data[8]'
+      value: '9 Sentence  Sentence  Sentence  Sentence  Sentence  Sentence  Sentence 
+        Sentence  Sentence '
+      objectReference: {fileID: 0}
+    - target: {fileID: 112227055965448473, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
+      propertyPath: 'sentences.Array.data[9]'
+      value: '9 Sentence  Sentence  Sentence  Sentence  Sentence  Sentence  Sentence 
+        Sentence  Sentence '
+      objectReference: {fileID: 0}
+    - target: {fileID: 112227055965448473, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
+      propertyPath: 'page1Lines.Array.data[0]'
+      value: Page 1 element 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 112227055965448473, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
+      propertyPath: 'page1Lines.Array.data[1]'
+      value: Page 1 element 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 112227055965448473, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
+      propertyPath: 'page1Lines.Array.data[2]'
+      value: Page 1 element 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 112227055965448473, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
+      propertyPath: 'page2Lines.Array.data[0]'
+      value: Page 2 element 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 112227055965448473, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
+      propertyPath: 'page2Lines.Array.data[1]'
+      value: Page 2 element 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 112227055965448473, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
+      propertyPath: 'page2Lines.Array.data[2]'
+      value: Page 2 element 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 112227055965448473, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
+      propertyPath: 'page3Lines.Array.data[0]'
+      value: Page 3 element 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 112227055965448473, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
+      propertyPath: 'page3Lines.Array.data[1]'
+      value: Page 3 element 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 112227055965448473, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
+      propertyPath: 'page3Lines.Array.data[2]'
+      value: Page 3 element 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 112227055965448473, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
+      propertyPath: pages.Array.data[0].line1
+      value: element 1 line 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 112227055965448473, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
+      propertyPath: pages.Array.data[0].line2
+      value: element 1 line 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 112227055965448473, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
+      propertyPath: pages.Array.data[0].line3
+      value: element 1 line 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 112227055965448473, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
+      propertyPath: pages.Array.data[1].line1
+      value: element 1 line 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 112227055965448473, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
+      propertyPath: pages.Array.data[1].line2
+      value: element 1 line 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 112227055965448473, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
+      propertyPath: pages.Array.data[1].line3
+      value: element 1 line 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 112227055965448473, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
+      propertyPath: pages.Array.data[2].line1
+      value: element 1 line 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 112227055965448473, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
+      propertyPath: pages.Array.data[2].line2
+      value: element 1 line 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 112227055965448473, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
+      propertyPath: pages.Array.data[2].line3
+      value: element 1 line 3
+      objectReference: {fileID: 0}
     - target: {fileID: 478217793875634286, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
       propertyPath: m_text
       value: (Press space to close.)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1718633348209796847, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1718633348209796847, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1718633348209796847, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
       propertyPath: m_SizeDelta.x
@@ -1415,15 +1557,47 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1718633348209796847, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 337.9
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 1750971388161905837, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
       propertyPath: m_Name
       value: DialogueCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 1900356825991486947, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4118837184115667503, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4118837184115667503, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4118837184115667503, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4118837184115667503, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 2560
+      objectReference: {fileID: 0}
+    - target: {fileID: 4118837184115667503, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 4118837184115667503, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4264783173816424297, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -475
+      objectReference: {fileID: 0}
+    - target: {fileID: 4453553695309046325, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7002466439974547691, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
       propertyPath: m_Pivot.x
@@ -1648,7 +1822,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1189491616
 RectTransform:
   m_ObjectHideFlags: 0

@@ -6,23 +6,19 @@ public class IntroDialogue : MonoBehaviour
 {
     [SerializeField] private GameObject dialoguePanel;
     [SerializeField] private PlayerController playerController;
-
-    [SerializeField] private TextMeshProUGUI dialogueText1;
-    [SerializeField] private TextMeshProUGUI dialogueText2;
-    [SerializeField] private TextMeshProUGUI dialogueText3;
-
-    [SerializeField] private string fullText1 = "Line one.";
-    [SerializeField] private string fullText2 = "Line two.";
-    [SerializeField] private string fullText3 = "Line three.";
-
+    [SerializeField] private TextMeshProUGUI dialogueText;
     [SerializeField] private float normalCharDelay = 0.05f;
-    [SerializeField] private float fastCharDelay = 0.01f;
+    [SerializeField] private float fastCharDelay = 0.005f;
     [SerializeField] private float fadeDuration = 1f;
 
-    private CanvasGroup canvasGroup;
+    [SerializeField] private string[] sentences;
+
+    private int currentSentence = 0;
     private bool isDialogueActive = false;
-    private bool textComplete = false;
+    private bool sentenceComplete = false;
     private bool isFast = false;
+    private CanvasGroup canvasGroup;
+    private Coroutine typingCoroutine;
 
     void Start()
     {
@@ -38,42 +34,54 @@ public class IntroDialogue : MonoBehaviour
     {
         dialoguePanel.SetActive(true);
         canvasGroup.alpha = 1f;
-        textComplete = false;
-        isFast = false;
+        currentSentence = 0;
         isDialogueActive = true;
-
-        dialogueText1.text = "";
-        dialogueText2.text = "";
-        dialogueText3.text = "";
-
         playerController.SetDialogueActive(true);
-        StartCoroutine(TypeAllText());
+        typingCoroutine = StartCoroutine(TypeSentence(sentences[currentSentence]));
     }
 
-    private IEnumerator TypeText(TextMeshProUGUI textElement, string fullText)
+    private IEnumerator TypeSentence(string sentence)
     {
-        for (int i = 0; i <= fullText.Length; i++)
+        sentenceComplete = false;
+        isFast = false;
+        dialogueText.text = "";
+
+        for (int i = 0; i <= sentence.Length; i++)
         {
-            textElement.text = fullText.Substring(0, i);
+            dialogueText.text = sentence.Substring(0, i);
             yield return new WaitForSeconds(isFast ? fastCharDelay : normalCharDelay);
         }
+
+        sentenceComplete = true;
     }
 
-    private IEnumerator TypeAllText()
+    public void OnInteractDialogue()
     {
-        // Type each section sequentially
-        yield return StartCoroutine(TypeText(dialogueText1, fullText1));
-        yield return StartCoroutine(TypeText(dialogueText2, fullText2));
-        yield return StartCoroutine(TypeText(dialogueText3, fullText3));
+        if (!isDialogueActive) return;
 
-        textComplete = true;
-    }
+        if (!sentenceComplete)
+        {
+            // Sentence still typing — complete it instantly
+            isFast = true;
+            if (typingCoroutine != null)
+                StopCoroutine(typingCoroutine);
+            dialogueText.text = sentences[currentSentence];
+            sentenceComplete = true;
+        }
+        else
+        {
+            // Sentence complete — advance to next or dismiss
+            currentSentence++;
 
-    private void HideDialogue()
-    {
-        isDialogueActive = false;
-        playerController.SetDialogueActive(false);
-        StartCoroutine(FadeOut());
+            if (currentSentence < sentences.Length)
+                typingCoroutine = StartCoroutine(TypeSentence(sentences[currentSentence]));
+            else
+            {
+                isDialogueActive = false;
+                playerController.SetDialogueActive(false);
+                StartCoroutine(FadeOut());
+            }
+        }
     }
 
     private IEnumerator FadeOut()
@@ -89,25 +97,5 @@ public class IntroDialogue : MonoBehaviour
 
         canvasGroup.alpha = 0f;
         dialoguePanel.SetActive(false);
-    }
-
-    public void OnInteractDialogue()
-    {
-        if (!isDialogueActive) return;
-
-        if (!textComplete && !isFast)
-        {
-            // First press — speed up
-            isFast = true;
-        }
-        else if (textComplete || isFast)
-        {
-            // Second press — dismiss
-            StopAllCoroutines();
-            dialogueText1.text = fullText1;
-            dialogueText2.text = fullText2;
-            dialogueText3.text = fullText3;
-            HideDialogue();
-        }
     }
 }
