@@ -27,7 +27,7 @@ public class DodgeballEnemyManager : MonoBehaviour
 
     // Ball settings
     [Header("Ball Settings")]
-    public float ballLifetime = 10f; // How long before ball is destroyed off-screen
+    public float ballLifetime = 6f; // How long before ball is destroyed off-screen
     public float hitRadius = 0.5f; // How close to player counts as hit
     
     // Difficulty scaling
