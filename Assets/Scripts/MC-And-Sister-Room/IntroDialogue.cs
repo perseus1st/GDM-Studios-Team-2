@@ -10,6 +10,9 @@ public class IntroDialogue : MonoBehaviour
     [SerializeField] private float normalCharDelay = 0.05f;
     [SerializeField] private float fastCharDelay = 0.005f;
     [SerializeField] private float fadeDuration = 1f;
+    [SerializeField] private RectTransform interactIcon;
+    [SerializeField] private float iconScaleAmount = 0.8f;
+    [SerializeField] private float iconScaleDuration = 0.1f;
 
     [SerializeField] private string[] sentences;
 
@@ -57,6 +60,9 @@ public class IntroDialogue : MonoBehaviour
 
     public void OnInteractDialogue()
     {
+        if (interactIcon != null)
+            StartCoroutine(PulseIcon());
+
         if (!isDialogueActive) return;
 
         if (!sentenceComplete)
@@ -97,5 +103,29 @@ public class IntroDialogue : MonoBehaviour
 
         canvasGroup.alpha = 0f;
         dialoguePanel.SetActive(false);
+    }
+    
+    private IEnumerator PulseIcon()
+    {
+        Vector3 originalScale = interactIcon.localScale;
+        Vector3 targetScale = originalScale * iconScaleAmount;
+
+        float elapsed = 0f;
+        while (elapsed < iconScaleDuration)
+        {
+            elapsed += Time.deltaTime;
+            interactIcon.localScale = Vector3.Lerp(originalScale, targetScale, elapsed / iconScaleDuration);
+            yield return null;
+        }
+
+        elapsed = 0f;
+        while (elapsed < iconScaleDuration)
+        {
+            elapsed += Time.deltaTime;
+            interactIcon.localScale = Vector3.Lerp(targetScale, originalScale, elapsed / iconScaleDuration);
+            yield return null;
+        }
+    
+        interactIcon.localScale = originalScale;
     }
 }

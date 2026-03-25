@@ -755,6 +755,81 @@ Transform:
   - {fileID: 374554568}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &327434966
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 327434967}
+  - component: {fileID: 327434969}
+  - component: {fileID: 327434968}
+  m_Layer: 0
+  m_Name: Interact
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &327434967
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 327434966}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.68, y: 0.68, z: 0.68}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 628521835}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 1077.3, y: 384.6}
+  m_SizeDelta: {x: 690, y: 600}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &327434968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 327434966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: f418f5e5ea8d2754bab3fb507932e45d, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &327434969
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 327434966}
+  m_CullTransparentMesh: 1
 --- !u!1 &367202962
 GameObject:
   m_ObjectHideFlags: 0
@@ -1386,6 +1461,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 628521837}
     - target: {fileID: 112227055965448473, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
+      propertyPath: interactIcon
+      value: 
+      objectReference: {fileID: 327434967}
+    - target: {fileID: 112227055965448473, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
       propertyPath: dialogueText1
       value: 
       objectReference: {fileID: 628521837}
@@ -1419,8 +1498,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 112227055965448473, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
       propertyPath: 'sentences.Array.data[0]'
-      value: You roam in and out of about a hundred thousand doors, in some imaginary,
-        I'd like to think. The real world, meanwhile, spins quite quickly.
+      value: You roam in and out of about a hundred thousand doors, in some imaginary
+        world, I'd like to think. The real world, meanwhile, spins quite quickly.
       objectReference: {fileID: 0}
     - target: {fileID: 112227055965448473, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
       propertyPath: 'sentences.Array.data[1]'
@@ -1429,23 +1508,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 112227055965448473, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
       propertyPath: 'sentences.Array.data[2]'
-      value: "The world spins quite quickly so I can\u2019t entertain these tauntings;
-        I think you\u2019d blow me clean over."
+      value: "The world spins quite quickly, so I can\u2019t entertain these taunts;
+        I think you\u2019d blow me over."
       objectReference: {fileID: 0}
     - target: {fileID: 112227055965448473, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
       propertyPath: 'sentences.Array.data[3]'
-      value: Misery and I both know he kicks hard in the shins and could render me
-        useless for a week or two.
-      objectReference: {fileID: 0}
-    - target: {fileID: 112227055965448473, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
-      propertyPath: 'sentences.Array.data[4]'
       value: Though, I am still quite sure you taught me everything I know about
         love.
       objectReference: {fileID: 0}
     - target: {fileID: 112227055965448473, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
+      propertyPath: 'sentences.Array.data[4]'
+      value: "Though, you still are something I can\u2019t quite remember."
+      objectReference: {fileID: 0}
+    - target: {fileID: 112227055965448473, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
       propertyPath: 'sentences.Array.data[5]'
-      value: So you can stay roaming, in hiding and safe-kept while I pack away your
-        memory and attend to this big move.
+      value: So you can stay roaming, in hiding and safe-kept while I pack away our
+        memories and attend to this big move.
       objectReference: {fileID: 0}
     - target: {fileID: 112227055965448473, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
       propertyPath: 'sentences.Array.data[6]'
@@ -1712,6 +1790,9 @@ PrefabInstance:
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 4118837184115667503, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
       insertIndex: 1
+      addedObject: {fileID: 327434967}
+    - targetCorrespondingSourceObject: {fileID: 4118837184115667503, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
+      insertIndex: 2
       addedObject: {fileID: 1189491616}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
