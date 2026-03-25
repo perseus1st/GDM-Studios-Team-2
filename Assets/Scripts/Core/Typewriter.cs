@@ -29,7 +29,6 @@ public class Typewriter : MonoBehaviour
 
     void Start()
     {
-        // Setup CanvasGroup (for fading)
         canvasGroup = dialoguePanel.GetComponent<CanvasGroup>();
         if (canvasGroup == null)
             canvasGroup = dialoguePanel.AddComponent<CanvasGroup>();
@@ -91,8 +90,6 @@ public class Typewriter : MonoBehaviour
         currentSentenceIndex++;
         StartSentence();
     }
-
-    // 🔹 Called externally (ex: when player presses Space)
     public void OnInteractDialogue()
     {
         if (isDialogueActive)
