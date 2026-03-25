@@ -346,6 +346,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "UI",
+            "id": "87a674fb-8f74-400a-81c7-3c91796a2302",
+            "actions": [
+                {
+                    "name": "SkipDialogue",
+                    "type": "Button",
+                    "id": "a03bf7a6-a206-473f-8204-6ceaa5077f19",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "07d5fbf0-9712-4508-af9f-f2bd7c005c5b",
+                    "path": "<Keyboard>/space",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SkipDialogue",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []
