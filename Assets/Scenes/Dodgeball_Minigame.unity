@@ -2278,7 +2278,7 @@ MonoBehaviour:
   throwIntervalVariation: 0.5
   ballLifetime: 10
   hitRadius: 0.5
-  scoreForMaxDifficulty: 35
+  scoreForMaxDifficulty: 100
   scoreForMultipleThrowers: 5
   maxPredictionDistance: 3
   alternatingPatternBaseDelay: 1
@@ -3021,18 +3021,18 @@ MonoBehaviour:
   scoreTextPink: {fileID: 874945095}
   enemyManager: {fileID: 1455063681}
   whistleSound: {fileID: 1638469675}
-  completionDelay: 0.2
+  completionDelay: 0.5
   currentScore: 0
   maxLives: 3
   baseBallSpeed: 8
   maxBallSpeed: 18
-  speedIncreasePerHit: 0.2
+  speedIncreasePerHit: 0.15
   baseThrowFrequency: 2
   minThrowFrequency: 0.8
-  frequencyDecreasePerHit: 0.05
+  frequencyDecreasePerHit: 0.035
   baseGroundedWindow: 3
   minGroundedWindow: 1
-  windowDecreasePerHit: 0.05
+  windowDecreasePerHit: 0.035
   scoreToComplete: 20
   minigameID: dodgeball
   sceneToLoad: Sister_Room
