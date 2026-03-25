@@ -1760,6 +1760,17 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 6931646279036232816, guid: 2c597986c4d99d842ae9ec0a4f58db04, type: 3}
   m_PrefabInstance: {fileID: 444141748}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1614810216 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4453553695309046325, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
+  m_PrefabInstance: {fileID: 6709774269487617720}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &1662044372
 GameObject:
   m_ObjectHideFlags: 0
@@ -2416,6 +2427,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 112227055965448473, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
+      propertyPath: fullText
+      value: "You roam in and out of about a hundred thousand doors, in some imaginary,
+        I'd like to think. The real world, meanwhile, spins quite quickly. I am tired
+        these days; scrubbing already-dry batter off the kitchen walls and packing
+        my life into brown boxes bound for California. The world spins quite quickly
+        so I can\u2019t entertain these tauntings; I think you\u2019d blow me clean
+        over. Misery and I both know he kicks hard in the shins and could render
+        me useless for a week or two.  Though, I am still quite sure you taught me
+        everything I know about love. Though, you still are something I can\u2019t
+        quite remember."
+      objectReference: {fileID: 0}
+    - target: {fileID: 112227055965448473, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
+      propertyPath: dialogueText
+      value: 
+      objectReference: {fileID: 1614810216}
+    - target: {fileID: 112227055965448473, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
+      propertyPath: fastCharDelay
+      value: 0.001
+      objectReference: {fileID: 0}
     - target: {fileID: 112227055965448473, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
       propertyPath: playerController
       value: 
