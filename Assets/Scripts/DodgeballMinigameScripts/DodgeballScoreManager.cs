@@ -325,34 +325,43 @@ IEnumerator CrossfadeToTrack1()
 
 IEnumerator CompletionSequence()
 {
+    Debug.Log("CompletionSequence started");
+
     // Stop enemies
     if (enemyManager != null)
         enemyManager.enabled = false;
+    Debug.Log("Enemy manager stopped");
 
     // Stop music
     if (musicSource != null)
         musicSource.Stop();
+    Debug.Log("Music stopped");
 
-// Stop Friendly balls from spawning
-DodgeballFriendlyBallSpawner friendlyBallSpawner = FindFirstObjectByType<DodgeballFriendlyBallSpawner>();
-if (friendlyBallSpawner != null)
-    friendlyBallSpawner.enabled = false;
+    // Stop Friendly balls from spawning
+    DodgeballFriendlyBallSpawner friendlyBallSpawner = FindFirstObjectByType<DodgeballFriendlyBallSpawner>();
+    if (friendlyBallSpawner != null)
+        friendlyBallSpawner.enabled = false;
+    Debug.Log("Friendly ball spawner stopped");
 
     // Stop player
     DodgeballPlayerController playerController = FindFirstObjectByType<DodgeballPlayerController>();
-    if (playerController != null)
+    if (playerController != null) 
     {
-        playerController.isInvincible = true; // character cant get damaged by moving balls
-        playerController.GetComponentInChildren<Animator>().SetBool("IsMoving", false); // stop character animation
-        playerController.enabled = false; 
-        playerController.Rigidbody.linearVelocity = Vector3.zero; // stop moving character
+        playerController.isInvincible = true;
+        playerController.GetComponentInChildren<Animator>().SetBool("IsMoving", false);
+        playerController.enabled = false;
+        playerController.Rigidbody.linearVelocity = Vector3.zero;
     }
+    Debug.Log("Player stopped");
 
     // Wait
     yield return new WaitForSeconds(completionDelay);
+    Debug.Log("Delay finished");
 
     // Transition
     SceneController sceneController = FindAnyObjectByType<SceneController>();
+    Debug.Log($"SceneController found: {sceneController != null}");
+
     if (sceneController != null)
         sceneController.StartAnimation(sceneToLoad);
     else
@@ -361,7 +370,6 @@ if (friendlyBallSpawner != null)
         UnityEngine.SceneManagement.SceneManager.LoadScene(sceneToLoad);
     }
 }
-
     
     public int GetLives()
     {
