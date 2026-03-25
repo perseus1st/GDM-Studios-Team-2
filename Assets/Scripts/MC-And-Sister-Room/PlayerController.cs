@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour
     private UnityEngine.Vector3 fixedCamRight;
 
     private const float sqrt2 = 1.189207f;
+    private bool dialogueActive = false; // Added by Daniil
+    private IntroDialogue introDialogue; // Added by Daniil
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -32,6 +34,8 @@ public class PlayerController : MonoBehaviour
 
         fixedCamForward = camForward.normalized;
         fixedCamRight = camRight.normalized;
+
+        introDialogue = FindObjectOfType<IntroDialogue>(); // Added by Daniil
         
     }
 
@@ -45,15 +49,20 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    public void onInteract(InputAction.CallbackContext context)
+    public void onInteract(InputAction.CallbackContext context) // Edited by Daniil
     {
-        if (currentInteractable != null)
-        {
-            Debug.Log("found interactable");
-            currentInteractable.Interact();
-        } else
-        {
-            Debug.Log("no interactable");
+         if (context.performed)
+         {
+             if (dialogueActive)
+             {
+                 if (introDialogue != null)
+                    introDialogue.OnInteractDialogue();
+                 return;
+             }
+             if (currentInteractable != null)
+             {
+                currentInteractable.Interact();
+            }
         }
     }
 
@@ -65,9 +74,21 @@ public class PlayerController : MonoBehaviour
         currentInteractable = interactable;
     }
 
+    public void SetDialogueActive(bool active) // Added by Daniil
+    {
+        dialogueActive = active;
+    }
+
     // Update is called once per frame
     void Update()
     {
+
+        if (dialogueActive) // Added by Daniil
+        {
+            animator.SetFloat("blend", 0f, animationDampTime, Time.deltaTime);
+            return; // skip all movement
+        }
+
         Vector3 move = new Vector3(moveInput.x, 0, moveInput.y);
 
         Vector3 moveDirection = fixedCamForward * move.z + fixedCamRight * move.x;
