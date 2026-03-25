@@ -21,6 +21,13 @@ public class PlayerController : MonoBehaviour
     private bool dialogueActive = false; // Added by Daniil
     private IntroDialogue introDialogue; // Added by Daniil
 
+    [Header("Footsteps")]
+    [SerializeField] private AudioSource footstepSource;
+    [SerializeField] private AudioClip footstepClip;
+
+    [SerializeField] private float footstepVolume = 1f;
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -36,7 +43,14 @@ public class PlayerController : MonoBehaviour
         fixedCamRight = camRight.normalized;
 
         introDialogue = FindObjectOfType<IntroDialogue>(); // Added by Daniil
-        
+
+        if (footstepSource != null)
+        {
+        footstepSource.clip = footstepClip;
+        footstepSource.loop = true;
+        footstepSource.playOnAwake = false;
+        footstepSource.volume = footstepVolume;
+        }        
     }
 
     public void onMove(InputAction.CallbackContext context)
@@ -79,14 +93,36 @@ public class PlayerController : MonoBehaviour
         dialogueActive = active;
     }
 
+    void HandleFootsteps(bool isMoving)
+    {
+        if (footstepSource == null || footstepClip == null)
+            return;
+
+        if (isMoving)
+        {
+            if (!footstepSource.isPlaying)
+            {
+                footstepSource.Play();
+            }
+        }
+        else
+        {
+            if (footstepSource.isPlaying)
+            {
+                footstepSource.Stop();
+            }
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
 
-        if (dialogueActive) // Added by Daniil
+        if (dialogueActive)
         {
             animator.SetFloat("blend", 0f, animationDampTime, Time.deltaTime);
-            return; // skip all movement
+            HandleFootsteps(false); // stop footsteps during dialogue
+            return;
         }
 
         Vector3 move = new Vector3(moveInput.x, 0, moveInput.y);
@@ -96,6 +132,8 @@ public class PlayerController : MonoBehaviour
 
         velocity = moveDirection * speed;
         controller.Move(velocity * Time.deltaTime);
+        bool isMoving = velocity.sqrMagnitude > 0.01f;
+        HandleFootsteps(isMoving);
 
         if (velocity.sqrMagnitude > 0.01f)
         {

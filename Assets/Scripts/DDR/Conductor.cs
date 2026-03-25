@@ -131,23 +131,24 @@ public class Conductor : MonoBehaviour
         float diff = Math.Abs(pressedTime - targetTime); 
         if (diff <= PerfectTiming)
         {
-            AudioManager.INSTANCE.PlaySFX("CorrectNote");
+            DDRAudioManager.INSTANCE.PlaySFX("CorrectNote");
             scoreManager.AddScore("Perfect!");
             return true; 
         }
         else if (diff <= GreatTiming)
         {
-            AudioManager.INSTANCE.PlaySFX("CorrectNote");
+            DDRAudioManager.INSTANCE.PlaySFX("CorrectNote");
             scoreManager.AddScore("Great!");
             return true; 
         } 
         else if (diff <= OkayTiming)
         {
-            AudioManager.INSTANCE.PlaySFX("CorrectNote");
+            DDRAudioManager.INSTANCE.PlaySFX("CorrectNote");
             scoreManager.AddScore("Okay");
             return true; 
         } else
         {
+            DDRAudioManager.INSTANCE.PlaySFX("Mistake");
             scoreManager.LoseLife(); 
             return false; 
         }

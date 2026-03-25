@@ -4365,15 +4365,33 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1592820796}
-  - component: {fileID: 1592820795}
+  - component: {fileID: 1592820797}
   m_Layer: 0
-  m_Name: AudioManager
+  m_Name: DDRAudioManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1592820795
+--- !u!4 &1592820796
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1592820794}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 734.5, y: 373.75, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 185474589}
+  - {fileID: 1494863714}
+  - {fileID: 163676208}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1592820797
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4382,9 +4400,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1592820794}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9db752de3352f94e92d57b0f0fd7288, type: 3}
+  m_Script: {fileID: 11500000, guid: 936c0efdb61d1de8a85cb822cdb637ad, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AudioManager
+  m_EditorClassIdentifier: Assembly-CSharp::DDRAudioManager
   musicSounds:
   - name: CalmTrack2
     clip: {fileID: 8300000, guid: 8b9f9531a1dbf194188817d00c2f892e, type: 3}
@@ -4408,29 +4426,14 @@ MonoBehaviour:
   - name: CorrectNote
     clip: {fileID: 8300000, guid: f19cc5fc8644fee6eaa429c363cf896f, type: 3}
     volume: 0.2
+  - name: Mistake
+    clip: {fileID: 8300000, guid: 8348f429ce77ff06381a9b246b166cf5, type: 3}
+    volume: 1
   musicSourceA: {fileID: 185474588}
   musicSourceB: {fileID: 1494863713}
   sfxSource: {fileID: 163676207}
   fadeOutTime: 3
   fadeInTime: 1.5
---- !u!4 &1592820796
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1592820794}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 734.5, y: 373.75, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 185474589}
-  - {fileID: 1494863714}
-  - {fileID: 163676208}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1658401140
 GameObject:
   m_ObjectHideFlags: 0
@@ -6144,7 +6147,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3536943333875962504, guid: 765de37862c9e254ba17b39699338bd5, type: 3}
       propertyPath: m_fontColor32.rgba
-      value: 4286596040
+      value: 4279899844
       objectReference: {fileID: 0}
     - target: {fileID: 3536943333875962504, guid: 765de37862c9e254ba17b39699338bd5, type: 3}
       propertyPath: m_HorizontalAlignment
