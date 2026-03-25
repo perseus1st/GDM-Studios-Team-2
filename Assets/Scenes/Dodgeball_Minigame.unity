@@ -385,7 +385,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PauseManager
   pauseMenuUI: {fileID: 151258992}
   playerInput: {fileID: 1718124682}
-  sceneController: {fileID: 0}
+  sceneController: {fileID: 1499559284}
   inputMapName: Gameplay
 --- !u!4 &186004646
 Transform:
@@ -657,7 +657,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &281357374
 RectTransform:
@@ -2249,7 +2249,7 @@ MonoBehaviour:
   spawnLineZ: -12
   spawnLineMinX: -9
   spawnLineMaxX: 9
-  spawnHeight: 0.5
+  spawnHeight: 0
   maxBallsInPlay: 5
 --- !u!4 &1532713990
 Transform:
@@ -3399,7 +3399,7 @@ MonoBehaviour:
     volume: 1
   - name: Throw
     clip: {fileID: 8300000, guid: bebb2b43f1ca3b721a1d8ebf5986bc2e, type: 3}
-    volume: 0.4
+    volume: 0.6
   - name: HitFloor
     clip: {fileID: 8300000, guid: 647edec44754e44ceb4189be33a819c5, type: 3}
     volume: 6

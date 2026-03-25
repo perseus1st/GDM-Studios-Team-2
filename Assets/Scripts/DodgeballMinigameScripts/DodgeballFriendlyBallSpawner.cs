@@ -17,7 +17,7 @@ public class DodgeballFriendlyBallSpawner : MonoBehaviour
     public float spawnLineZ = -12f; // Z position of spawn line (below screen)
     public float spawnLineMinX = -9f; // Leftmost point of spawn line
     public float spawnLineMaxX = 9f; // Rightmost point of spawn line
-    public float spawnHeight = 0.5f; // Y position of spawn
+    public float spawnHeight = 0.4f; // Y position of spawn
     public int maxBallsInPlay = 5; // Maximum number of friendly balls at once
     
     private float nextSpawnTime; // When next ball will spawn

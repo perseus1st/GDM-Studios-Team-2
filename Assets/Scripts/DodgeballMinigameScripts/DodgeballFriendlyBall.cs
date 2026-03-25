@@ -99,7 +99,7 @@ public class DodgeballFriendlyBall : MonoBehaviour
         float randomZ = Random.Range(-9f, -1f);
         
         // Clamp distance from spawn
-        Vector3 randomTarget = new Vector3(randomX, 0.5f, randomZ);
+        Vector3 randomTarget = new Vector3(randomX, 0.4f, randomZ);
         Vector3 directionFromSpawn = randomTarget - startPosition;
         if (directionFromSpawn.magnitude > maxDistanceFromSpawn)
         {
@@ -108,7 +108,7 @@ public class DodgeballFriendlyBall : MonoBehaviour
         }
         
         targetPosition = randomTarget;
-        targetPosition.y = 0.5f;
+        targetPosition.y = 0.4f;
         
         // Calculate arc height based on distance from back wall
         // Closer to back wall = lower arc, farther = higher arc
