@@ -156,6 +156,7 @@ public class DDR_ScoreManager : MonoBehaviour
         currentLives--;
         UpdateLivesDisplay();
         scoreMsg.text= "Oops!"; 
+        DDRAudioManager.INSTANCE.PlaySFX("Mistake");
         scoreMsg.gameObject.SetActive(true); 
         timeWhenDisappear = Time.time + timeMsgVisible; 
 
@@ -182,7 +183,7 @@ public class DDR_ScoreManager : MonoBehaviour
 
         //     SaveSystem.Save(gm.currentSaveSlot);
         // }
-        AudioManager.INSTANCE.PlaySFX("GameReset");
+        DDRAudioManager.INSTANCE.PlaySFX("GameReset");
         currentLives = maxLives;
         UpdateScoreDisplay();
         UpdateLivesDisplay();
