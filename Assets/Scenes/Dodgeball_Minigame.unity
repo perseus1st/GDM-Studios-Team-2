@@ -385,7 +385,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PauseManager
   pauseMenuUI: {fileID: 151258992}
   playerInput: {fileID: 1718124682}
-  sceneController: {fileID: 0}
+  sceneController: {fileID: 1499559284}
   inputMapName: Gameplay
 --- !u!4 &186004646
 Transform:
@@ -2249,7 +2249,7 @@ MonoBehaviour:
   spawnLineZ: -12
   spawnLineMinX: -9
   spawnLineMaxX: 9
-  spawnHeight: 0.5
+  spawnHeight: 0
   maxBallsInPlay: 5
 --- !u!4 &1532713990
 Transform:

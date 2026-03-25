@@ -5453,7 +5453,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PauseManager
   pauseMenuUI: {fileID: 1513159034}
   playerInput: {fileID: 1070191940}
-  sceneController: {fileID: 0}
+  sceneController: {fileID: 595721624}
   inputMapName: DDR_Minigame
 --- !u!4 &2073202679
 Transform:

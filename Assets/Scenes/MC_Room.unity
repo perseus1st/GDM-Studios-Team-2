@@ -1326,7 +1326,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PauseManager
   pauseMenuUI: {fileID: 1724443302}
   playerInput: {fileID: 167505484}
-  sceneController: {fileID: 0}
+  sceneController: {fileID: 1320509220}
   inputMapName: Gameplay
 --- !u!4 &585767072
 Transform:
