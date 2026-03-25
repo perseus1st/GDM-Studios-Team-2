@@ -123,6 +123,9 @@ void Update()
             musicSource.Stop();
             nextClip = track1;
             ResetGame();
+        } else
+        {
+            AudioManager.INSTANCE.PlaySFX("Mistake");
         }
     }
 
@@ -268,6 +271,8 @@ IEnumerator DelayedCompletion()
 
     var gm = GameManager.Instance;
 
+    AudioManager.INSTANCE.PlaySFX("Whistle");
+
     if (gm != null)
     {
         gm.MarkMinigameCompleted(minigameID);
@@ -301,19 +306,21 @@ IEnumerator CompletionSequence()
     // Stop Birdie
     BirdieController birdie = FindFirstObjectByType<BirdieController>();
 if (birdie != null)
+{
     birdie.enabled = false;
     Renderer birdieRenderer = birdie.GetComponentInChildren<Renderer>();
 if (birdieRenderer != null)
     birdieRenderer.enabled = false;
+}
 
     // Play whistle
-    if (whistleSound != null)
-        whistleSound.Play();
+    // if (whistleSound != null)
+    //    whistleSound.Play();
 
     // Wait
     yield return new WaitForSeconds(completionDelay);
 
-    AudioManager.INSTANCE.PlaySFX("Highfive");
+    // AudioManager.INSTANCE.PlaySFX("Highfive");
 
 
     // Transition
