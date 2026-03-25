@@ -13,7 +13,7 @@ public class SceneController : MonoBehaviour
     public string triggerName = "NextLevel";
     public string skipFadeInScene;
     [SerializeField] private Animator canvasAnimator;
-
+    private string currentScene;
 
     void Awake()
 {
@@ -26,7 +26,7 @@ public class SceneController : MonoBehaviour
         return;
     }
 
-    string currentScene = SceneManager.GetActiveScene().name;
+    currentScene = SceneManager.GetActiveScene().name;
 
     if (currentScene == "MainMenu")
     {
@@ -45,7 +45,6 @@ public class SceneController : MonoBehaviour
     {
         // Debugging
         // Debug.Log("Button pressed");
-
         
         StartCoroutine(PlayAnimationAndLoadLevel(sceneName));
     }
@@ -72,6 +71,20 @@ public class SceneController : MonoBehaviour
         }
 
         yield return new WaitForSecondsRealtime(animationLength);
+
+        Debug.Log("Current: " + currentScene + ", next: " + sceneName);
+        if ((currentScene == "MC_Room" && sceneName == "Sister_Room") || (currentScene == "Sister_Room" && sceneName == "Cutscene2"))
+        {
+            AudioManager.INSTANCE.PlaySFX("DoorClose");
+        } 
+        else if ((currentScene == "DDR_Minigame" 
+                || currentScene == "Dodgeball_Minigame" 
+                || currentScene == "Badminton_Minigame" 
+                || currentScene == "Kite_Minigame") 
+                && sceneName == "Sister_Room")
+        {
+            AudioManager.INSTANCE.PlaySFX("Box");
+        }
 
         SceneManager.LoadScene(sceneName);
     }
