@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float animationDampTime = 0.05f;
     [SerializeField] private float rotationSpeed = 5f;
 
-    private IInteractable currentInteractable;
+    [SerializeField] IInteractable currentInteractable;
     private CharacterController controller;
     private UnityEngine.Vector2 moveInput;
     private UnityEngine.Vector3 velocity;
@@ -49,12 +49,19 @@ public class PlayerController : MonoBehaviour
     {
         if (currentInteractable != null)
         {
+            Debug.Log("found interactable");
             currentInteractable.Interact();
+        } else
+        {
+            Debug.Log("no interactable");
         }
     }
 
     public void SetInteractable(IInteractable interactable)
     {
+        if (interactable == null) Debug.Log("interactable removed!");
+        else Debug.Log("interactble set!");
+        
         currentInteractable = interactable;
     }
 

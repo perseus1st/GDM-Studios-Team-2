@@ -39,8 +39,8 @@ public class DanceMat : MonoBehaviour, IInteractable
             boxModel.SetActive(true);
             interactIcon.transform.localPosition = new UnityEngine.Vector3(-0.385f,-0.034f,1.13f);
             boxCollider = GetComponent<BoxCollider>();
-            boxCollider.center = new UnityEngine.Vector3(-0.328f, -0.25f, 1.165f);
-            boxCollider.size = new UnityEngine.Vector3(0.69f, 1.5f, 0.809f);
+            boxCollider.center = new UnityEngine.Vector3(-0.447f, -0.25f, 1.3568f);
+            boxCollider.size = new UnityEngine.Vector3(0.6468f, 1.5f, 0.4254f);
         }
     }
 

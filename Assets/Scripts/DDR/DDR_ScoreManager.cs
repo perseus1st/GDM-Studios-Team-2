@@ -2,7 +2,7 @@
 
 using UnityEngine;
 using TMPro;
-using Unity.VisualScripting;
+using UnityEngine.UI;
 
 public class DDR_ScoreManager : MonoBehaviour
 {
@@ -14,7 +14,9 @@ public class DDR_ScoreManager : MonoBehaviour
     public GameObject hitZone; 
 
     [Header("UI References")]
+    [SerializeField] private Image scoreFillImage;
     public TextMeshProUGUI scoreText;
+    [SerializeField] private TextMeshProUGUI scoreTextPink;   // The pink filled text
     public GameObject restartPanel;
     public GameObject winPanel; 
     public TextMeshProUGUI scoreMsg;
@@ -34,6 +36,7 @@ public class DDR_ScoreManager : MonoBehaviour
     public int HIGHTIER = 3; 
     public int MIDTIER = 2; 
     public int LOWTIER = 1; 
+    public int scoreToComplete = 195; // Score needed to complete minigame
 
     private string minigameID = "ddr";
     public string sceneToLoad = "Sister_Room";
@@ -71,6 +74,17 @@ public class DDR_ScoreManager : MonoBehaviour
             {
                 scoreMsg.gameObject.SetActive(false); 
             }
+        }
+    }
+
+    public void checkWin()
+    {
+        if (currentScore >= scoreToComplete)
+        {
+            Win(); 
+        } else
+        {
+            ResetGame(); 
         }
     }
 
@@ -146,10 +160,10 @@ public class DDR_ScoreManager : MonoBehaviour
         timeWhenDisappear = Time.time + timeMsgVisible; 
 
         // Check if all lives lost
-        if (currentLives <= 0)
-        {
-            ResetGame();
-        }
+        // if (currentLives <= 0)
+        // {
+        //     ResetGame();
+        // }
     }
 
     // Reset score and lives
@@ -169,7 +183,6 @@ public class DDR_ScoreManager : MonoBehaviour
         //     SaveSystem.Save(gm.currentSaveSlot);
         // }
         AudioManager.INSTANCE.PlaySFX("GameReset");
-        currentScore = 0;
         currentLives = maxLives;
         UpdateScoreDisplay();
         UpdateLivesDisplay();
@@ -193,9 +206,14 @@ public class DDR_ScoreManager : MonoBehaviour
     // Update the UI text
     void UpdateScoreDisplay()
     {
-        if (scoreText != null)
+        scoreText.text = currentScore.ToString();
+        scoreTextPink.text = currentScore.ToString();
+
+        // Update the fill amount
+        if (scoreFillImage != null)
         {
-            scoreText.text = currentScore.ToString();
+            float progress = (float)currentScore / scoreToComplete;
+            scoreFillImage.fillAmount = progress;
         }
     }
 
@@ -236,6 +254,7 @@ public class DDR_ScoreManager : MonoBehaviour
     {
         return currentScore;
     }
+
     public int GetLives()
     {
         return currentLives;

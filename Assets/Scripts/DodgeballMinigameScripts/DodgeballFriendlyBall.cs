@@ -455,6 +455,7 @@ void UpdateFlash()
         if (CheckEnemyHit())
         {
             // Hit enemy - add score and destroy ball
+            DodgeballAudioManager.INSTANCE.PlaySFX("EnemyHit");
             if (DodgeballScoreManager.Instance != null)
                 DodgeballScoreManager.Instance.AddScore();
             
