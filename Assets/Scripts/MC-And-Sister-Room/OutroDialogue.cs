@@ -8,12 +8,14 @@ public class OutroDialogue : MonoBehaviour
     [SerializeField] private RectTransform textContainer;
     [SerializeField] private float fadeDuration = 1f;
     [SerializeField] private float scrollDuration = 3f;
-    [SerializeField] private float scrollStartY = -500f; // how far below the panel the text starts
-    [SerializeField] private float scrollEndY = 0f;      // final resting position
+    [SerializeField] private float fastScrollDuration = 0.5f; // duration when sped up
+    [SerializeField] private float scrollStartY = -500f;
+    [SerializeField] private float scrollEndY = 0f;
 
     private CanvasGroup canvasGroup;
     private bool isDialogueActive = false;
     private bool scrollComplete = false;
+    private bool isFast = false;
 
     void Start()
     {
@@ -30,11 +32,10 @@ public class OutroDialogue : MonoBehaviour
         dialoguePanel.SetActive(true);
         canvasGroup.alpha = 1f;
         scrollComplete = false;
-        isDialogueActive = false; // blocked until scroll finishes
+        isDialogueActive = true; // allow first press immediately
+        isFast = false;
 
-        // Start text below the panel
         textContainer.anchoredPosition = new Vector2(textContainer.anchoredPosition.x, scrollStartY);
-
         playerController.SetDialogueActive(true);
         StartCoroutine(ScrollText());
     }
@@ -43,11 +44,12 @@ public class OutroDialogue : MonoBehaviour
     {
         float elapsed = 0f;
 
-        while (elapsed < scrollDuration)
+        while (elapsed < (isFast ? fastScrollDuration : scrollDuration))
         {
             elapsed += Time.deltaTime;
-            float t = Mathf.Clamp01(elapsed / scrollDuration);
-            float smoothT = Mathf.SmoothStep(0f, 1f, t); // smooth ease in/out
+            float duration = isFast ? fastScrollDuration : scrollDuration;
+            float t = Mathf.Clamp01(elapsed / duration);
+            float smoothT = Mathf.SmoothStep(0f, 1f, t);
             float newY = Mathf.Lerp(scrollStartY, scrollEndY, smoothT);
             textContainer.anchoredPosition = new Vector2(textContainer.anchoredPosition.x, newY);
             yield return null;
@@ -55,42 +57,29 @@ public class OutroDialogue : MonoBehaviour
 
         textContainer.anchoredPosition = new Vector2(textContainer.anchoredPosition.x, scrollEndY);
         scrollComplete = true;
-        isDialogueActive = true; // now allow interact to dismiss
-    }
-
-    private void HideDialogue()
-    {
-        isDialogueActive = false;
-        playerController.SetDialogueActive(false);
-        StartCoroutine(FadeOut());
-    }
-
-    private IEnumerator FadeOut()
-    {
-        float elapsed = 0f;
-
-        while (elapsed < fadeDuration)
-        {
-            elapsed += Time.deltaTime;
-            canvasGroup.alpha = Mathf.Lerp(1f, 0f, elapsed / fadeDuration);
-            yield return null;
-        }
-
-        canvasGroup.alpha = 0f;
-        dialoguePanel.SetActive(false);
     }
 
     public void OnInteractDialogue()
     {
-        if (isDialogueActive && scrollComplete)
+        if (!isDialogueActive) return;
+
+        if (!scrollComplete && !isFast)
         {
-            // Transition
+            // First press — speed up scroll
+            isFast = true;
+        }
+        else if (scrollComplete || isFast)
+        {
+            // Second press — trigger scene transition
+            isDialogueActive = false;
+            playerController.SetDialogueActive(false);
+
             SceneController sceneController = FindAnyObjectByType<SceneController>();
             if (sceneController != null)
                 sceneController.StartAnimation("MainMenu");
             else
             {
-                Debug.LogWarning("SceneController not found! Loading scene directly without animation.");
+                Debug.LogWarning("SceneController not found! Loading scene directly.");
                 UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
             }
         }
