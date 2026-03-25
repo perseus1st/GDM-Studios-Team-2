@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 /// <summary>
@@ -18,6 +19,7 @@ public class NoteMover : MonoBehaviour
     public Conductor conductor; 
     public SisterAnimator sisterAnimator; 
     public float detectionRange = 0.05f; 
+    public bool wasSisterMoved = false; 
 
   void Update()
     {
@@ -25,7 +27,7 @@ public class NoteMover : MonoBehaviour
         transform.position += Vector3.down * Speed * Time.deltaTime;
 
         //Call sister animator 
-        if (Math.Abs(transform.position.y - TargetY) <= detectionRange)
+        if (Math.Abs(transform.position.y - TargetY) <= detectionRange && !wasSisterMoved)
         {
             switch (lane)
             {
@@ -48,6 +50,8 @@ public class NoteMover : MonoBehaviour
                 default:
                     break; 
             }
+
+            wasSisterMoved = true; 
         }
 
         // Destroy note if it goes past the hitzone
@@ -79,5 +83,10 @@ public class NoteMover : MonoBehaviour
     public static float getSpeed()
     {
         return Speed; 
+    }
+
+    public void setSisterMoved(bool state)
+    {
+        this.wasSisterMoved = state; 
     }
 }

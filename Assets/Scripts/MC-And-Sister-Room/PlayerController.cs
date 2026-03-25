@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float animationDampTime = 0.05f;
     [SerializeField] private float rotationSpeed = 5f;
 
-    private IInteractable currentInteractable;
+    [SerializeField] IInteractable currentInteractable;
     private CharacterController controller;
     private UnityEngine.Vector2 moveInput;
     private UnityEngine.Vector3 velocity;
@@ -18,6 +18,15 @@ public class PlayerController : MonoBehaviour
     private UnityEngine.Vector3 fixedCamRight;
 
     private const float sqrt2 = 1.189207f;
+    private bool dialogueActive = false; // Added by Daniil
+    private IntroDialogue introDialogue; // Added by Daniil
+
+    [Header("Footsteps")]
+    [SerializeField] private AudioSource footstepSource;
+    [SerializeField] private AudioClip footstepClip;
+
+    [SerializeField] private float footstepVolume = 1f;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -32,7 +41,16 @@ public class PlayerController : MonoBehaviour
 
         fixedCamForward = camForward.normalized;
         fixedCamRight = camRight.normalized;
-        
+
+        introDialogue = FindObjectOfType<IntroDialogue>(); // Added by Daniil
+
+        if (footstepSource != null)
+        {
+        footstepSource.clip = footstepClip;
+        footstepSource.loop = true;
+        footstepSource.playOnAwake = false;
+        footstepSource.volume = footstepVolume;
+        }        
     }
 
     public void onMove(InputAction.CallbackContext context)
@@ -45,22 +63,68 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    public void onInteract(InputAction.CallbackContext context)
+    public void onInteract(InputAction.CallbackContext context) // Edited by Daniil
     {
-        if (currentInteractable != null)
-        {
-            currentInteractable.Interact();
+         if (context.performed)
+         {
+             if (dialogueActive)
+             {
+                 if (introDialogue != null)
+                    introDialogue.OnInteractDialogue();
+                 return;
+             }
+             if (currentInteractable != null)
+             {
+                currentInteractable.Interact();
+            }
         }
     }
 
     public void SetInteractable(IInteractable interactable)
     {
+        if (interactable == null) Debug.Log("interactable removed!");
+        else Debug.Log("interactble set!");
+        
         currentInteractable = interactable;
+    }
+
+    public void SetDialogueActive(bool active) // Added by Daniil
+    {
+        dialogueActive = active;
+    }
+
+    void HandleFootsteps(bool isMoving)
+    {
+        if (footstepSource == null || footstepClip == null)
+            return;
+
+        if (isMoving)
+        {
+            if (!footstepSource.isPlaying)
+            {
+                footstepSource.Play();
+            }
+        }
+        else
+        {
+            if (footstepSource.isPlaying)
+            {
+                footstepSource.Stop();
+            }
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        if (dialogueActive)
+        {
+            animator.SetFloat("blend", 0f, animationDampTime, Time.deltaTime);
+            HandleFootsteps(false); // stop footsteps during dialogue
+            return;
+        }
+
         Vector3 move = new Vector3(moveInput.x, 0, moveInput.y);
 
         Vector3 moveDirection = fixedCamForward * move.z + fixedCamRight * move.x;
@@ -68,6 +132,8 @@ public class PlayerController : MonoBehaviour
 
         velocity = moveDirection * speed;
         controller.Move(velocity * Time.deltaTime);
+        bool isMoving = velocity.sqrMagnitude > 0.01f;
+        HandleFootsteps(isMoving);
 
         if (velocity.sqrMagnitude > 0.01f)
         {

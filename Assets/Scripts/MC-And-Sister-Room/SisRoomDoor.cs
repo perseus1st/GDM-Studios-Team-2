@@ -6,18 +6,25 @@ public class SisRoomDoor : MonoBehaviour, IInteractable
 {
     private Transform interactIcon;
     private int miniGamesCompleted;
-    private Transform doorModel;
+    [SerializeField] private Transform doorModel;
+
+    public AudioSource doorOpenSound;
 
     void Start()
     {
         interactIcon = transform.Find("InteractIcon");
-        doorModel = transform.Find("model");
         interactIcon.LookAt(Camera.main.transform.position);
         interactIcon.gameObject.SetActive(false);
         miniGamesCompleted = GameManager.Instance.getNumMinigameCompleted();
     }
 
     public void Interact()
+    {
+        doorOpenSound.Play();
+        Invoke("LoadCutscene2", 1f);
+    }
+    
+    private void LoadCutscene2()
     {
         SceneManager.LoadScene("Cutscene2");
     }

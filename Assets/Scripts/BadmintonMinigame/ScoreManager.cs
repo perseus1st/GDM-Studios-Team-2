@@ -120,6 +120,8 @@ void Update()
         if (currentLives <= 0)
         {
             AudioManager.INSTANCE.PlaySFX("Reset");
+            musicSource.Stop();
+            nextClip = track1;
             ResetGame();
         }
     }
@@ -287,6 +289,7 @@ IEnumerator CompletionSequence()
     BadmintonPlayerController playerController = FindFirstObjectByType<BadmintonPlayerController>();
     if (playerController != null)
     {
+        playerController.GetComponentInChildren<Animator>().SetBool("IsMoving", false);
         playerController.enabled = false;
         playerController.Rigidbody.linearVelocity = Vector3.zero;
     }

@@ -60,7 +60,7 @@ public class OpponentController : MonoBehaviour
         if (isMoving)
         {
             animator.SetBool("IsMoving", isMoving);
-            racketAnimator.SetBool("IsMoving", isMoving);
+            // racketAnimator.SetBool("IsMoving", isMoving);
             animator.SetBool("Racket", racket); 
             
             // Calculate direction to target (only XZ plane)

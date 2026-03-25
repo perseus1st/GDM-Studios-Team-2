@@ -44,7 +44,7 @@ public class SceneController : MonoBehaviour
     public void StartAnimation(string sceneName)
     {
         // Debugging
-        Debug.Log("Button pressed");
+        // Debug.Log("Button pressed");
 
         
         StartCoroutine(PlayAnimationAndLoadLevel(sceneName));
@@ -53,7 +53,7 @@ public class SceneController : MonoBehaviour
     private IEnumerator PlayAnimationAndLoadLevel(string sceneName)
     {
         // Debugging
-        Debug.Log("Process started");
+        // Debug.Log("Process started");
 
         yield return new WaitForSecondsRealtime(delayBeforeAnimation);
 
@@ -63,7 +63,7 @@ public class SceneController : MonoBehaviour
             canvasAnimator.SetTrigger(triggerName);
 
             // Debugging
-            Debug.Log("Next level transition");
+            // Debug.Log("Next level transition");
         }
 
         else

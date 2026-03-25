@@ -148,6 +148,7 @@ public class BirdieController : MonoBehaviour
                     // lose life and re-serve if on ground for too long
                     if (timeSinceLanded > currentGroundedWindow)
                     {
+                        AudioManager.INSTANCE.PlaySFX("Mistake");
                         if (ScoreManager.Instance != null)
                             ScoreManager.Instance.LoseLife();
                             consecutiveHits = 0; // Reset consecutive hits tracker
