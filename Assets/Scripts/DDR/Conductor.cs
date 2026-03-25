@@ -85,6 +85,9 @@ public class Conductor : MonoBehaviour
         // reset list of notes to be spawned from beginning 
         index = 0;
 
+        // reset score 
+        scoreManager.ResetScore();
+
         // reset all song position markers 
         songPosition = 0f;
         songPositionInBeats = 0;
@@ -117,7 +120,7 @@ public class Conductor : MonoBehaviour
             }
         } else if (songPositionInBeats >= 127)
         {
-            scoreManager.Win(); 
+            scoreManager.checkWin(); 
             StopGame(); 
         }
     }
@@ -134,11 +137,13 @@ public class Conductor : MonoBehaviour
         }
         else if (diff <= GreatTiming)
         {
+            AudioManager.INSTANCE.PlaySFX("CorrectNote");
             scoreManager.AddScore("Great!");
             return true; 
         } 
         else if (diff <= OkayTiming)
         {
+            AudioManager.INSTANCE.PlaySFX("CorrectNote");
             scoreManager.AddScore("Okay");
             return true; 
         } else
