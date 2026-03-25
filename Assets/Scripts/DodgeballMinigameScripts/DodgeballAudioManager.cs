@@ -14,6 +14,7 @@ public class DodgeballAudioManager : MonoBehaviour
     public AudioSource musicSourceA;
     public AudioSource musicSourceB;
     public AudioSource sfxSource;
+    public AudioSource throwSource;
 
     AudioSource activeMusicSource;
     AudioSource inactiveMusicSource;
@@ -117,7 +118,12 @@ public class DodgeballAudioManager : MonoBehaviour
             return;
         }
 
-        sfxSource.PlayOneShot(s.clip, s.volume);
+        if (name == "throw")
+        {
+            throwSource.PlayOneShot(s.clip, s.volume);
+        } else {
+            sfxSource.PlayOneShot(s.clip, s.volume);
+        }
         Debug.Log("Playing SFX: " + name);
     }
 
