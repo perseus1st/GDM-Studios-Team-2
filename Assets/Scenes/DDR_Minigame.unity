@@ -3917,6 +3917,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 2102038405}
   - {fileID: 714948668}
   - {fileID: 1907873419}
   - {fileID: 721249982}
@@ -5760,6 +5761,81 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2089845947}
   m_CullTransparentMesh: 1
+--- !u!1 &2102038404
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2102038405}
+  - component: {fileID: 2102038407}
+  - component: {fileID: 2102038406}
+  m_Layer: 5
+  m_Name: Lets Dance
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2102038405
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2102038404}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1300409936}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -40, y: 170}
+  m_SizeDelta: {x: 648.54, y: 207.89}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2102038406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2102038404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: ee817376bbc401044af6f70fb9a3130d, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &2102038407
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2102038404}
+  m_CullTransparentMesh: 1
 --- !u!1 &2108792954
 GameObject:
   m_ObjectHideFlags: 0
@@ -5952,11 +6028,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 217001747266810944, guid: 765de37862c9e254ba17b39699338bd5, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -340
+      value: -349.4
       objectReference: {fileID: 0}
     - target: {fileID: 217001747266810944, guid: 765de37862c9e254ba17b39699338bd5, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 573
+      value: 659.3
       objectReference: {fileID: 0}
     - target: {fileID: 925301173501139728, guid: 765de37862c9e254ba17b39699338bd5, type: 3}
       propertyPath: m_Camera
@@ -5978,6 +6054,10 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: 1402062223
       objectReference: {fileID: 0}
+    - target: {fileID: 2158426306732069725, guid: 765de37862c9e254ba17b39699338bd5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3319142899617437887, guid: 765de37862c9e254ba17b39699338bd5, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -5987,6 +6067,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3697124120096299795, guid: 765de37862c9e254ba17b39699338bd5, type: 3}
+      propertyPath: m_text
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3697124120096299795, guid: 765de37862c9e254ba17b39699338bd5, type: 3}
       propertyPath: m_fontSize
       value: 90
       objectReference: {fileID: 0}
@@ -5994,9 +6078,13 @@ PrefabInstance:
       propertyPath: m_fontSizeBase
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 4746744017636196074, guid: 765de37862c9e254ba17b39699338bd5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5394967990757167126, guid: 765de37862c9e254ba17b39699338bd5, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -349
+      value: -347
       objectReference: {fileID: 0}
     - target: {fileID: 5394967990757167126, guid: 765de37862c9e254ba17b39699338bd5, type: 3}
       propertyPath: m_AnchoredPosition.y
