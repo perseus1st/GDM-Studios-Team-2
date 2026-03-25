@@ -1419,8 +1419,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 112227055965448473, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
       propertyPath: 'sentences.Array.data[0]'
-      value: You roam in and out of about a hundred thousand doors, in some imaginary,
-        I'd like to think. The real world, meanwhile, spins quite quickly.
+      value: You roam in and out of about a hundred thousand doors, in some imaginary
+        world, I'd like to think. The real world, meanwhile, spins quite quickly.
       objectReference: {fileID: 0}
     - target: {fileID: 112227055965448473, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
       propertyPath: 'sentences.Array.data[1]'
@@ -1429,23 +1429,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 112227055965448473, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
       propertyPath: 'sentences.Array.data[2]'
-      value: "The world spins quite quickly so I can\u2019t entertain these tauntings;
-        I think you\u2019d blow me clean over."
+      value: "The world spins quite quickly, so I can\u2019t entertain these taunts;
+        I think you\u2019d blow me over."
       objectReference: {fileID: 0}
     - target: {fileID: 112227055965448473, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
       propertyPath: 'sentences.Array.data[3]'
-      value: Misery and I both know he kicks hard in the shins and could render me
-        useless for a week or two.
-      objectReference: {fileID: 0}
-    - target: {fileID: 112227055965448473, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
-      propertyPath: 'sentences.Array.data[4]'
       value: Though, I am still quite sure you taught me everything I know about
         love.
       objectReference: {fileID: 0}
     - target: {fileID: 112227055965448473, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
+      propertyPath: 'sentences.Array.data[4]'
+      value: "Though, you still are something I can\u2019t quite remember."
+      objectReference: {fileID: 0}
+    - target: {fileID: 112227055965448473, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
       propertyPath: 'sentences.Array.data[5]'
-      value: So you can stay roaming, in hiding and safe-kept while I pack away your
-        memory and attend to this big move.
+      value: So you can stay roaming, in hiding and safe-kept while I pack away our
+        memories and attend to this big move.
       objectReference: {fileID: 0}
     - target: {fileID: 112227055965448473, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
       propertyPath: 'sentences.Array.data[6]'
