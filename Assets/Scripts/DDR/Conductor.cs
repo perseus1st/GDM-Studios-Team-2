@@ -19,6 +19,8 @@ public class Conductor : MonoBehaviour
 
     //Current song position, in beats
     public int songPositionInBeats;
+    //The offset to the first beat of the song in seconds
+    public float firstBeatOffset;
 
     //How many seconds have passed since the song started
     public float dspSongTime;

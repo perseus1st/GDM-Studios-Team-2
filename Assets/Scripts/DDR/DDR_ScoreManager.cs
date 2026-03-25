@@ -36,7 +36,7 @@ public class DDR_ScoreManager : MonoBehaviour
     public int HIGHTIER = 3; 
     public int MIDTIER = 2; 
     public int LOWTIER = 1; 
-    public int scoreToComplete = 195; // Score needed to complete minigame
+    public int scoreToComplete = 150; // Score needed to complete minigame
 
     private string minigameID = "ddr";
     public string sceneToLoad = "Sister_Room";
