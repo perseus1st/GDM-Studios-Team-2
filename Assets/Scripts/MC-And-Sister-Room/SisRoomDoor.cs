@@ -8,6 +8,8 @@ public class SisRoomDoor : MonoBehaviour, IInteractable
     private int miniGamesCompleted;
     [SerializeField] private Transform doorModel;
 
+    public AudioSource doorOpenSound;
+
     void Start()
     {
         interactIcon = transform.Find("InteractIcon");
@@ -17,6 +19,12 @@ public class SisRoomDoor : MonoBehaviour, IInteractable
     }
 
     public void Interact()
+    {
+        doorOpenSound.Play();
+        Invoke("LoadCutscene2", 1f);
+    }
+    
+    private void LoadCutscene2()
     {
         SceneManager.LoadScene("Cutscene2");
     }
