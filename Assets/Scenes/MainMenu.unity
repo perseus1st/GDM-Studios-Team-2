@@ -10811,6 +10811,9 @@ MonoBehaviour:
   - name: Highfive
     clip: {fileID: 8300000, guid: 2237500a7809e3ea9abba4d80cca644d, type: 3}
     volume: 1
+  - name: Whistle
+    clip: {fileID: 8300000, guid: 3796d816967c0381a81c50cecfcd50e4, type: 3}
+    volume: 0.7
   musicSourceA: {fileID: 610775690}
   musicSourceB: {fileID: 1257996364}
   sfxSource: {fileID: 576298669}

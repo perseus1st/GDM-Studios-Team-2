@@ -26,7 +26,9 @@ public class SisRoomDoor : MonoBehaviour, IInteractable
     
     private void LoadCutscene2()
     {
-        SceneManager.LoadScene("Cutscene2");
+        SceneController sceneController = FindAnyObjectByType<SceneController>();
+        if (sceneController != null)
+            sceneController.StartAnimation("Cutscene2");
     }
 
     private void OnTriggerEnter(Collider other)
