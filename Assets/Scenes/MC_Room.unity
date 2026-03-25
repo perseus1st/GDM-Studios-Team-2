@@ -723,6 +723,15 @@ MonoBehaviour:
   - name: Highfive
     clip: {fileID: 8300000, guid: 2237500a7809e3ea9abba4d80cca644d, type: 3}
     volume: 1
+  - name: DoorOpen
+    clip: {fileID: 8300000, guid: 6b27fad7a6142d77bb6fe47ee038996d, type: 3}
+    volume: 1
+  - name: DoorClose
+    clip: {fileID: 8300000, guid: e10e963d22b5ea87e95422283971a51e, type: 3}
+    volume: 1
+  - name: Box
+    clip: {fileID: 8300000, guid: c846880b1fc96a23da91f49a4892c6a1, type: 3}
+    volume: 1
   musicSourceA: {fileID: 544227314}
   musicSourceB: {fileID: 159675652}
   sfxSource: {fileID: 374554567}
