@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5f1213e0becdf42e28844daafcc79c0c
+guid: c8881f6fce47a44cbbeb4a76ebfbf52b
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
@@ -7,8 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: wall_MC
-    second: {fileID: 2100000, guid: bf5ca05179e60418297a4e49fb09a519, type: 2}
+      name: trinkets
+    second: {fileID: 2100000, guid: bbe1dad3949784a678bf5d64932c3d0b, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
