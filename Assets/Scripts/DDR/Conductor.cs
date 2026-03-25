@@ -165,9 +165,11 @@ public class Conductor : MonoBehaviour
         if (WactiveNotes.Count != 0)
             {
                 GameObject pressedNote = WactiveNotes.Dequeue();
-                if (calculatePts(pressedNote.GetComponent<NoteMover>().targetTime, pressedTime))
+                NoteMover noteMover = pressedNote.GetComponent<NoteMover>(); 
+                if (calculatePts(noteMover.targetTime, pressedTime) && !noteMover.wasSisterMoved)
                 {
                     sisterAnimator.triggerUp(); 
+                    noteMover.setSisterMoved(true); 
                 } 
                 Destroy(pressedNote);
             }
@@ -182,9 +184,11 @@ public class Conductor : MonoBehaviour
          if (DactiveNotes.Count != 0)
             {
                 GameObject pressedNote = DactiveNotes.Dequeue();
-                if(calculatePts(pressedNote.GetComponent<NoteMover>().targetTime, pressedTime))
+                NoteMover noteMover = pressedNote.GetComponent<NoteMover>(); 
+                if(calculatePts(noteMover.targetTime, pressedTime) && !noteMover.wasSisterMoved)
                 {
                     sisterAnimator.triggerRight(); 
+                    noteMover.setSisterMoved(true); 
                 }
                 Destroy(pressedNote);
             }
@@ -197,9 +201,11 @@ public class Conductor : MonoBehaviour
          if (SactiveNotes.Count != 0)
             {
                 GameObject pressedNote = SactiveNotes.Dequeue();
-                if (calculatePts(pressedNote.GetComponent<NoteMover>().targetTime, pressedTime))
+                NoteMover noteMover = pressedNote.GetComponent<NoteMover>(); 
+                if (calculatePts(noteMover.targetTime, pressedTime) && !noteMover.wasSisterMoved)
                 {
                     sisterAnimator.triggerDown();
+                    noteMover.setSisterMoved(true); 
                 }
                 Destroy(pressedNote);
             }
@@ -212,9 +218,11 @@ public class Conductor : MonoBehaviour
          if (AactiveNotes.Count != 0)
             {
                 GameObject pressedNote = AactiveNotes.Dequeue();
-                if (calculatePts(pressedNote.GetComponent<NoteMover>().targetTime, pressedTime))
+                NoteMover noteMover = pressedNote.GetComponent<NoteMover>(); 
+                if (calculatePts(noteMover.targetTime, pressedTime) && !noteMover.wasSisterMoved)
                 {
                     sisterAnimator.triggerLeft(); 
+                    noteMover.setSisterMoved(true); 
                 } 
                 Destroy(pressedNote);
             }
