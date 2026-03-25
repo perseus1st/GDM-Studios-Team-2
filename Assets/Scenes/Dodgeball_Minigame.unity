@@ -2338,7 +2338,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneController
   delayBeforeAnimation: 0
-  animationLength: 2
+  animationLength: 3
   triggerName: NextLevel
   skipFadeInScene: MainMenu
   canvasAnimator: {fileID: 64476046}
@@ -3021,7 +3021,7 @@ MonoBehaviour:
   scoreTextPink: {fileID: 874945095}
   enemyManager: {fileID: 1455063681}
   whistleSound: {fileID: 1638469675}
-  completionDelay: 0.5
+  completionDelay: 0.4
   currentScore: 0
   maxLives: 3
   baseBallSpeed: 8
@@ -3544,10 +3544,10 @@ MonoBehaviour:
     volume: 1
   - name: Throw
     clip: {fileID: 8300000, guid: bebb2b43f1ca3b721a1d8ebf5986bc2e, type: 3}
-    volume: 1
+    volume: 0.4
   - name: HitFloor
     clip: {fileID: 8300000, guid: 647edec44754e44ceb4189be33a819c5, type: 3}
-    volume: 7
+    volume: 6
   - name: Whistle
     clip: {fileID: 8300000, guid: 3796d816967c0381a81c50cecfcd50e4, type: 3}
     volume: 0.7
@@ -3559,7 +3559,7 @@ MonoBehaviour:
     volume: 3
   - name: EnemyHit
     clip: {fileID: 8300000, guid: 647edec44754e44ceb4189be33a819c5, type: 3}
-    volume: 8
+    volume: 6
   musicSourceA: {fileID: 2065043640}
   musicSourceB: {fileID: 2064607332}
   sfxSource: {fileID: 1783220183}
@@ -4763,7 +4763,6 @@ SceneRoots:
   - {fileID: 1789708235}
   - {fileID: 1718124679}
   - {fileID: 1638469674}
-  - {fileID: 2012112803884148163}
   - {fileID: 1455063682}
   - {fileID: 1532713990}
   - {fileID: 281357374}
@@ -4776,3 +4775,4 @@ SceneRoots:
   - {fileID: 151258991}
   - {fileID: 1690559260}
   - {fileID: 2108667613}
+  - {fileID: 2012112803884148163}

@@ -2502,6 +2502,12 @@ MonoBehaviour:
   - name: Highfive
     clip: {fileID: 8300000, guid: 2237500a7809e3ea9abba4d80cca644d, type: 3}
     volume: 1
+  - name: Whistle
+    clip: {fileID: 8300000, guid: 3796d816967c0381a81c50cecfcd50e4, type: 3}
+    volume: 0.7
+  - name: Mistake
+    clip: {fileID: 8300000, guid: 8348f429ce77ff06381a9b246b166cf5, type: 3}
+    volume: 2
   musicSourceA: {fileID: 1178331703}
   musicSourceB: {fileID: 1513753987}
   sfxSource: {fileID: 1835986824}
@@ -3426,7 +3432,7 @@ MonoBehaviour:
   minigameID: badminton
   sceneToLoad: Sister_Room
   whistleSound: {fileID: 1855337649}
-  completionDelay: 0.2
+  completionDelay: 0.4
   musicSource: {fileID: 1855337650}
   track1: {fileID: 8300000, guid: 131674da368092b4a828f2fba8d14222, type: 3}
   track2: {fileID: 8300000, guid: c9ebbd2a059d24142a169003f8c15c93, type: 3}

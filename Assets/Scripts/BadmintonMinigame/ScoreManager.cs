@@ -123,6 +123,9 @@ void Update()
             musicSource.Stop();
             nextClip = track1;
             ResetGame();
+        } else
+        {
+            AudioManager.INSTANCE.PlaySFX("Mistake");
         }
     }
 
@@ -268,6 +271,8 @@ IEnumerator DelayedCompletion()
 
     var gm = GameManager.Instance;
 
+    AudioManager.INSTANCE.PlaySFX("Whistle");
+
     if (gm != null)
     {
         gm.MarkMinigameCompleted(minigameID);
@@ -285,7 +290,8 @@ IEnumerator DelayedCompletion()
 
 IEnumerator CompletionSequence()
 {
-    // Stop player 
+    Debug.Log("CompletionSequence started");
+
     BadmintonPlayerController playerController = FindFirstObjectByType<BadmintonPlayerController>();
     if (playerController != null)
     {
@@ -293,40 +299,36 @@ IEnumerator CompletionSequence()
         playerController.enabled = false;
         playerController.Rigidbody.linearVelocity = Vector3.zero;
     }
+    Debug.Log("Player stopped");
 
-    // Stop music
     if (musicSource != null)
         musicSource.Stop();
+    Debug.Log("Music stopped");
 
-    // Stop Birdie
     BirdieController birdie = FindFirstObjectByType<BirdieController>();
-if (birdie != null)
-    birdie.enabled = false;
-    Renderer birdieRenderer = birdie.GetComponentInChildren<Renderer>();
-if (birdieRenderer != null)
-    birdieRenderer.enabled = false;
+    if (birdie != null)
+    {
+        birdie.enabled = false;
+        Renderer birdieRenderer = birdie.GetComponentInChildren<Renderer>();
+        if (birdieRenderer != null)
+            birdieRenderer.enabled = false;
+    }
+    Debug.Log("Birdie stopped");
 
-    // Play whistle
-    if (whistleSound != null)
-        whistleSound.Play();
-
-    // Wait
     yield return new WaitForSeconds(completionDelay);
+    Debug.Log("Delay finished");
 
-    AudioManager.INSTANCE.PlaySFX("Highfive");
-
-
-    // Transition
     SceneController sceneController = FindAnyObjectByType<SceneController>();
+    Debug.Log($"SceneController found: {sceneController != null}");
+
     if (sceneController != null)
         sceneController.StartAnimation(sceneToLoad);
     else
     {
-        Debug.LogWarning("SceneController not found! Loading scene directly without animation.");
+        Debug.LogWarning("SceneController not found! Loading scene directly.");
         UnityEngine.SceneManagement.SceneManager.LoadScene(sceneToLoad);
     }
 }
-
 
     // Public getters
     public int GetScore()
