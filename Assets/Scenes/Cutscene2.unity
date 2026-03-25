@@ -771,9 +771,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1632188988125291347, guid: 5ba2e71648a4cb449be3dae70897a004, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: aaf8b9ab341c3c64185eeb1721d0feff, type: 2}
+    - target: {fileID: 1632188988125291347, guid: 5ba2e71648a4cb449be3dae70897a004, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -8354203079249323526, guid: aaf8b9ab341c3c64185eeb1721d0feff, type: 2}
+    - target: {fileID: 1632188988125291347, guid: 5ba2e71648a4cb449be3dae70897a004, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3235721107360156242, guid: 5ba2e71648a4cb449be3dae70897a004, type: 3}
+      propertyPath: scrollEndY
+      value: 3120
+      objectReference: {fileID: 0}
     - target: {fileID: 3235721107360156242, guid: 5ba2e71648a4cb449be3dae70897a004, type: 3}
       propertyPath: scrollStartY
-      value: -1315
+      value: -1296
       objectReference: {fileID: 0}
     - target: {fileID: 3235721107360156242, guid: 5ba2e71648a4cb449be3dae70897a004, type: 3}
       propertyPath: scrollDuration
@@ -826,9 +842,17 @@ PrefabInstance:
       value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 4204176042606351715, guid: 5ba2e71648a4cb449be3dae70897a004, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: aaf8b9ab341c3c64185eeb1721d0feff, type: 2}
+    - target: {fileID: 4204176042606351715, guid: 5ba2e71648a4cb449be3dae70897a004, type: 3}
       propertyPath: m_fontSizeBase
       value: 40
       objectReference: {fileID: 0}
+    - target: {fileID: 4204176042606351715, guid: 5ba2e71648a4cb449be3dae70897a004, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -8354203079249323526, guid: aaf8b9ab341c3c64185eeb1721d0feff, type: 2}
     - target: {fileID: 4204176042606351715, guid: 5ba2e71648a4cb449be3dae70897a004, type: 3}
       propertyPath: m_TextWrappingMode
       value: 2
@@ -840,6 +864,18 @@ PrefabInstance:
     - target: {fileID: 4204176042606351715, guid: 5ba2e71648a4cb449be3dae70897a004, type: 3}
       propertyPath: m_HorizontalAlignment
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4204176042606351715, guid: 5ba2e71648a4cb449be3dae70897a004, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4592625656429247338, guid: 5ba2e71648a4cb449be3dae70897a004, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -3020
+      objectReference: {fileID: 0}
+    - target: {fileID: 5696407040777093809, guid: 5ba2e71648a4cb449be3dae70897a004, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -3120
       objectReference: {fileID: 0}
     - target: {fileID: 7261328209294331628, guid: 5ba2e71648a4cb449be3dae70897a004, type: 3}
       propertyPath: m_Pivot.x
@@ -919,6 +955,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7261328209294331628, guid: 5ba2e71648a4cb449be3dae70897a004, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7845169044462600564, guid: 5ba2e71648a4cb449be3dae70897a004, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: aaf8b9ab341c3c64185eeb1721d0feff, type: 2}
+    - target: {fileID: 7845169044462600564, guid: 5ba2e71648a4cb449be3dae70897a004, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -8354203079249323526, guid: aaf8b9ab341c3c64185eeb1721d0feff, type: 2}
+    - target: {fileID: 7845169044462600564, guid: 5ba2e71648a4cb449be3dae70897a004, type: 3}
+      propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
