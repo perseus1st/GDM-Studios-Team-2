@@ -24,7 +24,7 @@ public class DodgeballEnemyManager : MonoBehaviour
     public float baseThrowInterval = 3f; // Base time between throws
     private float nextThrowTime; // When next throw will happen
     public float throwIntervalVariation = 0.3f; // Adds random variation to throw time
-    
+
     // Ball settings
     [Header("Ball Settings")]
     public float ballLifetime = 10f; // How long before ball is destroyed off-screen
@@ -98,6 +98,7 @@ public class DodgeballEnemyManager : MonoBehaviour
             // Roll for shot type
             float roll = Random.Range(0f, 1f);
         
+            DodgeballAudioManager.INSTANCE.PlaySFX("Throw");
             if (roll < singleShotChance)
             {
                 // Single shot (tracking throw)
@@ -299,7 +300,7 @@ IEnumerator AnimatedAngleTowardCenter(Transform throwingEnemy, int enemyIndex)
 
     // if (throwSound != null)
     //     throwSound.Play();
-    DodgeballAudioManager.INSTANCE.PlaySFX("Throw");
+    // DodgeballAudioManager.INSTANCE.PlaySFX("Throw");
 
     GameObject ball = Instantiate(enemyBallPrefab, throwingEnemy.position + new Vector3(-0.7f, 0f, 0f), enemyBallPrefab.transform.rotation);
 
@@ -335,7 +336,7 @@ IEnumerator AnimatedStraightDown(Transform throwingEnemy, int enemyIndex)
 
     // if (throwSound != null)
     //     throwSound.Play();
-    DodgeballAudioManager.INSTANCE.PlaySFX("Throw");
+    // DodgeballAudioManager.INSTANCE.PlaySFX("Throw");
 
     GameObject ball = Instantiate(enemyBallPrefab, throwingEnemy.position + new Vector3(-0.7f, 0f, 0f), enemyBallPrefab.transform.rotation);
 
@@ -427,11 +428,6 @@ IEnumerator AnimatedSingleShot(Transform throwingEnemy, int enemyIndex)
 
     // Wait before spawning ball
     yield return new WaitForSeconds(throwAnimationDelay);
-
-    // Play throw sound
-    // if (throwSound != null)
-    //     throwSound.Play();
-    DodgeballAudioManager.INSTANCE.PlaySFX("Throw");
 
     // Create ball at enemy position
     GameObject ball = Instantiate(enemyBallPrefab, throwingEnemy.position + new Vector3(-0.7f, 0f, 0f), enemyBallPrefab.transform.rotation);

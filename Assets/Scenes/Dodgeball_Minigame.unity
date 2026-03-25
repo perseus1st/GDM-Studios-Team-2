@@ -3543,11 +3543,11 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: b71313d9092b422208d8a83973f0a18d, type: 3}
     volume: 1
   - name: Throw
-    clip: {fileID: 8300000, guid: 031856f7d4e06b9c1acc2a2e41202b23, type: 3}
-    volume: 0.7
+    clip: {fileID: 8300000, guid: bebb2b43f1ca3b721a1d8ebf5986bc2e, type: 3}
+    volume: 1
   - name: HitFloor
     clip: {fileID: 8300000, guid: 647edec44754e44ceb4189be33a819c5, type: 3}
-    volume: 3
+    volume: 7
   - name: Whistle
     clip: {fileID: 8300000, guid: 3796d816967c0381a81c50cecfcd50e4, type: 3}
     volume: 0.7
@@ -3556,7 +3556,10 @@ MonoBehaviour:
     volume: 0.7
   - name: Mistake
     clip: {fileID: 8300000, guid: 8348f429ce77ff06381a9b246b166cf5, type: 3}
-    volume: 2
+    volume: 3
+  - name: EnemyHit
+    clip: {fileID: 8300000, guid: 647edec44754e44ceb4189be33a819c5, type: 3}
+    volume: 8
   musicSourceA: {fileID: 2065043640}
   musicSourceB: {fileID: 2064607332}
   sfxSource: {fileID: 1783220183}

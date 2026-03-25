@@ -4407,7 +4407,7 @@ MonoBehaviour:
     volume: 0.3
   - name: CorrectNote
     clip: {fileID: 8300000, guid: f19cc5fc8644fee6eaa429c363cf896f, type: 3}
-    volume: 0.15
+    volume: 0.2
   musicSourceA: {fileID: 185474588}
   musicSourceB: {fileID: 1494863713}
   sfxSource: {fileID: 163676207}

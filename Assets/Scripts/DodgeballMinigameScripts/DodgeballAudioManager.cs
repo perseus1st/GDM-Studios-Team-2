@@ -118,7 +118,7 @@ public class DodgeballAudioManager : MonoBehaviour
         }
 
         sfxSource.PlayOneShot(s.clip, s.volume);
-        // Debug.Log("Playing SFX: " + name);
+        Debug.Log("Playing SFX: " + name);
     }
 
     // Stop the music
