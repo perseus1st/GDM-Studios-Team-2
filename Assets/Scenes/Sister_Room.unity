@@ -2676,7 +2676,7 @@ MonoBehaviour:
   dodgeballText: {fileID: 118921822}
   racketsText: {fileID: 365181596}
   danceMatText: {fileID: 532047076}
-  headoutText: {fileID: 0}
+  headoutText: {fileID: 4547095}
 --- !u!114 &919900814
 MonoBehaviour:
   m_ObjectHideFlags: 0
