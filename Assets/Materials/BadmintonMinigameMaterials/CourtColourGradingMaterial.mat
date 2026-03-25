@@ -122,7 +122,11 @@ Material:
     - _OuterRadiusX: 0.1435
     - _OuterRadiusY: 0.25
     - _Parallax: 0.005
+<<<<<<< HEAD
+    - _ProgressAmount: 0.59585625
+=======
     - _ProgressAmount: 0.18403628
+>>>>>>> 867797c60505271d494bc5ab05e42a2d7646a04c
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1

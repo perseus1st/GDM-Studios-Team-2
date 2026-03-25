@@ -8,9 +8,12 @@ public class CameraSlideController : MonoBehaviour
     public float slideSpeed;
 
     [Header("Grid Settings")]
-    public int columns = 4;
-    public int rows = 3;
-    public int missingPanels = 1;
+    public int columns;
+    public int rows;
+    public int missingPanels;
+
+    [Header("Panel SFX")]
+    public string[] panelSFX; 
 
     private Vector3 startPosition;
     private Vector3 targetPosition;
@@ -107,5 +110,15 @@ public class CameraSlideController : MonoBehaviour
         targetPosition = new Vector3(startPosition.x + cellWidth * col, startPosition.y - cellHeight * row, startPosition.z);
 
         isMoving = true;
+
+        // Play SFX if assigned
+        if (panelSFX != null && clickCount < panelSFX.Length)
+        {
+            string sfxName = panelSFX[clickCount];
+            if (!string.IsNullOrEmpty(sfxName))
+            {
+                AudioManager.INSTANCE.PlaySFX(sfxName);
+            }
+        }
     }
 }
