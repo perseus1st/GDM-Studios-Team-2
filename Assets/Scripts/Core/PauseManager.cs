@@ -80,6 +80,7 @@ public class PauseManager : MonoBehaviour
         Scene currentScene = SceneManager.GetActiveScene(); 
         if (currentScene.name == "Sister_Room" || currentScene.name == "MC_Room")
         {
+            Debug.Log("quitting game");
             Application.Quit();
         } else
         {
