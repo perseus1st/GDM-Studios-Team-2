@@ -744,8 +744,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: aaf8b9ab341c3c64185eeb1721d0feff, type: 2}
-  m_sharedMaterial: {fileID: -8354203079249323526, guid: aaf8b9ab341c3c64185eeb1721d0feff, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8733465e6612d3148beced86adc30b9c, type: 2}
+  m_sharedMaterial: {fileID: -8354203079249323526, guid: 8733465e6612d3148beced86adc30b9c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1098,8 +1098,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: It's moving day! You need to go pack up your sister's room.
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: aaf8b9ab341c3c64185eeb1721d0feff, type: 2}
-  m_sharedMaterial: {fileID: -8354203079249323526, guid: aaf8b9ab341c3c64185eeb1721d0feff, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8733465e6612d3148beced86adc30b9c, type: 2}
+  m_sharedMaterial: {fileID: -8354203079249323526, guid: 8733465e6612d3148beced86adc30b9c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1277,14 +1277,14 @@ PrefabInstance:
     - target: {fileID: 1632188988125291347, guid: 5ba2e71648a4cb449be3dae70897a004, type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 11400000, guid: aaf8b9ab341c3c64185eeb1721d0feff, type: 2}
+      objectReference: {fileID: 11400000, guid: 8733465e6612d3148beced86adc30b9c, type: 2}
     - target: {fileID: 1632188988125291347, guid: 5ba2e71648a4cb449be3dae70897a004, type: 3}
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: -8354203079249323526, guid: aaf8b9ab341c3c64185eeb1721d0feff, type: 2}
     - target: {fileID: 1632188988125291347, guid: 5ba2e71648a4cb449be3dae70897a004, type: 3}
       propertyPath: m_hasFontAssetChanged
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3235721107360156242, guid: 5ba2e71648a4cb449be3dae70897a004, type: 3}
       propertyPath: scrollEndY
@@ -1351,7 +1351,7 @@ PrefabInstance:
     - target: {fileID: 4204176042606351715, guid: 5ba2e71648a4cb449be3dae70897a004, type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 11400000, guid: aaf8b9ab341c3c64185eeb1721d0feff, type: 2}
+      objectReference: {fileID: 11400000, guid: 8733465e6612d3148beced86adc30b9c, type: 2}
     - target: {fileID: 4204176042606351715, guid: 5ba2e71648a4cb449be3dae70897a004, type: 3}
       propertyPath: m_fontSizeBase
       value: 40
@@ -1374,7 +1374,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4204176042606351715, guid: 5ba2e71648a4cb449be3dae70897a004, type: 3}
       propertyPath: m_hasFontAssetChanged
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4592625656429247338, guid: 5ba2e71648a4cb449be3dae70897a004, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1467,14 +1467,14 @@ PrefabInstance:
     - target: {fileID: 7845169044462600564, guid: 5ba2e71648a4cb449be3dae70897a004, type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 11400000, guid: aaf8b9ab341c3c64185eeb1721d0feff, type: 2}
+      objectReference: {fileID: 11400000, guid: 8733465e6612d3148beced86adc30b9c, type: 2}
     - target: {fileID: 7845169044462600564, guid: 5ba2e71648a4cb449be3dae70897a004, type: 3}
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: -8354203079249323526, guid: aaf8b9ab341c3c64185eeb1721d0feff, type: 2}
     - target: {fileID: 7845169044462600564, guid: 5ba2e71648a4cb449be3dae70897a004, type: 3}
       propertyPath: m_hasFontAssetChanged
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
