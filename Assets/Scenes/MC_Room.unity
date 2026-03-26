@@ -2316,7 +2316,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d80c0d59c45fca74c8c88542b1329d99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneMusic
-  musicName: CalmTrack2
+  musicName: CalmTrack1
   stopMusic: 0
 --- !u!4 &1349465686
 Transform:
