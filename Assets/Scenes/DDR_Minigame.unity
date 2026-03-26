@@ -414,7 +414,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: You need at least 150 points to win!
+  m_text: You need at least 130 points to win!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7b11e217a1b43ec4dbf0c26e3381942c, type: 2}
   m_sharedMaterial: {fileID: -1365870510431700878, guid: 7b11e217a1b43ec4dbf0c26e3381942c, type: 2}
@@ -4514,7 +4514,7 @@ MonoBehaviour:
   HIGHTIER: 3
   MIDTIER: 2
   LOWTIER: 1
-  scoreToComplete: 195
+  scoreToComplete: 130
   sceneToLoad: Sister_Room
   yeahSound: {fileID: 1768904020}
   completionDelay: 2

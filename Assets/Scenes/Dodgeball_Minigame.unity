@@ -3062,7 +3062,7 @@ MonoBehaviour:
   baseGroundedWindow: 3
   minGroundedWindow: 1
   windowDecreasePerHit: 0.035
-  scoreToComplete: 20
+  scoreToComplete: 16
   minigameID: dodgeball
   sceneToLoad: Sister_Room
   musicSource: {fileID: 1638469675}
