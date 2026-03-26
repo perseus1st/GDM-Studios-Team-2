@@ -2186,9 +2186,21 @@ MonoBehaviour:
     volume: 0.25
   - name: CalmTrack1
     clip: {fileID: 8300000, guid: 03f90e94bb7304c41b309dec179dd1c5, type: 3}
-    volume: 1
+    volume: 0.25
   - name: SadTrack2
     clip: {fileID: 8300000, guid: 440ca669c2080f41088457a594091be0, type: 3}
+    volume: 1
+  - name: Cutscene1
+    clip: {fileID: 8300000, guid: 0a96d83eced9d52be87117abd7c530b7, type: 3}
+    volume: 1
+  - name: Cutscene2
+    clip: {fileID: 8300000, guid: 4dafb43fcaba7ada1b01c5f93575ddef, type: 3}
+    volume: 1
+  - name: Title
+    clip: {fileID: 8300000, guid: fd848e733f1cf437cb9b7ff4de79fa82, type: 3}
+    volume: 1
+  - name: Rooms
+    clip: {fileID: 8300000, guid: 03f90e94bb7304c41b309dec179dd1c5, type: 3}
     volume: 1
   sfxSounds:
   - name: ButtonClick
