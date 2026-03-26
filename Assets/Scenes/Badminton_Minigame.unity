@@ -2202,6 +2202,18 @@ MonoBehaviour:
   - name: Rooms
     clip: {fileID: 8300000, guid: 03f90e94bb7304c41b309dec179dd1c5, type: 3}
     volume: 1
+  - name: MiniGameSlow
+    clip: {fileID: 8300000, guid: 9ac319a0b6dd2a24ca714091632fa475, type: 3}
+    volume: 1
+  - name: MiniGameRegular
+    clip: {fileID: 8300000, guid: a503795970010394c9fa77c554525ab0, type: 3}
+    volume: 1
+  - name: MiniGameFast
+    clip: {fileID: 8300000, guid: 7841a6ad491973f4aa52f8985e4d4158, type: 3}
+    volume: 1
+  - name: MiniGameEnd
+    clip: {fileID: 8300000, guid: 59bc0019185a3aa449568798fc65b48f, type: 3}
+    volume: 1
   sfxSounds:
   - name: ButtonClick
     clip: {fileID: 8300000, guid: b5de540f77289b370b4aa346d4321c24, type: 3}
@@ -2797,6 +2809,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 8941617617594931225, guid: 765de37862c9e254ba17b39699338bd5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9122870010002973753, guid: 765de37862c9e254ba17b39699338bd5, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -800
@@ -3147,9 +3163,9 @@ MonoBehaviour:
   whistleSound: {fileID: 1855337649}
   completionDelay: 0.4
   musicSource: {fileID: 1855337650}
-  track1: {fileID: 8300000, guid: 131674da368092b4a828f2fba8d14222, type: 3}
-  track2: {fileID: 8300000, guid: c9ebbd2a059d24142a169003f8c15c93, type: 3}
-  track3: {fileID: 8300000, guid: c6693c0d6da58744aa2f51831a16c1ae, type: 3}
+  track1: {fileID: 8300000, guid: 9ac319a0b6dd2a24ca714091632fa475, type: 3}
+  track2: {fileID: 8300000, guid: a503795970010394c9fa77c554525ab0, type: 3}
+  track3: {fileID: 8300000, guid: 7841a6ad491973f4aa52f8985e4d4158, type: 3}
   crossfadeDuration: 1
 --- !u!4 &1855337648
 Transform:
