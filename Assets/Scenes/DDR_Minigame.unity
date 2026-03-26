@@ -414,7 +414,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: You need at least 195 points to win!
+  m_text: You need at least 150 points to win!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7b11e217a1b43ec4dbf0c26e3381942c, type: 2}
   m_sharedMaterial: {fileID: -1365870510431700878, guid: 7b11e217a1b43ec4dbf0c26e3381942c, type: 2}
@@ -3271,6 +3271,7 @@ MonoBehaviour:
   sisterAnimator: {fileID: 300912500}
   songPosition: 0
   songPositionInBeats: 0
+  firstBeatOffset: 0.01
   dspSongTime: 0
   chart: {fileID: 206843035}
   PerfectTiming: 0.1
@@ -3289,7 +3290,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: badc25ba7aa38bb46b408355d4a03c4e, type: 3}
+  m_Resource: {fileID: 8300000, guid: 84ddb36fcfd17d24f88f1c510a19f829, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.5
   m_Pitch: 1

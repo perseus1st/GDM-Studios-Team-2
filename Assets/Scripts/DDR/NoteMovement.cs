@@ -9,7 +9,7 @@ public class NoteMover : MonoBehaviour
 {
     public static float MaxGap = 2.5f;
     public static float Speed = 7f; // Units per second
-    //1.79 sec to travel 12 units s = d/t
+    //1.71 sec to travel 12 units t = d/s 
     public static float TargetY = -2.5f; // Y position of the hitzone
     
     public float targetTime; 
