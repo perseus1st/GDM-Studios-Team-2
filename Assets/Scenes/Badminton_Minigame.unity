@@ -2186,7 +2186,10 @@ MonoBehaviour:
     volume: 0.25
   - name: CalmTrack1
     clip: {fileID: 8300000, guid: 03f90e94bb7304c41b309dec179dd1c5, type: 3}
-    volume: 0.25
+    volume: 1
+  - name: SadTrack2
+    clip: {fileID: 8300000, guid: 440ca669c2080f41088457a594091be0, type: 3}
+    volume: 1
   sfxSounds:
   - name: ButtonClick
     clip: {fileID: 8300000, guid: b5de540f77289b370b4aa346d4321c24, type: 3}
