@@ -3750,7 +3750,7 @@ MonoBehaviour:
   animationDampTime: 0.05
   rotationSpeed: 4
   footstepSource: {fileID: 1680158816}
-  footstepClip: {fileID: 8300000, guid: 1d19d1e49033851ba951de94dbacb5b6, type: 3}
+  footstepClip: {fileID: 8300000, guid: 601ff2cab009729db9fcbd4dc362facb, type: 3}
   footstepVolume: 1
 --- !u!114 &1680158811
 MonoBehaviour:
@@ -3865,6 +3865,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 157f1036-2c5f-4fff-a000-23c974db3421
     m_ActionName: 'Gameplay/Pause[/Keyboard/escape]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a03bf7a6-a206-473f-8204-6ceaa5077f19
+    m_ActionName: 'UI/SkipDialogue[/Keyboard/space]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
@@ -4340,9 +4344,6 @@ MonoBehaviour:
     volume: 1
   - name: Highfive
     clip: {fileID: 8300000, guid: 2237500a7809e3ea9abba4d80cca644d, type: 3}
-    volume: 1
-  - name: Walk
-    clip: {fileID: 8300000, guid: 1d19d1e49033851ba951de94dbacb5b6, type: 3}
     volume: 1
   - name: DoorOpen
     clip: {fileID: 8300000, guid: 6b27fad7a6142d77bb6fe47ee038996d, type: 3}
