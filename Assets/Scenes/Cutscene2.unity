@@ -1444,12 +1444,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4592625656429247338, guid: 5ba2e71648a4cb449be3dae70897a004, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1241.1884
+      objectReference: {fileID: 0}
+    - target: {fileID: 4592625656429247338, guid: 5ba2e71648a4cb449be3dae70897a004, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4592625656429247338, guid: 5ba2e71648a4cb449be3dae70897a004, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -3020
       objectReference: {fileID: 0}
     - target: {fileID: 5696407040777093809, guid: 5ba2e71648a4cb449be3dae70897a004, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -4920
+      value: -5017
       objectReference: {fileID: 0}
     - target: {fileID: 7261328209294331628, guid: 5ba2e71648a4cb449be3dae70897a004, type: 3}
       propertyPath: m_Pivot.x
@@ -1533,10 +1541,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7845169044462600564, guid: 5ba2e71648a4cb449be3dae70897a004, type: 3}
       propertyPath: m_text
-      value: "Credits:\n\nDaniil - Team lead, Design\nEmma - Sound, Music\nEren :
-        Programming   \r\nEva - Programming, Music\nKhan - 3D Art \nKian - Programming\r\nLeon
-        - Programming, 2D art \r\nVictoire - Programming \n\n\n\n\n\n\nThanks for
-        playing!\n"
+      value: "Credits:\n\nDaniil Makarenko - Team lead, Design\nEmma Cai - Sound,
+        Music\nEren Kavakli - Programming   \r\nEva Delarue - Programming, Music\nKhan
+        Bao - 3D Art \nKian Zhu - Programming\r\nL\xE9on Goupil - 2D Art, Programming\r\nVictoire
+        Bergeron - Programming \n\nSpecial Thanks:\nTab Cat\nMarcello Catalfamo\n\n\n\n\nThanks
+        for playing!\n"
       objectReference: {fileID: 0}
     - target: {fileID: 7845169044462600564, guid: 5ba2e71648a4cb449be3dae70897a004, type: 3}
       propertyPath: m_fontAsset
