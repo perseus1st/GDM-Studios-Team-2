@@ -707,6 +707,9 @@ MonoBehaviour:
   - name: CalmTrack1
     clip: {fileID: 8300000, guid: 03f90e94bb7304c41b309dec179dd1c5, type: 3}
     volume: 0.25
+  - name: SadTrack2
+    clip: {fileID: 8300000, guid: 440ca669c2080f41088457a594091be0, type: 3}
+    volume: 1
   sfxSounds:
   - name: ButtonClick
     clip: {fileID: 8300000, guid: b5de540f77289b370b4aa346d4321c24, type: 3}
@@ -789,7 +792,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 850.9, y: 384.6}
+  m_AnchoredPosition: {x: 833.5, y: 62.4}
   m_SizeDelta: {x: 690, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &327434968
@@ -1639,11 +1642,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1718633348209796847, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -0.0001
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1718633348209796847, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 520
+      value: 192.5
       objectReference: {fileID: 0}
     - target: {fileID: 1750971388161905837, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
       propertyPath: m_Name
@@ -1667,15 +1670,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4118837184115667503, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 2560
+      value: 1928.55
       objectReference: {fileID: 0}
     - target: {fileID: 4118837184115667503, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 600
+      value: 1164.1
       objectReference: {fileID: 0}
     - target: {fileID: 4118837184115667503, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 580.7
       objectReference: {fileID: 0}
     - target: {fileID: 4264783173816424297, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1687,7 +1690,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4453553695309046325, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
       propertyPath: m_fontSize
-      value: 50
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 4453553695309046325, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
       propertyPath: m_fontAsset
@@ -1695,7 +1698,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 8733465e6612d3148beced86adc30b9c, type: 2}
     - target: {fileID: 4453553695309046325, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
       propertyPath: m_fontSizeBase
-      value: 50
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 4453553695309046325, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
       propertyPath: m_sharedMaterial
@@ -1709,6 +1712,10 @@ PrefabInstance:
       propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5134037578650071611, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 5000746f119e93a4993c240ff068ab0d, type: 3}
     - target: {fileID: 6481295579768315264, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
       propertyPath: m_UiScaleMode
       value: 1
@@ -4385,7 +4392,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 585767071}
         m_TargetAssemblyTypeName: PauseManager, Assembly-CSharp
         m_MethodName: quit
         m_Mode: 1
