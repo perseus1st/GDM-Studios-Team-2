@@ -1379,7 +1379,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3235721107360156242, guid: 5ba2e71648a4cb449be3dae70897a004, type: 3}
       propertyPath: scrollDuration
-      value: 20
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 3235721107360156242, guid: 5ba2e71648a4cb449be3dae70897a004, type: 3}
       propertyPath: playerController
