@@ -761,7 +761,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d80c0d59c45fca74c8c88542b1329d99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneMusic
-  musicName: CalmTrack1
+  musicName: SadTrack2
   stopMusic: 0
 --- !u!4 &230455750
 Transform:
@@ -11226,6 +11226,9 @@ MonoBehaviour:
     volume: 0.25
   - name: CalmTrack1
     clip: {fileID: 8300000, guid: 03f90e94bb7304c41b309dec179dd1c5, type: 3}
+    volume: 1
+  - name: SadTrack2
+    clip: {fileID: 8300000, guid: 440ca669c2080f41088457a594091be0, type: 3}
     volume: 1
   sfxSounds:
   - name: ButtonClick

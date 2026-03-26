@@ -117,7 +117,10 @@ public class CameraSlideController : MonoBehaviour
             string sfxName = panelSFX[clickCount];
             if (!string.IsNullOrEmpty(sfxName))
             {
-                AudioManager.INSTANCE.PlaySFX(sfxName);
+                Debug.Log("num: " + clickCount);
+                Debug.Log("name: " + sfxName);
+                Cutscene1AudioManager.INSTANCE.PlaySFX(sfxName);
+                // Cutscene1AudioManager.INSTANCE.PlaySFX(sfxName);
             }
         }
     }
