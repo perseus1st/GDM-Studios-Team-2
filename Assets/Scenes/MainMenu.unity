@@ -233,6 +233,7 @@ GameObject:
   - component: {fileID: 57138690}
   - component: {fileID: 57138692}
   - component: {fileID: 57138691}
+  - component: {fileID: 57138693}
   m_Layer: 5
   m_Name: Left Arrow Back Options
   m_TagString: Untagged
@@ -297,6 +298,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 57138689}
   m_CullTransparentMesh: 1
+--- !u!114 &57138693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 57138689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1.115, y: 1.115}
+  m_UseGraphicAlpha: 0
 --- !u!1 &123122513
 GameObject:
   m_ObjectHideFlags: 0
@@ -866,6 +882,7 @@ GameObject:
   - component: {fileID: 262302997}
   - component: {fileID: 262302999}
   - component: {fileID: 262302998}
+  - component: {fileID: 262303000}
   m_Layer: 5
   m_Name: Right Arrow Quit
   m_TagString: Untagged
@@ -930,6 +947,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 262302996}
   m_CullTransparentMesh: 1
+--- !u!114 &262303000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 262302996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1.115, y: 1.115}
+  m_UseGraphicAlpha: 0
 --- !u!224 &281403641
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1264,6 +1296,7 @@ GameObject:
   - component: {fileID: 348976301}
   - component: {fileID: 348976303}
   - component: {fileID: 348976302}
+  - component: {fileID: 348976304}
   m_Layer: 5
   m_Name: Left Arrow Audio
   m_TagString: Untagged
@@ -1328,6 +1361,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 348976300}
   m_CullTransparentMesh: 1
+--- !u!114 &348976304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 348976300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1.115, y: 1.115}
+  m_UseGraphicAlpha: 0
 --- !u!1 &432778538
 GameObject:
   m_ObjectHideFlags: 0
@@ -1864,6 +1912,7 @@ GameObject:
   - component: {fileID: 454287203}
   - component: {fileID: 454287205}
   - component: {fileID: 454287204}
+  - component: {fileID: 454287206}
   m_Layer: 5
   m_Name: Right Arrow Back Options
   m_TagString: Untagged
@@ -1928,6 +1977,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 454287202}
   m_CullTransparentMesh: 1
+--- !u!114 &454287206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 454287202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1.115, y: 1.115}
+  m_UseGraphicAlpha: 0
 --- !u!1 &492472142
 GameObject:
   m_ObjectHideFlags: 0
@@ -2637,6 +2701,7 @@ GameObject:
   - component: {fileID: 531759533}
   - component: {fileID: 531759535}
   - component: {fileID: 531759534}
+  - component: {fileID: 531759536}
   m_Layer: 5
   m_Name: Right Arrow Audio
   m_TagString: Untagged
@@ -2701,6 +2766,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 531759532}
   m_CullTransparentMesh: 1
+--- !u!114 &531759536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 531759532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1.115, y: 1.115}
+  m_UseGraphicAlpha: 0
 --- !u!1 &576298668
 GameObject:
   m_ObjectHideFlags: 0
@@ -3313,6 +3393,7 @@ GameObject:
   - component: {fileID: 604232114}
   - component: {fileID: 604232116}
   - component: {fileID: 604232115}
+  - component: {fileID: 604232117}
   m_Layer: 5
   m_Name: Left Arrow Start Game
   m_TagString: Untagged
@@ -3377,6 +3458,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 604232113}
   m_CullTransparentMesh: 1
+--- !u!114 &604232117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 604232113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1.115, y: 1.115}
+  m_UseGraphicAlpha: 0
 --- !u!1 &610775689
 GameObject:
   m_ObjectHideFlags: 0
@@ -4245,6 +4341,7 @@ GameObject:
   - component: {fileID: 771346180}
   - component: {fileID: 771346182}
   - component: {fileID: 771346181}
+  - component: {fileID: 771346183}
   m_Layer: 5
   m_Name: Left Arrow No
   m_TagString: Untagged
@@ -4309,6 +4406,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 771346179}
   m_CullTransparentMesh: 1
+--- !u!114 &771346183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 771346179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1.115, y: 1.115}
+  m_UseGraphicAlpha: 0
 --- !u!1 &803981745
 GameObject:
   m_ObjectHideFlags: 0
@@ -4320,6 +4432,7 @@ GameObject:
   - component: {fileID: 803981746}
   - component: {fileID: 803981748}
   - component: {fileID: 803981747}
+  - component: {fileID: 803981749}
   m_Layer: 5
   m_Name: Right Arrow Start Game
   m_TagString: Untagged
@@ -4384,6 +4497,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 803981745}
   m_CullTransparentMesh: 1
+--- !u!114 &803981749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 803981745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1.115, y: 1.115}
+  m_UseGraphicAlpha: 0
 --- !u!1 &859786825
 GameObject:
   m_ObjectHideFlags: 0
@@ -4395,6 +4523,7 @@ GameObject:
   - component: {fileID: 859786826}
   - component: {fileID: 859786828}
   - component: {fileID: 859786827}
+  - component: {fileID: 859786829}
   m_Layer: 5
   m_Name: Left Arrow Quit
   m_TagString: Untagged
@@ -4459,6 +4588,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 859786825}
   m_CullTransparentMesh: 1
+--- !u!114 &859786829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 859786825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1.115, y: 1.115}
+  m_UseGraphicAlpha: 0
 --- !u!1 &874065779
 GameObject:
   m_ObjectHideFlags: 0
@@ -4730,6 +4874,7 @@ GameObject:
   - component: {fileID: 881879624}
   - component: {fileID: 881879626}
   - component: {fileID: 881879625}
+  - component: {fileID: 881879627}
   m_Layer: 5
   m_Name: Left Arrow Start Game
   m_TagString: Untagged
@@ -4794,6 +4939,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 881879623}
   m_CullTransparentMesh: 1
+--- !u!114 &881879627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 881879623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1.115, y: 1.115}
+  m_UseGraphicAlpha: 0
 --- !u!1001 &892603579
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4862,6 +5022,7 @@ GameObject:
   - component: {fileID: 896808895}
   - component: {fileID: 896808897}
   - component: {fileID: 896808896}
+  - component: {fileID: 896808898}
   m_Layer: 5
   m_Name: Right Arrow Start Game
   m_TagString: Untagged
@@ -4926,6 +5087,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 896808894}
   m_CullTransparentMesh: 1
+--- !u!114 &896808898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 896808894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1.115, y: 1.115}
+  m_UseGraphicAlpha: 0
 --- !u!1 &911859708
 GameObject:
   m_ObjectHideFlags: 0
@@ -5012,6 +5188,7 @@ GameObject:
   - component: {fileID: 942807399}
   - component: {fileID: 942807401}
   - component: {fileID: 942807400}
+  - component: {fileID: 942807402}
   m_Layer: 5
   m_Name: Right Arrow No
   m_TagString: Untagged
@@ -5076,6 +5253,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 942807398}
   m_CullTransparentMesh: 1
+--- !u!114 &942807402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 942807398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1.115, y: 1.115}
+  m_UseGraphicAlpha: 0
 --- !u!1 &952664560
 GameObject:
   m_ObjectHideFlags: 0
@@ -5126,6 +5318,7 @@ GameObject:
   - component: {fileID: 1010753412}
   - component: {fileID: 1010753414}
   - component: {fileID: 1010753413}
+  - component: {fileID: 1010753415}
   m_Layer: 5
   m_Name: Right Arrow Start Game
   m_TagString: Untagged
@@ -5190,6 +5383,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1010753411}
   m_CullTransparentMesh: 1
+--- !u!114 &1010753415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1010753411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1.115, y: 1.115}
+  m_UseGraphicAlpha: 0
 --- !u!1 &1015270172
 GameObject:
   m_ObjectHideFlags: 0
@@ -5201,6 +5409,7 @@ GameObject:
   - component: {fileID: 1015270173}
   - component: {fileID: 1015270175}
   - component: {fileID: 1015270174}
+  - component: {fileID: 1015270176}
   m_Layer: 5
   m_Name: Left Arrow Start Game
   m_TagString: Untagged
@@ -5265,6 +5474,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1015270172}
   m_CullTransparentMesh: 1
+--- !u!114 &1015270176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1015270172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1.115, y: 1.115}
+  m_UseGraphicAlpha: 0
 --- !u!1 &1031102550
 GameObject:
   m_ObjectHideFlags: 0
@@ -5276,6 +5500,7 @@ GameObject:
   - component: {fileID: 1031102551}
   - component: {fileID: 1031102553}
   - component: {fileID: 1031102552}
+  - component: {fileID: 1031102554}
   m_Layer: 5
   m_Name: Left Arrow Quit
   m_TagString: Untagged
@@ -5340,6 +5565,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1031102550}
   m_CullTransparentMesh: 1
+--- !u!114 &1031102554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1031102550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1.115, y: 1.115}
+  m_UseGraphicAlpha: 0
 --- !u!1 &1036668134
 GameObject:
   m_ObjectHideFlags: 0
@@ -6164,6 +6404,7 @@ GameObject:
   - component: {fileID: 1088096000}
   - component: {fileID: 1088096002}
   - component: {fileID: 1088096001}
+  - component: {fileID: 1088096003}
   m_Layer: 5
   m_Name: Left Arrow Yes
   m_TagString: Untagged
@@ -6228,6 +6469,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1088095999}
   m_CullTransparentMesh: 1
+--- !u!114 &1088096003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1088095999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1.115, y: 1.115}
+  m_UseGraphicAlpha: 0
 --- !u!1001 &1105957648
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6477,6 +6733,7 @@ GameObject:
   - component: {fileID: 1115691827}
   - component: {fileID: 1115691829}
   - component: {fileID: 1115691828}
+  - component: {fileID: 1115691830}
   m_Layer: 5
   m_Name: Left Arrow No
   m_TagString: Untagged
@@ -6541,6 +6798,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1115691826}
   m_CullTransparentMesh: 1
+--- !u!114 &1115691830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1115691826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1.115, y: 1.115}
+  m_UseGraphicAlpha: 0
 --- !u!1 &1116363745
 GameObject:
   m_ObjectHideFlags: 0
@@ -6753,6 +7025,7 @@ GameObject:
   - component: {fileID: 1163749306}
   - component: {fileID: 1163749305}
   - component: {fileID: 1163749304}
+  - component: {fileID: 1163749307}
   m_Layer: 5
   m_Name: Right Arrow Quit
   m_TagString: Untagged
@@ -6817,6 +7090,21 @@ RectTransform:
   m_AnchoredPosition: {x: 154, y: -17}
   m_SizeDelta: {x: 70, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1163749307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1163749303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1.115, y: 1.115}
+  m_UseGraphicAlpha: 0
 --- !u!1 &1189731746
 GameObject:
   m_ObjectHideFlags: 0
@@ -7230,6 +7518,7 @@ GameObject:
   - component: {fileID: 1294968889}
   - component: {fileID: 1294968891}
   - component: {fileID: 1294968890}
+  - component: {fileID: 1294968892}
   m_Layer: 5
   m_Name: Left Arrow Start Game
   m_TagString: Untagged
@@ -7269,7 +7558,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.65882355, g: 0.48235294, b: 0.65882355, a: 1}
+  m_Color: {r: 0.6390604, g: 0.4267978, b: 0.6509434, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -7294,6 +7583,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1294968888}
   m_CullTransparentMesh: 1
+--- !u!114 &1294968892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1294968888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1.115, y: 1.115}
+  m_UseGraphicAlpha: 0
 --- !u!1 &1382353634
 GameObject:
   m_ObjectHideFlags: 0
@@ -7305,6 +7609,7 @@ GameObject:
   - component: {fileID: 1382353637}
   - component: {fileID: 1382353636}
   - component: {fileID: 1382353635}
+  - component: {fileID: 1382353638}
   m_Layer: 5
   m_Name: Right Arrow Start Game
   m_TagString: Untagged
@@ -7369,6 +7674,21 @@ RectTransform:
   m_AnchoredPosition: {x: 207, y: -17}
   m_SizeDelta: {x: 70, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1382353638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1382353634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1.115, y: 1.115}
+  m_UseGraphicAlpha: 0
 --- !u!1 &1383304704
 GameObject:
   m_ObjectHideFlags: 0
@@ -7380,6 +7700,7 @@ GameObject:
   - component: {fileID: 1383304705}
   - component: {fileID: 1383304707}
   - component: {fileID: 1383304706}
+  - component: {fileID: 1383304708}
   m_Layer: 5
   m_Name: Left Arrow Start Game
   m_TagString: Untagged
@@ -7444,6 +7765,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1383304704}
   m_CullTransparentMesh: 1
+--- !u!114 &1383304708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1383304704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1.115, y: 1.115}
+  m_UseGraphicAlpha: 0
 --- !u!1 &1441297229
 GameObject:
   m_ObjectHideFlags: 0
@@ -7455,6 +7791,7 @@ GameObject:
   - component: {fileID: 1441297230}
   - component: {fileID: 1441297232}
   - component: {fileID: 1441297231}
+  - component: {fileID: 1441297233}
   m_Layer: 5
   m_Name: Right Arrow Start Game
   m_TagString: Untagged
@@ -7519,6 +7856,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1441297229}
   m_CullTransparentMesh: 1
+--- !u!114 &1441297233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1441297229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1.115, y: 1.115}
+  m_UseGraphicAlpha: 0
 --- !u!1 &1482881774
 GameObject:
   m_ObjectHideFlags: 0
@@ -8199,6 +8551,7 @@ GameObject:
   - component: {fileID: 1590896800}
   - component: {fileID: 1590896802}
   - component: {fileID: 1590896801}
+  - component: {fileID: 1590896803}
   m_Layer: 5
   m_Name: Right Arrow Yes
   m_TagString: Untagged
@@ -8263,6 +8616,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1590896799}
   m_CullTransparentMesh: 1
+--- !u!114 &1590896803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1590896799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1.115, y: 1.115}
+  m_UseGraphicAlpha: 0
 --- !u!1 &1595856203
 GameObject:
   m_ObjectHideFlags: 0
@@ -9418,6 +9786,7 @@ GameObject:
   - component: {fileID: 1703968958}
   - component: {fileID: 1703968957}
   - component: {fileID: 1703968956}
+  - component: {fileID: 1703968959}
   m_Layer: 5
   m_Name: Left Arrow Start Game
   m_TagString: Untagged
@@ -9482,6 +9851,21 @@ RectTransform:
   m_AnchoredPosition: {x: -207, y: -17}
   m_SizeDelta: {x: 70, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1703968959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1703968955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1.115, y: 1.115}
+  m_UseGraphicAlpha: 0
 --- !u!1 &1736989866
 GameObject:
   m_ObjectHideFlags: 0
@@ -9493,6 +9877,7 @@ GameObject:
   - component: {fileID: 1736989867}
   - component: {fileID: 1736989869}
   - component: {fileID: 1736989868}
+  - component: {fileID: 1736989870}
   m_Layer: 5
   m_Name: Left Arrow Options
   m_TagString: Untagged
@@ -9557,6 +9942,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1736989866}
   m_CullTransparentMesh: 1
+--- !u!114 &1736989870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1736989866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1.115, y: 1.115}
+  m_UseGraphicAlpha: 0
 --- !u!1 &1752912093
 GameObject:
   m_ObjectHideFlags: 0
@@ -10393,6 +10793,7 @@ GameObject:
   - component: {fileID: 1925639995}
   - component: {fileID: 1925639997}
   - component: {fileID: 1925639996}
+  - component: {fileID: 1925639998}
   m_Layer: 5
   m_Name: Right Arrow Yes
   m_TagString: Untagged
@@ -10457,6 +10858,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1925639994}
   m_CullTransparentMesh: 1
+--- !u!114 &1925639998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1925639994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1.115, y: 1.115}
+  m_UseGraphicAlpha: 0
 --- !u!1 &1936737875
 GameObject:
   m_ObjectHideFlags: 0
@@ -10692,6 +11108,7 @@ GameObject:
   - component: {fileID: 1959547121}
   - component: {fileID: 1959547123}
   - component: {fileID: 1959547122}
+  - component: {fileID: 1959547124}
   m_Layer: 5
   m_Name: Left Arrow Controls
   m_TagString: Untagged
@@ -10756,6 +11173,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1959547120}
   m_CullTransparentMesh: 1
+--- !u!114 &1959547124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1959547120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1.115, y: 1.115}
+  m_UseGraphicAlpha: 0
 --- !u!1 &1965137397
 GameObject:
   m_ObjectHideFlags: 0
@@ -11156,6 +11588,7 @@ GameObject:
   - component: {fileID: 1979900683}
   - component: {fileID: 1979900685}
   - component: {fileID: 1979900684}
+  - component: {fileID: 1979900686}
   m_Layer: 5
   m_Name: Left Arrow Yes
   m_TagString: Untagged
@@ -11220,6 +11653,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1979900682}
   m_CullTransparentMesh: 1
+--- !u!114 &1979900686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1979900682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1.115, y: 1.115}
+  m_UseGraphicAlpha: 0
 --- !u!1 &1986342710
 GameObject:
   m_ObjectHideFlags: 0
@@ -11516,6 +11964,7 @@ GameObject:
   - component: {fileID: 2032758982}
   - component: {fileID: 2032758984}
   - component: {fileID: 2032758983}
+  - component: {fileID: 2032758985}
   m_Layer: 5
   m_Name: Right Arrow No
   m_TagString: Untagged
@@ -11580,6 +12029,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2032758981}
   m_CullTransparentMesh: 1
+--- !u!114 &2032758985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2032758981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1.115, y: 1.115}
+  m_UseGraphicAlpha: 0
 --- !u!1 &2044995199
 GameObject:
   m_ObjectHideFlags: 0
@@ -11778,6 +12242,7 @@ GameObject:
   - component: {fileID: 2068026142}
   - component: {fileID: 2068026144}
   - component: {fileID: 2068026143}
+  - component: {fileID: 2068026145}
   m_Layer: 5
   m_Name: Left Arrow Video
   m_TagString: Untagged
@@ -11842,6 +12307,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2068026141}
   m_CullTransparentMesh: 1
+--- !u!114 &2068026145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2068026141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1.115, y: 1.115}
+  m_UseGraphicAlpha: 0
 --- !u!1 &2071761234
 GameObject:
   m_ObjectHideFlags: 0
@@ -11853,6 +12333,7 @@ GameObject:
   - component: {fileID: 2071761235}
   - component: {fileID: 2071761237}
   - component: {fileID: 2071761236}
+  - component: {fileID: 2071761238}
   m_Layer: 5
   m_Name: Right Arrow Controls
   m_TagString: Untagged
@@ -11917,6 +12398,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2071761234}
   m_CullTransparentMesh: 1
+--- !u!114 &2071761238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2071761234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1.115, y: 1.115}
+  m_UseGraphicAlpha: 0
 --- !u!1 &2078163976
 GameObject:
   m_ObjectHideFlags: 0
@@ -11928,6 +12424,7 @@ GameObject:
   - component: {fileID: 2078163977}
   - component: {fileID: 2078163979}
   - component: {fileID: 2078163978}
+  - component: {fileID: 2078163980}
   m_Layer: 5
   m_Name: Right Arrow Options
   m_TagString: Untagged
@@ -11992,6 +12489,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2078163976}
   m_CullTransparentMesh: 1
+--- !u!114 &2078163980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2078163976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1.115, y: 1.115}
+  m_UseGraphicAlpha: 0
 --- !u!1 &2100438452
 GameObject:
   m_ObjectHideFlags: 0
@@ -12185,6 +12697,7 @@ GameObject:
   - component: {fileID: 2125380454}
   - component: {fileID: 2125380456}
   - component: {fileID: 2125380455}
+  - component: {fileID: 2125380457}
   m_Layer: 5
   m_Name: Right Arrow Video
   m_TagString: Untagged
@@ -12249,6 +12762,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2125380453}
   m_CullTransparentMesh: 1
+--- !u!114 &2125380457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2125380453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1.115, y: 1.115}
+  m_UseGraphicAlpha: 0
 --- !u!1 &2136031416
 GameObject:
   m_ObjectHideFlags: 0
@@ -12260,6 +12788,7 @@ GameObject:
   - component: {fileID: 2136031417}
   - component: {fileID: 2136031419}
   - component: {fileID: 2136031418}
+  - component: {fileID: 2136031420}
   m_Layer: 5
   m_Name: Right Arrow Start Game
   m_TagString: Untagged
@@ -12299,7 +12828,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.65882355, g: 0.48235294, b: 0.65882355, a: 1}
+  m_Color: {r: 0.6392157, g: 0.42745098, b: 0.6509804, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -12324,6 +12853,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2136031416}
   m_CullTransparentMesh: 1
+--- !u!114 &2136031420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2136031416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1.115, y: 1.115}
+  m_UseGraphicAlpha: 0
 --- !u!4 &1780042569866689897
 Transform:
   m_ObjectHideFlags: 0
