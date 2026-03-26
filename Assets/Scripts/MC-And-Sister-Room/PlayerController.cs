@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
     private const float sqrt2 = 1.189207f;
     private bool dialogueActive = false; // Added by Daniil
     private IntroDialogue introDialogue; // Added by Daniil
-    private OutroDialogue outroDialogue; // Added by Daniil
+    private OutroDialogueV2 outroDialogue; // Added by Daniil
 
     [Header("Footsteps")]
     [SerializeField] private AudioSource footstepSource;
@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
         fixedCamRight = camRight.normalized;
 
         introDialogue = FindObjectOfType<IntroDialogue>(); // Added by Daniil
-        outroDialogue = FindObjectOfType<OutroDialogue>(); // Added by Daniil
+        outroDialogue = FindObjectOfType<OutroDialogueV2>(); // Added by Daniil
 
         if (footstepSource != null)
         {
