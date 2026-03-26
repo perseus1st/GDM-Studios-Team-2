@@ -1359,7 +1359,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3235721107360156242, guid: 5ba2e71648a4cb449be3dae70897a004, type: 3}
       propertyPath: scrollEndY
-      value: 3120
+      value: 5000
       objectReference: {fileID: 0}
     - target: {fileID: 3235721107360156242, guid: 5ba2e71648a4cb449be3dae70897a004, type: 3}
       propertyPath: scrollStartY
@@ -1449,7 +1449,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5696407040777093809, guid: 5ba2e71648a4cb449be3dae70897a004, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -3120
+      value: -4920
       objectReference: {fileID: 0}
     - target: {fileID: 7261328209294331628, guid: 5ba2e71648a4cb449be3dae70897a004, type: 3}
       propertyPath: m_Pivot.x
@@ -1530,6 +1530,13 @@ PrefabInstance:
     - target: {fileID: 7261328209294331628, guid: 5ba2e71648a4cb449be3dae70897a004, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7845169044462600564, guid: 5ba2e71648a4cb449be3dae70897a004, type: 3}
+      propertyPath: m_text
+      value: "Credits:\n\nDaniil - Team lead, Design\nEmma - Sound, Music\nEren :
+        Programming   \r\nEva - Programming, Music\nKhan - 3D Art \nKian - Programming\r\nLeon
+        - Programming, 2D art \r\nVictoire - Programming \n\n\n\n\n\n\nThanks for
+        playing!\n"
       objectReference: {fileID: 0}
     - target: {fileID: 7845169044462600564, guid: 5ba2e71648a4cb449be3dae70897a004, type: 3}
       propertyPath: m_fontAsset
