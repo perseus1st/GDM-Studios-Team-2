@@ -456,7 +456,7 @@ MonoBehaviour:
     volume: 1
   - name: CarCrash
     clip: {fileID: 8300000, guid: eb0c2000137dc6322bbbfd9aa29f544c, type: 3}
-    volume: 1
+    volume: 0.75
   musicSourceA: {fileID: 1896181370}
   musicSourceB: {fileID: 1724769751}
   sfxSource: {fileID: 1867361441}
