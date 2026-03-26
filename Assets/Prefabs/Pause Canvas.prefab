@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 535332771101899946}
   - component: {fileID: 3530253982001724081}
   - component: {fileID: 867491623718226958}
+  - component: {fileID: 874260665190044669}
   m_Layer: 5
   m_Name: Left Arrow Back Options
   m_TagString: Untagged
@@ -75,6 +76,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &874260665190044669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 95528277538607316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1.115, y: 1.115}
+  m_UseGraphicAlpha: 0
 --- !u!1 &157190258176597890
 GameObject:
   m_ObjectHideFlags: 0
@@ -546,6 +562,7 @@ GameObject:
   - component: {fileID: 6558400227558502825}
   - component: {fileID: 8676086409742234473}
   - component: {fileID: 6253897403240007556}
+  - component: {fileID: 2090470698357661218}
   m_Layer: 5
   m_Name: Left Arrow Controls
   m_TagString: Untagged
@@ -610,6 +627,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2090470698357661218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 631735259578877845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1.115, y: 1.115}
+  m_UseGraphicAlpha: 0
 --- !u!1 &653069826297981675
 GameObject:
   m_ObjectHideFlags: 0
@@ -621,6 +653,7 @@ GameObject:
   - component: {fileID: 6682576753773812019}
   - component: {fileID: 5781643267901681205}
   - component: {fileID: 5117325314907262096}
+  - component: {fileID: 9205551196361202331}
   m_Layer: 5
   m_Name: Right Arrow No
   m_TagString: Untagged
@@ -685,6 +718,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &9205551196361202331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 653069826297981675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1.115, y: 1.115}
+  m_UseGraphicAlpha: 0
 --- !u!1 &1116553101998019742
 GameObject:
   m_ObjectHideFlags: 0
@@ -696,6 +744,7 @@ GameObject:
   - component: {fileID: 7711786984106492619}
   - component: {fileID: 4825854722459568808}
   - component: {fileID: 8121080334655208206}
+  - component: {fileID: 2084745936518585133}
   m_Layer: 5
   m_Name: Right Arrow Back Options
   m_TagString: Untagged
@@ -760,6 +809,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2084745936518585133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1116553101998019742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1.115, y: 1.115}
+  m_UseGraphicAlpha: 0
 --- !u!1 &1773336831221707355
 GameObject:
   m_ObjectHideFlags: 0
@@ -1408,6 +1472,7 @@ GameObject:
   - component: {fileID: 1016391234171911420}
   - component: {fileID: 5565283863848214452}
   - component: {fileID: 8877202771513622437}
+  - component: {fileID: 4101450425097059004}
   m_Layer: 5
   m_Name: Right Arrow Yes
   m_TagString: Untagged
@@ -1472,6 +1537,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4101450425097059004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3095340755218486287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1.115, y: 1.115}
+  m_UseGraphicAlpha: 0
 --- !u!1 &3167177545865741836
 GameObject:
   m_ObjectHideFlags: 0
@@ -2489,6 +2569,7 @@ GameObject:
   - component: {fileID: 9213755774095684433}
   - component: {fileID: 3238191236762106529}
   - component: {fileID: 8971210863919134597}
+  - component: {fileID: 3779147020930276456}
   m_Layer: 5
   m_Name: Left Arrow Audio
   m_TagString: Untagged
@@ -2553,6 +2634,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3779147020930276456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4402680262466586517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1.115, y: 1.115}
+  m_UseGraphicAlpha: 0
 --- !u!1 &4776490335980695357
 GameObject:
   m_ObjectHideFlags: 0
@@ -2701,6 +2797,7 @@ GameObject:
   - component: {fileID: 1308315821723833977}
   - component: {fileID: 698434409176334650}
   - component: {fileID: 6572256183635976620}
+  - component: {fileID: 3132983583935184776}
   m_Layer: 5
   m_Name: Right Arrow Back Options
   m_TagString: Untagged
@@ -2765,6 +2862,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3132983583935184776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4801544484325827283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1.115, y: 1.115}
+  m_UseGraphicAlpha: 0
 --- !u!1 &4805218567357345498
 GameObject:
   m_ObjectHideFlags: 0
@@ -2776,6 +2888,7 @@ GameObject:
   - component: {fileID: 2934780842596071096}
   - component: {fileID: 3357509881637808773}
   - component: {fileID: 3124961950171103539}
+  - component: {fileID: 692358971188463075}
   m_Layer: 5
   m_Name: Right Arrow Video
   m_TagString: Untagged
@@ -2840,6 +2953,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &692358971188463075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4805218567357345498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1.115, y: 1.115}
+  m_UseGraphicAlpha: 0
 --- !u!1 &5091431701576039829
 GameObject:
   m_ObjectHideFlags: 0
@@ -2926,6 +3054,7 @@ GameObject:
   - component: {fileID: 4609235331966310416}
   - component: {fileID: 8409051207739871002}
   - component: {fileID: 3660728618190754713}
+  - component: {fileID: 2740587768266897424}
   m_Layer: 5
   m_Name: Left Arrow No
   m_TagString: Untagged
@@ -2990,6 +3119,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2740587768266897424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5992019695274138749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1.115, y: 1.115}
+  m_UseGraphicAlpha: 0
 --- !u!1 &6224846733260425935
 GameObject:
   m_ObjectHideFlags: 0
@@ -3457,6 +3601,7 @@ GameObject:
   - component: {fileID: 7868918180972362211}
   - component: {fileID: 8129999268369647170}
   - component: {fileID: 4772087099428050219}
+  - component: {fileID: 2277677713279151860}
   m_Layer: 5
   m_Name: Right Arrow Controls
   m_TagString: Untagged
@@ -3521,6 +3666,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2277677713279151860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6739733123924647978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1.115, y: 1.115}
+  m_UseGraphicAlpha: 0
 --- !u!1 &6775086528862492371
 GameObject:
   m_ObjectHideFlags: 0
@@ -3532,6 +3692,7 @@ GameObject:
   - component: {fileID: 2367567669041504147}
   - component: {fileID: 3969080409488252197}
   - component: {fileID: 1076800938363588981}
+  - component: {fileID: 8003696988823028160}
   m_Layer: 5
   m_Name: Left Arrow Back Options
   m_TagString: Untagged
@@ -3596,6 +3757,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8003696988823028160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6775086528862492371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1.115, y: 1.115}
+  m_UseGraphicAlpha: 0
 --- !u!1 &7184936394795897520
 GameObject:
   m_ObjectHideFlags: 0
@@ -3607,6 +3783,7 @@ GameObject:
   - component: {fileID: 1499037738069479842}
   - component: {fileID: 4161444577427271185}
   - component: {fileID: 505658382441521309}
+  - component: {fileID: 4677349737387786300}
   m_Layer: 5
   m_Name: Right Arrow Audio
   m_TagString: Untagged
@@ -3671,6 +3848,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4677349737387786300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7184936394795897520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1.115, y: 1.115}
+  m_UseGraphicAlpha: 0
 --- !u!1 &7291571658893111493
 GameObject:
   m_ObjectHideFlags: 0
@@ -3682,6 +3874,7 @@ GameObject:
   - component: {fileID: 2187264631873376288}
   - component: {fileID: 8587170376425140429}
   - component: {fileID: 2543973304888824295}
+  - component: {fileID: 6595306986552332408}
   m_Layer: 5
   m_Name: Left Arrow Yes
   m_TagString: Untagged
@@ -3746,6 +3939,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6595306986552332408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7291571658893111493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1.115, y: 1.115}
+  m_UseGraphicAlpha: 0
 --- !u!1 &7723156775197715994
 GameObject:
   m_ObjectHideFlags: 0
@@ -3757,6 +3965,7 @@ GameObject:
   - component: {fileID: 8680072423645660216}
   - component: {fileID: 5077037698614889289}
   - component: {fileID: 8064189127882860808}
+  - component: {fileID: 7418534137748451052}
   m_Layer: 5
   m_Name: Left Arrow Controls
   m_TagString: Untagged
@@ -3821,6 +4030,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7418534137748451052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7723156775197715994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1.115, y: 1.115}
+  m_UseGraphicAlpha: 0
 --- !u!1 &8038531449474248001
 GameObject:
   m_ObjectHideFlags: 0
@@ -3875,6 +4099,7 @@ GameObject:
   - component: {fileID: 9147779503220118655}
   - component: {fileID: 70421750747502234}
   - component: {fileID: 7554202640486592782}
+  - component: {fileID: 7563565832307853195}
   m_Layer: 5
   m_Name: Left Arrow Video
   m_TagString: Untagged
@@ -3939,6 +4164,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7563565832307853195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8208237858979229109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1.115, y: 1.115}
+  m_UseGraphicAlpha: 0
 --- !u!1 &8561330378366586374
 GameObject:
   m_ObjectHideFlags: 0
@@ -4198,6 +4438,7 @@ GameObject:
   - component: {fileID: 7834962485743418666}
   - component: {fileID: 1840673857477150487}
   - component: {fileID: 5317684160082401199}
+  - component: {fileID: 8491149846815001828}
   m_Layer: 5
   m_Name: Right Arrow Controls
   m_TagString: Untagged
@@ -4262,6 +4503,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8491149846815001828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8704857741660906869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1.115, y: 1.115}
+  m_UseGraphicAlpha: 0
 --- !u!1 &9078643837102737580
 GameObject:
   m_ObjectHideFlags: 0

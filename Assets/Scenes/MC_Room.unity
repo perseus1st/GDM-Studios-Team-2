@@ -792,7 +792,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 850.9, y: 384.6}
+  m_AnchoredPosition: {x: 833.5, y: 62.4}
   m_SizeDelta: {x: 690, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &327434968
@@ -1642,11 +1642,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1718633348209796847, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -0.0001
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1718633348209796847, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 520
+      value: 192.5
       objectReference: {fileID: 0}
     - target: {fileID: 1750971388161905837, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
       propertyPath: m_Name
@@ -1670,15 +1670,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4118837184115667503, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 2560
+      value: 1928.55
       objectReference: {fileID: 0}
     - target: {fileID: 4118837184115667503, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 600
+      value: 1164.1
       objectReference: {fileID: 0}
     - target: {fileID: 4118837184115667503, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 580.7
       objectReference: {fileID: 0}
     - target: {fileID: 4264783173816424297, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1690,20 +1690,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4453553695309046325, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
       propertyPath: m_fontSize
-      value: 50
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 4453553695309046325, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 11400000, guid: aaf8b9ab341c3c64185eeb1721d0feff, type: 2}
+      objectReference: {fileID: 11400000, guid: 8733465e6612d3148beced86adc30b9c, type: 2}
     - target: {fileID: 4453553695309046325, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
       propertyPath: m_fontSizeBase
-      value: 50
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 4453553695309046325, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: -8354203079249323526, guid: aaf8b9ab341c3c64185eeb1721d0feff, type: 2}
+      objectReference: {fileID: -8354203079249323526, guid: 8733465e6612d3148beced86adc30b9c, type: 2}
     - target: {fileID: 4453553695309046325, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
       propertyPath: m_HorizontalAlignment
       value: 1
@@ -1712,6 +1712,10 @@ PrefabInstance:
       propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5134037578650071611, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 5000746f119e93a4993c240ff068ab0d, type: 3}
     - target: {fileID: 6481295579768315264, guid: 0b9f24e443a4f5c47b3574754a5fb454, type: 3}
       propertyPath: m_UiScaleMode
       value: 1
@@ -2798,6 +2802,7 @@ GameObject:
   - component: {fileID: 535332771685438991}
   - component: {fileID: 3530253980369555476}
   - component: {fileID: 867491625299011243}
+  - component: {fileID: 3530253980369555477}
   m_Layer: 5
   m_Name: Left Arrow Back Options
   m_TagString: Untagged
@@ -3117,6 +3122,7 @@ GameObject:
   - component: {fileID: 6558400227059948300}
   - component: {fileID: 8676086410250246604}
   - component: {fileID: 6253897403730177313}
+  - component: {fileID: 8676086410250246605}
   m_Layer: 5
   m_Name: Left Arrow Controls
   m_TagString: Untagged
@@ -3135,6 +3141,7 @@ GameObject:
   - component: {fileID: 6682576753324487574}
   - component: {fileID: 5781643266395341968}
   - component: {fileID: 5117325314416027189}
+  - component: {fileID: 6682576753324487575}
   m_Layer: 5
   m_Name: Right Arrow No
   m_TagString: Untagged
@@ -3267,6 +3274,7 @@ GameObject:
   - component: {fileID: 7711786984690083950}
   - component: {fileID: 4825854722949832717}
   - component: {fileID: 8121080333073404331}
+  - component: {fileID: 8121080333073404332}
   m_Layer: 5
   m_Name: Right Arrow Back Options
   m_TagString: Untagged
@@ -4261,6 +4269,7 @@ GameObject:
   - component: {fileID: 1016391233732073049}
   - component: {fileID: 5565283864406537489}
   - component: {fileID: 8877202772096079104}
+  - component: {fileID: 8877202772096079105}
   m_Layer: 5
   m_Name: Right Arrow Yes
   m_TagString: Untagged
@@ -4383,7 +4392,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 585767071}
         m_TargetAssemblyTypeName: PauseManager, Assembly-CSharp
         m_MethodName: quit
         m_Mode: 1
@@ -4598,6 +4607,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 95528277098723953}
   m_CullTransparentMesh: 1
+--- !u!114 &3530253980369555477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 95528277098723953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1.115, y: 1.115}
+  m_UseGraphicAlpha: 0
 --- !u!222 &3590784123484794693
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4832,7 +4856,7 @@ MonoBehaviour:
   m_text: continue
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: aaf8b9ab341c3c64185eeb1721d0feff, type: 2}
-  m_sharedMaterial: {fileID: -681700933799475429, guid: aaf8b9ab341c3c64185eeb1721d0feff, type: 2}
+  m_sharedMaterial: {fileID: -8354203079249323526, guid: aaf8b9ab341c3c64185eeb1721d0feff, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4939,6 +4963,7 @@ GameObject:
   - component: {fileID: 9213755773604436468}
   - component: {fileID: 3238191235104772100}
   - component: {fileID: 8971210863361826080}
+  - component: {fileID: 9213755773604436469}
   m_Layer: 5
   m_Name: Left Arrow Audio
   m_TagString: Untagged
@@ -5363,6 +5388,7 @@ GameObject:
   - component: {fileID: 1308315821073218780}
   - component: {fileID: 698434410874497951}
   - component: {fileID: 6572256181928348425}
+  - component: {fileID: 6572256181928348426}
   m_Layer: 5
   m_Name: Right Arrow Back Options
   m_TagString: Untagged
@@ -5381,6 +5407,7 @@ GameObject:
   - component: {fileID: 2934780844302638109}
   - component: {fileID: 3357509881189515296}
   - component: {fileID: 3124961949730171798}
+  - component: {fileID: 4805218565650826368}
   m_Layer: 5
   m_Name: Right Arrow Video
   m_TagString: Untagged
@@ -5388,6 +5415,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &4805218565650826368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4805218565650826367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1.115, y: 1.115}
+  m_UseGraphicAlpha: 0
 --- !u!114 &4806386776916044063
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5581,7 +5623,7 @@ MonoBehaviour:
   m_text: QUIT
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: aaf8b9ab341c3c64185eeb1721d0feff, type: 2}
-  m_sharedMaterial: {fileID: -681700933799475429, guid: aaf8b9ab341c3c64185eeb1721d0feff, type: 2}
+  m_sharedMaterial: {fileID: -8354203079249323526, guid: aaf8b9ab341c3c64185eeb1721d0feff, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5750,6 +5792,7 @@ GameObject:
   - component: {fileID: 4609235333689701045}
   - component: {fileID: 8409051208180786623}
   - component: {fileID: 3660728616617326908}
+  - component: {fileID: 8409051208180786624}
   m_Layer: 5
   m_Name: Left Arrow No
   m_TagString: Untagged
@@ -6031,6 +6074,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6572256181928348426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4801544483893332086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1.115, y: 1.115}
+  m_UseGraphicAlpha: 0
 --- !u!1 &6578148597706668705
 GameObject:
   m_ObjectHideFlags: 0
@@ -6076,6 +6134,21 @@ RectTransform:
   m_AnchoredPosition: {x: 120, y: -17}
   m_SizeDelta: {x: 70, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &6682576753324487575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 653069827955261518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1.115, y: 1.115}
+  m_UseGraphicAlpha: 0
 --- !u!224 &6705560723003062276
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6271,6 +6344,7 @@ GameObject:
   - component: {fileID: 7868918179264762694}
   - component: {fileID: 8129999269883227367}
   - component: {fileID: 4772087097713164174}
+  - component: {fileID: 8129999269883227368}
   m_Layer: 5
   m_Name: Right Arrow Controls
   m_TagString: Untagged
@@ -6289,6 +6363,7 @@ GameObject:
   - component: {fileID: 2367567668390917430}
   - component: {fileID: 3969080407840438144}
   - component: {fileID: 1076800940061817808}
+  - component: {fileID: 6775086528363953271}
   m_Layer: 5
   m_Name: Left Arrow Back Options
   m_TagString: Untagged
@@ -6296,6 +6371,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6775086528363953271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6775086528363953270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1.115, y: 1.115}
+  m_UseGraphicAlpha: 0
 --- !u!222 &6805291768695090536
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6352,6 +6442,7 @@ GameObject:
   - component: {fileID: 1499037736487729927}
   - component: {fileID: 4161444575729140916}
   - component: {fileID: 505658382890879544}
+  - component: {fileID: 7184936393282238486}
   m_Layer: 5
   m_Name: Right Arrow Audio
   m_TagString: Untagged
@@ -6359,6 +6450,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &7184936393282238486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7184936393282238485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1.115, y: 1.115}
+  m_UseGraphicAlpha: 0
 --- !u!114 &7284212402688069194
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6384,6 +6490,7 @@ GameObject:
   - component: {fileID: 2187264633446759045}
   - component: {fileID: 8587170374911466088}
   - component: {fileID: 2543973306519878466}
+  - component: {fileID: 8587170374911466089}
   m_Layer: 5
   m_Name: Left Arrow Yes
   m_TagString: Untagged
@@ -6660,7 +6767,7 @@ MonoBehaviour:
   m_text: paused
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: aaf8b9ab341c3c64185eeb1721d0feff, type: 2}
-  m_sharedMaterial: {fileID: -681700933799475429, guid: aaf8b9ab341c3c64185eeb1721d0feff, type: 2}
+  m_sharedMaterial: {fileID: -8354203079249323526, guid: aaf8b9ab341c3c64185eeb1721d0feff, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -6740,6 +6847,7 @@ GameObject:
   - component: {fileID: 8680072423088369309}
   - component: {fileID: 5077037699265585644}
   - component: {fileID: 8064189128533509037}
+  - component: {fileID: 8680072423088369310}
   m_Layer: 5
   m_Name: Left Arrow Controls
   m_TagString: Untagged
@@ -7080,6 +7188,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8121080333073404332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1116553100492750395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1.115, y: 1.115}
+  m_UseGraphicAlpha: 0
 --- !u!222 &8129999269883227367
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7088,6 +7211,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6739733123358952079}
   m_CullTransparentMesh: 1
+--- !u!114 &8129999269883227368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6739733123358952079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1.115, y: 1.115}
+  m_UseGraphicAlpha: 0
 --- !u!224 &8160135474189397361
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7118,6 +7256,7 @@ GameObject:
   - component: {fileID: 9147779503735455450}
   - component: {fileID: 70421752312560703}
   - component: {fileID: 7554202642127100843}
+  - component: {fileID: 9147779503735455451}
   m_Layer: 5
   m_Name: Left Arrow Video
   m_TagString: Untagged
@@ -7145,6 +7284,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5992019693550794456}
   m_CullTransparentMesh: 1
+--- !u!114 &8409051208180786624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5992019693550794456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1.115, y: 1.115}
+  m_UseGraphicAlpha: 0
 --- !u!114 &8428099026125331568
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7356,6 +7510,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7291571660399434336}
   m_CullTransparentMesh: 1
+--- !u!114 &8587170374911466089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7291571660399434336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1.115, y: 1.115}
+  m_UseGraphicAlpha: 0
 --- !u!114 &8650665145550543906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7376,6 +7545,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 631735261226675504}
   m_CullTransparentMesh: 1
+--- !u!114 &8676086410250246605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 631735261226675504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1.115, y: 1.115}
+  m_UseGraphicAlpha: 0
 --- !u!224 &8680072423088369309
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7395,6 +7579,21 @@ RectTransform:
   m_AnchoredPosition: {x: -270, y: -17}
   m_SizeDelta: {x: 70, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &8680072423088369310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7723156776845526207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1.115, y: 1.115}
+  m_UseGraphicAlpha: 0
 --- !u!1 &8704857740164009936
 GameObject:
   m_ObjectHideFlags: 0
@@ -7406,6 +7605,7 @@ GameObject:
   - component: {fileID: 7834962487265433487}
   - component: {fileID: 1840673855770652082}
   - component: {fileID: 5317684160589348106}
+  - component: {fileID: 8704857740164009937}
   m_Layer: 5
   m_Name: Right Arrow Controls
   m_TagString: Untagged
@@ -7413,6 +7613,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &8704857740164009937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8704857740164009936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1.115, y: 1.115}
+  m_UseGraphicAlpha: 0
 --- !u!114 &8877202772096079104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7443,6 +7658,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8877202772096079105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3095340754644418218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1.115, y: 1.115}
+  m_UseGraphicAlpha: 0
 --- !u!114 &8971210863361826080
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7547,6 +7777,21 @@ RectTransform:
   m_AnchoredPosition: {x: -175, y: 10}
   m_SizeDelta: {x: 70, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &9147779503735455451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8208237857472923408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1.115, y: 1.115}
+  m_UseGraphicAlpha: 0
 --- !u!224 &9165081863272447880
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7608,6 +7853,21 @@ RectTransform:
   m_AnchoredPosition: {x: -175, y: 10}
   m_SizeDelta: {x: 70, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &9213755773604436469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4402680261816954160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 1.115, y: 1.115}
+  m_UseGraphicAlpha: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

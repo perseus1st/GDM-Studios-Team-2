@@ -178,7 +178,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u2022 Head out"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: aaf8b9ab341c3c64185eeb1721d0feff, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8733465e6612d3148beced86adc30b9c, type: 2}
   m_sharedMaterial: {fileID: -681700933799475429, guid: aaf8b9ab341c3c64185eeb1721d0feff, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -581,8 +581,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u2022 Dodgeball"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: aaf8b9ab341c3c64185eeb1721d0feff, type: 2}
-  m_sharedMaterial: {fileID: -8354203079249323526, guid: aaf8b9ab341c3c64185eeb1721d0feff, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8733465e6612d3148beced86adc30b9c, type: 2}
+  m_sharedMaterial: {fileID: -8354203079249323526, guid: 8733465e6612d3148beced86adc30b9c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1196,8 +1196,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u2022 Rackets"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: aaf8b9ab341c3c64185eeb1721d0feff, type: 2}
-  m_sharedMaterial: {fileID: -8354203079249323526, guid: aaf8b9ab341c3c64185eeb1721d0feff, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8733465e6612d3148beced86adc30b9c, type: 2}
+  m_sharedMaterial: {fileID: -8354203079249323526, guid: 8733465e6612d3148beced86adc30b9c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1893,8 +1893,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u2022 Dance Mat"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: aaf8b9ab341c3c64185eeb1721d0feff, type: 2}
-  m_sharedMaterial: {fileID: -8354203079249323526, guid: aaf8b9ab341c3c64185eeb1721d0feff, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8733465e6612d3148beced86adc30b9c, type: 2}
+  m_sharedMaterial: {fileID: -8354203079249323526, guid: 8733465e6612d3148beced86adc30b9c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2883,8 +2883,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Packing List
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: aaf8b9ab341c3c64185eeb1721d0feff, type: 2}
-  m_sharedMaterial: {fileID: -8354203079249323526, guid: aaf8b9ab341c3c64185eeb1721d0feff, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8733465e6612d3148beced86adc30b9c, type: 2}
+  m_sharedMaterial: {fileID: -8354203079249323526, guid: 8733465e6612d3148beced86adc30b9c, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
