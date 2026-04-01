@@ -3078,9 +3078,9 @@ MonoBehaviour:
   minigameID: dodgeball
   sceneToLoad: Sister_Room
   musicSource: {fileID: 1638469675}
-  track1: {fileID: 8300000, guid: 131674da368092b4a828f2fba8d14222, type: 3}
-  track2: {fileID: 8300000, guid: c9ebbd2a059d24142a169003f8c15c93, type: 3}
-  track3: {fileID: 8300000, guid: c6693c0d6da58744aa2f51831a16c1ae, type: 3}
+  track1: {fileID: 8300000, guid: 9ac319a0b6dd2a24ca714091632fa475, type: 3}
+  track2: {fileID: 8300000, guid: a503795970010394c9fa77c554525ab0, type: 3}
+  track3: {fileID: 8300000, guid: 7841a6ad491973f4aa52f8985e4d4158, type: 3}
   crossfadeDuration: 1
 --- !u!4 &1638469674
 Transform:
