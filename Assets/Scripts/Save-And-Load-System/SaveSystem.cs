@@ -22,6 +22,8 @@ public class SaveSystem
             });
         }
 
+        data.seenDialogues.AddRange(gm.seenDialogues); // Added by Daniil 04-04-2026
+
         string json = JsonUtility.ToJson(data, true);
         File.WriteAllText(GetPath(slot), json);
     }
@@ -47,6 +49,9 @@ public class SaveSystem
         {
             gm.highScores[entry.minigameID] = entry.score;
         }
+
+        gm.seenDialogues = new HashSet<string>(data.seenDialogues); // Added by Daniil 04-04-2026
+
         gm.currentSaveSlot = slot;
     }
 

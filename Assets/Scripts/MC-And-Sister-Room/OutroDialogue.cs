@@ -49,7 +49,7 @@ public class OutroDialogue : MonoBehaviour
             elapsed += Time.deltaTime;
             float duration = isFast ? fastScrollDuration : scrollDuration;
             float t = Mathf.Clamp01(elapsed / duration);
-            float smoothT = Mathf.SmoothStep(0f, 1f, t);
+            float smoothT = Mathf.Lerp(0f, 1f, t);
             float newY = Mathf.Lerp(scrollStartY, scrollEndY, smoothT);
             textContainer.anchoredPosition = new Vector2(textContainer.anchoredPosition.x, newY);
             yield return null;

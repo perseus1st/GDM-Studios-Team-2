@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
 
     public HashSet<string> completedMinigames = new HashSet<string>(); 
     public Dictionary<string, int> highScores = new();
+    public HashSet<string> seenDialogues = new HashSet<string>(); // Added by Daniil 04-04-2026
 
     public int currentSaveSlot = -1;
 

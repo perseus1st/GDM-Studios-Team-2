@@ -30,7 +30,11 @@ public class IntroDialogue : MonoBehaviour
             canvasGroup = dialoguePanel.AddComponent<CanvasGroup>();
 
         canvasGroup.alpha = 1f;
-        ShowDialogue();
+
+        if (!GameManager.Instance.seenDialogues.Contains("IntroDialogue_MC_Room"))
+            ShowDialogue();
+        else
+            dialoguePanel.SetActive(false);
     }
 
     private void ShowDialogue()
@@ -103,6 +107,9 @@ public class IntroDialogue : MonoBehaviour
 
         canvasGroup.alpha = 0f;
         dialoguePanel.SetActive(false);
+
+        GameManager.Instance.seenDialogues.Add("IntroDialogue_MC_Room");
+        SaveSystem.Save(GameManager.Instance.currentSaveSlot);
     }
     
     private IEnumerator PulseIcon()
