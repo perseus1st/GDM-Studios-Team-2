@@ -7374,7 +7374,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneController
   delayBeforeAnimation: 0
-  animationLength: 3
+  animationLength: 2
   triggerName: NextLevel
   skipFadeInScene: MainMenu
   canvasAnimator: {fileID: 1157418313}

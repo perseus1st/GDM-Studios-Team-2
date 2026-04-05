@@ -34,6 +34,8 @@ public class SceneController : MonoBehaviour
         canvasAnimator.Play("Scene_Fade_In", 0, 1f);
         canvasAnimator.Update(0f);
     }
+
+    canvasAnimator.updateMode = AnimatorUpdateMode.UnscaledTime; // Added by Daniil 04-04-2026
 }
 
     public void LoadScene(string sceneName)
